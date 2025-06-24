@@ -1,0 +1,993 @@
+export const cardData = {
+  plans: [
+    {
+      name: "Lite",
+      buttonText: "Select Plan",
+      prices: {
+        "1-500": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "501-1000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "1001-1500": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "1501-2000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "2001-2500": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "2501-3000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "3001-4000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "4001-5000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "5001-6000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "6001-7000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "7001-8000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "8001-9000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "9001-10000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "10001-12000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "12001-14000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "14001-16000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "16001-18000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "18001-20000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "20001-25000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "25001-30000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "30001-35000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "35001-40000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "40001-45000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "45001-50000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "50001-60000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "60001-70000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "70001-80000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "80001-90000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "90001-100000": { Monthly: "FREE", "6 Months": "FREE", Annual: "FREE" },
+        "100001-125000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "125001-150000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "150001-175000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "175001-200000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "200001-225000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "225001-250000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "250001-300000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "300001-350000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "350001-400000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "400001-450000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "450001-500000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "500001-600000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "600001-700000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "700001-800000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "800001-900000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "900001-1000000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "1000001-1250000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "1250001-1500000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "1500001-1750000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "1750001-2000000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "2000001-2500000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "2500001-3000000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "3000001-3500000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "3500001-4000000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "4000001-4500000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+        "4500001-5000000": {
+          Monthly: "FREE",
+          "6 Months": "FREE",
+          Annual: "FREE",
+        },
+      },
+      description: "Basic features to expand your business.",
+    },
+
+    {
+      name: "Plus",
+      buttonText: "Select Plan",
+      description: "Essential tools to go online",
+      prices: {
+        "1-500": { Monthly: "4,500", "6 Months": "4,050", Annual: "3,600" },
+        "501-1000": { Monthly: "6,750", "6 Months": "6,075", Annual: "5,400" },
+        "1001-1500": { Monthly: "9,000", "6 Months": "8,100", Annual: "7,200" },
+        "1501-2000": {
+          Monthly: "11,250",
+          "6 Months": "10,125",
+          Annual: "9,000",
+        },
+        "2001-2500": {
+          Monthly: "13,500",
+          "6 Months": "12,150",
+          Annual: "10,800",
+        },
+        "2501-3000": {
+          Monthly: "15,750",
+          "6 Months": "14,175",
+          Annual: "12,600",
+        },
+        "3001-4000": {
+          Monthly: "18,000",
+          "6 Months": "16,200",
+          Annual: "14,400",
+        },
+        "4001-5000": {
+          Monthly: "20,250",
+          "6 Months": "18,225",
+          Annual: "16,200",
+        },
+        "5001-6000": {
+          Monthly: "22,500",
+          "6 Months": "20,250",
+          Annual: "18,000",
+        },
+        "6001-7000": {
+          Monthly: "24,750",
+          "6 Months": "22,275",
+          Annual: "19,800",
+        },
+        "7001-8000": {
+          Monthly: "27,000",
+          "6 Months": "24,300",
+          Annual: "21,600",
+        },
+        "8001-9000": {
+          Monthly: "29,250",
+          "6 Months": "26,325",
+          Annual: "23,400",
+        },
+        "9001-10000": {
+          Monthly: "31,500",
+          "6 Months": "28,350",
+          Annual: "25,200",
+        },
+        "10001-12000": {
+          Monthly: "36,000",
+          "6 Months": "32,400",
+          Annual: "28,800",
+        },
+        "12001-14000": {
+          Monthly: "40,500",
+          "6 Months": "36,450",
+          Annual: "32,400",
+        },
+        "14001-16000": {
+          Monthly: "45,000",
+          "6 Months": "40,500",
+          Annual: "36,000",
+        },
+        "16001-18000": {
+          Monthly: "49,500",
+          "6 Months": "44,550",
+          Annual: "39,600",
+        },
+        "18001-20000": {
+          Monthly: "54,000",
+          "6 Months": "48,600",
+          Annual: "43,200",
+        },
+        "20001-25000": {
+          Monthly: "60,750",
+          "6 Months": "54,675",
+          Annual: "48,600",
+        },
+        "25001-30000": {
+          Monthly: "72,000",
+          "6 Months": "64,800",
+          Annual: "57,600",
+        },
+        "30001-35000": {
+          Monthly: "83,250",
+          "6 Months": "74,925",
+          Annual: "66,600",
+        },
+        "35001-40000": {
+          Monthly: "94,500",
+          "6 Months": "85,050",
+          Annual: "75,600",
+        },
+        "40001-45000": {
+          Monthly: "105,750",
+          "6 Months": "95,175",
+          Annual: "84,600",
+        },
+        "45001-50000": {
+          Monthly: "117,000",
+          "6 Months": "105,300",
+          Annual: "93,600",
+        },
+        "50001-60000": {
+          Monthly: "128,250",
+          "6 Months": "115,425",
+          Annual: "102,600",
+        },
+        "60001-70000": {
+          Monthly: "141,750",
+          "6 Months": "127,575",
+          Annual: "113,400",
+        },
+        "70001-80000": {
+          Monthly: "155,250",
+          "6 Months": "139,725",
+          Annual: "124,200",
+        },
+        "80001-90000": {
+          Monthly: "168,750",
+          "6 Months": "151,875",
+          Annual: "135,000",
+        },
+        "90001-100000": {
+          Monthly: "182,250",
+          "6 Months": "164,025",
+          Annual: "145,800",
+        },
+        "100001-125000": {
+          Monthly: "209,250",
+          "6 Months": "188,325",
+          Annual: "167,400",
+        },
+        "125001-150000": {
+          Monthly: "236,250",
+          "6 Months": "212,625",
+          Annual: "189,000",
+        },
+        "150001-175000": {
+          Monthly: "263,250",
+          "6 Months": "236,925",
+          Annual: "210,600",
+        },
+        "175001-200000": {
+          Monthly: "290,250",
+          "6 Months": "261,225",
+          Annual: "232,200",
+        },
+        "200001-225000": {
+          Monthly: "317,250",
+          "6 Months": "285,525",
+          Annual: "253,800",
+        },
+        "225001-250000": {
+          Monthly: "321,750",
+          "6 Months": "289,575",
+          Annual: "257,400",
+        },
+        "250001-300000": {
+          Monthly: "351,000",
+          "6 Months": "315,900",
+          Annual: "280,800",
+        },
+        "300001-350000": {
+          Monthly: "380,250",
+          "6 Months": "342,225",
+          Annual: "304,200",
+        },
+        "350001-400000": {
+          Monthly: "409,500",
+          "6 Months": "368,550",
+          Annual: "327,600",
+        },
+        "400001-450000": {
+          Monthly: "438,750",
+          "6 Months": "394,875",
+          Annual: "351,000",
+        },
+        "450001-500000": {
+          Monthly: "472,500",
+          "6 Months": "425,250",
+          Annual: "378,000",
+        },
+        "500001-600000": {
+          Monthly: "585,000",
+          "6 Months": "526,500",
+          Annual: "468,000",
+        },
+        "600001-700000": {
+          Monthly: "697,500",
+          "6 Months": "627,750",
+          Annual: "558,000",
+        },
+        "700001-800000": {
+          Monthly: "810,000",
+          "6 Months": "729,000",
+          Annual: "648,000",
+        },
+        "800001-900000": {
+          Monthly: "922,500",
+          "6 Months": "830,250",
+          Annual: "738,000",
+        },
+        "900001-1000000": {
+          Monthly: "1,035,000",
+          "6 Months": "931,500",
+          Annual: "828,000",
+        },
+        "1000001-1250000": {
+          Monthly: "1,147,500",
+          "6 Months": "1,032,750",
+          Annual: "918,000",
+        },
+        "1250001-1500000": {
+          Monthly: "1,406,250",
+          "6 Months": "1,265,625",
+          Annual: "1,125,000",
+        },
+        "1500001-1750000": {
+          Monthly: "1,665,000",
+          "6 Months": "1,498,500",
+          Annual: "1,332,000",
+        },
+        "1750001-2000000": {
+          Monthly: "1,923,750",
+          "6 Months": "1,731,375",
+          Annual: "1,539,000",
+        },
+        "2000001-2500000": {
+          Monthly: "2,182,500",
+          "6 Months": "1,964,250",
+          Annual: "1,746,000",
+        },
+        "2500001-3000000": {
+          Monthly: "2,533,500",
+          "6 Months": "2,280,150",
+          Annual: "2,026,800",
+        },
+        "3000001-3500000": {
+          Monthly: "2,884,500",
+          "6 Months": "2,596,050",
+          Annual: "2,307,600",
+        },
+        "3500001-4000000": {
+          Monthly: "3,235,500",
+          "6 Months": "2,911,950",
+          Annual: "2,588,400",
+        },
+        "4000001-4500000": {
+          Monthly: "3,586,500",
+          "6 Months": "3,227,850",
+          Annual: "2,869,200",
+        },
+        "4500001-5000000": {
+          Monthly: "3,937,500",
+          "6 Months": "3,543,750",
+          Annual: "3,150,000",
+        },
+      },
+    },
+    {
+      name: "Pro",
+      buttonText: "Select Plan",
+      description: "Full access to ecosystem features",
+      prices: {
+        "1-500": { Monthly: "6,750", "6 Months": "6,075", Annual: "5,400" },
+        "501-1000": { Monthly: "8,100", "6 Months": "7,290", Annual: "6,480" },
+        "1001-1500": {
+          Monthly: "10,800",
+          "6 Months": "9,720",
+          Annual: "8,640",
+        },
+        "1501-2000": {
+          Monthly: "13,500",
+          "6 Months": "12,150",
+          Annual: "10,800",
+        },
+        "2001-2500": {
+          Monthly: "16,200",
+          "6 Months": "14,580",
+          Annual: "12,960",
+        },
+        "2501-3000": {
+          Monthly: "18,900",
+          "6 Months": "17,010",
+          Annual: "15,120",
+        },
+        "3001-4000": {
+          Monthly: "21,600",
+          "6 Months": "19,440",
+          Annual: "17,280",
+        },
+        "4001-5000": {
+          Monthly: "24,300",
+          "6 Months": "21,870",
+          Annual: "19,440",
+        },
+        "5001-6000": {
+          Monthly: "27,000",
+          "6 Months": "24,300",
+          Annual: "21,600",
+        },
+        "6001-7000": {
+          Monthly: "29,700",
+          "6 Months": "26,730",
+          Annual: "23,760",
+        },
+        "7001-8000": {
+          Monthly: "32,400",
+          "6 Months": "29,160",
+          Annual: "25,920",
+        },
+        "8001-9000": {
+          Monthly: "35,100",
+          "6 Months": "31,590",
+          Annual: "28,080",
+        },
+        "9001-10000": {
+          Monthly: "37,800",
+          "6 Months": "34,020",
+          Annual: "30,240",
+        },
+        "10001-12000": {
+          Monthly: "43,200",
+          "6 Months": "38,880",
+          Annual: "34,560",
+        },
+        "12001-14000": {
+          Monthly: "48,600",
+          "6 Months": "43,740",
+          Annual: "38,880",
+        },
+        "14001-16000": {
+          Monthly: "54,000",
+          "6 Months": "48,600",
+          Annual: "43,200",
+        },
+        "16001-18000": {
+          Monthly: "59,400",
+          "6 Months": "53,460",
+          Annual: "47,520",
+        },
+        "18001-20000": {
+          Monthly: "64,800",
+          "6 Months": "58,320",
+          Annual: "51,840",
+        },
+        "20001-25000": {
+          Monthly: "72,900",
+          "6 Months": "65,610",
+          Annual: "58,320",
+        },
+        "25001-30000": {
+          Monthly: "86,400",
+          "6 Months": "77,760",
+          Annual: "69,120",
+        },
+        "30001-35000": {
+          Monthly: "99,900",
+          "6 Months": "89,910",
+          Annual: "79,920",
+        },
+        "35001-40000": {
+          Monthly: "113,400",
+          "6 Months": "102,060",
+          Annual: "90,720",
+        },
+        "40001-45000": {
+          Monthly: "126,900",
+          "6 Months": "114,210",
+          Annual: "101,520",
+        },
+        "45001-50000": {
+          Monthly: "140,400",
+          "6 Months": "126,360",
+          Annual: "112,320",
+        },
+        "50001-60000": {
+          Monthly: "153,900",
+          "6 Months": "138,510",
+          Annual: "123,120",
+        },
+        "60001-70000": {
+          Monthly: "170,100",
+          "6 Months": "153,090",
+          Annual: "136,080",
+        },
+        "70001-80000": {
+          Monthly: "186,300",
+          "6 Months": "167,670",
+          Annual: "149,040",
+        },
+        "80001-90000": {
+          Monthly: "202,500",
+          "6 Months": "182,250",
+          Annual: "162,000",
+        },
+        "90001-100000": {
+          Monthly: "218,700",
+          "6 Months": "196,830",
+          Annual: "174,960",
+        },
+        "100001-125000": {
+          Monthly: "251,100",
+          "6 Months": "225,990",
+          Annual: "200,880",
+        },
+        "125001-150000": {
+          Monthly: "283,500",
+          "6 Months": "255,150",
+          Annual: "226,800",
+        },
+        "150001-175000": {
+          Monthly: "315,900",
+          "6 Months": "284,310",
+          Annual: "252,720",
+        },
+        "175001-200000": {
+          Monthly: "348,300",
+          "6 Months": "313,470",
+          Annual: "278,640",
+        },
+        "200001-225000": {
+          Monthly: "380,700",
+          "6 Months": "342,630",
+          Annual: "304,560",
+        },
+        "225001-250000": {
+          Monthly: "386,100",
+          "6 Months": "347,490",
+          Annual: "308,880",
+        },
+        "250001-300000": {
+          Monthly: "421,200",
+          "6 Months": "379,080",
+          Annual: "336,960",
+        },
+        "300001-350000": {
+          Monthly: "456,300",
+          "6 Months": "410,670",
+          Annual: "365,040",
+        },
+        "350001-400000": {
+          Monthly: "491,400",
+          "6 Months": "442,260",
+          Annual: "393,120",
+        },
+        "400001-450000": {
+          Monthly: "526,500",
+          "6 Months": "473,850",
+          Annual: "421,200",
+        },
+        "450001-500000": {
+          Monthly: "567,000",
+          "6 Months": "510,300",
+          Annual: "453,600",
+        },
+        "500001-600000": {
+          Monthly: "702,000",
+          "6 Months": "631,800",
+          Annual: "561,600",
+        },
+        "600001-700000": {
+          Monthly: "837,000",
+          "6 Months": "753,300",
+          Annual: "669,600",
+        },
+        "700001-800000": {
+          Monthly: "972,000",
+          "6 Months": "874,800",
+          Annual: "777,600",
+        },
+        "800001-900000": {
+          Monthly: "1,107,000",
+          "6 Months": "996,300",
+          Annual: "885,600",
+        },
+        "900001-1000000": {
+          Monthly: "1,242,000",
+          "6 Months": "1,117,800",
+          Annual: "993,600",
+        },
+        "1000001-1250000": {
+          Monthly: "1,377,000",
+          "6 Months": "1,239,300",
+          Annual: "1,101,600",
+        },
+        "1250001-1500000": {
+          Monthly: "1,687,500",
+          "6 Months": "1,518,750",
+          Annual: "1,350,000",
+        },
+        "1500001-1750000": {
+          Monthly: "1,998,000",
+          "6 Months": "1,798,200",
+          Annual: "1,598,400",
+        },
+        "1750001-2000000": {
+          Monthly: "2,308,500",
+          "6 Months": "2,077,650",
+          Annual: "1,846,800",
+        },
+        "2000001-2500000": {
+          Monthly: "2,619,000",
+          "6 Months": "2,357,100",
+          Annual: "2,095,200",
+        },
+        "2500001-3000000": {
+          Monthly: "3,040,200",
+          "6 Months": "2,736,180",
+          Annual: "2,432,160",
+        },
+        "3000001-3500000": {
+          Monthly: "3,461,400",
+          "6 Months": "3,115,260",
+          Annual: "2,769,120",
+        },
+        "3500001-4000000": {
+          Monthly: "3,882,600",
+          "6 Months": "3,494,340",
+          Annual: "3,106,080",
+        },
+        "4000001-4500000": {
+          Monthly: "4,303,800",
+          "6 Months": "3,873,420",
+          Annual: "3,443,040",
+        },
+        "4500001-5000000": {
+          Monthly: "4,725,000",
+          "6 Months": "4,252,500",
+          Annual: "3,780,000",
+        },
+      },
+    },
+    {
+      name: "Extra",
+      buttonText: "Select Plan",
+      description: "Advanced features for growing businesses",
+      prices: {
+        "1-500": { Monthly: "10,125", "6 Months": "9,113", Annual: "8,100" },
+        "501-1000": {
+          Monthly: "11,340",
+          "6 Months": "10,206",
+          Annual: "9,072",
+        },
+        "1001-1500": {
+          Monthly: "15,120",
+          "6 Months": "13,608",
+          Annual: "12,096",
+        },
+        "1501-2000": {
+          Monthly: "18,900",
+          "6 Months": "17,010",
+          Annual: "15,120",
+        },
+        "2001-2500": {
+          Monthly: "22,680",
+          "6 Months": "20,412",
+          Annual: "18,144",
+        },
+        "2501-3000": {
+          Monthly: "26,460",
+          "6 Months": "23,814",
+          Annual: "21,168",
+        },
+        "3001-4000": {
+          Monthly: "30,240",
+          "6 Months": "27,216",
+          Annual: "24,192",
+        },
+        "4001-5000": {
+          Monthly: "34,020",
+          "6 Months": "30,618",
+          Annual: "27,216",
+        },
+        "5001-6000": {
+          Monthly: "37,800",
+          "6 Months": "34,020",
+          Annual: "30,240",
+        },
+        "6001-7000": {
+          Monthly: "41,580",
+          "6 Months": "37,422",
+          Annual: "33,264",
+        },
+        "7001-8000": {
+          Monthly: "45,360",
+          "6 Months": "40,824",
+          Annual: "36,288",
+        },
+        "8001-9000": {
+          Monthly: "49,140",
+          "6 Months": "44,226",
+          Annual: "39,312",
+        },
+        "9001-10000": {
+          Monthly: "52,920",
+          "6 Months": "47,628",
+          Annual: "42,336",
+        },
+        "10001-12000": {
+          Monthly: "60,480",
+          "6 Months": "54,432",
+          Annual: "48,384",
+        },
+        "12001-14000": {
+          Monthly: "68,040",
+          "6 Months": "61,236",
+          Annual: "54,432",
+        },
+        "14001-16000": {
+          Monthly: "75,600",
+          "6 Months": "68,040",
+          Annual: "60,480",
+        },
+        "16001-18000": {
+          Monthly: "83,160",
+          "6 Months": "74,844",
+          Annual: "66,528",
+        },
+        "18001-20000": {
+          Monthly: "90,720",
+          "6 Months": "81,648",
+          Annual: "72,576",
+        },
+        "20001-25000": {
+          Monthly: "102,060",
+          "6 Months": "91,854",
+          Annual: "81,648",
+        },
+        "25001-30000": {
+          Monthly: "120,960",
+          "6 Months": "108,864",
+          Annual: "96,768",
+        },
+        "30001-35000": {
+          Monthly: "139,860",
+          "6 Months": "125,874",
+          Annual: "111,888",
+        },
+        "35001-40000": {
+          Monthly: "158,760",
+          "6 Months": "142,884",
+          Annual: "127,008",
+        },
+        "40001-45000": {
+          Monthly: "177,660",
+          "6 Months": "159,894",
+          Annual: "142,128",
+        },
+        "45001-50000": {
+          Monthly: "196,560",
+          "6 Months": "176,904",
+          Annual: "157,248",
+        },
+        "50001-60000": {
+          Monthly: "215,460",
+          "6 Months": "193,914",
+          Annual: "172,368",
+        },
+        "60001-70000": {
+          Monthly: "238,140",
+          "6 Months": "214,326",
+          Annual: "190,512",
+        },
+        "70001-80000": {
+          Monthly: "260,820",
+          "6 Months": "234,738",
+          Annual: "208,656",
+        },
+        "80001-90000": {
+          Monthly: "283,500",
+          "6 Months": "255,150",
+          Annual: "226,800",
+        },
+        "90001-100000": {
+          Monthly: "306,180",
+          "6 Months": "275,562",
+          Annual: "244,944",
+        },
+        "100001-125000": {
+          Monthly: "351,540",
+          "6 Months": "316,386",
+          Annual: "281,232",
+        },
+        "125001-150000": {
+          Monthly: "396,900",
+          "6 Months": "357,210",
+          Annual: "317,520",
+        },
+        "150001-175000": {
+          Monthly: "442,260",
+          "6 Months": "398,034",
+          Annual: "353,808",
+        },
+        "175001-200000": {
+          Monthly: "487,620",
+          "6 Months": "438,858",
+          Annual: "390,096",
+        },
+        "200001-225000": {
+          Monthly: "532,980",
+          "6 Months": "479,682",
+          Annual: "426,384",
+        },
+        "225001-250000": {
+          Monthly: "540,540",
+          "6 Months": "486,486",
+          Annual: "432,432",
+        },
+        "250001-300000": {
+          Monthly: "589,680",
+          "6 Months": "530,712",
+          Annual: "471,744",
+        },
+        "300001-350000": {
+          Monthly: "638,820",
+          "6 Months": "574,938",
+          Annual: "511,056",
+        },
+        "350001-400000": {
+          Monthly: "687,960",
+          "6 Months": "619,164",
+          Annual: "550,368",
+        },
+        "400001-450000": {
+          Monthly: "737,100",
+          "6 Months": "663,390",
+          Annual: "589,680",
+        },
+        "450001-500000": {
+          Monthly: "793,800",
+          "6 Months": "714,420",
+          Annual: "635,040",
+        },
+        "500001-600000": {
+          Monthly: "982,800",
+          "6 Months": "884,520",
+          Annual: "786,240",
+        },
+        "600001-700000": {
+          Monthly: "1,171,800",
+          "6 Months": "1,054,620",
+          Annual: "937,440",
+        },
+        "700001-800000": {
+          Monthly: "1,360,800",
+          "6 Months": "1,224,720",
+          Annual: "1,088,640",
+        },
+        "800001-900000": {
+          Monthly: "1,549,800",
+          "6 Months": "1,394,820",
+          Annual: "1,239,840",
+        },
+        "900001-1000000": {
+          Monthly: "1,738,800",
+          "6 Months": "1,564,920",
+          Annual: "1,391,040",
+        },
+        "1000001-1250000": {
+          Monthly: "1,927,800",
+          "6 Months": "1,735,020",
+          Annual: "1,542,240",
+        },
+        "1250001-1500000": {
+          Monthly: "2,362,500",
+          "6 Months": "2,126,250",
+          Annual: "1,890,000",
+        },
+        "1500001-1750000": {
+          Monthly: "2,797,200",
+          "6 Months": "2,517,480",
+          Annual: "2,237,760",
+        },
+        "1750001-2000000": {
+          Monthly: "3,231,900",
+          "6 Months": "2,908,710",
+          Annual: "2,585,520",
+        },
+        "2000001-2500000": {
+          Monthly: "3,666,600",
+          "6 Months": "3,299,940",
+          Annual: "2,933,280",
+        },
+        "2500001-3000000": {
+          Monthly: "4,256,280",
+          "6 Months": "3,830,652",
+          Annual: "3,405,024",
+        },
+        "3000001-3500000": {
+          Monthly: "4,845,960",
+          "6 Months": "4,361,364",
+          Annual: "3,876,768",
+        },
+        "3500001-4000000": {
+          Monthly: "5,435,640",
+          "6 Months": "4,892,076",
+          Annual: "4,348,512",
+        },
+        "4000001-4500000": {
+          Monthly: "6,025,320",
+          "6 Months": "5,422,788",
+          Annual: "4,820,256",
+        },
+        "4500001-5000000": {
+          Monthly: "6,615,000",
+          "6 Months": "5,953,500",
+          Annual: "5,292,000",
+        },
+      },
+    },
+  ],
+};

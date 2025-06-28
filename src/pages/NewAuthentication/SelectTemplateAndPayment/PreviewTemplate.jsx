@@ -40,11 +40,14 @@ import SecondNail from "../../Templates/PersonalCare/nail/SecondNail";
 import BlankTemplate from "../../Templates/Blank-Template/BlankTemplate";
 import FirstDentist from "../../Templates/PersonalCare/dental/FirstDentist";
 import SecondDentist from "../../Templates/PersonalCare/dental/SecondDentist";
+import ThirdDentist from "../../Templates/PersonalCare/dental/ThirdDentist";
+import FourthDentist from "../../Templates/PersonalCare/dental/FourthDentist";
 import FifthDentist from "../../Templates/PersonalCare/dental/FifthDentist";
 import Spa1 from "../../Templates/PersonalCare/spa/FirstSpa";
 import Spa2 from "../../Templates/PersonalCare/spa/SecondSpa";
 import Spa3 from "../../Templates/PersonalCare/spa/ThirdSpa";
 import Spa4 from "../../Templates/PersonalCare/spa/FourthSpa";
+import Spa5 from "../../Templates/PersonalCare/spa/FifthSpa";
 import MakeupTemplate from "../../Templates/PersonalCare/makeup/MakeupTemplate";
 import BarberPosh from "../../Templates/PersonalCare/Barber/BarberPosh";
 import { useCountry } from "../../../pages/pricing/CountryContext";
@@ -145,7 +148,7 @@ const PreviewTemplate = () => {
       aboutUs: content.aboutUs,
       Vision: content.Vision,
       Statistics: content.Statistics,
-      Partners: content.Patrners, // Fixed typo: Patrners -> Partners (verify with backend)
+      Partners: content.Patrners, 
       Events: content.Events,
       Gallery: content.Gallery,
       LargeCta: content.LargeCta,
@@ -224,14 +227,14 @@ const PreviewTemplate = () => {
         prefix: "I will",
         header: "offer a relaxing spa experience",
         description: "Luxurious spa treatments for relaxation and rejuvenation",
-        templateIds: [25, 28, 29, 31],
+        templateIds: [25, 28, 29, 31, 36],
       },
       dental: {
         subCategory: "Dental Services",
         prefix: "I will",
         header: "provide expert dental care",
         description: "Comprehensive dental services for a healthy smile",
-        templateIds: [26, 30, 37],
+        templateIds: [26, 30, 34, 35, 37],
       },
     };
 
@@ -269,6 +272,9 @@ const PreviewTemplate = () => {
       31: spa,
       32: gym,
       33: gym,
+      34: dental,
+      35: dental,
+      36: spa,
       37: dental,
       38: MakeUp,
       39: HairSalon
@@ -276,18 +282,18 @@ const PreviewTemplate = () => {
 
     const selectedServiceData = serviceMap[templateId] || barber;
     const ecosystemDomain = userDetails.ecosystemDomain || "not available";
-    const countryCode = localStorage.getItem("countryCode") || "NG"; // Use localStorage directly or fallback
+    const countryCode = localStorage.getItem("countryCode") || "NG";
 
     // Function to format services with country-specific price and currency
     const formatServices = (services, countryCode) => {
       return services.map((service) => {
         const priceInfo =
           service.price.find((p) => p.countryCode === countryCode) ||
-          service.price.find((p) => p.countryCode === "NG"); // Fallback to NG if country not found
+          service.price.find((p) => p.countryCode === "NG");
         return {
           ...service,
           currency: priceInfo.currency,
-          price: priceInfo.value, // Replace price array with single value
+          price: priceInfo.value,
         };
       });
     };
@@ -306,7 +312,7 @@ const PreviewTemplate = () => {
         header: selectedService.header,
         description: selectedService.description,
         format: "Onsite",
-        currency: formattedServices[0]?.currency || "NGN", // Use first service's currency or fallback
+        currency: formattedServices[0]?.currency || "NGN",
         services: formattedServices,
         accessToken,
         refreshToken,
@@ -379,6 +385,12 @@ const PreviewTemplate = () => {
         return <GymTemplate4 userDetails={userDetails} />;
       case 33:
         return <GymTemplate5 userDetails={userDetails} />;
+      case 34:
+        return <ThirdDentist userDetails={userDetails} />;
+      case 35:
+        return <FourthDentist userDetails={userDetails} />;
+      case 36:
+        return <Spa5 userDetails={userDetails} />;
       case 37:
         return <FifthDentist userDetails={userDetails} />;
       case 38:

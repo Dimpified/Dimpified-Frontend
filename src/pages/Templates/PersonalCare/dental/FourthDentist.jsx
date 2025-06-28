@@ -111,7 +111,7 @@ const testimonials = [
   },
 ];
 
-const FourthDentist = () => {
+const FourthDentist = ({userDetails}) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   const handleModalOpen = () => {
@@ -162,7 +162,7 @@ const FourthDentist = () => {
               className="w-10 h-10 mr-2"
             />{" "}
             <span className="text-md text-[#0CB8B6] font-semibold leading-tight">
-              SmileBright Dentals
+             {userDetails?.ecosystemName} Dentals
             </span>
           </a>
 
@@ -265,9 +265,9 @@ const FourthDentist = () => {
           </ul>
         )}
       </nav>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <BookingModal isOpen={isModalOpen} handleClose={handleModalClose} />
-      )}
+      )} */}
       <div className="relative bg-white py-20 md:h-screen px-5 md:px-10 lg:px-20">
         {/* Background Shape */}
         <div
@@ -685,7 +685,7 @@ const FourthDentist = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* About Section */}
             <div>
-              <h4 className="text-xl font-semibold mb-4">SmileBright Dental</h4>
+              <h4 className="text-xl font-semibold mb-4">{userDetails?.ecosystemName} Dental</h4>
               <p className="text-gray-600 mb-4">
                 Premier dental care in Lagos offering world-class services with
                 state-of-the-art technology and compassionate care for the whole

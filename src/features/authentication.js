@@ -24,11 +24,23 @@ export const creatorLogin = createAsyncThunk(
     }
   }
 );
+export const creatorSignupWithGoogle = createAsyncThunk(
+  "auth/creatorSignupWithGoogle",
+  async ({ token }, { rejectWithValue }) => {
+    try {
+      const response = await api.GoogleSignUp({ token });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
 export const creatorLoginWithGoogle = createAsyncThunk(
   "auth/creatorLoginWithGoogle",
   async ({ token }, { rejectWithValue }) => {
     try {
-      const response = await api.GoogleSignUp({ token });
+      const response = await api.GoogleLogin({ token });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
@@ -281,6 +293,21 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(creatorLoginWithGoogle.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      //handle google signup
+      .addCase(creatorSignupWithGoogle.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(creatorSignupWithGoogle.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.error = null;
+      })
+      .addCase(creatorSignupWithGoogle.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

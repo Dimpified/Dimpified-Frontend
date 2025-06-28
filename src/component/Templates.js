@@ -24,8 +24,11 @@ import Spa1 from "../assets/Spa1.png";
 import Spa2 from "../assets/spa2.png";
 import Spa3 from "../assets/spa3.png";
 import Spa4 from "../assets/spa4.png";
+import Spa5 from "../assets/spa5.png";
 import Dentist1 from "../assets/Dentist1.png";
 import Dentist2 from "../assets/Dentist2.png";
+import Dentist3 from "../assets/Dentist4.png";
+import Dentist4 from "../assets/Dentist5.png";
 import Dentist5 from "../assets/Dentist3.png";
 
 
@@ -199,11 +202,32 @@ const templates = [
     category: "Dental Hygiene Services",
   },
   // {
+  //   id: 34,
+  //   title: "Dental Hygiene Services",
+  //   description: "Description for Dental Hygiene Services",
+  //   image: Dentist3,
+  //   category: "Dental Hygiene Services",
+  // },
+  // {
+  //   id: 35,
+  //   title: "Dental Hygiene Services",
+  //   description: "Description for Dental Hygiene Services",
+  //   image: Dentist4,
+  //   category: "Dental Hygiene Services",
+  // },
+  // {
   //   id: 37,
   //   title: "Dental Hygiene Services",
   //   description: "Description for Dental Hygiene Services",
   //   image: Dentist5,
   //   category: "Dental Hygiene Services",
+  // },
+  // {
+  //   id: 36,
+  //   title: "Spa and Wellness Center",
+  //   description: "Description for Spa and Wellness Center",
+  //   image: Spa5,
+  //   category: "Spa and Wellness Center",
   // },
   {
     id: 31,

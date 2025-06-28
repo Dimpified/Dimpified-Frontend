@@ -35,7 +35,7 @@ const teamMembers = [
 ];
 
 // App Component
-const FifthSpa = () => {
+const FifthSpa = ({userDetails}) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   const handleModalOpen = () => {
@@ -180,7 +180,7 @@ const FifthSpa = () => {
         <div className="max-w-6xl w-full flex flex-col-reverse md:flex-row items-center justify-between r md:text-left">
           {/* Text Section */}
           <div className="max-w-lg w-full md:w-1/2">
-            <p className="text-lg italic text-gray-600">Paradise Spa</p>
+            <p className="text-lg italic text-gray-600">{userDetails?.ecosystemName} Spa</p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
               Refresh & Rejuvenate
             </h1>
@@ -196,9 +196,9 @@ const FifthSpa = () => {
               Book Appointment
             </button>
           </div>
-          {isModalOpen && (
+          {/* {isModalOpen && (
             <BookingModal isOpen={isModalOpen} handleClose={handleModalClose} />
-          )}
+          )} */}
 
           {/* Image Section */}
           <div className="max-w-lg w-full md:w-1/2 flex justify-center">
@@ -216,14 +216,14 @@ const FifthSpa = () => {
           <div className="mb-12">
             <h2 className="text-lg italic text-gray-500">Welcome to</h2>
             <h1 className="text-4xl font-bold text-gray-900">
-              Paradise Spa and wellness centre
+              {userDetails?.ecosystemName} Spa and wellness centre
             </h1>
           </div>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             We make you feel like a super person every day!
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-            Paradise spa services combine botanical and advanced cosmeceutical
+            {userDetails?.ecosystemName} spa services combine botanical and advanced cosmeceutical
             ingredients with the Science of Beauty to bring you the ultimate in
             professional massage services
           </p>

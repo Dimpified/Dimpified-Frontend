@@ -150,7 +150,7 @@ const testimonials = [
   },
 ];
 
-const ThirdDentist = () => {
+const ThirdDentist = ({userDetails}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState(1);
 
@@ -198,17 +198,17 @@ const ThirdDentist = () => {
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = () => {
-    setIsModalOpen(true); // Function to open the modal
+    setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false); // Function to close the modal
+    setIsModalOpen(false);
   };
-  const { country } = useCountry(); // Access country code from context
-  const countryCode = country || "NG"; // Fallback to 'US'
+  const { country } = useCountry();
+  const countryCode = country || "NG";
 
   const { name, title, text } = testimonials[currentIndex];
   return (
@@ -218,7 +218,7 @@ const ThirdDentist = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-xl font-bold text-[#006D77]">
-              SmileCraft Dental
+              {userDetails?.ecosystemName} Dental
             </span>
           </Link>
 
@@ -331,12 +331,12 @@ const ThirdDentist = () => {
               </div>
             </div>
 
-            {isModalOpen && (
+            {/* {isModalOpen && (
               <BookingModal
                 isOpen={isModalOpen}
                 handleClose={handleModalClose}
               />
-            )}
+            )} */}
 
             {/* Trust indicators */}
             <div className="flex flex-wrap gap-6 mt-10">
@@ -391,7 +391,7 @@ const ThirdDentist = () => {
             <span className="text-[#006D77]">In Lagos</span>
           </h1>
           <p className="text-[#4A5B80] text-base leading-relaxed mb-6">
-            SmileCraft Dental brings world-class oral healthcare to Nigeria with
+            {userDetails?.ecosystemName} Dental brings world-class oral healthcare to Nigeria with
             state-of-the-art facilities and internationally trained dentists. We
             combine advanced technology with compassionate care for your perfect
             smile.
@@ -485,7 +485,7 @@ const ThirdDentist = () => {
 
             {/* Right Section - Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Card 1 - General Dentistry */}
+      
               {dental.map((service, index) => (
                 <div
                   key={index}

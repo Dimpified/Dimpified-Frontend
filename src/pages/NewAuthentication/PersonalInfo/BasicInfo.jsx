@@ -13,7 +13,7 @@ import { ButtonSmallWhite, ButtonLongPurple } from "../../../component/Buttons";
 import Logo from "../../../assets/NewAuthImage/NewLogo.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { newCreatorRegister, creatorLoginWithGoogle } from "../../../features/authentication";
+import { newCreatorRegister, creatorSignupWithGoogle } from "../../../features/authentication";
 import { showToast } from "../../../component/ShowToast";
 import { useNavigate } from "react-router-dom";
 
@@ -130,17 +130,17 @@ const BasicInfo = () => {
   const handleGoogleSuccess = async (tokenResponse) => {
     try {
       const resultAction = await dispatch(
-        creatorLoginWithGoogle({ token: tokenResponse.access_token })
+        creatorSignupWithGoogle({ token: tokenResponse.access_token })
       );
 
-      if (creatorLoginWithGoogle.fulfilled.match(resultAction)) {
+      if (creatorSignupWithGoogle.fulfilled.match(resultAction)) {
         if (user && accessToken) {
           showToast("Google login successful! Redirecting...", "success");
           navigate("/auth/business-type");
         } else {
           showToast("Login successful, but state update failed.", "warning");
         }
-      } else if (creatorLoginWithGoogle.rejected.match(resultAction)) {
+      } else if (creatorSignupWithGoogle.rejected.match(resultAction)) {
         const errorPayload = resultAction.payload;
         showToast(errorPayload || "Google login failed", "error");
       }

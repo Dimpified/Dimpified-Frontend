@@ -14,7 +14,7 @@ const SubscriptionType = () => {
 
   return (
     <div>
-      {countryCode === "US" ? <StripeCardContainer /> : countryCode === "NG" ? <NairaCardContainer /> : null}
+      {countryCode === "US" ? <StripeCardContainer /> : countryCode === "NG" ? <NairaCardContainer /> : "NG"}
     </div>
   );
 };

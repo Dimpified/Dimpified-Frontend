@@ -48,6 +48,18 @@ const GoogleSignUp = async ({ token }) => {
     );
   }
 };
+const GoogleLogin = async ({ token }) => {
+  try {
+    const response = await axios.post(`${API_URL}/new/google-login`, {
+      token,
+    });
+    return response;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || " Login with Google failed"
+    );
+  }
+};
 
 const newCreatorRegister = async ({
   firstName,
@@ -258,4 +270,5 @@ GoogleSignUp,
   creatorResetPasswordOtp,
   refreshAccessToken,
   teamMemberOnboarding,
+  GoogleLogin
 };

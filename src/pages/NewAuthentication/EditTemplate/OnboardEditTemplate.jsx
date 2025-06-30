@@ -28,6 +28,10 @@ import EditTemplate30 from "../../EditTemplate/PersonalCare/dental/EditTemplate3
 import EditTemplate31 from "../../EditTemplate/PersonalCare/spa/EditTemplate31";
 import EditTemplate32 from "../../EditTemplate/PersonalCare/Gym/EditTemplate32";
 import EditTemplate33 from "../../EditTemplate/PersonalCare/Gym/EditTemplate33";
+import EditTemplate34 from "../../EditTemplate/PersonalCare/dental/EditTemplate34";
+import EditTemplate35 from "../../EditTemplate/PersonalCare/dental/EditTemplate35";
+import EditTemplate36 from "../../EditTemplate/PersonalCare/spa/EditTemplate36";
+import EditTemplate37 from "../../EditTemplate/PersonalCare/dental/EditTemplate37";
 import { setTemplate } from "../../../features/Template/editTemplate";
 import { useSelector, useDispatch } from "react-redux";
 import api from "../../../api/Template";
@@ -349,6 +353,38 @@ const OnboardEditTemplate = () => {
       case 33:
         return (
           <EditTemplate33
+            subdomain={userDomain}
+            userDetails={userDetails}
+            setLoading={setLoading}
+          />
+        );
+      case 34:
+        return (
+          <EditTemplate34
+            subdomain={userDomain}
+            userDetails={userDetails}
+            setLoading={setLoading}
+          />
+        );
+      case 35:
+        return (
+          <EditTemplate35
+            subdomain={userDomain}
+            userDetails={userDetails}
+            setLoading={setLoading}
+          />
+        );
+      case 36:
+        return (
+          <EditTemplate36
+            subdomain={userDomain}
+            userDetails={userDetails}
+            setLoading={setLoading}
+          />
+        );
+      case 37:
+        return (
+          <EditTemplate37
             subdomain={userDomain}
             userDetails={userDetails}
             setLoading={setLoading}

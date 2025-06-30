@@ -47,7 +47,7 @@ import Spa1 from "../../Templates/PersonalCare/spa/FirstSpa";
 import Spa2 from "../../Templates/PersonalCare/spa/SecondSpa";
 import Spa3 from "../../Templates/PersonalCare/spa/ThirdSpa";
 import Spa4 from "../../Templates/PersonalCare/spa/FourthSpa";
-import Spa5 from "../../Templates/PersonalCare/spa/FifthSpa";
+import Spa5 from "../../Templates/PersonalCare/spa/SixthSpa";
 import MakeupTemplate from "../../Templates/PersonalCare/makeup/MakeupTemplate";
 import BarberPosh from "../../Templates/PersonalCare/Barber/BarberPosh";
 import { useCountry } from "../../../pages/pricing/CountryContext";

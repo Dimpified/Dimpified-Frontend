@@ -33,6 +33,10 @@ import Template30 from "../../UserTemplate/PersonalCare/dental/Template30";
 import Template31 from "../../UserTemplate/PersonalCare/spa/Template31";
 import Template32 from "../../UserTemplate/PersonalCare/Gym/Template32";
 import Template33 from "../../UserTemplate/PersonalCare/Gym/Template33";
+import Template34 from "../../UserTemplate/PersonalCare/dental/Template34";
+import Template35 from "../../UserTemplate/PersonalCare/dental/Template35";
+import Template36 from "../../UserTemplate/PersonalCare/spa/Template36";
+import Template37 from "../../UserTemplate/PersonalCare/dental/Template37";
 
 const OnboardingPreviewTemplate = () => {
   const [details, setDetails] = useState(null);
@@ -288,6 +292,38 @@ const OnboardingPreviewTemplate = () => {
       case 33:
         return (
           <Template33
+            details={details}
+            subdomain={subdomain}
+            userDetails={ecosystemDetails}
+          />
+        );
+      case 34:
+        return (
+          <Template34
+            details={details}
+            subdomain={subdomain}
+            userDetails={ecosystemDetails}
+          />
+        );
+      case 35:
+        return (
+          <Template35
+            details={details}
+            subdomain={subdomain}
+            userDetails={ecosystemDetails}
+          />
+        );
+      case 36:
+        return (
+          <Template36
+            details={details}
+            subdomain={subdomain}
+            userDetails={ecosystemDetails}
+          />
+        );
+      case 37:
+        return (
+          <Template37
             details={details}
             subdomain={subdomain}
             userDetails={ecosystemDetails}

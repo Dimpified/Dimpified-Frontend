@@ -58,4 +58,4 @@ jobs:
           app-name: 'DimpDashboard'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1FD98ADE4256414E938FFD4DA70A881C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7274396AC30C44ED884F4466BF1A599B }}

@@ -1586,7 +1586,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
                             (fileInputRefs.current[`Reviews-image${idx}`] = ref)
                           }
                           onChange={(e) =>
-                            handleImageChange(e, "Gallery", `image${idx}`)
+                            handleImageChange(e, "Reviews", `image${idx}`)
                           }
                           style={{ display: "none" }}
                         />

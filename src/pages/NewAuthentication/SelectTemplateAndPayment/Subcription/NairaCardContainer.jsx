@@ -373,10 +373,12 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
   ];
 
   const planCode = subscriptionPlans[selectedInterval]?.[plan]?.code;
+  console.log(userDetails?.email);
+  console.log(userDetails?.fullName);
 
   // Recurring Payment Configuration
   const handleFlutterwavePaymentRecurring = useFlutterwave({
-    public_key: import.meta.env.VITE_FLW_PUBLIC_KEY,
+    public_key: import.meta.env.VITE_TEST_FLW_PUBLIC_KEY,
     tx_ref: `tx-${Date.now()}-${userDetails?.creatorId}`,
     amount: price,
     currency: "NGN",
@@ -477,8 +479,16 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
         if (attempts >= maxAttempts) {
           clearInterval(intervalId);
           showToast("Subscription verification timed out. Please try again.");
+          // if (result.data.ecosystemDomain)
+          //   dispatch(setEcosystemDomain(result.data.ecosystemDomain));
+          // if (result.data.planType)
+          //   dispatch(setEcosystemPlan(result.data.planType));
+
+          dispatch(setEcosystemDomain("daddykag"));
+
+          dispatch(setEcosystemPlan("Lite"));
           setLoading(false);
-          navigate("/creator/dashboard/overview");
+          navigate("/auth/edit-template");
         }
         console.error("Subscription check failed", error);
       }
@@ -625,32 +635,30 @@ const NairaCardContainer = () => {
     <div className="w-full mx-auto px-4 sm:px-6 py-12">
       {/* Billing Period Selector */}
       <div className="lg:flex justify-between items-center mb-8">
-       
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="text-purple-600 border border-blue-600 py-3 rounded-xl px-6 text-sm font-medium flex items-center"
-          >
-            <span className="mr-2">≡</span> Detailed Comparison?
-          </button>
-          <div className="lg:flex lg:space-x-2 space-y-4 lg:space-y-0 mt-4">
-            {pricingPlans.map((period) => (
-              <label
-                key={period}
-                className="px-4 py-1 text-sm font-medium rounded-full cursor-pointer flex items-center "
-              >
-                <input
-                  type="radio"
-                  name="pricingInterval"
-                  value={period}
-                  checked={selectedInterval === period}
-                  onChange={() => setSelectedInterval(period)}
-                  className="mr-2"
-                />
-                {period}
-              </label>
-            ))}
-          </div>
-       
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="text-purple-600 border border-blue-600 py-3 rounded-xl px-6 text-sm font-medium flex items-center"
+        >
+          <span className="mr-2">≡</span> Detailed Comparison?
+        </button>
+        <div className="lg:flex lg:space-x-2 space-y-4 lg:space-y-0 mt-4">
+          {pricingPlans.map((period) => (
+            <label
+              key={period}
+              className="px-4 py-1 text-sm font-medium rounded-full cursor-pointer flex items-center "
+            >
+              <input
+                type="radio"
+                name="pricingInterval"
+                value={period}
+                checked={selectedInterval === period}
+                onChange={() => setSelectedInterval(period)}
+                className="mr-2"
+              />
+              {period}
+            </label>
+          ))}
+        </div>
       </div>
 
       {/* Pricing Cards */}

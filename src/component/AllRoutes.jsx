@@ -172,7 +172,6 @@ import EditTemplate from "../pages/CreatorDashBoard/EditTemplate";
 import EditService from "../pages/CreatorDashBoard/EditService";
 
 import getSubdomain from "../helper/getSubdomain";
-import MainTemplate from "../pages/UserTemplate/MainTemplate";
 import CreateNewService from "./dashboard/editService/CreateNewService";
 import CreatedServices from "./dashboard/editService/CreatedService";
 import VideoGallery from "../pages/CreatorDashBoard/Watchdemo";
@@ -247,14 +246,7 @@ const AllRoutes = () => {
           }
         >
           <Routes>
-            {ecosystemDomain ? (
-              <Route
-                path="/"
-                element={<MainTemplate subdomain={ecosystemDomain} />}
-              />
-            ) : (
-              <Route path="/" element={<UserLogin />} />
-            )}
+            
 
             <Route path="/" element={<UserLogin />} />
             <Route

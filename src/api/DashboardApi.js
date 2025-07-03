@@ -166,7 +166,7 @@ const creatorBookingActivities = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching Booking Activities"
@@ -196,7 +196,7 @@ const creatorWithdrawHistory = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching Withdraw History "
@@ -226,7 +226,7 @@ const creatorTransactionHistory = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching transaction History "
@@ -256,7 +256,7 @@ const creatorTodaySales = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message ||
@@ -287,7 +287,7 @@ const creatorPaymentCharts = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message ||
@@ -318,7 +318,7 @@ const creatorEcosystemServices = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message ||
@@ -335,7 +335,7 @@ const creatorAllBanks = async ({ accessToken, refreshToken }) => {
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(error.response?.data?.message || "Error  All banks");
     }
@@ -360,7 +360,7 @@ const creatorVerifyAccount = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error verifying Account Number"
@@ -395,7 +395,7 @@ const creatorAddAccount = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error verifying Account Number"
@@ -417,7 +417,7 @@ const creatorAllBankDetails = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(error.response?.data?.message || "Error  All banks");
     }
@@ -448,7 +448,7 @@ const creatorWithDraw = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Withdrawing Earning"
@@ -484,7 +484,7 @@ const creatorEditService = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Withdrawing Earning"
@@ -534,7 +534,7 @@ const creatorUpdateProfile = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Updating Profile"
@@ -576,7 +576,7 @@ const TeamMemberUpdateProfile = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Updating Team Member Profile"
@@ -605,7 +605,7 @@ const creatorSupportRequest = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Posting Support Request"
@@ -628,7 +628,7 @@ const creatorAllTimeBooking = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching all time booking "
@@ -647,7 +647,7 @@ const creatorProfile = async ({ creatorId, accessToken, refreshToken }) => {
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching creator profile "
@@ -666,7 +666,7 @@ const TeamMemberProfile = async ({ creatorId, accessToken, refreshToken }) => {
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching team Member profile "
@@ -688,7 +688,7 @@ const creatorSupportBlock = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching creator profile "
@@ -711,7 +711,7 @@ const creatorSupportTable = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching creator profile"
@@ -747,7 +747,7 @@ const creatorUpdateProfileImage = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Updating Profile Image"
@@ -770,7 +770,7 @@ const creatorWebsiteDetails = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching website details"
@@ -793,7 +793,7 @@ const creatorNotification = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching notification"
@@ -817,7 +817,7 @@ const creatorMarkAsReadNotification = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error marking as read notification"
@@ -851,7 +851,7 @@ const creatorAddCustomer = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Adding Customers"
@@ -885,7 +885,7 @@ const creatorEditCustomer = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Updating Customers Profile"
@@ -908,7 +908,7 @@ const creatorGetAllCustomer = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching Customers"
@@ -926,7 +926,7 @@ const creatorGetACustomer = async ({ id, accessToken, refreshToken }) => {
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching a Customers"
@@ -949,7 +949,7 @@ const creatorGetACustomerAppointment = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message ||
@@ -978,7 +978,7 @@ const creatorDeleteCustomer = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error deleting Customers"
@@ -1001,7 +1001,7 @@ const creatorSupportMetrics = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching Support Metrics"
@@ -1024,7 +1024,7 @@ const creatorGetAllSupport = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching all Support"
@@ -1042,7 +1042,7 @@ const creatorGetASupport = async ({ ticketId, accessToken, refreshToken }) => {
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching a Support"
@@ -1071,7 +1071,7 @@ const creatorEcosystemSwitchOnOff = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Switching Ecosystem On or Off"
@@ -1089,7 +1089,7 @@ const creatorMarkBooking = async ({ bookingId, accessToken, refreshToken }) => {
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Switching Ecosystem On or Off"
@@ -1116,7 +1116,7 @@ const creatorReplySupport = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Replying Support Ticket"
@@ -1162,7 +1162,7 @@ const creatorAddTeamMember = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Adding Team Member"
@@ -1183,7 +1183,7 @@ const creatorGetAddedTeamMember = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Getting Team Members"
@@ -1218,7 +1218,7 @@ const creatorDeleteTeamMember = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error deleting team members"
@@ -1241,7 +1241,7 @@ const creatorGetTeamProfile = async ({
   } catch (error) {
     if (error.isTokenExpired) {
       // Navigate to login page on token expiration
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error fetching a Teams profile"
@@ -1270,7 +1270,7 @@ const creatorEditTeamMemberServices = async ({
     return response;
   } catch (error) {
     if (error.isTokenExpired) {
-      navigate("/auth/login");
+      navigate("/");
     } else {
       throw new Error(
         error.response?.data?.message || "Error Editing Team Member Services"

@@ -3,21 +3,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 import Select from "react-select";
-import {
-  ShortInputWithPlaceholder,
-  LongInputWithPlaceholder,
-} from "../../../component/Inputs";
-import { ButtonSmallWhite, ButtonLongPurple } from "../../../component/Buttons";
+import { ShortInputWithPlaceholder, LongInputWithPlaceholder } from "../../../component/Inputs";
+import { ButtonLongPurple } from "../../../component/Buttons";
 import Logo from "../../../assets/NewAuthImage/NewLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newCreatorRegister, creatorSignupWithGoogle } from "../../../features/authentication";
 import { showToast } from "../../../component/ShowToast";
-import { useNavigate } from "react-router-dom";
-
-// Country phone codes data
 import countryCodes from "../../../data/countryCodes.json";
 import AuthLayout from "../AuthLayout";
 
@@ -30,6 +23,7 @@ const GoogleLogo = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className="mr-2"
+    aria-hidden="true"
   >
     <path
       d="M22.56 12.25c0-.78-.07-1.53-.20-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -54,19 +48,16 @@ const GoogleLogo = () => (
 const schema = yup.object().shape({
   firstName: yup.string().required("First Name is required"),
   lastName: yup.string().required("Last Name is required"),
-  email: yup
-    .string()
-    .email("Invalid email format")
-    .required("Email is required"),
+  email: yup.string().email("Invalid email format").required("Email is required"),
   phone: yup
     .string()
-    .matches(/^[0-9]\d{1,14}$/, "Invalid phone number")
+    .matches(/^\d{1,14}$/, "Invalid phone number")
     .required("Phone Number is required"),
   countryCode: yup.string().required("Country code is required"),
   password: yup
     .string()
     .min(8, "Password must be at least 8 characters")
-    .required(),
+    .required("Password is required"),
   agreeTerms: yup
     .boolean()
     .oneOf([true], "You must agree to the terms")
@@ -80,6 +71,7 @@ const BasicInfo = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
+    watch,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -93,15 +85,15 @@ const BasicInfo = () => {
       receiveMarketing: true,
     },
   });
+
   const navigate = useNavigate();
-
-  const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
   const dispatch = useDispatch();
-  const { user, accessToken, isLoading, error } = useSelector((state) => state.auth);
+  const { isLoading, error } = useSelector((state) => state.auth);
 
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
+  // Watch countryCode for Select component
+  const countryCode = watch("countryCode");
 
+  const onSubmit = async (data) => {
     try {
       const resultAction = await dispatch(
         newCreatorRegister({
@@ -116,11 +108,19 @@ const BasicInfo = () => {
       );
 
       if (newCreatorRegister.rejected.match(resultAction)) {
-        const errorPayload = resultAction.payload;
-        showToast(errorPayload, "error");
+        showToast(resultAction.payload?.message || "Registration failed", "error");
       } else if (newCreatorRegister.fulfilled.match(resultAction)) {
         showToast(resultAction.payload.message, "success");
-        navigate("/auth/email-verification");
+        const step = resultAction.payload.step;
+        const routes = {
+          1: "/auth/email-verification",
+          2: "/auth/business-type",
+          3: "/auth/business-info",
+          4: "/auth/select-template",
+          5: "/auth/edit-template",
+          6: "/creator/dashboard-overview",
+        };
+        navigate(routes[step] || "/auth/email-verification");
       }
     } catch (error) {
       showToast("An unexpected error occurred. Please try again.", "error");
@@ -134,15 +134,18 @@ const BasicInfo = () => {
       );
 
       if (creatorSignupWithGoogle.fulfilled.match(resultAction)) {
-        if (user && accessToken) {
-          showToast("Google login successful! Redirecting...", "success");
-          navigate("/auth/business-type");
-        } else {
-          showToast("Login successful, but state update failed.", "warning");
-        }
+        showToast("Google login successful! Redirecting...", "success");
+        const step = resultAction.payload.step;
+        const routes = {
+          2: "/auth/business-type",
+          3: "/auth/business-info",
+          4: "/auth/select-template",
+          5: "/auth/edit-template",
+          6: "/creator/dashboard-overview",
+        };
+        navigate(routes[step] || "/auth/business-type");
       } else if (creatorSignupWithGoogle.rejected.match(resultAction)) {
-        const errorPayload = resultAction.payload;
-        showToast(errorPayload || "Google login failed", "error");
+        showToast(resultAction.payload?.message || "Google login failed", "error");
       }
     } catch (error) {
       console.error("Google Sign-In Error:", error);
@@ -201,7 +204,7 @@ const BasicInfo = () => {
     }),
   };
 
-  // Format country codes for react-select with search by country name or code
+  // Format country codes for react-select
   const countryOptions = countryCodes.map((country) => ({
     value: country.phoneCode,
     label: (
@@ -220,7 +223,7 @@ const BasicInfo = () => {
   }));
 
   return (
-    <div className="flex">
+    <AuthLayout>
       <div className="w-full p-4">
         <h2 className="text-3xl items-center gap-1 justify-center font-bold flex text-primary2 mt-4">
           <img
@@ -233,8 +236,7 @@ const BasicInfo = () => {
 
         <div className="w-full lg:px-20 justify-center">
           <p className="text-gray-500 text-xl text-center mb-4">
-            Create an account to get an online presence, accept bookings and
-            grow your income.
+            Create an account to get an online presence, accept bookings, and grow your income.
           </p>
         </div>
 
@@ -242,6 +244,7 @@ const BasicInfo = () => {
           type="button"
           onClick={loginWithGoogle}
           className="w-full h-12 font-bold font-body rounded border border-gray-300 p-2 flex items-center justify-center mb-4 hover:bg-gray-100 transition duration-200"
+          aria-label="Continue with Google"
         >
           <GoogleLogo />
           Continue with Google
@@ -257,7 +260,7 @@ const BasicInfo = () => {
           Please fill in your personal details
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="lg:flex gap-4 space-y-5 lg:space-y-0 mb-4">
             <div className="flex-1">
               <label htmlFor="firstName" className="text-black mb-1 block">
@@ -268,9 +271,10 @@ const BasicInfo = () => {
                 placeholder="First Name *"
                 {...register("firstName")}
                 className="rounded-[10px]"
+                aria-invalid={errors.firstName ? "true" : "false"}
               />
               {errors.firstName && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-sm" role="alert">
                   {errors.firstName.message}
                 </p>
               )}
@@ -284,9 +288,10 @@ const BasicInfo = () => {
                 placeholder="Last Name *"
                 {...register("lastName")}
                 className="rounded-[10px]"
+                aria-invalid={errors.lastName ? "true" : "false"}
               />
               {errors.lastName && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-sm" role="alert">
                   {errors.lastName.message}
                 </p>
               )}
@@ -300,11 +305,15 @@ const BasicInfo = () => {
             <LongInputWithPlaceholder
               id="email"
               placeholder="Email *"
+              type="email"
               {...register("email")}
               className="rounded-[10px]"
+              aria-invalid={errors.email ? "true" : "false"}
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
+              <p className="text-red-500 text-sm" role="alert">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -317,15 +326,8 @@ const BasicInfo = () => {
                 <Select
                   id="countryCode"
                   options={countryOptions}
-                  value={countryOptions.find(
-                    (option) => option.value === selectedCountryCode
-                  )}
-                  onChange={(selected) => {
-                    setSelectedCountryCode(selected.value);
-                    setValue("countryCode", selected.value, {
-                      shouldValidate: true,
-                    });
-                  }}
+                  value={countryOptions.find((option) => option.value === countryCode)}
+                  onChange={(selected) => setValue("countryCode", selected.value, { shouldValidate: true })}
                   filterOption={(option, input) =>
                     option.data.searchValue.includes(input.toLowerCase())
                   }
@@ -333,9 +335,10 @@ const BasicInfo = () => {
                   placeholder="Select country"
                   isSearchable
                   className="text-sm"
+                  aria-label="Select country code"
                 />
                 {errors.countryCode && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-red-500 text-sm mt-1" role="alert">
                     {errors.countryCode.message}
                   </p>
                 )}
@@ -346,9 +349,10 @@ const BasicInfo = () => {
                   placeholder="Phone Number *"
                   {...register("phone")}
                   className="rounded-[10px] h-[44px]"
+                  aria-invalid={errors.phone ? "true" : "false"}
                 />
                 {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-red-500 text-sm mt-1" role="alert">
                     {errors.phone.message}
                   </p>
                 )}
@@ -366,9 +370,12 @@ const BasicInfo = () => {
               type="password"
               {...register("password")}
               className="rounded-[10px]"
+              aria-invalid={errors.password ? "true" : "false"}
             />
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm" role="alert">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
@@ -378,18 +385,18 @@ const BasicInfo = () => {
                 type="checkbox"
                 {...register("agreeTerms")}
                 className="mr-2 mt-1"
+                aria-label="Agree to terms"
               />
               <span>
                 I agree to the{" "}
                 <span className="text-[#9979d1]">
-                  General Terms of Use, Merchant Terms of Use & General Privacy
-                  Policy
+                  General Terms of Use, Merchant Terms of Use & General Privacy Policy
                 </span>{" "}
                 of Dimpified.
               </span>
             </label>
             {errors.agreeTerms && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm" role="alert">
                 {errors.agreeTerms.message}
               </p>
             )}
@@ -401,18 +408,19 @@ const BasicInfo = () => {
                 type="checkbox"
                 {...register("receiveMarketing")}
                 className="mr-2"
+                aria-label="Receive marketing communications"
               />
-              I like to receive marketing communication and business tips from
-              Dimpified
+              I like to receive marketing communication and business tips from Dimpified
             </label>
           </div>
 
           <ButtonLongPurple
             type="submit"
             width="w-full"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isLoading}
+            aria-label="Continue"
           >
-            {isSubmitting ? (
+            {isSubmitting || isLoading ? (
               <div className="flex items-center justify-center">
                 <svg
                   className="animate-spin h-5 w-5 mr-2 text-white"
@@ -442,14 +450,14 @@ const BasicInfo = () => {
           </ButtonLongPurple>
         </form>
 
-        <p className="text-center text-primary2 mt-4 space-y-4">
+        <p className="text-center text-primary2 mt-4">
           Have a business account?{" "}
-          <Link to="#" className="text-primary3">
+          <Link to="/auth/signin" className="text-primary3">
             Sign in as a professional
           </Link>
         </p>
       </div>
-    </div>
+    </AuthLayout>
   );
 };
 

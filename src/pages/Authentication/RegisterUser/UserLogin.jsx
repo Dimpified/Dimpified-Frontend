@@ -98,11 +98,17 @@ const UserLogin = () => {
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
         }
-        if (resultAction.payload.user.step === 3) {
-          navigate("/new/auth/select-preview-payment");
+        if (resultAction.payload.user.step === 1) {
+          navigate("/auth/personal-Information");
+        } else if (resultAction.payload.user.step === 2) {
+          navigate("/auth/business-type");
+        } else if (resultAction.payload.user.step === 3) {
+          navigate("/auth/business-info");
         } else if (resultAction.payload.user.step === 4) {
-          navigate("/new/auth/select-preview-payment");
+          navigate("/auth/select-template");
         } else if (resultAction.payload.user.step === 5) {
+          navigate("/auth/edit-template");
+        } else if (resultAction.payload.user.step === 6) {
           navigate("/creator/dashboard/overview");
         } else {
           navigate("/auth/personal-Information");

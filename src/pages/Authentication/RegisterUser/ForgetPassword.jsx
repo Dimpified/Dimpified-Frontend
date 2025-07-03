@@ -114,7 +114,7 @@ const ForgotPassword = () => {
 
             <p className="mt-6 text-sec11">
               Return to
-              <Link to="/auth/login" className="text-primary3 hover:underline">
+              <Link to="/" className="text-primary3 hover:underline">
                 Sign in
               </Link>{" "}
               page.

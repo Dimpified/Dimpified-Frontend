@@ -51,7 +51,7 @@ const TeamSignUp = () => {
   useEffect(() => {
     if (!email) {
       showToast("Email not found in URL", "error");
-      navigate("/auth/login");
+      navigate("/");
     }
 
     const countriesList = Country.getAllCountries();
@@ -82,7 +82,7 @@ const TeamSignUp = () => {
 
       if (response) {
         showToast("Staff onboarding submitted successfully", "success");
-        navigate("/auth/login");
+        navigate("/");
       }
     } catch (error) {
       console.error("Failed to onboard team member:", error);
@@ -211,7 +211,7 @@ const TeamSignUp = () => {
 
             <Text className="mt-6 text-center text-gray-600">
               Already have an account?{" "}
-              <Link to="/auth/login" className="text-purple-600 hover:underline">
+              <Link to="/" className="text-purple-600 hover:underline">
                 Login
               </Link>
             </Text>

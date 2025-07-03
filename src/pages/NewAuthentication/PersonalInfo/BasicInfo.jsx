@@ -223,7 +223,7 @@ const BasicInfo = () => {
   }));
 
   return (
-    <AuthLayout>
+    <div>
       <div className="w-full p-4">
         <h2 className="text-3xl items-center gap-1 justify-center font-bold flex text-primary2 mt-4">
           <img
@@ -457,7 +457,7 @@ const BasicInfo = () => {
           </Link>
         </p>
       </div>
-    </AuthLayout>
+    </div>
   );
 };
 

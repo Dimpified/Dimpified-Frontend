@@ -276,7 +276,7 @@ const AllRoutes = () => {
 
             <Route path="/auth" element={<AuthLayout />}>
               {/* Personal Info Flow (steps 1-4) */}
-              <Route path="personal-Information" element={<BasicInfo />} />
+              <Route path="personal-information" element={<BasicInfo />} />
               <Route
                 path="email-verification"
                 element={<EmailVerification />}

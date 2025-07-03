@@ -99,7 +99,7 @@ const UserLogin = () => {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
         }
         if (resultAction.payload.user.step === 1) {
-          navigate("/auth/personal-Information");
+          navigate("/auth/personal-information");
         } else if (resultAction.payload.user.step === 2) {
           navigate("/auth/business-type");
         } else if (resultAction.payload.user.step === 3) {

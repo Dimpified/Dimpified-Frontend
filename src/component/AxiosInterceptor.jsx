@@ -78,7 +78,7 @@ import api from "../api/authApis";
 //           return authFetch(originalRequest);
 //         } else {
 //           // Navigate to login page if refreshing the token fails
-//           navigate("/auth/login");
+//           navigate("/");
 //         }
 //       }
 
@@ -132,11 +132,11 @@ import api from "../api/authApis";
 //               isRefreshing = false;
 //               return authFetch(originalRequest); // Retry the failed request
 //             } else {
-//               navigate("/auth/login"); // Navigate to login if refresh fails
+//               navigate("/"); // Navigate to login if refresh fails
 //             }
 //           } catch (refreshError) {
 //             console.error("Token refresh failed", refreshError);
-//             navigate("/auth/login");
+//             navigate("/");
 //           }
 //         }
 
@@ -219,12 +219,12 @@ const AxiosInterceptor = (accessToken, refreshToken, dispatch, navigate) => {
                 },
               });
             } else {
-              navigate("/auth/login"); // Navigate to login if refresh fails
+              navigate("/"); // Navigate to login if refresh fails
             }
           } catch (refreshError) {
             console.error("Token refresh failed", refreshError);
             isRefreshing = false;
-            navigate("/auth/login");
+            navigate("/");
           }
         }
 

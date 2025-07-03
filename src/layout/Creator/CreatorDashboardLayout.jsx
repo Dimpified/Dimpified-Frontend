@@ -138,7 +138,7 @@ const CreatorDashboardLayout = ({ children }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/auth/login");
+    navigate("/");
   };
 
   const truncateMessage = (message, maxLength = 60) =>

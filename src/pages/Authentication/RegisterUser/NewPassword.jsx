@@ -60,7 +60,7 @@ const ResetPassword = () => {
       });
 
       showToast(response.data.message, "success");
-      navigate('/auth/login');
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
       showToast(error.response || 'Password reset failed. Please try again.', "error");

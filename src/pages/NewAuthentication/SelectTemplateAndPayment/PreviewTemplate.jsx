@@ -71,7 +71,7 @@ const PreviewTemplate = () => {
   const countryCode = country || "NG"; // Fallback to 'NG'
 
   useEffect(() => {
-    if (userStep === 5) navigate("/auth/login");
+    if (userStep === 5) navigate("/");
   }, [userStep, navigate]);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const PreviewTemplate = () => {
   const handleSubmit = async () => {
     if (!accessToken || !refreshToken) {
       showToast("Authentication tokens are missing");
-      navigate("/auth/login");
+      navigate("/");
       return;
     }
     const ecosystemDomain = userDetails?.ecosystemDomain || "not available";
@@ -181,7 +181,7 @@ const PreviewTemplate = () => {
     }
     if (!accessToken || !refreshToken) {
       showToast("Authentication tokens are missing");
-      navigate("/auth/login");
+      navigate("/");
       return;
     }
     setLoading(true);

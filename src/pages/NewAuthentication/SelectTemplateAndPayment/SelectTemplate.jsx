@@ -21,7 +21,7 @@ const SelectTemplate = ({ onBack, onNext }) => {
 
   useEffect(() => {
     setSubCategory(sessionStorage.getItem("subCategory"));
-    if (userStep === 5 || userStep === 4) navigate("/auth/login");
+    if (userStep === 5 || userStep === 4) navigate("/");
   }, [userStep, navigate]);
 
   const handleSubmit = (id) => {

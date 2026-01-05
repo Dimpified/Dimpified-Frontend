@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useGoogleLogin } from "@react-oauth/google";
 import Select from "react-select";
-import { ShortInputWithPlaceholder, LongInputWithPlaceholder } from "../../../component/Inputs";
+import {
+  ShortInputWithPlaceholder,
+  LongInputWithPlaceholder,
+} from "../../../component/Inputs";
 import { ButtonLongPurple } from "../../../component/Buttons";
 import Logo from "../../../assets/NewAuthImage/NewLogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { newCreatorRegister, creatorSignupWithGoogle } from "../../../features/authentication";
+import {
+  newCreatorRegister,
+  creatorSignupWithGoogle,
+} from "../../../features/authentication";
 import { showToast } from "../../../component/ShowToast";
 import countryCodes from "../../../data/countryCodes.json";
 import AuthLayout from "../AuthLayout";
+import mixpanel from "../../../analytics/mixpanel";
 
 // Google SVG logo
 const GoogleLogo = () => (
@@ -48,7 +55,10 @@ const GoogleLogo = () => (
 const schema = yup.object().shape({
   firstName: yup.string().required("First Name is required"),
   lastName: yup.string().required("Last Name is required"),
-  email: yup.string().email("Invalid email format").required("Email is required"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
   phone: yup
     .string()
     .matches(/^\d{1,14}$/, "Invalid phone number")
@@ -58,6 +68,13 @@ const schema = yup.object().shape({
     .string()
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
+  referralId: yup
+    .string()
+    .test(
+      "referral-length",
+      "Referral code must be at least 6 characters",
+      (value) => !value || value.trim().length >= 6
+    ),
   agreeTerms: yup
     .boolean()
     .oneOf([true], "You must agree to the terms")
@@ -79,8 +96,9 @@ const BasicInfo = () => {
       lastName: "",
       email: "",
       phone: "",
-      countryCode: "+1",
+      countryCode: "",
       password: "",
+      referralId: "",
       agreeTerms: false,
       receiveMarketing: true,
     },
@@ -89,11 +107,36 @@ const BasicInfo = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector((state) => state.auth);
+  const [searchParams] = useSearchParams();
+
+  // Save ref parameter to localStorage if present
+  let ref;
+  useEffect(() => {
+    ref = searchParams.get("ref");
+    if (ref) {
+      localStorage.setItem("referralCode", ref);
+    }
+  }, [searchParams]);
 
   // Watch countryCode for Select component
   const countryCode = watch("countryCode");
 
   const onSubmit = async (data) => {
+    if (data.referralId !== "") {
+      localStorage.setItem("referralCode", data.referralId);
+    }
+
+    // mixpanel section
+    const valid = data.email.includes("@") && data.password.length >= 6;
+    mixpanel.track("Registration", {
+      action: valid ? "submit" : "error",
+      step: "account",
+      step_index: 1,
+      step_label: "Account Info",
+      ...(valid ? {} : { error_fields: ["email_or_password"] }),
+    });
+    if (!valid) return;
+
     try {
       const resultAction = await dispatch(
         newCreatorRegister({
@@ -104,23 +147,31 @@ const BasicInfo = () => {
           lastName: data.lastName,
           acceptTerms: data.agreeTerms,
           acceptMarketing: data.receiveMarketing,
+          refCode: data.referralId || localStorage.getItem("referralCode"),
         })
       );
 
       if (newCreatorRegister.rejected.match(resultAction)) {
-        showToast(resultAction.payload?.message || "Registration failed", "error");
+        showToast(resultAction.payload || "Registration failed", "error");
       } else if (newCreatorRegister.fulfilled.match(resultAction)) {
         showToast(resultAction.payload.message, "success");
-        const step = resultAction.payload.step;
-        const routes = {
-          1: "/auth/email-verification",
-          2: "/auth/business-type",
-          3: "/auth/business-info",
-          4: "/auth/select-template",
-          5: "/auth/edit-template",
-          6: "/creator/dashboard-overview",
-        };
-        navigate(routes[step] || "/auth/email-verification");
+        if (resultAction.payload.user.step === 1) {
+          navigate("/auth/email-verification");
+        } else if (resultAction.payload.user.step === 2) {
+          navigate("/auth/business-type");
+        } else if (resultAction.payload.user.step === 3) {
+          navigate("/auth/business-info");
+        } else if (resultAction.payload.user.step === 4) {
+          navigate("/auth/select-template");
+        } else if (resultAction.payload.user.step === 5) {
+          navigate("/auth/select-template");
+        } else if (resultAction.payload.user.step === 6) {
+          navigate("/auth/edit-template");
+        } else if (resultAction.payload.user.step === 7) {
+          navigate("/creator/dashboard/overview");
+        } else {
+          navigate("/auth/personal-Information");
+        }
       }
     } catch (error) {
       showToast("An unexpected error occurred. Please try again.", "error");
@@ -135,17 +186,28 @@ const BasicInfo = () => {
 
       if (creatorSignupWithGoogle.fulfilled.match(resultAction)) {
         showToast("Google login successful! Redirecting...", "success");
-        const step = resultAction.payload.step;
-        const routes = {
-          2: "/auth/business-type",
-          3: "/auth/business-info",
-          4: "/auth/select-template",
-          5: "/auth/edit-template",
-          6: "/creator/dashboard-overview",
-        };
-        navigate(routes[step] || "/auth/business-type");
+        if (resultAction.payload.user.step === 1) {
+          navigate("/auth/email-verification");
+        } else if (resultAction.payload.user.step === 2) {
+          navigate("/auth/business-type");
+        } else if (resultAction.payload.user.step === 3) {
+          navigate("/auth/business-info");
+        } else if (resultAction.payload.user.step === 4) {
+          navigate("/auth/select-template");
+        } else if (resultAction.payload.user.step === 5) {
+          navigate("/auth/select-template");
+        } else if (resultAction.payload.user.step === 6) {
+          navigate("/auth/edit-template");
+        } else if (resultAction.payload.user.step === 7) {
+          navigate("/creator/dashboard/overview");
+        } else {
+          navigate("/auth/personal-Information");
+        }
       } else if (creatorSignupWithGoogle.rejected.match(resultAction)) {
-        showToast(resultAction.payload?.message || "Google login failed", "error");
+        showToast(
+          resultAction.payload?.message || "Google login failed",
+          "error"
+        );
       }
     } catch (error) {
       console.error("Google Sign-In Error:", error);
@@ -236,11 +298,12 @@ const BasicInfo = () => {
 
         <div className="w-full lg:px-20 justify-center">
           <p className="text-gray-500 text-xl text-center mb-4">
-            Create an account to get an online presence, accept bookings, and grow your income.
+            Create an account to get an online presence, accept bookings, and
+            grow your income.
           </p>
         </div>
 
-        <button
+        {/* <button
           type="button"
           onClick={loginWithGoogle}
           className="w-full h-12 font-bold font-body rounded border border-gray-300 p-2 flex items-center justify-center mb-4 hover:bg-gray-100 transition duration-200"
@@ -248,7 +311,7 @@ const BasicInfo = () => {
         >
           <GoogleLogo />
           Continue with Google
-        </button>
+        </button> */}
 
         <div className="flex gap-3 w-full items-center">
           <hr className="flex-1 bg-[#E5E5E5]" />
@@ -326,8 +389,14 @@ const BasicInfo = () => {
                 <Select
                   id="countryCode"
                   options={countryOptions}
-                  value={countryOptions.find((option) => option.value === countryCode)}
-                  onChange={(selected) => setValue("countryCode", selected.value, { shouldValidate: true })}
+                  value={countryOptions.find(
+                    (option) => option.value === countryCode
+                  )}
+                  onChange={(selected) =>
+                    setValue("countryCode", selected.value, {
+                      shouldValidate: true,
+                    })
+                  }
                   filterOption={(option, input) =>
                     option.data.searchValue.includes(input.toLowerCase())
                   }
@@ -380,6 +449,19 @@ const BasicInfo = () => {
           </div>
 
           <div className="mb-4">
+            <label htmlFor="referralId" className="text-black mb-1 block">
+              Referral code <small>(Optional)</small>
+            </label>
+            <LongInputWithPlaceholder
+              id="referralId"
+              placeholder="Referral code"
+              type="text"
+              {...register("referralId")}
+              className="rounded-[10px]"
+            />
+          </div>
+
+          <div className="mb-4">
             <label className="flex items-start gap-1 cursor-pointer text-[#7b7777]">
               <input
                 type="checkbox"
@@ -390,7 +472,8 @@ const BasicInfo = () => {
               <span>
                 I agree to the{" "}
                 <span className="text-[#9979d1]">
-                  General Terms of Use, Merchant Terms of Use & General Privacy Policy
+                  General Terms of Use, Merchant Terms of Use & General Privacy
+                  Policy
                 </span>{" "}
                 of Dimpified.
               </span>
@@ -410,7 +493,8 @@ const BasicInfo = () => {
                 className="mr-2"
                 aria-label="Receive marketing communications"
               />
-              I like to receive marketing communication and business tips from Dimpified
+              I like to receive marketing communication and business tips from
+              Dimpified
             </label>
           </div>
 
@@ -452,7 +536,7 @@ const BasicInfo = () => {
 
         <p className="text-center text-primary2 mt-4">
           Have a business account?{" "}
-          <Link to="/auth/signin" className="text-primary3">
+          <Link to="/auth/login" className="text-primary3">
             Sign in as a professional
           </Link>
         </p>

@@ -60,28 +60,28 @@ const FourthSpa = ({ userDetails }) => {
   const teamMembers = [
     {
       name: "Ann Smith",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic15.jpg",
+      image: "https://i.imghippo.com/files/LHAS4663Sx.jpg",
       role: "Founder & CEO",
       description:
         "Ann is the visionary behind our company, leading with innovation and passion to create exceptional experiences.",
     },
     {
       name: "Mary Lucas",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic16.jpg",
+      image: "https://i.imghippo.com/files/KHtR1229VE.jpg",
       role: "Lead Designer",
       description:
         "Mary crafts stunning and user-friendly designs, ensuring a seamless experience for all our clients.",
     },
     {
       name: "Jennifer Roberts",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic17.jpg",
+      image: "https://i.imghippo.com/files/nXcT8826gg.webp",
       role: "Marketing Director",
       description:
         "Jennifer drives our brand strategy, building meaningful connections with customers and expanding our reach.",
     },
     {
       name: "Candice Marshall",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic18.jpg",
+      image: "https://i.imghippo.com/files/zwJb5715vl.webp",
       role: "Head of Operations",
       description:
         "Candice ensures smooth day-to-day operations, optimizing efficiency and delivering outstanding service.",
@@ -92,42 +92,42 @@ const FourthSpa = ({ userDetails }) => {
     {
       name: "Claudia Kennen",
       role: "Spa Enthusiast",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic19.jpg",
+      image: "https://i.imghippo.com/files/LHAS4663Sx.jpg",
       feedback:
         "My experience at BeautyZone was truly relaxing. The staff is professional, and the treatments are incredibly soothing. Highly recommended!",
     },
     {
       name: "Elizabeth Ross",
       role: "Wellness Blogger",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic20.jpg",
+      image: "https://randomuser.me/api/portraits/women/45.jpg",
       feedback:
         "BeautyZone is my go-to spa for relaxation and rejuvenation. The atmosphere is calming, and the massage therapy is top-notch!",
     },
     {
       name: "John Doe",
       role: "Frequent Spa Visitor",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic21.jpg",
+      image: "https://i.imghippo.com/files/s3164s.jpg",
       feedback:
         "From facials to deep tissue massages, BeautyZone offers an exceptional experience. I always leave feeling refreshed and renewed!",
     },
     {
       name: "Sophia Williams",
       role: "Holistic Wellness Coach",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic19.jpg",
+      image: "https://randomuser.me/api/portraits/women/33.jpg",
       feedback:
         "I love the personalized treatments at BeautyZone. The staff takes the time to understand your needs and provide the perfect spa experience!",
     },
     {
-      name: "David Brown",
+      name: "Alice Brown",
       role: "Luxury Spa Aficionado",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic20.jpg",
+      image: "https://randomuser.me/api/portraits/women/12.jpg" ,
       feedback:
         "Every visit to BeautyZone is pure bliss! The aromatherapy and skilled therapists make it an unforgettable experience.",
     },
     {
       name: "Emma Johnson",
       role: "Massage Therapy Lover",
-      image: "https://gfa-tech.com/dimp-template-images/spa/pic21.jpg",
+      image: "https://randomuser.me/api/portraits/women/12.jpg",
       feedback:
         "BeautyZone offers the best massages in town! The ambiance, service, and treatments are all five-star quality!",
     },
@@ -136,25 +136,25 @@ const FourthSpa = ({ userDetails }) => {
   const galleryItems = [
     {
       id: 1,
-      img: "https://gfa-tech.com/dimp-template-images/spa/pic22.jpg",
+      img: "https://i.imghippo.com/files/FPu5241a.jpg",
       fullImg: "/assets/images/gallery/pic1.jpg",
       title: "Back Massage",
     },
     {
       id: 2,
-      img: "https://gfa-tech.com/dimp-template-images/spa/pic23.jpg",
+      img: "https://i.imghippo.com/files/DB7044jEw.jpg",
       fullImg: "/assets/images/gallery/pic2.jpg",
       title: "Spa Massage Therapy",
     },
     {
       id: 3,
-      img: "https://gfa-tech.com/dimp-template-images/spa/pic24.jpg",
+      img: "https://i.imghippo.com/files/NPVD4212mmA.jpg",
       fullImg: "/assets/images/gallery/pic3.jpg",
       title: "Face Massage",
     },
     {
       id: 4,
-      img: "https://gfa-tech.com/dimp-template-images/spa/pic22.jpg",
+      img: "https://i.imghippo.com/files/fvpy9475vmQ.jpg",
       fullImg: "/assets/images/gallery/pic4.jpg",
       title: "Relaxing Spa",
     },
@@ -162,42 +162,42 @@ const FourthSpa = ({ userDetails }) => {
 
   const images = [
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic7.jpg",
+      src: "https://i.imghippo.com/files/SuC4163NU.jpg",
       filter: ["image-1", "image-4"],
       title: "Back massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic8.jpg",
+      src: "https://i.imghippo.com/files/fvpy9475vmQ.jpg",
       filter: ["image-2", "image-3"],
       title: "Shoulders massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic9.jpg",
+      src: "https://i.imghippo.com/files/DB7044jEw.jpg",
       filter: ["image-2", "image-1"],
       title: "Face massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic10.jpg",
+      src: "https://i.imghippo.com/files/NPVD4212mmA.jpg",
       filter: ["image-4", "image-2"],
       title: "Head massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic11.jpg",
+      src: "https://i.imghippo.com/files/SuC4163NU.jpg",
       filter: ["image-1", "image-5"],
       title: "Back massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic12.jpg",
+      src: "https://i.imghippo.com/files/fvpy9475vmQ.jpg",
       filter: ["image-2", "image-3"],
       title: "Shoulders massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic13.jpg",
+      src: "https://i.imghippo.com/files/DB7044jEw.jpg",
       filter: ["image-2", "image-1"],
       title: "Face massage",
     },
     {
-      src: "https://gfa-tech.com/dimp-template-images/spa/pic14.jpg",
+      src: "https://i.imghippo.com/files/NPVD4212mmA.jpg",
       filter: ["image-4", "image-5"],
       title: "Head massage",
     },
@@ -230,11 +230,7 @@ const FourthSpa = ({ userDetails }) => {
             {/* Center Logo */}
             <div className="flex justify-center">
               <Link to="/" className="w-40">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/logo-black.png"
-                  alt="Logo"
-                  className="w-full"
-                />
+               <h2 className="text-pink-600 text-2xl">Spa Centre</h2> 
               </Link>
             </div>
 
@@ -292,8 +288,7 @@ const FourthSpa = ({ userDetails }) => {
       <div
         className="relative w-full md:h-screen  h-[60vh]  flex items-center justify-center bg-[#FF5EA5] p-14 bg-cover bg-center text-white"
         style={{
-          backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/pic1.1.jpg')",
+          backgroundImage: "url('https://i.imghippo.com/files/fYnD3552vg.jpg')",
         }}
       >
         <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 items-center gap-10">
@@ -337,9 +332,13 @@ const FourthSpa = ({ userDetails }) => {
         {/* Why Our Clients Choose Us */}
         <section
           id="about"
-          className="relative bg-white bg-cover px-4 bg-[url('https://gfa-tech.com/dimp-template-images/spa/bg7.jpg')] md:py-20 py-7.5"
+          className="relative bg-white bg-cover px-4 md:py-20 py-7.5 bg-[url('https://i.imghippo.com/files/sI2566OxA.jpg')]"
         >
-          <div className="lg:px-32 flex flex-col px-4">
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-white/60"></div>
+
+          {/* Content */}
+          <div className="relative lg:px-32 flex flex-col px-4">
             <div className="grid grid-cols-12 gap-7.5">
               <div className="lg:col-span-5 col-span-12 mb-7.5 self-center">
                 <div className="mb-7.5">
@@ -361,7 +360,7 @@ const FourthSpa = ({ userDetails }) => {
                     ].map((item, index) => (
                       <li
                         key={index}
-                        className="relative pl-7 before:content-['\2022'] before:absolute before:left-0 before:text-[#777] before:text-2xl text-[#6f6f6f]"
+                        className="relative pl-7 before:content-['\2022'] before:absolute before:left-0 before:text-[#232323] before:text-2xl text-[#232323]"
                       >
                         {item}
                       </li>
@@ -369,21 +368,21 @@ const FourthSpa = ({ userDetails }) => {
                   </ul>
                   <a
                     onClick={handleModalOpen}
-                    className="bg-teal-500 text-white py-2 px-4 rounded hover:bg-pink-600"
+                    className="bg-teal-500 text-white py-4 px-4 rounded hover:bg-pink-600"
                   >
                     Book an appointment
                   </a>
                 </div>
               </div>
 
-              {/* Gallery Images (Updated Alt Tags for SEO) */}
+              {/* Gallery Images */}
               <div className="lg:col-span-7 md:mt-0 mt-12 col-span-12 lg:ml-15.5">
                 <div className="grid grid-cols-2 gap-5">
                   {[
-                    "https://gfa-tech.com/dimp-template-images/spa/pic1.jpg",
-                    "https://gfa-tech.com/dimp-template-images/spa/pic2.jpg",
-                    "https://gfa-tech.com/dimp-template-images/spa/pic3.jpg",
-                    "https://gfa-tech.com/dimp-template-images/spa/pic4.jpg",
+                    "https://i.imghippo.com/files/fYnD3552vg.jpg",
+                    "https://i.imghippo.com/files/ibE7656A.jpg",
+                    "https://i.imghippo.com/files/Vbbg5804fo.jpg",
+                    "https://i.imghippo.com/files/Dky8498ZPI.jpg",
                   ].map((image, index) => (
                     <div key={index} className="px-2.5">
                       <img
@@ -408,15 +407,13 @@ const FourthSpa = ({ userDetails }) => {
               {[
                 {
                   num: 1,
-                  imgSrc:
-                    "https://gfa-tech.com/dimp-template-images/spa/spa11.jpg",
+                  imgSrc: "https://i.imghippo.com/files/WEn4820gZM.jpg",
                   title: "Skin Revival + Massage",
                   desc: "Facial treatments paired with lymphatic drainage massage to detoxify skin and reduce puffiness.",
                 },
                 {
                   num: 2,
-                  imgSrc:
-                    "https://gfa-tech.com/dimp-template-images/spa/galleryspa1.jpg",
+                  imgSrc: "https://i.imghippo.com/files/ibE7656A.jpg",
                   title: "Therapeutic Massages",
                   desc: "Tailored deep tissue or aromatherapy massages to relieve muscle tension and restore balance.",
                 },
@@ -472,7 +469,7 @@ const FourthSpa = ({ userDetails }) => {
             Get best possible treatment with our Spa Services
           </p>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  mx-4  mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  mx-4  mt-10">
             {spa.slice(0, 6).map((service, index) => (
               <div
                 key={index}
@@ -489,7 +486,7 @@ const FourthSpa = ({ userDetails }) => {
                 <p className="text-gray-500 mt-2">{service.shortDescription}</p>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
       <section
@@ -504,7 +501,7 @@ const FourthSpa = ({ userDetails }) => {
             We offer the best services within the most professional price range
           </p>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {spa.slice(0, 6).map((service, index) => (
               <div
                 key={index}
@@ -523,7 +520,7 @@ const FourthSpa = ({ userDetails }) => {
                 </div>
               </div>
             ))}
-          </div> */}
+          </div>
           <div className="mt-10 text-center py-6 rounded-md flex justify-center items-center space-x-4">
             <p className="text-lg text-gray-800 mb-0">
               Looking for spa & beauty services? Book an appointment now.
@@ -625,7 +622,7 @@ const FourthSpa = ({ userDetails }) => {
         className="py-8 px-6 lg:py-20 bg-cover bg-bottom relative"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/bg4.jpg')",
+            "url('https://i.imghippo.com/files/zelY7681XjI.jpg')",
         }}
       >
         <div className="container mx-auto px-4 relative z-10">
@@ -746,18 +743,13 @@ const FourthSpa = ({ userDetails }) => {
           </Swiper>
         </div>
       </section>
-      <footer className=" px-6">
+      <footer className=" bg-[#f9e8f9] px-6">
         {/* Footer Top */}
-        <div className="md:pt-20 pt-4  px-6 pb-5 bg-white bg-[url('https://gfa-tech.com/dimp-template-images/spa/bg8.jpg')] bg-cover bg-top bg-no-repeat">
+        <div className="md:pt-20 pt-4  px-6 pb-5  bg-cover bg-top bg-no-repeat">
           <div className="container mx-auto text-center px-4">
             {/* Logo */}
             <div className="max-w-[200px] mx-auto pb-7">
-              <a href="/">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/logo-black.png"
-                  alt="BeautyZone Logo"
-                />
-              </a>
+              <h3 className="text-gray-800 text-2xl">Beauty Spa</h3>
             </div>
 
             {/* Social Media Links */}
@@ -808,8 +800,8 @@ const FourthSpa = ({ userDetails }) => {
 
         {/* Footer Bottom */}
         <div className="py-6 bg-[#f9e8f9] text-center text-sm">
-          <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
-            <div>
+          <div className="container mx-auto  items-center px-4">
+            <div className="mx-aut">
               <span className="text-black">Copyright © 2025</span>
               <a
                 href="https://dimpified.com/"

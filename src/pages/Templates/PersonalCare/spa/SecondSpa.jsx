@@ -48,7 +48,7 @@ const SecondSpa = ({ userDetails }) => {
       id: 1,
       title: "Online",
       subtitle: "Booking",
-      image: "https://gfa-tech.com/dimp-template-images/spa/feature1.jpg",
+      image: "https://i.imghippo.com/files/JbDJ4327xXI.webp",
       icon: "icon-booking",
       description:
         "Easily schedule appointments online with our hassle-free booking system, available anytime.",
@@ -57,7 +57,7 @@ const SecondSpa = ({ userDetails }) => {
       id: 2,
       title: "Expert",
       subtitle: "Therapist",
-      image: "https://gfa-tech.com/dimp-template-images/spa/feature2.jpg",
+      image: "https://i.imghippo.com/files/qdM9464yEQ.jpg",
       icon: "icon-group",
       description:
         "Get connected with certified and experienced therapists for professional wellness support.",
@@ -66,7 +66,7 @@ const SecondSpa = ({ userDetails }) => {
       id: 3,
       title: "Special",
       subtitle: "Discount",
-      image: "https://gfa-tech.com/dimp-template-images/spa/feature3.jpg",
+      image: "https://i.imghippo.com/files/BZFl9728eQ.jpg",
       icon: "icon-tag",
       description:
         "Enjoy exclusive discounts on spa services when you book through our platform.",
@@ -77,19 +77,19 @@ const SecondSpa = ({ userDetails }) => {
     {
       name: "Kevin Martin",
       role: "Entrepreneurer",
-      image: "https://gfa-tech.com/dimp-template-images/spa/aboutauthor.png",
+      image: "https://i.imghippo.com/files/vE8876t.jpg",
       text: "I had an amazing experience at Teju Spa. The massage was incredibly relaxing, and the atmosphere was perfect. The staff was very professional, making sure I felt comfortable throughout the entire session. From the moment I walked in, I felt at ease.",
     },
     {
       name: "Sarah Albert",
       role: "Gym Instructor",
-      image: "https://gfa-tech.com/dimp-template-images/spa/testi.jpg",
+      image: "https://i.imghippo.com/files/Imi5543yI.jpg",
       text: "Teju Spa provided the best massage therapy I've ever had. The staff is professional and friendly! I was greeted immediately upon arrival and shown to a cozy waiting area where I could relax before my treatment.",
     },
     {
       name: "David Cooper",
       role: "User",
-      image: "https://gfa-tech.com/dimp-template-images/spa/testi2.jpg",
+      image: "https://i.imghippo.com/files/eDZD5180jZU.jpg",
       text: "The spa services at Teju were top-notch. I left feeling refreshed and rejuvenated. Highly recommend! From the moment I walked in, I was greeted with a warm welcome.",
     },
   ];
@@ -110,12 +110,12 @@ const SecondSpa = ({ userDetails }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSticky, setSticky] = useState(false);
   const images = [
-    "https://gfa-tech.com/dimp-template-images/spa/ig1.jpg",
-    "https://gfa-tech.com/dimp-template-images/spa/ig2.jpg",
-    "https://gfa-tech.com/dimp-template-images/spa/ig3.jpg",
-    "https://gfa-tech.com/dimp-template-images/spa/ig4.jpg",
-    "https://gfa-tech.com/dimp-template-images/spa/spa16.jpg",
-    "https://gfa-tech.com/dimp-template-images/spa/spa19.jpg",
+    "https://i.imghippo.com/files/LFaa8455zA.jpg",
+    "https://i.imghippo.com/files/vIg9532jgo.jpg",
+    "https://i.imghippo.com/files/hRGz9598osc.jpg",
+    "https://i.imghippo.com/files/hiaa9038rI.jpg",
+    "https://i.imghippo.com/files/gqFr8528aEY.jpg",
+    "https://i.imghippo.com/files/dAVl5719Cus.jpg",
   ];
   return (
     <div className="bg-gray-100">
@@ -123,13 +123,9 @@ const SecondSpa = ({ userDetails }) => {
         <div className="container mx-auto px-8 lg:px-12 py-4 flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="flex items-center text-gray-800">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
-              alt="logo"
-              className="w-10 h-10 mr-2"
-            />
+          
             <span className="text-xs leading-tight">
-              {userDetails?.ecosystemName} <br />
+              Wellness <br />
               <span className="text-yellow-600">Beauty and Spa</span>
             </span>
           </a>
@@ -214,7 +210,7 @@ const SecondSpa = ({ userDetails }) => {
         className="relative w-full md:h-screen h-[60vh] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage:
-            "url(https://gfa-tech.com/dimp-template-images/spa/herospa.jpg)",
+            "url(https://i.imghippo.com/files/ucuj7037yRc.jpg)",
         }}
       >
         {/* Dark Overlay */}
@@ -250,7 +246,7 @@ const SecondSpa = ({ userDetails }) => {
         className="relative py-16 bg-gray-100"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/feature-bg-1.png')",
+            "url('https://i.imghippo.com/files/Exo5774aA.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -292,12 +288,12 @@ const SecondSpa = ({ userDetails }) => {
           <div className="relative lg:w-1/2 w-full">
             <div className="grid grid-cols-2 gap-4">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/aboutspa1.jpg"
+                src="https://i.imghippo.com/files/TnU6377jJ.jpg"
                 alt="Spa Treatment"
                 className="rounded-md w-full h-auto"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/aboutspa2.jpg"
+                src="https://i.imghippo.com/files/kzp4023cA.jpg"
                 alt="Luxury Spa Bath"
                 className="rounded-md w-full h-auto"
               />
@@ -309,7 +305,7 @@ const SecondSpa = ({ userDetails }) => {
           <div className="lg:w-1/2 w-full text-center lg:text-left">
             <div className="mb-6">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
+                src="https://i.imghippo.com/files/Gvlt3169dG.jpg"
                 alt="Get to know us"
                 className="mx-auto lg:mx-0"
               />
@@ -355,13 +351,13 @@ const SecondSpa = ({ userDetails }) => {
               {/* Author Info */}
               <div className="flex items-center gap-4">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/aboutauthor.png"
+                  src="https://i.imghippo.com/files/Imi5543yI.jpg"
                   alt="Co-Founder"
                   className="w-14 h-14 rounded-full"
                 />
                 <div>
                   <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/about-sign.png"
+                    src="https://i.imghippo.com/files/UDEK9615SI.jpg"
                     alt="Signature"
                     className="w-24"
                   />
@@ -464,7 +460,7 @@ const SecondSpa = ({ userDetails }) => {
           {/* Section Title */}
           <div className="text-center mb-10">
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
+              src="https://i.imghippo.com/files/Exo5774aA.jpg"
               alt="Teju"
               className="mx-auto mb-2"
             />
@@ -476,7 +472,7 @@ const SecondSpa = ({ userDetails }) => {
             </h3>
           </div>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {spa.slice(0, 12).map((service, index) => (
               <div key={index} className="overflow-hidden group relative">
                 <div className="relative">
@@ -503,9 +499,7 @@ const SecondSpa = ({ userDetails }) => {
                     {service.name}
                   </h6>
                   <div className="text-gray-600">
-                    <del className="text-sm mr-2">
-                      #{service.price + service.price * 0.2}
-                    </del>
+                   
                     <span className="text-lg font-bold text-gray-800">
                       {getFormattedPrice(service.price, countryCode)}
                     </span>
@@ -513,7 +507,7 @@ const SecondSpa = ({ userDetails }) => {
                 </div>
               </div>
             ))}
-          </div> */}
+          </div>
 
           {/* Booking Section */}
           <div className="mt-10 text-center bg-white shadow-md p-6 rounded-md flex justify-center items-center space-x-4">
@@ -607,7 +601,7 @@ const SecondSpa = ({ userDetails }) => {
           <div className="lg:w-1/2 text-left">
             <div className="relative inline-block">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/why-choose.png"
+                src="https://i.imghippo.com/files/dAVl5719Cus.jpg"
                 alt="Our benefits"
                 className="absolute -top-4 left-0 w-12"
               />
@@ -662,7 +656,7 @@ const SecondSpa = ({ userDetails }) => {
           {/* Right Section (Image) */}
           <div className="lg:w-1/2 flex justify-center">
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/spa20.jpg"
+              src="https://i.imghippo.com/files/Dcxq6332hO.jpg"
               alt="Spa Massage"
               className="rounded-md shadow-lg w-full max-w-md lg:max-w-lg"
             />
@@ -758,13 +752,13 @@ const SecondSpa = ({ userDetails }) => {
         className="relative bg-cover bg-center py-16 px-6 lg:px-12"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/cta-bg.jpg')",
+            "url('https://i.imghippo.com/files/uio5256UvA.jpg')",
         }}
       >
         {/* Background Shape */}
         <div className="absolute inset-0">
           <img
-            src="https://gfa-tech.com/dimp-template-images/spa/cta-shape.png"
+            src="https://i.imghippo.com/files/tuQ3935Bg.jpg"
             alt="Teju"
             className="absolute left-0 top-0 w-full h-full object-cover"
           />
@@ -792,7 +786,7 @@ const SecondSpa = ({ userDetails }) => {
             {/* First Image */}
             <div className="relative transform rotate-3 shadow-lg w-64 mx-auto">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/cta-2.jpg"
+                src="https://i.imghippo.com/files/Zw4803zyw.jpg"
                 alt="Relaxing massage"
                 className="rounded-md border-4 border-white"
               />
@@ -802,12 +796,12 @@ const SecondSpa = ({ userDetails }) => {
             <div className="relative transform -rotate-3 shadow-lg w-64 mx-auto mt-6">
               {/* Flower Overlay */}
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/cta-flower.png"
+                src="https://i.imghippo.com/files/Jo9601sOY.jpg"
                 alt="Flower"
                 className="absolute -top-6 -right-6 w-20"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/cta-2-2.jpg"
+                src="https://i.imghippo.com/files/uio5256UvA.jpg"
                 alt="Luxury Spa"
                 className="rounded-md border-4 border-white"
               />
@@ -821,11 +815,7 @@ const SecondSpa = ({ userDetails }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Logo & Email Subscription */}
             <div>
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
-                alt="Teju Beauty & Spa"
-                className="w-15 mb-4"
-              />
+             <h3 className="text-[#B89545]"> Wellness</h3>
             </div>
 
             {/* Links */}

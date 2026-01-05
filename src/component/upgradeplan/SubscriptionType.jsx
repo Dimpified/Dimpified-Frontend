@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import StripeCardContainer from "./StripeCardContainer";
 import NairaCardContainer from "./NairaCardContainer";
 
-
 const SubscriptionType = () => {
   const [countryCode, setCountryCode] = useState(null);
 
@@ -14,7 +13,13 @@ const SubscriptionType = () => {
 
   return (
     <div>
-      {countryCode === "US" ? <StripeCardContainer /> : countryCode === "NG" ? <NairaCardContainer /> : null}
+      {countryCode === "US" ? (
+        <StripeCardContainer />
+      ) : countryCode === "NG" ? (
+        <NairaCardContainer />
+      ) : (
+        "NG"
+      )}
     </div>
   );
 };

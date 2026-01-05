@@ -41,7 +41,7 @@ const healthTips = [
       "Use chewing sticks (like Pako Ijebu) properly as an alternative to brushing",
       "Drink plenty of water to maintain saliva flow and rinse your mouth",
     ],
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-1.jpg",
+    image: "https://i.imghippo.com/files/bpy3729hjc.jpg",
   },
   {
     id: 2,
@@ -57,7 +57,7 @@ const healthTips = [
       "Take your child for their first dental visit by age 1",
       "Consider dental sealants to protect children's molars from decay",
     ],
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-3.jpg",
+    image: "https://i.imghippo.com/files/pFYJ8413Xw.jpg",
   },
 ];
 
@@ -65,22 +65,22 @@ const specialists = [
   {
     name: "Dr. Emeka Okoro",
     specialty: "Senior Dentist",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-1.jpg",
+    image: "https://i.imghippo.com/files/vCjq1151uYo.jpg",
   },
   {
     name: "Dr. Funmi Adewale",
     specialty: "Orthodontist",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-3.jpg",
+    image: "https://i.imghippo.com/files/u2878ZI.jpg",
   },
   {
     name: "Dr. Tolu Bamidele",
     specialty: "Pediatric Dentist",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-2.jpg",
+    image: "https://i.imghippo.com/files/rHqb5473MlM.jpg",
   },
   {
     name: "Dr. Aminat Rufai",
     specialty: "Periodontist",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-4.jpg",
+    image: "https://i.imghippo.com/files/OnFQ7555PJM.jpg",
   },
 ];
 
@@ -111,7 +111,7 @@ const testimonials = [
   },
 ];
 
-const FourthDentist = ({userDetails}) => {
+const FourthDentist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   const handleModalOpen = () => {
@@ -157,13 +157,10 @@ const FourthDentist = ({userDetails}) => {
           {/* Logo */}
           <a href="#home" className="flex items-center text-gray-800">
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png"
+              src="https://i.imghippo.com/files/YuBb7626aLI.webp"
               alt="logo"
-              className="w-10 h-10 mr-2"
+              className="w-20 h-15 mr-2"
             />{" "}
-            <span className="text-md text-[#0CB8B6] font-semibold leading-tight">
-             {userDetails?.ecosystemName} Dentals
-            </span>
           </a>
 
           {/* Desktop Menu */}
@@ -265,16 +262,16 @@ const FourthDentist = ({userDetails}) => {
           </ul>
         )}
       </nav>
-      {/* {isModalOpen && (
+      {isModalOpen && (
         <BookingModal isOpen={isModalOpen} handleClose={handleModalClose} />
-      )} */}
+      )}
       <div className="relative bg-white py-20 md:h-screen px-5 md:px-10 lg:px-20">
         {/* Background Shape */}
         <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat opacity-90"
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat opacity-90 blur-sm"
           style={{
             backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/dentist/visit-clinic-bg.jpg')",
+              "url('https://i.imghippo.com/files/pFYJ8413Xw.jpg')",
           }}
         ></div>
 
@@ -286,7 +283,7 @@ const FourthDentist = ({userDetails}) => {
               for Nigerian
               <br /> Families
             </h1>
-            <p className="text-lg mt-4 animate-fadeInUp delay-300">
+            <p className="text-xl text-white mt-4 animate-fadeInUp delay-300">
               Our certified dentists provide gentle, affordable, <br />
               and expert dental care across Nigeria — from Lagos to Abuja.
             </p>
@@ -308,7 +305,7 @@ const FourthDentist = ({userDetails}) => {
           {/* Image Section */}
           <div className="w-full lg:w-1/2">
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/dent4.8.jpg"
+              src="https://i.imghippo.com/files/iqvU1549v.jpg"
               alt="Nigerian Dentist Diagnosing Oral Issues"
               className="rounded-lg shadow-sm"
             />
@@ -369,6 +366,7 @@ const FourthDentist = ({userDetails}) => {
             services for the whole family.
           </p>
 
+          {/* swiper */}
           <Swiper
             modules={[Autoplay]}
             spaceBetween={30}
@@ -395,7 +393,7 @@ const FourthDentist = ({userDetails}) => {
                       <img
                         src={service.serviceImage}
                         alt={service.name}
-                        className="w-12 h-12 "
+                        className="w-12 rounded-full h-12 "
                       />
                     </div>
                   </div>
@@ -420,8 +418,7 @@ const FourthDentist = ({userDetails}) => {
       <div
         className="bg-cover bg-center py-20"
         style={{
-          backgroundImage:
-            "url(https://images.unsplash.om/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)",
+          backgroundImage: "url(https://i.imghippo.com/files/PoBV5093NWk.jpg",
         }}
       >
         <div className="container mx-auto px-6">
@@ -685,7 +682,7 @@ const FourthDentist = ({userDetails}) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* About Section */}
             <div>
-              <h4 className="text-xl font-semibold mb-4">{userDetails?.ecosystemName} Dental</h4>
+              <h4 className="text-xl font-semibold mb-4">SmileBright Dental</h4>
               <p className="text-gray-600 mb-4">
                 Premier dental care in Lagos offering world-class services with
                 state-of-the-art technology and compassionate care for the whole

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { showToast } from "../../../component/ShowToast";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +10,15 @@ import { LoadingSmall } from "../../../component/LoadingSpinner";
 import api from "../../../api/Afiliate";
 import { Heading, Text } from "../../../component/Text";
 import { LongInputWithPlaceholder } from "../../../component/Inputs";
+import { AgreementModal } from "./AgreementModal";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const navigate = useNavigate(); // To navigate to the success page
+
+  const [showAgreement, setShowAgreement] = useState(false);
+  const [agreeChecked, setAgreeChecked] = useState(false);
 
   // Use the useForm hook
   const {
@@ -24,6 +28,11 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    if (!agreeChecked) {
+      showToast("You must agree to the Partner Agreement before registering.");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await api.affiliateRegister({
@@ -31,6 +40,7 @@ const Register = () => {
         password: data.password,
         email: data.email,
         phoneNumber: data.phoneNumber,
+        agreement: data.agreement,
       });
 
       if (response.status === 201) {
@@ -54,8 +64,18 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    setShowAgreement(true);
+  }, []);
+
   return (
     <div className="max-w-md mx-auto mt-4 p-4 bg-white shadow-md rounded">
+      {showAgreement && (
+        <AgreementModal
+          isOpen={showAgreement}
+          onClose={() => setShowAgreement(false)}
+        />
+      )}
       <Heading
         level="2"
         className="text-2xl font-semibold mb-4 font-body"
@@ -66,7 +86,7 @@ const Register = () => {
         lineHeight="leading-1"
         htmlFor="bankSelect"
       >
-        Create an Account
+        Create your Partner Account
       </Heading>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
@@ -149,6 +169,25 @@ const Register = () => {
             </span>
           )}
         </div>
+
+        <div className="mb-4 flex text-sm items-center justify-start space-x-2">
+          <input
+            type="checkbox"
+            className="accent-primary3"
+            {...register("agreement", { required: true })}
+          />
+          <div
+            onClick={() => setShowAgreement(true)}
+            className="text-primary3 hover:underline cursor-pointer lg:whitespace-nowrap"
+          >
+            I agree to the Dimpified Independent Sales Partner Agreement
+          </div>
+        </div>
+        {errors.agreement && (
+          <Text className="text-red-500 text-sm">
+            You must agree before registering.
+          </Text>
+        )}
 
         <ButtonLongPurple
           type="submit"

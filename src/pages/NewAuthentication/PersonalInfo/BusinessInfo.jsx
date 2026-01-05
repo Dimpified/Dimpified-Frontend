@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newCreatorCreateEcosystem } from "../../../features/NewEcosystem";
 import { showToast } from "../../../component/ShowToast";
+import mixpanel from "../../../analytics/mixpanel";
 
 const BusinessInfo = () => {
   const navigate = useNavigate();
@@ -170,6 +171,16 @@ const BusinessInfo = () => {
           refreshToken,
         })
       ).unwrap();
+
+      // mixpanel
+
+      mixpanel.track("Registration", {
+        action: "submit",
+        step: "business_info",
+        step_index: 3,
+        step_label: "Business Info",
+      });
+
       showToast("Business information submitted successfully!", "success");
       navigate("/auth/select-template");
     } catch (error) {
@@ -177,9 +188,9 @@ const BusinessInfo = () => {
     }
   };
 
-  const onBack = async() => {
-    navigate("/auth/business-type")
-  }
+  const onBack = async () => {
+    navigate("/auth/business-type");
+  };
 
   return (
     <div className="flex flex-col h-full p-4">

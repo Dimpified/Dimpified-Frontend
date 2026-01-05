@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/authentication";
-import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/DIMP logo colored.png";
 import OverviewImg from "../../assets/overview.svg";
 import BookingImg from "../../assets/CalendarDots.svg";
@@ -19,13 +18,52 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import api from "../../api/DashboardApi";
 import Avatar from "../../assets/person.png";
+import { ButtonSmallPurple, ButtonSmallWhite } from "../../component/Buttons";
+
+// Subscription Expired Modal Component
+const SubscriptionExpiredModal = ({ onClose, onRenew }) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg  shadow-lg w-full max-w-2xl">
+        <div className="text-center">
+          <div className="bg-[#DEDBDB] p-4 w-full inline-block mb-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Subscription Expired
+            </h2>
+          </div>
+          <div className="p-6">
+            <div className="mt-4 text-yellow-500 flex gap-3 items-center justify-center">
+              <FontAwesomeIcon icon={faEnvelope} className="text-3xl" />
+              <p className="text-sm">Your Subscription Has Expired</p>
+            </div>
+            <p className="mt-2 text-gray-600 text-sm">
+              Your current plan has ended, and access to your dashboard features
+              is now limited. Please renew your subscription to continue
+              managing your website and services.
+            </p>
+            <div className="mt-6 flex justify-center space-x-4">
+              <ButtonSmallWhite
+                className="px-4 py-2 w-full bg-white border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+                onClick={onClose}
+              >
+                Back
+              </ButtonSmallWhite>
+              <ButtonSmallPurple
+                className="px-4 py-2 w-full bg-purple-600 text-white rounded-md hover:bg-purple-700"
+                onClick={onRenew}
+              >
+                Renew Now
+              </ButtonSmallPurple>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const creatorSteps = [
-  {
-    label: "Overview",
-    link: "/creator/dashboard/overview",
-    icon: OverviewImg,
-  },
+  { label: "Overview", link: "/creator/dashboard/overview", icon: OverviewImg },
   {
     label: "Booking",
     link: "/creator/dashboard/booking",
@@ -34,11 +72,7 @@ const creatorSteps = [
       pathname === "/creator/dashboard/booking-time-off" ||
       pathname === "/creator/dashboard/booking",
   },
-  {
-    label: "Payment",
-    link: "/creator/dashboard/payments",
-    icon: PaymentImg,
-  },
+  { label: "Payment", link: "/creator/dashboard/payments", icon: PaymentImg },
   {
     label: "Edit Template",
     link: "/creator/dashboard/edit-template",
@@ -58,11 +92,7 @@ const creatorSteps = [
     link: "/creator/dashboard/manage-customer",
     icon: ProfileImg,
   },
-  {
-    label: "Teams",
-    link: "/creator/dashboard/teams",
-    icon: ProfileImg,
-  },
+  { label: "Teams", link: "/creator/dashboard/teams", icon: ProfileImg },
   {
     label: "Subscription",
     link: "/creator/dashboard/Subscription",
@@ -73,19 +103,11 @@ const creatorSteps = [
     link: "/creator/dashboard/support-ticket",
     icon: PaymentImg,
   },
-  {
-    label: "Profile",
-    link: "/creator/dashboard/profile",
-    icon: ProfileImg,
-  },
+  { label: "Profile", link: "/creator/dashboard/profile", icon: ProfileImg },
 ];
 
 const teamMemberSteps = [
-  {
-    label: "Overview",
-    link: "/creator/dashboard/overview",
-    icon: OverviewImg,
-  },
+  { label: "Overview", link: "/creator/dashboard/overview", icon: OverviewImg },
   {
     label: "Booking",
     link: "/creator/dashboard/booking",
@@ -100,6 +122,7 @@ const teamMemberSteps = [
     icon: ProfileImg,
   },
 ];
+
 const CreatorDashboardLayout = ({ children }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -110,9 +133,18 @@ const CreatorDashboardLayout = ({ children }) => {
   const userRole = useSelector((state) => state.auth.user?.role);
   const ecosystemDomain = useSelector((state) => state.ecosystemDomain.domain);
   const { accessToken, refreshToken } = useSelector((state) => state.auth);
-
-  const [isNotificationOpen, setNotificationOpen] = useState(false);
+ const status = useSelector((state) => state.auth.user?.status); // Get status from Redux
+  const [showModal, setShowModal] = useState(false);
   const [isResSidebarOpen, setResIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    // Check status on mount and when it changes
+    if (status === "inactive") {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  }, [status]);
 
   useEffect(() => {
     getNotification();
@@ -138,7 +170,7 @@ const CreatorDashboardLayout = ({ children }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
+    navigate("/auth/login");
   };
 
   const truncateMessage = (message, maxLength = 60) =>
@@ -166,6 +198,36 @@ const CreatorDashboardLayout = ({ children }) => {
   };
 
   const steps = userRole === "team_member" ? teamMemberSteps : creatorSteps;
+
+  // Handle navigation with status check
+  const handleNavigation = (link) => {
+    if (
+      [
+        "/creator/dashboard/edit-template",
+        "/creator/dashboard/edit-service",
+        "/creator/dashboard/manage-customer",
+        "/creator/dashboard/teams",
+      ].includes(link)
+    ) {
+      if (status === "inactive") {
+        setShowModal(true);
+      } else {
+        navigate(link);
+      }
+    } else {
+      navigate(link);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/creator/dashboard/overview"); // Back to overview
+  };
+
+  const renewModal = () => {
+    setShowModal(false);
+    navigate("/creator/dashboard/subscription"); // Go to subscription
+  };
 
   return (
     <div className="flex h-screen overflow-hidden bg-primary1 font-body">
@@ -198,10 +260,10 @@ const CreatorDashboardLayout = ({ children }) => {
               : location.pathname === step.link;
 
             return (
-              <Link
-                to={step.link}
+              <div
                 key={index}
-                className={`flex items-center w-full p-2 transition-all duration-300 ${
+                onClick={() => handleNavigation(step.link)}
+                className={`flex items-center w-full p-2 transition-all duration-300 cursor-pointer ${
                   isActive ? "bg-sec6 rounded-lg" : ""
                 }`}
               >
@@ -225,7 +287,7 @@ const CreatorDashboardLayout = ({ children }) => {
                     {step.label}
                   </Heading>
                 )}
-              </Link>
+              </div>
             );
           })}
 
@@ -275,7 +337,7 @@ const CreatorDashboardLayout = ({ children }) => {
                 </Link>
                 <Link
                   to="/creator/dashboard/help-center"
-                  className="text-sec6 hover:text-primary5"
+                  className="text-red-600 hover:text-primary5 font-semibold"
                 >
                   Help Desk
                 </Link>
@@ -302,63 +364,6 @@ const CreatorDashboardLayout = ({ children }) => {
                   className="w-full h-full object-cover"
                 />
               </div>
-
-              {/* Notification Dropdown */}
-              {isNotificationOpen && (
-                <div className="absolute right-0 top-12 bg-white shadow-lg border border-gray-200 rounded-lg w-80 p-4 z-50">
-                  <div className="flex justify-between items-center border-b pb-2 mb-2">
-                    <h3 className="text-lg font-semibold">Notifications</h3>
-                    <button
-                      onClick={toggleNotification}
-                      className="text-gray-500 text-xl"
-                      aria-label="Close Notifications"
-                    >
-                      &times;
-                    </button>
-                  </div>
-                  <div className="border-b py-4">
-                    <p className="text-gray-700 font-semibold mb-2">Today</p>
-                    {notifications.length === 0 ? (
-                      <p className="text-gray-500 text-center">
-                        No new notifications
-                      </p>
-                    ) : (
-                      <div className="space-y-3">
-                        {notifications
-                          .slice(0, 3)
-                          .map((notification, index) => (
-                            <div
-                              key={index}
-                              className="flex items-start space-x-2"
-                            >
-                              <FontAwesomeIcon
-                                icon={faEnvelope}
-                                className="w-5 h-5 text-gray-600 mt-1"
-                              />
-                              <div className="flex-1">
-                                <p className="font-semibold">
-                                  {notification.type}
-                                </p>
-                                <p className="text-[12px] text-gray-500">
-                                  {truncateMessage(notification.message)}
-                                </p>
-                              </div>
-                              <p className="text-xs text-gray-400 whitespace-nowrap">
-                                {getRelativeTime(notification.date)}
-                              </p>
-                            </div>
-                          ))}
-                      </div>
-                    )}
-                  </div>
-                  <Link
-                    to="/creator/dashboard/notification"
-                    className="block text-center text-purple-500 mt-3"
-                  >
-                    View all notifications
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -395,7 +400,10 @@ const CreatorDashboardLayout = ({ children }) => {
                   ? [
                       { to: "/creator/dashboard/overview", label: "Overview" },
                       { to: "/creator/dashboard/booking", label: "Bookings" },
-                      { to: "/creator/dashboard/Team-profile", label: "Profile" },
+                      {
+                        to: "/creator/dashboard/Team-profile",
+                        label: "Profile",
+                      },
                       {
                         to: "/creator/dashboard/help-center",
                         label: "Help Desk",
@@ -453,9 +461,12 @@ const CreatorDashboardLayout = ({ children }) => {
                     ]
                 ).map(({ to, label }) => (
                   <li key={to}>
-                    <Link to={to} onClick={toggleResSidebar} className="block">
+                    <button
+                      onClick={() => handleNavigation(to)}
+                      className="block"
+                    >
                       {label}
-                    </Link>
+                    </button>
                   </li>
                 ))}
                 <li className="pb-10">
@@ -474,6 +485,12 @@ const CreatorDashboardLayout = ({ children }) => {
 
         {/* Main Page Content */}
         <div className="flex-grow overflow-y-auto overflow-x-hidden">
+          {showModal && (
+            <SubscriptionExpiredModal
+              onClose={closeModal}
+              onRenew={renewModal}
+            />
+          )}
           {children}
         </div>
       </div>

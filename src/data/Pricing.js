@@ -11,33 +11,29 @@ export const subscriptionData = {
 
 export const subscriptionPlans = {
   Monthly: {
-    Lite: {
-      code:
-        //141218,
-        136230,
-      amount: 4500,
-    },
-    Plus: { code: 141219, amount: 6750 },
-    Pro: { code: 141220, amount: 10125 },
-    Extra: { code: 141221, amount: 15888 },
+    //Lite: { code: 225828, amount: 100.00 },
+    Lite: { code: 145789, amount: 4500.00 },
+    Plus: { code: 145793, amount: 6750.00 },
+    Pro: { code: 145797, amount: 10125.00 },
+    Extra: { code: 145801, amount: 15888.00 },
   },
   Quarterly: {
-    Lite: { code: 141222, amount: 12150 },
-    Plus: { code: 141223, amount: 18225 },
-    Pro: { code: 141224, amount: 27339 },
-    Extra: { code: 141225, amount: 42897 },
+    Lite: { code: 145790, amount: 12150.00 },
+    Plus: { code: 145794, amount: 18225.00 },
+    Pro: { code: 145798, amount: 27339.00 },
+    Extra: { code: 145803, amount: 42897.00 },
   },
-  "Half-Yearly": {
-    Lite: { code: 141226, amount: 21600 },
-    Plus: { code: 141227, amount: 32400 },
-    Pro: { code: 141228, amount: 48600 },
-    Extra: { code: 141229, amount: 76260 },
+  Biannually: {
+    Lite: { code: 145791, amount: 21600.00 },
+    Plus: { code: 145795, amount: 32500.00 },
+    Pro: { code: 145799, amount: 48600.00 },
+    Extra: { code: 145804, amount: 76260.00 },
   },
-  Annually: {
-    Lite: { code: 141230, amount: 37800 },
-    Plus: { code: 141231, amount: 56700 },
-    Pro: { code: 141232, amount: 85056 },
-    Extra: { code: 141233, amount: 133464 },
+  Yearly: {
+    Lite: { code: 145792, amount: 37800.00 },
+    Plus: { code: 145796, amount: 56700.00 },
+    Pro: { code: 145800, amount: 85056.00 },
+    Extra: { code: 145805, amount: 133464.00 },
   },
 };
 
@@ -73,117 +69,37 @@ export const StripePlans = [
   {
     name: "Lite",
     prices: [
-      {
-        id: "price_1RVaT3KFCHhvNl8MnpIRO6sB",
-        amount: 19.99,
-        interval: "month",
-        interval_count: 1,
-      },
-      {
-        id: "price_1RUQH6KFCHhvNl8MpGkQudFZ",
-        amount: 17.99,
-        interval: "month",
-        interval_count: 3,
-      },
-      {
-        id: "price_1RUQDsKFCHhvNl8MLHnJLcY3",
-        amount: 15.99,
-        interval: "month",
-        interval_count: 6,
-      },
-      {
-        id: "price_1RUPhgKFCHhvNl8MoJ5r6z8w",
-        amount: 13.99,
-        interval: "year",
-        interval_count: 1,
-      },
+      { id: "price_1RVaT3KFCHhvNl8MnpIRO6sB", amount: 19.99, interval: "month", interval_count: 1 },
+      { id: "price_1RUQH6KFCHhvNl8MpGkQudFZ", amount: 17.99, interval: "month", interval_count: 3 },
+      { id: "price_1RUQDsKFCHhvNl8MLHnJLcY3", amount: 15.99, interval: "month", interval_count: 6 },
+      { id: "price_1RUPhgKFCHhvNl8MoJ5r6z8w", amount: 13.99, interval: "year", interval_count: 1 },
     ],
   },
   {
     name: "Plus",
     prices: [
-      {
-        id: "price_1RUQh6KFCHhvNl8Mwqv4LERx",
-        amount: 34.99,
-        interval: "month",
-        interval_count: 1,
-      },
-      {
-        id: "price_1RUQdOKFCHhvNl8MjuxFiI61",
-        amount: 31.49,
-        interval: "month",
-        interval_count: 3,
-      },
-      {
-        id: "price_1RUQEPKFCHhvNl8MeLkYh1HL",
-        amount: 27.99,
-        interval: "month",
-        interval_count: 6,
-      },
-      {
-        id: "price_1RUPimKFCHhvNl8MoiP8rN6w",
-        amount: 24.49,
-        interval: "year",
-        interval_count: 1,
-      },
+      { id: "price_1RUQh6KFCHhvNl8Mwqv4LERx", amount: 34.99, interval: "month", interval_count: 1 },
+      { id: "price_1RUQdOKFCHhvNl8MjuxFiI61", amount: 31.49, interval: "month", interval_count: 3 },
+      { id: "price_1RUQEPKFCHhvNl8MeLkYh1HL", amount: 27.99, interval: "month", interval_count: 6 },
+      { id: "price_1RUPimKFCHhvNl8MoiP8rN6w", amount: 24.49, interval: "year", interval_count: 1 },
     ],
   },
   {
     name: "Pro",
     prices: [
-      {
-        id: "price_1RUQheKFCHhvNl8MPXX32Wcx",
-        amount: 59.99,
-        interval: "month",
-        interval_count: 1,
-      },
-      {
-        id: "price_1RUQeOKFCHhvNl8MY8qegnWw",
-        amount: 53.99,
-        interval: "month",
-        interval_count: 3,
-      },
-      {
-        id: "price_1RUQFAKFCHhvNl8MeDmWpn1F",
-        amount: 47.99,
-        interval: "month",
-        interval_count: 6,
-      },
-      {
-        id: "price_1RUPjlKFCHhvNl8MCc7aCqb3",
-        amount: 41.99,
-        interval: "year",
-        interval_count: 1,
-      },
+      { id: "price_1RUQheKFCHhvNl8MPXX32Wcx", amount: 59.99, interval: "month", interval_count: 1 },
+      { id: "price_1RUQeOKFCHhvNl8MY8qegnWw", amount: 53.99, interval: "month", interval_count: 3 },
+      { id: "price_1RUQFAKFCHhvNl8MeDmWpn1F", amount: 47.99, interval: "month", interval_count: 6 },
+      { id: "price_1RUPjlKFCHhvNl8MCc7aCqb3", amount: 41.99, interval: "year", interval_count: 1 },
     ],
   },
   {
     name: "Extra",
     prices: [
-      {
-        id: "price_1RUQi1KFCHhvNl8M0mYCn8Py",
-        amount: 99.99,
-        interval: "month",
-        interval_count: 1,
-      },
-      {
-        id: "price_1RUQfIKFCHhvNl8Mj8u6zpZ4",
-        amount: 89.99,
-        interval: "month",
-        interval_count: 3,
-      },
-      {
-        id: "price_1RUQFhKFCHhvNl8MHHmRMPwa",
-        amount: 79.99,
-        interval: "month",
-        interval_count: 6,
-      },
-      {
-        id: "price_1RUPkKKFCHhvNl8MCRsWyf8j",
-        amount: 69.99,
-        interval: "year",
-        interval_count: 1,
-      },
+      { id: "price_1RUQi1KFCHhvNl8M0mYCn8Py", amount: 99.99, interval: "month", interval_count: 1 },
+      { id: "price_1RUQfIKFCHhvNl8Mj8u6zpZ4", amount: 89.99, interval: "month", interval_count: 3 },
+      { id: "price_1RUQFhKFCHhvNl8MHHmRMPwa", amount: 79.99, interval: "month", interval_count: 6 },
+      { id: "price_1RUPkKKFCHhvNl8MCRsWyf8j", amount:  69.99, interval: "year", interval_count: 1 },
     ],
   },
 ];

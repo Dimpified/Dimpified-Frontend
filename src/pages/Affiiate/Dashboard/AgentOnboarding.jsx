@@ -9,8 +9,8 @@ import {
 import { Heading } from "../../../component/Text";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Register from "../../NewAuthentication/PersonalInfo/BasicInfo";
-import UserLogin from "../../Authentication/RegisterUser/UserLogin";
+//import Register from "../../Anthentication/Category1/Register";
+import UserLogin from "../../Anthentication/RegisterUser/UserLogin";
 
 const AffiliateOnboarding = () => {
   const [userRole, setUserRole] = useState("");

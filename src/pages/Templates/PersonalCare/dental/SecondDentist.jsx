@@ -47,8 +47,10 @@ const SecondDentist = ({ userDetails }) => {
   const handleModalClose = () => {
     setIsModalOpen(false); // Function to close the modal
   };
-  const { country } = useCountry(); // Access country code from context
-  const countryCode = country || "NG"; // Fallback to 'US'
+  // const { country } = useCountry();
+  //  // Access country code from context
+  // const countryCode = country || "NG";
+   // Fallback to 'US'
 
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 3;
@@ -117,47 +119,47 @@ const SecondDentist = ({ userDetails }) => {
     },
   ];
 
-  const teamMembers = [
+   const teamMembers = [
     {
       name: "Dr. Emeka Okoro",
       role: "Senior Dentist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-1.jpg",
+      image: "https://i.imghippo.com/files/Lvu9153Wp.jpg",
     },
     {
       name: "Dr. Funmi Adewale",
       role: "Orthodontist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-3.jpg",
+      image: "https://i.imghippo.com/files/NNJ9852io.jpg",
     },
     {
       name: "Dr. Tolu Bamidele",
       role: "Pediatric Dentist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-2.jpg",
+      image: "https://i.imghippo.com/files/kU6460c.jpg",
     },
     {
       name: "Dr. Aminat Rufai",
       role: "Periodontist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/dentist-4.jpg",
+      image: "https://i.imghippo.com/files/xVt8555fhk.jpg",
     },
   ];
 
-  const features = [
+   const features = [
     {
       id: 1,
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-process-1.png",
+      icon: "https://i.imghippo.com/files/FFnZ8241w.png",
       title: "Personalized Care For Patient",
       description:
         "We understand that each patient is unique, and we listen to concerns.",
     },
     {
       id: 2,
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-process-2.png",
+      icon: "https://i.imghippo.com/files/nSHe3154QEQ.png",
       title: "Cutting Edge Technology",
       description:
         "We invest in the latest dental technology to provide top-notch care.",
     },
     {
       id: 3,
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-process-3.png",
+      icon: "https://i.imghippo.com/files/TYJ9965rqw.png",
       title: "Family Friendly",
       description: "No matter your age or dental needs, we are here to help.",
     },
@@ -176,9 +178,9 @@ const SecondDentist = ({ userDetails }) => {
           {/* Logo */}
           <a href="#home" className="flex items-center text-gray-800">
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png"
+              src="https://i.imghippo.com/files/rCvw1845yLI.png"
               alt="logo"
-              className="w-10 h-10 mr-2"
+              className="w-17 h-10 mr-2"
             />
             <span className="text-md text-[#1E84B5] font-semibold leading-tight">
               {userDetails?.ecosystemName} <br />
@@ -255,7 +257,7 @@ const SecondDentist = ({ userDetails }) => {
         className="relative bg-cover bg-center md:h-screen h-[70vh] flex items-center justify-center text-white"
         style={{
           backgroundImage:
-            "url(https://gfa-tech.com/dimp-template-images/dentist/dentist-bg.jpg)",
+            "url(https://i.imghippo.com/files/aJQ6779iCs.jpg)",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -281,15 +283,15 @@ const SecondDentist = ({ userDetails }) => {
             <div className=" mt-10 grid grid-cols-3 md:grid-cols-3 gap-6 ">
               {[
                 {
-                  icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-hero1.png",
+                  icon: "https://i.imghippo.com/files/sEs3200s.png",
                   text: "Experience Doctor",
                 },
                 {
-                  icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-hero2.png",
+                  icon: "https://i.imghippo.com/files/NuJ2384zh.png",
                   text: "Personalized Care",
                 },
                 {
-                  icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-hero3.png",
+                  icon: "https://i.imghippo.com/files/NuJ2384zh.png",
                   text: "Flexible Payment Option",
                 },
               ].map((item, index) => (
@@ -309,28 +311,28 @@ const SecondDentist = ({ userDetails }) => {
         {/* Top Contact Section */}
         <div className="bg-cover py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ContactCard
-            icon="https://gfa-tech.com/dimp-template-images/dentist/icon-phone.png"
+            icon="https://i.imghippo.com/files/sEs3200s.png"
             title="Need Dental Services?"
             description="Call on : (+01) 987 828 745"
           />
           <ContactCard
-            icon="https://gfa-tech.com/dimp-template-images/dentist/icon-clock.png"
+            icon="https://i.imghippo.com/files/NuJ2384zh.png"
             title="Opening Hours"
             description="Mon to Sat 9:00AM to 9:00PM"
           />
           <ContactCard
-            icon="https://gfa-tech.com/dimp-template-images/dentist/icon-mail.png"
+            icon="https://i.imghippo.com/files/NuJ2384zh.png"
             title="Schedule Appointment"
             description="Mail us : appointment@domain.com"
           />
         </div>
         {/* About Us Section */}
-        <div className="flex flex-col md:px-32 px-6 py-16  md:px-8">
+        <div className="flex flex-col  px-6 py-16  md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Image Section */}
             <div className="relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/about-us-image.jpg"
+                src="https://i.imghippo.com/files/tLwv1291cEw.jpg"
                 alt="Dental Clinic"
                 className="w-full rounded-xl shadow-lg"
               />
@@ -398,51 +400,7 @@ const SecondDentist = ({ userDetails }) => {
           </div>
         </div>
       </div>
-      <section id="services" className="bg-blue-50 py-16">
-        <div className="flex flex-col md:px-32 px-6 ">
-          {/* Section Header */}
-          <div className="text-center mb-10">
-            <p className="text-[#1E84B5] font-semibold flex items-center justify-center gap-2">
-              <FaTooth /> Our Services
-            </p>
-            <h2 className="text-4xl font-bold text-gray-800 mt-2">
-              Explore the services we provide
-            </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              The goal of our clinic is to provide friendly, caring dentistry
-              and the highest level of general, cosmetic, and specialist dental
-              treatments. With dental practices throughout the world.
-            </p>
-          </div>
-
-          {/* Service Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {dental.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-xl shadow-lg transition-all transform [#1E84B5]:scale-105 [#1E84B5]:bg-blue-700 [#1E84B5]:text-white"
-              >
-                <div className="flex items-center justify-center w-12 h-12 mb-3">
-                  <img
-                    src={service.serviceImage}
-                    alt={service.name}
-                    className="w-12 h-12 "
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{service.name}</h3>
-                <p className="mt-2">{service.shortDescription}</p>
-                <hr className="my-4 border-gray-300" />
-                <button
-                  onClick={handleModalOpen}
-                  className="text-[#1E84B5] hover:text-blue-600 font-medium flex items-center gap-1 [#1E84B5]:underline"
-                >
-                  Book Now <span className="ml-1">➜</span>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
       <div id="how" className="bg-white py-16">
         <div className="flex flex-col md:px-32 px-6 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -479,7 +437,7 @@ const SecondDentist = ({ userDetails }) => {
                 <div className="relative">
                   <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                     <img
-                      src="https://gfa-tech.com/dimp-template-images/dentist/icon-process-1.png"
+                      src="https://i.imghippo.com/files/jUt4766Hw.png"
                       alt="Initial Consultation"
                     />
                   </div>
@@ -503,7 +461,7 @@ const SecondDentist = ({ userDetails }) => {
                 <div className="relative">
                   <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                     <img
-                      src="https://gfa-tech.com/dimp-template-images/dentist/icon-process-2.png"
+                      src="https://i.imghippo.com/files/cVc7684e.png"
                       alt="Treatment by Experts"
                     />
                   </div>
@@ -527,7 +485,7 @@ const SecondDentist = ({ userDetails }) => {
                 <div className="relative">
                   <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                     <img
-                      src="https://gfa-tech.com/dimp-template-images/dentist/icon-process-3.png"
+                      src="https://i.imghippo.com/files/FFnZ8241w.png"
                       alt="Follow-Up Care"
                     />
                   </div>
@@ -554,7 +512,7 @@ const SecondDentist = ({ userDetails }) => {
           {/* Left Section - Image with Blurred Feature Overlay */}
           <div className="relative">
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/aboutd2.jpg"
+              src="https://i.imghippo.com/files/ROW1339luo.jpg"
               alt="Dental Care"
               className="w-full h-full object-cover rounded-lg"
             />
@@ -628,73 +586,72 @@ const SecondDentist = ({ userDetails }) => {
           </div>
         </div>
       </div>
-      <div className="py-16 bg-white">
-        <div className="flex flex-col md:px-32 px-6 w-full max-w-screen-xl">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <h3 className="text-[#1E84B5] font-semibold text-lg">
-              Testimonials
-            </h3>
-            <h2 className="text-3xl font-bold text-[#0d3550]">
-              Listen from our happy patients
-            </h2>
-            <p className="text-gray-600 mt-2">
-              The goal of our clinic is to provide friendly, caring dentistry
-              and the highest level of general, cosmetic, and specialist dental
-              treatments.
+      <div className="py-16 bg-white w-full">
+  <div className="flex flex-col items-center justify-center px-6 md:px-12 w-full">
+    {/* Section Header */}
+    <div className="text-center mb-12 max-w-3xl">
+      <h3 className="text-[#1E84B5] font-semibold text-lg">
+        Testimonials
+      </h3>
+      <h2 className="text-3xl font-bold text-[#0d3550]">
+        Listen from our happy patients
+      </h2>
+      <p className="text-gray-600 mt-2">
+        The goal of our clinic is to provide friendly, caring dentistry
+        and the highest level of general, cosmetic, and specialist dental
+        treatments.
+      </p>
+    </div>
+
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={20}
+      slidesPerView={1}
+      breakpoints={{
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }}
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
+      className="w-full max-w-7xl"
+    >
+      {testimonials.map((testimonial) => (
+        <SwiperSlide key={testimonial.id}>
+          <div className="bg-blue-50 p-6 rounded-xl shadow-md w-full transition-transform">
+            {/* Quote Icon */}
+            <div className="flex justify-center mb-4">
+              <img
+                src="https://i.imghippo.com/files/FG8021h.png"
+                alt="Quote Icon"
+                className="w-10 h-10"
+              />
+            </div>
+
+            {/* Testimonial Text */}
+            <p className="text-gray-700 mb-4 text-center">
+              {testimonial.text}
             </p>
+
+            {/* Author Info */}
+            <div className="flex items-center justify-center mt-6">
+              <img
+                src="https://i.imghippo.com/files/UFeK7145Vnw.jpg"
+                alt={testimonial.name}
+                className="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h3 className="text-lg font-bold">{testimonial.name}</h3>
+                <p className="text-sm text-gray-500">{testimonial.role}</p>
+              </div>
+            </div>
           </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</div>
 
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={20}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            className="w-full "
-          >
-            {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial.id}>
-                <div className="bg-blue-50 p-6 rounded-xl shadow-md w-full transition-transform">
-                  {/* Quote Icon at the Top */}
-                  <div className="flex justify-center mb-4">
-                    <img
-                      src={testimonial.quoteIcon}
-                      alt="Quote Icon"
-                      className="w-10 h-10"
-                    />
-                  </div>
-
-                  {/* Testimonial Text */}
-                  <p className="text-gray-700 mb-4 text-center">
-                    {testimonial.text}
-                  </p>
-
-                  {/* Author Info */}
-                  <div className="flex items-center justify-center mt-6">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-12 h-12 rounded-full mr-4"
-                    />
-                    <div>
-                      <h3 className="text-lg font-bold">{testimonial.name}</h3>
-                      <p className="text-sm text-gray-500">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
       <div className="bg-[#0D3B4F] text-white py-16">
         <div className="flex flex-col md:px-32 px-6 ">
           {/* Top Content Section */}
@@ -728,9 +685,9 @@ const SecondDentist = ({ userDetails }) => {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/dentist/we-provide-image.jpg"
+                  src="https://i.imghippo.com/files/ThmX1669IX.jpg"
                   alt="Dental Facility"
-                  className="w-full h-auto rounded-xl shadow-lg"
+                  className="w-[500px] h-auto rounded-xl shadow-lg"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <button className="bg-white p-4 rounded-full shadow-lg">
@@ -904,9 +861,9 @@ const SecondDentist = ({ userDetails }) => {
               <div className="flex items-center mb-4">
                 <a href="#" className="flex items-center text-gray-800">
                   <img
-                    src="https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png"
+                    src="https://i.imghippo.com/files/rCvw1845yLI.png"
                     alt="logo"
-                    className="w-10 h-10 mr-2"
+                    className="w-15 h-10 mr-2"
                   />
                   <span className="text-md text-[#1E84B5] font-semibold leading-tight">
                     Tooth Palace <br />

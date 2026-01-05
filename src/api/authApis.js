@@ -1,5 +1,6 @@
 import axios from "axios";
 import { updateAccessToken } from "../features/authentication";
+import AxiosInterceptor from "../component/AxiosInterceptor";
 
 // Define your API endpoints
 
@@ -48,18 +49,6 @@ const GoogleSignUp = async ({ token }) => {
     );
   }
 };
-const GoogleLogin = async ({ token }) => {
-  try {
-    const response = await axios.post(`${API_URL}/new/google-login`, {
-      token,
-    });
-    return response;
-  } catch (error) {
-    throw new Error(
-      error.response?.data?.message || " Login with Google failed"
-    );
-  }
-};
 
 const newCreatorRegister = async ({
   firstName,
@@ -69,6 +58,7 @@ const newCreatorRegister = async ({
   password,
   acceptTerms,
   acceptMarketing,
+  refCode,
 }) => {
   try {
     const response = await axios.post(`${API_URL}/new/signup`, {
@@ -79,6 +69,7 @@ const newCreatorRegister = async ({
       password,
       acceptTerms,
       acceptMarketing,
+      refCode,
     });
     return response;
   } catch (error) {
@@ -254,10 +245,49 @@ const CreatorSelectBusinessType = async ({
   }
 };
 
+export const createBusinessIdentity = async ({
+  creatorId,
+  businessAddress,
+  businessName,
+  websiteAddress,
+  description,
+  category,
+  timezone,
+  week,
+  accessToken,
+  refreshToken
+}) => {
+  const authFetch = AxiosInterceptor(accessToken, refreshToken);
+  try {
+    const response = await authFetch.post(
+      `${API_URL}/create-business-identity`,
+      {
+        creatorId,
+        businessName,
+        websiteAddress,
+        businessAddress,
+        description,
+        category,
+        timezone,
+        week,
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    const message =
+      error.response?.data?.message ||
+      error.message ||
+      "Failed to create business identity";
+
+    throw new Error(message);
+  }
+};
+
 export default {
   newCreatorRegister,
   CreatorSelectBusinessType,
-GoogleSignUp,
+  GoogleSignUp,
   creatorRegister,
   creatorVerifyToken,
   creatorLogin,
@@ -270,5 +300,5 @@ GoogleSignUp,
   creatorResetPasswordOtp,
   refreshAccessToken,
   teamMemberOnboarding,
-  GoogleLogin
+  createBusinessIdentity,
 };

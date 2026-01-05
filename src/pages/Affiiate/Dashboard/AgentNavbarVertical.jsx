@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import SimpleBar from "simplebar-react";
-import Logo from "../../../assets/DIMP logo colored.png";
+import Logo from "../../LandingPages/images/dimp-blue.png";
 import { DashboardMenu } from "../../../data/affliateData/AffliateDashboardRoutes";
 import { Menu, X } from "react-feather"; // X is for the close button on small screens
 import { useState } from "react";

@@ -15,27 +15,27 @@ const teamMembers = [
   {
     name: "Jackson Nash",
     role: "Massagist",
-    image: "https://gfa-tech.com/dimp-template-images/spa/team-img01.jpg",
+    image: "https://i.imghippo.com/files/mEXI5735be.jpg",
   },
   {
     name: "Ollie Schneider",
     role: "Orthopaedic Doctor",
-    image: "https://gfa-tech.com/dimp-template-images/spa/team-img02.jpg",
+    image: "https://i.imghippo.com/files/HcpB1578ws.jpg",
   },
   {
     name: "Roger West",
     role: "Skin Expert",
-    image: "https://gfa-tech.com/dimp-template-images/spa/team-img03.jpg",
+    image: "https://i.imghippo.com/files/UHJ8333qQU.jpg",
   },
   {
     name: "Alex Manning",
     role: "Chiropractic",
-    image: "https://gfa-tech.com/dimp-template-images/spa/team-img04.jpg",
+    image: "https://i.imghippo.com/files/mmUs8267FkE.jpg",
   },
 ];
 
 // App Component
-const FifthSpa = ({userDetails}) => {
+const FifthSpa = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   const handleModalOpen = () => {
@@ -63,37 +63,37 @@ const FifthSpa = ({userDetails}) => {
   const images = [
     {
       id: "massage",
-      src: "https://gfa-tech.com/dimp-template-images/spa/gallery-img05.jpg",
+      src: "https://i.imghippo.com/files/chu8182zY.jpg",
       title: "Full-body Massage",
       date: "08 Mar 2017",
     },
     {
       id: "skincare",
-      src: "https://gfa-tech.com/dimp-template-images/spa/gallery-img06.jpg",
+      src: "https://i.imghippo.com/files/wpfP1706sk.jpg",
       title: "Skin Treatment",
       date: "10 Apr 2018",
     },
     {
       id: "haircut",
-      src: "https://gfa-tech.com/dimp-template-images/spa/gallery-img07.jpg",
+      src: "https://i.imghippo.com/files/Onyn9273jJk.jpg",
       title: "Professional Haircut",
       date: "15 Jun 2019",
     },
     {
       id: "nailcare",
-      src: "https://gfa-tech.com/dimp-template-images/spa/gallery-img08.jpg",
+      src: "https://i.imghippo.com/files/kcb3423Fk.jpg",
       title: "Manicure & Pedicure",
       date: "22 Jul 2020",
     },
     {
       id: "beautyspa",
-      src: "https://gfa-tech.com/dimp-template-images/spa/gallery-img09.jpg",
+      src: "https://i.imghippo.com/files/DjOV8281Exk.jpg",
       title: "Relaxing Spa Treatment",
       date: "05 Sep 2021",
     },
     {
       id: "massage",
-      src: "https://gfa-tech.com/dimp-template-images/spa/gallery-img10.jpg",
+      src: "https://i.imghippo.com/files/X7218B.jpg",
       title: "Deep Tissue Massage",
       date: "12 Dec 2022",
     },
@@ -133,11 +133,7 @@ const FifthSpa = ({userDetails}) => {
             ))}
           </nav>
           <Link href="/">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/beauty-logo.png"
-              alt="Logo"
-              className="h-6"
-            />
+           <h2 className="text-purple-500 text-xl font-medium">Delight Spa</h2>
           </Link>
 
           {/* Icons */}
@@ -180,7 +176,7 @@ const FifthSpa = ({userDetails}) => {
         <div className="max-w-6xl w-full flex flex-col-reverse md:flex-row items-center justify-between r md:text-left">
           {/* Text Section */}
           <div className="max-w-lg w-full md:w-1/2">
-            <p className="text-lg italic text-gray-600">{userDetails?.ecosystemName} Spa</p>
+            <p className="text-lg italic text-gray-600">Paradise Spa</p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
               Refresh & Rejuvenate
             </h1>
@@ -196,16 +192,16 @@ const FifthSpa = ({userDetails}) => {
               Book Appointment
             </button>
           </div>
-          {/* {isModalOpen && (
+          {isModalOpen && (
             <BookingModal isOpen={isModalOpen} handleClose={handleModalClose} />
-          )} */}
+          )}
 
           {/* Image Section */}
           <div className="max-w-lg w-full md:w-1/2 flex justify-center">
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/beauty-img1.png"
+              src="https://i.imghippo.com/files/aMjK6575eM.jpg"
               alt="Beauty Spa"
-              className="w-full max-w-md md:max-w-lg"
+              className="w-full rounded-full max-w-md md:max-w-lg"
             />
           </div>
         </div>
@@ -216,21 +212,21 @@ const FifthSpa = ({userDetails}) => {
           <div className="mb-12">
             <h2 className="text-lg italic text-gray-500">Welcome to</h2>
             <h1 className="text-4xl font-bold text-gray-900">
-              {userDetails?.ecosystemName} Spa and wellness centre
+              Paradise Spa and wellness centre
             </h1>
           </div>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             We make you feel like a super person every day!
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-            {userDetails?.ecosystemName} spa services combine botanical and advanced cosmeceutical
+            Paradise spa services combine botanical and advanced cosmeceutical
             ingredients with the Science of Beauty to bring you the ultimate in
             professional massage services
           </p>
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="w-full md:w-1/2 flex justify-center">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/paradise-img.jpg"
+                src="https://i.imghippo.com/files/UAFL4509GZE.jpg"
                 alt="Paradise Center"
                 className="max-w-sm w-full rounded-lg "
               />
@@ -285,7 +281,7 @@ const FifthSpa = ({userDetails}) => {
           </div>
         </div>
       </section>
-      {/* <section id="services" className="py-16 bg-gray-100">
+      <section id="services" className="py-16 bg-gray-100">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-lg italic text-gray-500">Explore</h2>
@@ -330,7 +326,7 @@ const FifthSpa = ({userDetails}) => {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
       <section id="gallery" className="bg-white py-16 px-4">
         <div className="flex flex-col lg:px-48 md:px-24">
           <div className="text-center mb-8">
@@ -395,7 +391,7 @@ const FifthSpa = ({userDetails}) => {
           </div>
         </div>
       </section>
-      {/* <section className="py-24 bg-white">
+      <section className="py-24 bg-white">
         <div className="flex flex-col lg:px-48 md:px-24 text-center">
           <h2 className="text-4xl font-semibold text-gray-900 pb-4">
             Our Pricing
@@ -435,7 +431,7 @@ const FifthSpa = ({userDetails}) => {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       <section
         id="#contact"
@@ -444,7 +440,7 @@ const FifthSpa = ({userDetails}) => {
         {/* Left Image Section */}
         <div className="md:w-1/2 w-full flex justify-center">
           <img
-            src="https://gfa-tech.com/dimp-template-images/spa/gallery-img09.jpg"
+            src="https://i.imghippo.com/files/zOlv2415st.jpg"
             alt="Appointment Image"
             className="w-80  rounded-full max-w-md md:max-w-full h-auto"
           />
@@ -483,7 +479,7 @@ const FifthSpa = ({userDetails}) => {
           {/* Logo & Social Links */}
           <div>
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/beauty-logo.png"
+              src="https://i.imghippo.com/files/hISx8518Y.jpg"
               alt="Logo"
               className="w-32 mb-3"
             />
@@ -517,12 +513,12 @@ const FifthSpa = ({userDetails}) => {
           {/* Image Widget */}
           <div className="grid grid-cols-3 gap-2">
             {[
-              "https://gfa-tech.com/dimp-template-images/spa/gallery-img05.jpg",
-              "https://gfa-tech.com/dimp-template-images/spa/gallery-img06.jpg",
-              "https://gfa-tech.com/dimp-template-images/spa/gallery-img07.jpg",
-              "https://gfa-tech.com/dimp-template-images/spa/gallery-img08.jpg",
-              "https://gfa-tech.com/dimp-template-images/spa/gallery-img09.jpg",
-              "https://gfa-tech.com/dimp-template-images/spa/gallery-img10.jpg",
+              "https://i.imghippo.com/files/zOlv2415st.jpg",
+              "https://i.imghippo.com/files/fHix4053Rw.jpg",
+              "https://i.imghippo.com/files/aMjK6575eM.jpg",
+              "https://i.imghippo.com/files/MsxU8527oSs.jpg",
+              "https://i.imghippo.com/files/zOlv2415st.jpg",
+              "https://i.imghippo.com/files/gIso3040aM.jpg",
             ].map((url, index) => (
               <a key={index} href="#">
                 <img

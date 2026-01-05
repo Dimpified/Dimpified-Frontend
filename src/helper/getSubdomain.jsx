@@ -16,7 +16,9 @@ const getSubdomain = () => {
     hostname === "https://dimpified.com.ng" ||
     hostname === "www.dimpified.com.ng" ||
     hostname === "dimpified.com.ng" ||
-    hostname === "dimpified-frontend-testing.azurewebsites.net"
+    hostname === "dimpifiedfrontend-development.azurewebsites.net" ||
+    hostname === "dimpifiedfrontend.azurewebsites.net" ||
+    hostname === "dimplandingpage-development.azurewebsites.net"
   ) {
     return null;
   }

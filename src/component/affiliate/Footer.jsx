@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import FooterLogo from "../../assets/DIMP logo colored.png";
+import FooterLogo from "../../pages/LandingPages/images/dimp-blue.png";
+
 import { footerAgentDefaultLink } from "../../data/affliateData/footerAgentDefaultLink";
 import { Heading, Text, TextSpan } from "../Text";
 
@@ -16,7 +17,8 @@ const Footer = () => {
                 src={FooterLogo}
                 alt="Footer Logo"
                 className="mx-auto sm:mx-0"
-                style={{ height: "50px", width: "100px" }}
+                width="100"
+                height="50"
               />
               <Text className="mt-4 text-sm">
                 Dimpified is an Ecosystem management platform that allows you to

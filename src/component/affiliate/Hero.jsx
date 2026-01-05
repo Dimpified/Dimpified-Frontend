@@ -14,16 +14,16 @@ const Hero = () => {
             font="font-body"
             lineHeight="leading-7"
           >
-            Join the Dimpified Affiliate Program!
+            Join the Dimpified Sales Partner Program!
           </Heading>
 
           <div className="px-2 md:px-5 mt-3">
             <Text className="text-lg leading-relaxed font-sans">
               At DIMP, we aim to build a community of entrepreneurs and creators
-              who grow and succeed together. Our affiliate program lets you earn
-              by helping others access our platform powerful tools and services,
-              whether promoting subscription plans or referring customers to our
-              store.
+              who grow and succeed together. Our independent sales partner (ISP)
+              program lets you earn by helping others access our platform
+              powerful tools and services, whether promoting subscription plans
+              or referring customers to our store.
             </Text>
           </div>
           {/* <div className="mt-4 flex justify-center">

@@ -26,7 +26,6 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-
 import { dental } from "../../../../data/Services";
 import { useCountry } from "../../../pricing/CountryContext";
 import { getFormattedPrice } from "../../../../data/getServicePriceAndCountryCode";
@@ -35,7 +34,7 @@ import { WhiteContactForm } from "../../../../features/ContactForm/ContactForm";
 import { BsCalendar2CheckFill } from "react-icons/bs";
 import { FaCalendarDays, FaMaskFace, FaPlusMinus } from "react-icons/fa6";
 
-const FifthDentist = ({ userDetails }) => {
+const FifthDentist = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -60,109 +59,97 @@ const FifthDentist = ({ userDetails }) => {
     {
       name: "Dr. Adebayo Ogunlesi",
       specialty: "ORAL SURGEON",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-team1.png",
+      image: "https://i.imghippo.com/files/pbEa5382cbM.jpg",
       socials: true,
     },
     {
       name: "Dr. Chioma Eze",
       specialty: "PEDIATRIC DENTIST",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-team2.png",
+      image: "https://i.imghippo.com/files/hEI7778zSE.jpg",
       socials: true,
     },
     {
       name: "Dr. Ibrahim Mohammed",
       specialty: "ORTHODONTIST",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-team3.png",
+      image: "https://i.imghippo.com/files/JnrP7823sg.jpg",
       socials: true,
     },
     {
       name: "Dr. Folake Adeleke",
       specialty: "PERIODONTIST",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-team4.png",
+      image: "https://i.imghippo.com/files/hcUS2458fsQ.jpg",
       socials: true,
     },
     {
       name: "Dr. Ngozi Okonkwo",
       specialty: "PROSTHODONTIST",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-team5.png",
+      image: "https://i.imghippo.com/files/XMw6785iH.jpg",
       socials: true,
     },
     {
       name: "Dr. Emeka Nwachukwu",
       specialty: "ENDODONTIST",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-team6.png",
+      image: "https://i.imghippo.com/files/hcUS2458fsQ.jpg",
       socials: true,
     },
   ];
 
   const imageUrls = [
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio1.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio2.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio3.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio4.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio8.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio1.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio3.png",
-    "https://gfa-tech.com/dimp-template-images/dentist/dentist5-portfolio8.png",
+    "https://i.imghippo.com/files/NSg4765Flc.jpg",
+    "https://i.imghippo.com/files/DuD8831A.jpg",
+    "https://i.imghippo.com/files/FXX9273E.jpg",
+    "https://i.imghippo.com/files/ACHn1685Tz.jpg",
+    "https://i.imghippo.com/files/rcI4963oaw.jpg",
+    "https://i.imghippo.com/files/FJa3224ek.jpg",
+    "https://i.imghippo.com/files/to2231Dlc.jpg",
+    "https://i.imghippo.com/files/qfA7910XI.jpg",
   ];
 
   const testimonials = [
     {
       name: "Mr. Olatunji Bankole",
       role: "BUSINESS EXECUTIVE",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-testimonial1.png",
+      image: "https://i.imghippo.com/files/WPW7634yyI.jpg",
       rating: 5,
       text: "The dental implant procedure was completely painless and the results are amazing. I can now eat and smile with confidence thanks to SmileCrest Dental.",
     },
     {
       name: "Mrs. Amina Yusuf",
       role: "BANKING PROFESSIONAL",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-testimonial2.png",
+      image: "https://i.imghippo.com/files/pm1939DSg.jpg",
       rating: 5,
       text: "My children actually look forward to their dental visits! The pediatric team makes them feel so comfortable and explains everything in a fun way.",
     },
     {
       name: "Chief Williams",
       role: "COMMUNITY LEADER",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-testimonial3.png",
+      image: "https://i.imghippo.com/files/uRb1907jQA.jpg",
       rating: 5,
       text: "After years of hiding my smile, the cosmetic dentistry team transformed my teeth. The professional yet friendly approach made the entire process enjoyable.",
     },
   ];
 
-  const processSteps = [
+ const processSteps = [
     {
       id: 1,
       title: "Comprehensive Examination",
       description:
         "We conduct thorough oral examinations using digital X-rays and intraoral cameras to accurately diagnose your dental needs.",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-card1.png",
+      image: "https://i.imghippo.com/files/arZY8895IKk.jpg",
     },
     {
       id: 2,
       title: "Personalized Treatment Plan",
       description:
         "Our dentists create customized treatment plans that address your specific concerns while considering your budget and timeline.",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-card2.png",
+      image: "https://i.imghippo.com/files/Rf7299nAY.jpg",
     },
     {
       id: 3,
       title: "Quality Dental Treatment",
       description:
         "Experience comfortable, world-class dental care using modern equipment and techniques in our sterile, welcoming environment.",
-      image:
-        "https://gfa-tech.com/dimp-template-images/dentist/dentist5-card3.png",
+      image: "https://i.imghippo.com/files/EZp4191uvA.jpg",
     },
   ];
 
@@ -233,7 +220,7 @@ const FifthDentist = ({ userDetails }) => {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2 text-[#003366] font-bold text-xl">
             <FaTooth className="text-[#2687EF]" />
-            <span>{userDetails?.ecosystemName} Dental</span>
+            <span>SmileCrest Dental</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -326,9 +313,9 @@ const FifthDentist = ({ userDetails }) => {
             )}
 
             {/* Right Paragraph */}
-            <div className="md:w-1/3 text-sm text-gray-200">
+            <div className="md:w-1/3 text-xl text-gray-200">
               <p>
-                At {userDetails?.ecosystemName} Dental, we provide world-class dental services
+                At SmileCrest Dental, we provide world-class dental services
                 using modern equipment and techniques. Our team of experienced
                 Nigerian dentists is committed to delivering affordable,
                 comfortable care for patients of all ages.
@@ -340,9 +327,9 @@ const FifthDentist = ({ userDetails }) => {
           <div className="flex justify-center">
             <div className="bg-white p-2 rounded-xl shadow-xl -mb-28">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/dentist5-hero.png"
+                src="https://i.imghippo.com/files/KwTw5263aMk.jpg"
                 alt="Dental Team"
-                className="w-[90vw] max-w-5xl rounded-xl"
+                className="w-[30vw] max-w-5xl rounded-xl"
               />
             </div>
           </div>
@@ -441,20 +428,20 @@ const FifthDentist = ({ userDetails }) => {
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-10">
             <div>
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/dentist5-about.png"
+                src="https://i.imghippo.com/files/ZS5190XgE.jpg"
                 alt="Dentist with Patient"
-                className="rounded-xl w-full shadow-lg"
+                className="rounded-xl w-[500px] shadow-lg"
               />
             </div>
             <div>
               <p className="uppercase text-sm font-semibold mb-2">
-                About {userDetails?.ecosystemName}
+                About SmileCrest
               </p>
               <h2 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
                 Your Journey To A Perfect <br /> Smile Starts Here
               </h2>
               <p className="text-sm text-white/90 mb-6 max-w-md">
-                Established in 2010, {userDetails?.ecosystemName} Dental has grown to become one
+                Established in 2010, SmileCrest Dental has grown to become one
                 of Nigeria's most trusted dental care providers. Our team of
                 locally-trained and internationally-certified dentists combines
                 global expertise with understanding of Nigerian dental health
@@ -543,7 +530,7 @@ const FifthDentist = ({ userDetails }) => {
 
                     <button
                       onClick={handleModalOpen}
-                      className="mt-auto inline-block bg-transparent border border-[#2687EF] hover:border-white  hover:text-white bg-[#2687EF] text-white px-4 py-2 rounded-full text-sm w-fit transition"
+                      className="mt-auto inline-block bg-transparent border border-[#2687EF] hover:border-white  hover:text-white bg-[#2687EF] text-[#007bff]  px-4 py-2 rounded-full text-sm w-fit transition"
                     >
                       Book Appointment
                     </button>
@@ -614,9 +601,9 @@ const FifthDentist = ({ userDetails }) => {
               </p>
               <div className="overflow-hidden rounded-lg shadow-md">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/dentist/dentist5-appointment.png"
+                  src="https://i.imghippo.com/files/QJRh5505tY.jpg"
                   alt="Dental Consultation"
-                  className="w-full h-auto object-cover"
+                  className="w-[400px] h-auto object-cover"
                 />
               </div>
             </div>
@@ -690,9 +677,9 @@ const FifthDentist = ({ userDetails }) => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center px-4 sm:px-6 lg:px-8">
               {/* Left - Testimonial */}
-              <div className="relative">
+              <div className="relative w-full">
                 <Swiper
                   modules={[Navigation]}
                   navigation={{
@@ -707,18 +694,19 @@ const FifthDentist = ({ userDetails }) => {
                 >
                   {testimonials.map((item, idx) => (
                     <SwiperSlide key={idx}>
-                      <div className="relative space-y-6">
+                      <div className="relative space-y-6 p-4 sm:p-6 md:p-8">
+                        {/* Stars */}
                         <div className="flex space-x-1 text-yellow-500">
                           {Array.from({ length: item.rating }).map((_, i) => (
-                            <FaStar key={i} className="text-lg" />
+                            <FaStar key={i} className="text-base sm:text-lg" />
                           ))}
                         </div>
 
                         {/* Quote Icon */}
-                        <FaQuoteRight className="text-[60px] text-blue-200 absolute right-0 top-0" />
+                        <FaQuoteRight className="text-[40px] sm:text-[50px] md:text-[60px] text-blue-200 absolute right-2 top-2 sm:right-4 sm:top-4" />
 
                         {/* Testimonial */}
-                        <p className="text-gray-600 text-base leading-relaxed pr-16">
+                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed pr-8 sm:pr-12 md:pr-16">
                           {item.text}
                         </p>
 
@@ -726,17 +714,17 @@ const FifthDentist = ({ userDetails }) => {
                         <hr className="border-gray-300 w-full" />
 
                         {/* Author Info */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3 sm:gap-4">
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md"
+                            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-cover border-2 border-white shadow-md"
                           />
                           <div>
-                            <h4 className="text-lg font-semibold text-[#0f2f57]">
+                            <h4 className="text-base sm:text-lg font-semibold text-[#0f2f57]">
                               {item.name}
                             </h4>
-                            <p className="text-sm text-[#2687EF] ">
+                            <p className="text-xs sm:text-sm text-[#2687EF]">
                               {item.role}
                             </p>
                           </div>
@@ -747,16 +735,16 @@ const FifthDentist = ({ userDetails }) => {
                 </Swiper>
 
                 {/* Navigation Arrows */}
-                <div className="absolute bottom-0 right-0 flex gap-3 mt-6 pr-2">
+                <div className="absolute -bottom-10 right-2 flex gap-3 mt-6">
                   <button
                     ref={prevRef}
-                    className="w-10 h-10 bg-[#2687EF] text-white rounded-full flex items-center justify-center text-xl hover:bg-blue-700 transition"
+                    className="w-8 h-8 sm:w-10 sm:h-10 bg-[#2687EF] text-white rounded-full flex items-center justify-center text-lg sm:text-xl hover:bg-blue-700 transition"
                   >
                     ←
                   </button>
                   <button
                     ref={nextRef}
-                    className="w-10 h-10 bg-[#2687EF] text-white rounded-full flex items-center justify-center text-xl hover:bg-blue-700 transition"
+                    className="w-8 h-8 sm:w-10 sm:h-10 bg-[#2687EF] text-white rounded-full flex items-center justify-center text-lg sm:text-xl hover:bg-blue-700 transition"
                   >
                     →
                   </button>
@@ -764,11 +752,11 @@ const FifthDentist = ({ userDetails }) => {
               </div>
 
               {/* Right - Doctor Image */}
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-10 md:mt-0">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/dentist/dentist5-testimonial-right.png"
+                  src="https://i.imghippo.com/files/e4183xXQ.jpg"
                   alt="Doctor Group"
-                  className="w-full h-auto max-h-[450px]"
+                  className="w-[250px] sm:w-[320px] md:w-[400px] h-auto max-h-[350px] sm:max-h-[400px] md:max-h-[450px] object-contain"
                 />
               </div>
             </div>
@@ -783,7 +771,7 @@ const FifthDentist = ({ userDetails }) => {
             <div>
               <div className="flex items-center gap-2 text-white font-bold text-xl">
                 <FaTooth className="text-white" />
-                <span>{userDetails?.ecosystemName} Dental</span>
+                <span>SmileCrest Dental</span>
               </div>
               <p className="mb-4 text-sm leading-6">
                 There are many variations of passages by injected humour
@@ -862,7 +850,7 @@ const FifthDentist = ({ userDetails }) => {
           </div>
 
           <div className="border-t border-white/20 mt-10 pt-6 text-center text-sm">
-            Copyright 2025 Dimpified | All Rights Reserved
+            Copyright 2024 Medicen Theme by Peacefulqode | All Rights Reserved
           </div>
         </div>
       </footer>

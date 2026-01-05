@@ -75,7 +75,7 @@ const Navbar = () => {
                 Log in
               </button>
             </Link>
-            <Link to="auth/landing">
+            <Link to="/auth/landing">
               <button className="px-6 py-2.5 bg-gradient-to-r from-[#9810FA] to-purple-600 hover:from-purple-700 hover:to-[#3F0994] text-white rounded-full font-semibold transition-all duration-300 hover:">
                 Get Started Now
               </button>
@@ -174,10 +174,7 @@ const Navbar = () => {
                 Log in
               </button>
             </Link>
-            <Link
-              to="/auth/personal-information"
-              onClick={() => setIsOpen(false)}
-            >
+            <Link to="/auth/landing" onClick={() => setIsOpen(false)}>
               <button className="w-full py-3 bg-gradient-to-r from-[#9810FA] to-purple-600 hover:from-purple-700 hover:to-[#3F0994] text-white rounded-full font-semibold transition-all">
                 Get Started Now
               </button>

@@ -55,17 +55,54 @@ const EditServiceModal = ({ isOpen, onClose, serviceData, handleSave }) => {
       });
     }
   };
-
+  // ...existing code...
   const handleImageUpload = async (e) => {
-    const newImageUrl = await handleImageChange(e, "service", "image");
-    if (newImageUrl) {
-      setImageUrl(newImageUrl);
-      setFormData((prevData) => ({
-        ...prevData,
-        serviceImage: newImageUrl,
-      }));
+    console.log("file input event:", e);
+    const file = e?.target?.files?.[0];
+    if (!file) {
+      console.warn("No file selected");
+      return;
+    }
+
+    // show immediate preview while upload happens
+    const previewUrl = URL.createObjectURL(file);
+    setImageUrl(previewUrl);
+    setFormData((prev) => ({
+      ...prev,
+      serviceImage: previewUrl,
+    }));
+
+    try {
+      const uploadedUrl = await handleImageChange(e, "service", "image");
+      console.log("Uploaded Image URL (from hook):", uploadedUrl);
+      if (uploadedUrl) {
+        setImageUrl(uploadedUrl);
+        setFormData((prevData) => ({
+          ...prevData,
+          serviceImage: uploadedUrl,
+        }));
+      } else {
+        console.warn(
+          "handleImageChange did not return a URL. Keeping preview URL until upload completes or hook exposes the final URL."
+        );
+      }
+    } catch (err) {
+      console.error("Error uploading image:", err);
     }
   };
+  // ...existing code...
+  // const handleImageUpload = async (e) => {
+  //   console.log("this is event", e);
+  //   const newImageUrl = await handleImageChange(e, "service", "image");
+  //   console.log("New Image URL:", newImageUrl);
+  //   if (newImageUrl) {
+  //     setImageUrl(newImageUrl);
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       serviceImage: newImageUrl,
+  //     }));
+  //   }
+  // };
 
   const handleSubmit = () => {
     // Ensure duration is a number before saving
@@ -73,6 +110,7 @@ const EditServiceModal = ({ isOpen, onClose, serviceData, handleSave }) => {
       ...formData,
       deliveryTime: parseInt(formData.deliveryTime, 10) || 30, // Ensure number, default to 30 if invalid
     };
+    console.log("Final Form Data to Save:", finalFormData);
     handleSave(finalFormData);
     onClose();
   };
@@ -164,7 +202,9 @@ const EditServiceModal = ({ isOpen, onClose, serviceData, handleSave }) => {
                   <div className="flex w-full justify-center items-center border-dashed border-2 border-ter11 rounded-md h-20">
                     <input
                       type="file"
-                      ref={(el) => (fileInputRefs.current["service-image"] = el)}
+                      ref={(el) =>
+                        (fileInputRefs.current["service-image"] = el)
+                      }
                       onChange={handleImageUpload}
                       className="hidden"
                     />

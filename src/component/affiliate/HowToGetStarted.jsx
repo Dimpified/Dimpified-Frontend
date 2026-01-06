@@ -21,8 +21,8 @@ const HowToGetStarted = () => {
           How to Get Started
         </Heading>
         <Text className="font-medium mt-2 font-sans">
-          Follow these simple steps to join DIMP&apos;s Affiliate Program and
-          start earning commissions.
+          Follow these simple steps to join DIMP&apos;s independent sales
+          partner (ISP) program and start earning commissions.
         </Text>
       </div>
 
@@ -42,8 +42,8 @@ const HowToGetStarted = () => {
           </Heading>
 
           <Text className="text-gray-700 font-sans">
-            Joining is quick and easy! Simply fill out the affiliate
-            registration form and choose your preferred affiliate tier.
+            Joining is quick and easy! Simply fill out the sales partner
+            registration form and choose your preferred sales partner tier.
           </Text>
           <ButtonSmallPurple
             onClick={() => navigate("/affiliate/auth?tab=register")}
@@ -68,7 +68,7 @@ const HowToGetStarted = () => {
           </Heading>
 
           <Text className="text-gray-700 font-sans">
-            Once approved, you&apos;ll receive a unique affiliate ID and a
+            Once approved, you&apos;ll receive a unique sales partner ID and a
             tracking link to monitor your referrals and commissions.
           </Text>
         </div>
@@ -87,8 +87,8 @@ const HowToGetStarted = () => {
           </Heading>
 
           <Text className="text-gray-700 font-sans">
-            Share your unique affiliate link on social media, your website, or
-            with service providers to start promoting.
+            Share your unique sales partner link on social media, your website,
+            or with service providers to start promoting.
           </Text>
         </div>
 

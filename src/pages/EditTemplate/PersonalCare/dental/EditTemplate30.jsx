@@ -115,29 +115,29 @@ const FirstDentist = ({ userDetails, subdomain }) => {
   const testimonials = [
     {
       id: 1,
-      text: details?.Reviews?.header1 || "",
+      text: details?.Reviews?.summary1 || "",
       author: {
-        name: details?.Reviews?.title1 || "",
-        role: details?.Gallery?.summary1 || "",
-        image: details?.Gallery?.image1 || "",
+        name: details?.Reviews?.header1 || "",
+        role: details?.Reviews?.title1 || "",
+        image: details?.Reviews?.image1 || "",
       },
     },
     {
-      id: 2,
-      text: details?.Reviews?.header2 || "",
+      id: 1,
+      text: details?.Reviews?.summary2 || "",
       author: {
-        name: details?.Reviews?.title2 || "",
-        role: details?.Gallery?.summary2 || "",
-        image: details?.Gallery?.image2 || "",
+        name: details?.Reviews?.header2 || "",
+        role: details?.Reviews?.title2 || "",
+        image: details?.Reviews?.image2 || "",
       },
     },
     {
-      id: 3,
-      text: details?.Reviews?.header3 || "",
+      id: 1,
+      text: details?.Reviews?.summary3 || "",
       author: {
-        name: details?.Reviews?.title3 || "",
-        role: details?.Gallery?.summary3 || "",
-        image: details?.Gallery?.image3 || "",
+        name: details?.Reviews?.header3 || "",
+        role: details?.Reviews?.title3 || "",
+        image: details?.Reviews?.image3 || "",
       },
     },
   ];
@@ -157,11 +157,6 @@ const FirstDentist = ({ userDetails, subdomain }) => {
 
   const featuresLeft = [
     {
-      keyTitle: "header1",
-      keyDesc: "summary1",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-1.png",
-    },
-    {
       keyTitle: "header2",
       keyDesc: "summary2",
       icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png",
@@ -178,16 +173,6 @@ const FirstDentist = ({ userDetails, subdomain }) => {
       keyTitle: "header4",
       keyDesc: "summary4",
       icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-4.png",
-    },
-    {
-      keyTitle: "date1",
-      keyDesc: "author1",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-5.png",
-    },
-    {
-      keyTitle: "date2",
-      keyDesc: "author2",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-6.png",
     },
   ];
 
@@ -309,7 +294,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
               {sanitizeContent(details && details.hero.title1)}
             </h1>
             <p className="mt-4 text-gray-600">
-              {sanitizeContent(details && details.hero.title2)}
+              {sanitizeContent(details && details.hero.summary1)}
             </p>
 
             <div className="mt-6">
@@ -317,25 +302,15 @@ const FirstDentist = ({ userDetails, subdomain }) => {
                 onClick={handleModalOpen}
                 className="bg-[#1E84B5] text-white px-6 py-3 rounded-full hover:bg-[#0F3A51] transition"
               >
-                {sanitizeContent(details && details.hero.buttonText1)} →
+                {sanitizeContent(details && details.hero.buttonText1)}
               </button>
             </div>
 
             {/* Google Rating */}
             <div className="mt-6 flex items-center space-x-3 text-gray-700">
               <span className="text-lg">
-                {sanitizeContent(details && details.hero.summary1)}
+                {sanitizeContent(details && details.hero.summary2)}
               </span>
-
-              <div className="flex space-x-1">
-                {Array(5)
-                  .fill(0)
-                  .map((_, index) => (
-                    <span key={index} className="text-yellow-500">
-                      ⭐
-                    </span>
-                  ))}
-              </div>
             </div>
           </div>
 
@@ -426,7 +401,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
               </div>
               <div className="ml-3">
                 <h3 className="font-bold text-gray-900">
-                  {sanitizeContent(details && details.hero.summary2)}
+                  {sanitizeContent(details && details.hero.title2)}
                 </h3>
                 <p className="text-gray-600 text-sm">
                   {sanitizeContent(details && details.hero.summary3)}
@@ -536,7 +511,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
             <FaPhone className="text-xl" />
             <div>
               <h3 className="font-semibold text-lg">
-                {sanitizeContent(details && details.LargeCta.header1)}
+                {sanitizeContent(details && details.aboutUs.text1)}
               </h3>
               <p className="text-sm">Call on : {userDetails?.phoneNumber}</p>
             </div>
@@ -544,11 +519,25 @@ const FirstDentist = ({ userDetails, subdomain }) => {
           <div className="flex items-center gap-3 mb-3">
             <FaClock className="text-xl" />
             <div>
-              <h3 className="font-semibold text-lg">
-                {sanitizeContent(details && details.LargeCta.header3)}
-              </h3>
+              <p className="font-semibold text-lg">
+                {sanitizeContent(
+                  details &&
+                    details.aboutUs.text2.split(" ")[0] +
+                      " " +
+                      (details &&
+                        details.aboutUs.text2.split(" ")[1] +
+                          " " +
+                          details.aboutUs.text2.split(" ")[2] +
+                          " " +
+                          details.aboutUs.text2.split(" ")[3] +
+                          " " +
+                          details.aboutUs.text2.split(" ")[4])
+                )}
+              </p>
               <p className="text-sm">
-                {sanitizeContent(details && details.LargeCta.summary1)}
+                {sanitizeContent(
+                  details && details.aboutUs.text2.split(" ").slice(5).join(" ")
+                )}
               </p>
             </div>
           </div>
@@ -556,40 +545,28 @@ const FirstDentist = ({ userDetails, subdomain }) => {
             onClick={handleModalOpen}
             className="bg-[#1E84B5] hover:bg-[#0F3A51] transition duration-300 flex items-center gap-2 px-5 py-2 rounded-full text-white"
           >
-            {sanitizeContent(details && details.LargeCta.buttonText1)}{" "}
-            <span className="text-lg">➜</span>
+            {sanitizeContent(details && details.aboutUs.buttonText1)}{" "}
           </button>
         </div>
 
         <div className="lg:flex gap-5 py-5">
           <EditTemplateLongInput
-            value={sanitizeContent(details && details.LargeCta.header1)}
-            onChange={(event) =>
-              handleContentChange("LargeCta", "header1", event)
-            }
+            value={sanitizeContent(details && details.aboutUs.text1)}
+            onChange={(event) => handleContentChange("aboutUs", "text1", event)}
             placeholder="Enter your domain..."
             className="custom-input-class"
           />
           <EditTemplateLongInput
-            value={sanitizeContent(details && details.LargeCta.header3)}
-            onChange={(event) =>
-              handleContentChange("LargeCta", "header3", event)
-            }
+            value={sanitizeContent(details && details.aboutUs.text2)}
+            onChange={(event) => handleContentChange("aboutUs", "text2", event)}
             placeholder="Enter your domain..."
             className="custom-input-class"
           />
+
           <EditTemplateLongInput
-            value={sanitizeContent(details && details.LargeCta.summary1)}
+            value={sanitizeContent(details && details.aboutUs.buttonText1)}
             onChange={(event) =>
-              handleContentChange("LargeCta", "summary1", event)
-            }
-            placeholder="Enter your domain..."
-            className="custom-input-class"
-          />
-          <EditTemplateLongInput
-            value={sanitizeContent(details && details.LargeCta.buttonText1)}
-            onChange={(event) =>
-              handleContentChange("LargeCta", "buttonText1", event)
+              handleContentChange("aboutUs", "buttonText1", event)
             }
             placeholder="Enter your domain..."
             className="custom-input-class"
@@ -631,8 +608,8 @@ const FirstDentist = ({ userDetails, subdomain }) => {
                   style={{ display: "none" }}
                 />
               </div>
-              <div className="absolute top-16 left-8 bg-[#0F3A51] text-white px-4 py-1 rounded-full text-sm">
-                {sanitizeContent(details && details.aboutUs.buttonText2)}
+              <div className="absolute top-16 left-8 bg-[#0F3A51] text-white px-4 py-1 rounded-full text-sm uppercase">
+                More than 1000+ Happy Patients
               </div>
             </div>
             {/* Second Image (Smaller, Overlapping) */}
@@ -682,26 +659,25 @@ const FirstDentist = ({ userDetails, subdomain }) => {
             <h2 className="text-4xl font-bold text-gray-900 mt-2">
               {sanitizeContent(details && details.aboutUs.title2)}
             </h2>
-            <p className="text-gray-600 mt-4">
-              {sanitizeContent(details && details.aboutUs.text1)}
-            </p>
 
             {/* Key Points (Prevent Breaking) */}
             <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 min-w-0">
-              {details?.aboutUs?.text2
-                ?.split("||") // Split by "||"
-                .filter((text) => text.trim() !== "") // Remove empty items if any
-                .map((text, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center gap-3 whitespace-nowrap flex-shrink-0"
-                  >
-                    <span className="bg-[#0FA8E3] text-white p-2 rounded-full">
-                      <FaCheck />
-                    </span>
-                    <span className="font-semibold">{text.trim()}</span>
-                  </li>
-                ))}
+              {[
+                "Experienced Team",
+                "Comprehensive Services",
+                "State-Of-The-Art Tech",
+                "Emergency Dental Services",
+              ].map((text, index) => (
+                <li
+                  key={index}
+                  className="flex items-center gap-3 whitespace-nowrap flex-shrink-0"
+                >
+                  <span className="bg-[#0FA8E3] text-white p-2 rounded-full">
+                    <FaCheck />
+                  </span>
+                  <span className="font-semibold">{text}</span>
+                </li>
+              ))}
             </ul>
 
             {/* Button */}
@@ -709,12 +685,12 @@ const FirstDentist = ({ userDetails, subdomain }) => {
               href="#services"
               className="mt-6 bg-[#1E84B5] hover:bg-[#0F3A51] transition duration-300 flex items-center gap-2 px-6 py-3 rounded-full text-white w-56 font-semibold"
             >
-              {sanitizeContent(details && details.aboutUs.buttonText1)}{" "}
-              <span className="text-lg">➜</span>
+              {sanitizeContent(details && details.aboutUs.buttonText2)}{" "}
             </a>
           </div>
         </div>
       </section>
+
       <div className="lg:flex gap-5 mt-5">
         <EditTemplateLongInput
           value={sanitizeContent(details && details.aboutUs.title1)}
@@ -728,35 +704,11 @@ const FirstDentist = ({ userDetails, subdomain }) => {
           placeholder="Enter your domain..."
           className="custom-input-class"
         />
-      </div>
-      <div className="lg:flex gap-5 py-5">
-        <EditTemplateLongInput
-          value={sanitizeContent(details && details.aboutUs.text1)}
-          onChange={(event) => handleContentChange("aboutUs", "text1", event)}
-          placeholder="Enter your domain..."
-          className="custom-input-class"
-        />
-        <EditTemplateLongInput
-          value={sanitizeContent(details && details.aboutUs.buttonText1)}
-          onChange={(event) =>
-            handleContentChange("aboutUs", "buttonText1", event)
-          }
-          placeholder="Enter your domain..."
-          className="custom-input-class"
-        />
-      </div>
-      <div className="lg:flex gap-5 py-5">
         <EditTemplateLongInput
           value={sanitizeContent(details && details.aboutUs.buttonText2)}
           onChange={(event) =>
             handleContentChange("aboutUs", "buttonText2", event)
           }
-          placeholder="Enter your domain..."
-          className="custom-input-class"
-        />
-        <EditTemplateLongInput
-          value={sanitizeContent(details && details.aboutUs.text2)}
-          onChange={(event) => handleContentChange("aboutUs", "text2", event)}
           placeholder="Enter your domain..."
           className="custom-input-class"
         />
@@ -806,9 +758,16 @@ const FirstDentist = ({ userDetails, subdomain }) => {
         </div>
         <div className="mt-16 text-center">
           <p className="text-gray-600 text-lg">
-            We believe in using the latest technology and techniques to ensure
-            the best outcomes for our patients.
+            {sanitizeContent(details && details.Vision.visiomheader)}
           </p>
+          <EditTemplateLongInput
+            value={sanitizeContent(details && details.Vision.visiomheader)}
+            onChange={(event) =>
+              handleContentChange("Vision", "visiomheader", event)
+            }
+            placeholder="Enter your domain..."
+            className="custom-input-class"
+          />
         </div>
       </section>
       <section className="relative bg-white pb-12">
@@ -853,11 +812,11 @@ const FirstDentist = ({ userDetails, subdomain }) => {
               />
             </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
-              <p className="text-sm uppercase tracking-wide">+ Visit Clinic</p>
+              <p className="text-sm uppercase tracking-wide">
+                + {sanitizeContent(details && details.Statistics.section1span)}
+              </p>
               <h2 className="text-3xl md:text-4xl font-bold mt-2">
-                {sanitizeContent(
-                  details && details.Statistics.section1paragraphy
-                )}
+                {sanitizeContent(details && details.Statistics.section2span)}
               </h2>
               {/* Play Video Button */}
               <button
@@ -875,10 +834,10 @@ const FirstDentist = ({ userDetails, subdomain }) => {
             <h1>Section header 1</h1>
             <EditTemplateLongInput
               value={sanitizeContent(
-                details && details.Statistics.section1paragraphy
+                details && details.Statistics.section2span
               )}
               onChange={(event) =>
-                handleContentChange("Statistics", "section1paragraphy", event)
+                handleContentChange("Statistics", "section2span", event)
               }
               placeholder="Enter your domain..."
               className="custom-input-class"
@@ -925,76 +884,92 @@ const FirstDentist = ({ userDetails, subdomain }) => {
         {/* Counter Section */}
         <div className="max-w-7xl bg-white mx-auto px-6 lg:px-12 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { key: "section1icon", value: details?.Statistics?.section1icon },
             {
-              key: "section2header",
-              value: details?.Statistics?.section2header,
+              number: details.Statistics.section1header,
+              label: details.Statistics.section1paragraphy,
             },
             {
-              key: "section2paragraphy",
-              value: details?.Statistics?.section2paragraphy,
+              number: details.Statistics.section2header,
+              label: details.Statistics.section2paragraphy,
             },
-            { key: "section2span", value: details?.Statistics?.section2span },
-          ].map((item, index) => {
-            // Extract number and label
-            const match = item.value?.match(/^(\d+[K+]*)\s*(.+)$/);
-            const number = match ? match[1] : item.value;
-            const label = match ? match[2] : "";
+            {
+              number: details.Statistics.section3header,
+              label: details.Statistics.section3paragraphy,
+            },
+            {
+              number: details.Statistics.section4header,
+              label: details.Statistics.section4paragraphy,
+            },
+          ].map((item, index) => (
+            <div key={index} className="text-center">
+              <h2 className="text-3xl font-bold  text-[#0F3A51]">
+               {sanitizeContent(item.number)}
+              </h2>
 
-            return (
-              <div key={index} className="text-center">
-                {/* Number */}
-                <h2 className="text-3xl font-bold text-gray-900 text-[#0F3A51]">
-                  {number}
-                </h2>
+              <h3 className="text-lg font-semibold  text-[#0F3A51]">
+                   {sanitizeContent(item.label)}
+              </h3>
 
-                {/* Label */}
-                <h3 className="text-lg font-semibold text-gray-600 mt-1 text-[#0F3A51]">
-                  {label}
-                </h3>
-
-                {/* Editable input */}
-                <EditTemplateLongInput
-                  value={item.value}
-                  onChange={(event) =>
-                    handleContentChange("Statistics", item.key, event)
-                  }
-                  placeholder="Enter your domain..."
-                  className="custom-input-class my-6"
-                />
-              </div>
-            );
-          })}
+              <EditTemplateLongInput
+                value={sanitizeContent(
+                  details?.Statistics[`section${index + 1}header`]
+                )}
+                onChange={(event) =>
+                  handleContentChange(
+                    "Statistics",
+                    `section${index + 1}header`,
+                    event
+                  )
+                }
+                placeholder="Enter your domain..."
+                className="custom-input-class my-6"
+              />
+              <EditTemplateLongInput
+                value={sanitizeContent(
+                  details?.Statistics[`section${index + 1}paragraphy`]
+                )}
+                onChange={(event) =>
+                  handleContentChange(
+                    "Statistics",
+                    `section${index + 1}paragraphy`,
+                    event
+                  )
+                }
+                placeholder="Enter your domain..."
+                className="custom-input-class my-6"
+              />
+            </div>
+          ))}
         </div>
       </section>
       <section className="bg-[#E8F4FA] py-16">
         <div className="container mx-auto px-6 text-center">
           <p className="text-[#1E84B5] text-sm font-semibold">
-            {sanitizeContent(details && details.Blog.content4)}
+            {sanitizeContent(details && details.Blog.header1)}
           </p>
           <EditTemplateLongInput
-            value={sanitizeContent(details && details.Blog.content4)}
-            onChange={(event) => handleContentChange("Blog", "content4", event)}
+            value={sanitizeContent(details && details.Blog.header1)}
+            onChange={(event) => handleContentChange("Blog", "header1", event)}
             placeholder="Enter your domain..."
             className="custom-input-class"
           />
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
             <span className="text-[#1E84B5]">
-              {sanitizeContent(details && details.Blog.author4)}
+              {sanitizeContent(details && details.Blog.summary1)}
             </span>
           </h2>
           <EditTemplateLongInput
-            value={sanitizeContent(details && details.Blog.author4)}
-            onChange={(event) => handleContentChange("Blog", "author4", event)}
+            value={sanitizeContent(details && details.Blog.summary1)}
+            onChange={(event) => handleContentChange("Blog", "summary1", event)}
             placeholder="Enter your domain..."
             className="custom-input-class"
           />
           <p className="text-gray-600 mt-4">
-            {sanitizeContent(details && details.Blog.date4)}
+            {sanitizeContent(details && details.Blog.content1)}
           </p>
           <EditTemplateLongInput
-            value={sanitizeContent(details && details.Blog.date4)}
-            onChange={(event) => handleContentChange("Blog", "date4", event)}
+            value={sanitizeContent(details && details.Blog.content1)}
+            onChange={(event) => handleContentChange("Blog", "content1", event)}
             placeholder="Enter your domain..."
             className="custom-input-class"
           />
@@ -1173,26 +1148,26 @@ const FirstDentist = ({ userDetails, subdomain }) => {
               />
               <h2 className="text-3xl md:text-4xl font-bold mt-2">
                 <span className="text-[#1E84B5] ">
-                  {sanitizeContent(details && details.Events.summary)}
+                  {sanitizeContent(details && details.Events.section1header)}
                 </span>
               </h2>
               <EditTemplateLongInput
-                value={sanitizeContent(details && details.Events.summary)}
+                value={sanitizeContent(
+                  details && details.Events.section1header
+                )}
                 onChange={(event) =>
-                  handleContentChange("Events", "summary", event)
+                  handleContentChange("Events", "section1header", event)
                 }
                 placeholder="Enter your domain..."
                 className="custom-input-class"
               />
               <p className="mt-4 text-gray-600">
-                {sanitizeContent(details && details.Events.section4paragraphy)}
+                {sanitizeContent(details && details.Events.summary)}
               </p>
               <EditTemplateLongInput
-                value={sanitizeContent(
-                  details && details.Events.section4paragraphy
-                )}
+                value={sanitizeContent(details && details.Events.summary)}
                 onChange={(event) =>
-                  handleContentChange("Events", "section4paragraphy", event)
+                  handleContentChange("Events", "summary", event)
                 }
                 placeholder="Enter your domain..."
                 className="custom-input-class"
@@ -1366,16 +1341,13 @@ const FirstDentist = ({ userDetails, subdomain }) => {
       <section className="bg-blue-50 py-16">
         <div className="container mx-auto text-center px-4">
           <h3 className="uppercase tracking-widest text-[#1E84B5]">
-            {sanitizeContent(details && details.contactUs.heading4)}
+            + Our Team
           </h3>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[#0F3A51]">
-            <span className="text-[#1E84B5]">
-              {" "}
-              {sanitizeContent(details && details.contactUs.heading6)}{" "}
-            </span>
+            <span className="text-[#1E84B5]">Our Friendly</span> Dentists Team
           </h2>
           <p className="text-gray-600 mt-4">
-            {sanitizeContent(details && details.contactUs.heading5)}
+            We are committed to sustainability. Eco-friendly initiatives.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
@@ -1463,41 +1435,14 @@ const FirstDentist = ({ userDetails, subdomain }) => {
           {/* Title Section */}
           <div className="text-center mb-10">
             <p className="text-[#1E84B5] uppercase tracking-widest">
-              {sanitizeContent(details && details.contactUs.heading3)}
+              Testimonial
             </p>
-            <EditTemplateLongInput
-              value={sanitizeContent(details && details.contactUs.heading3)}
-              onChange={(event) =>
-                handleContentChange("contactUs", "heading3", event)
-              }
-              placeholder="Enter your domain..."
-              className="custom-input-class"
-            />
-
             <h2 className="text-3xl font-bold text-[#0F3A51]">
-              <span className="text-[#1E84B5]">
-                {sanitizeContent(details && details.contactUs.heading2)}
-              </span>
+              <span className="text-[#1E84B5]">What our</span> Clients Say
             </h2>
-            <EditTemplateLongInput
-              value={sanitizeContent(details && details.contactUs.heading2)}
-              onChange={(event) =>
-                handleContentChange("contactUs", "heading2", event)
-              }
-              placeholder="Enter your domain..."
-              className="custom-input-class"
-            />
             <p className="text-gray-600 mt-2">
-              {sanitizeContent(details && details.contactUs.heading5)}
+              We are committed to sustainability and eco-friendly initiatives.
             </p>
-            <EditTemplateLongInput
-              value={sanitizeContent(details && details.contactUs.heading5)}
-              onChange={(event) =>
-                handleContentChange("contactUs", "heading5", event)
-              }
-              placeholder="Enter your domain..."
-              className="custom-input-class"
-            />
           </div>
 
           {/* Content Section */}
@@ -1606,7 +1551,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
                     <EditTemplateLongInput
                       value={testimonial.text}
                       onChange={(e) =>
-                        handleContentChange("Reviews", `header${idx}`, e)
+                        handleContentChange("Reviews", `summary${idx}`, e)
                       }
                       placeholder="Enter review text..."
                       className="custom-input-class mt-4"
@@ -1615,7 +1560,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
                     <EditTemplateLongInput
                       value={testimonial.author.name}
                       onChange={(e) =>
-                        handleContentChange("Reviews", `title${idx}`, e)
+                        handleContentChange("Reviews", `header${idx}`, e)
                       }
                       placeholder="Enter author name..."
                       className="custom-input-class mt-2"
@@ -1624,7 +1569,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
                     <EditTemplateLongInput
                       value={testimonial.author.role}
                       onChange={(e) =>
-                        handleContentChange("Gallery", `summary${idx}`, e)
+                        handleContentChange("Reviews", `title${idx}`, e)
                       }
                       placeholder="Enter author role..."
                       className="custom-input-class mt-2"
@@ -1636,7 +1581,7 @@ const FirstDentist = ({ userDetails, subdomain }) => {
           </div>
         </div>
       </div>
-      
+
       <footer className="bg-[#0F2C3F] text-white py-10">
         <div className="flex flex-col h-full  py-4 px-4 lg:px-24 px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

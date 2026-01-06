@@ -25,6 +25,8 @@ import HairstylistTemplate from "../../Templates/HairstylistTemplate";
 import ThirdStylist from "../../Templates/PersonalCare/Hairstylist/ThirdStylist";
 import SecondStylist from "../../Templates/PersonalCare/Hairstylist/SecondStylist";
 import FourthStylist from "../../Templates/PersonalCare/Hairstylist/FourthStylist";
+import SeventhStylist from "../../Templates/PersonalCare/Hairstylist/SeventhStylist";
+import EightStylist from "../../Templates/PersonalCare/Hairstylist/EighthStylist";
 import BarberFourth from "../../Templates/PersonalCare/Barber/BarberFourth";
 import BarberFresh from "../../Templates/PersonalCare/Barber/BarberFresh";
 import SecondMakeup from "../../Templates/PersonalCare/makeup/SecondMakeup";
@@ -37,6 +39,9 @@ import GymTemplate4 from "../../Templates/PersonalCare/gym/FourthGym";
 import GymTemplate5 from "../../Templates/PersonalCare/gym/FifthGym";
 import FirstNail from "../../Templates/PersonalCare/nail/NailsTemplate";
 import SecondNail from "../../Templates/PersonalCare/nail/SecondNail";
+import FourthNail from "../../Templates/PersonalCare/nail/FourthNail";
+import FifthNail from "../../Templates/PersonalCare/nail/FifthNail";
+import SixthNail from "../../Templates/PersonalCare/nail/SixthNail";
 import BlankTemplate from "../../Templates/Blank-Template/BlankTemplate";
 import FirstDentist from "../../Templates/PersonalCare/dental/FirstDentist";
 import SecondDentist from "../../Templates/PersonalCare/dental/SecondDentist";
@@ -52,6 +57,8 @@ import MakeupTemplate from "../../Templates/PersonalCare/makeup/MakeupTemplate";
 import BarberPosh from "../../Templates/PersonalCare/Barber/BarberPosh";
 import { useCountry } from "../../../pages/pricing/CountryContext";
 import { getFormattedPrice } from "../../../data/getServicePriceAndCountryCode";
+import GeneralTemplate from "../../../pages/Templates/General/BookQuickServicesNew";
+import mixpanel from "../../../analytics/mixpanel";
 
 const PreviewTemplate = () => {
   const navigate = useNavigate();
@@ -61,18 +68,18 @@ const PreviewTemplate = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [templateId, setTemplateId] = useState(null);
+  const [subCategory, setSubCategory] = useState(null);
 
   const { accessToken, refreshToken } = useSelector((state) => state.auth);
   const creatorId = useSelector((state) => state.auth.user?.creatorId);
   const content = useSelector((state) => state.mainTemplate.currentTemplate);
   const userStep = useSelector((state) => state.auth?.user?.step);
-
-  const { country } = useCountry(); // Access country code from context
-  const countryCode = country || "NG"; // Fallback to 'NG'
+  const { country } = useCountry();
+  const countryCode = country || "NG";
 
   useEffect(() => {
-    if (userStep === 5) navigate("/");
-  }, [userStep, navigate]);
+    setSubCategory(sessionStorage.getItem("subCategory"));
+  }, []);
 
   useEffect(() => {
     const getId = Number(sessionStorage.getItem("templateId"));
@@ -148,7 +155,7 @@ const PreviewTemplate = () => {
       aboutUs: content.aboutUs,
       Vision: content.Vision,
       Statistics: content.Statistics,
-      Partners: content.Patrners, 
+      Partners: content.Patrners,
       Events: content.Events,
       Gallery: content.Gallery,
       LargeCta: content.LargeCta,
@@ -161,7 +168,6 @@ const PreviewTemplate = () => {
       footer: content.footer,
     };
     try {
-      console.log("Submitting template payload:", payload);
       const response = await api2.createTemplate(payload);
       showToast("Business site submitted successfully", "success");
     } catch (error) {
@@ -181,6 +187,13 @@ const PreviewTemplate = () => {
     }
     if (!accessToken || !refreshToken) {
       showToast("Authentication tokens are missing");
+      // mixpanel
+      mixpanel.track("Registration", {
+        action: "submit",
+        step: "template",
+        step_index: 5,
+        step_label: "Template Select/Preview",
+      });
       navigate("/");
       return;
     }
@@ -193,13 +206,15 @@ const PreviewTemplate = () => {
         header: "give a stylish haircut of your choice",
         description: "Professional barber services for a sharp and modern look",
         templateIds: [10, 13, 14, 15, 21, 22],
+        serviceData: barber,
       },
       hairSalon: {
         subCategory: "Hair Salon",
         prefix: "I will",
         header: "style your hair to perfection",
         description: "Expert hairstyling and care tailored to your preferences",
-        templateIds: [11, 16, 18, 39],
+        templateIds: [11, 16, 18, 39, 47, 48],
+        serviceData: HairSalon,
       },
       makeup: {
         subCategory: "Makeup Services",
@@ -207,13 +222,15 @@ const PreviewTemplate = () => {
         header: "create a stunning makeup look",
         description: "Professional makeup services for any occasion",
         templateIds: [12, 17, 38],
+        serviceData: MakeUp,
       },
       nail: {
         subCategory: "Nail Salon",
         prefix: "I will",
         header: "provide beautiful nail designs",
         description: "High-quality nail care and artistic designs",
-        templateIds: [19, 20],
+        templateIds: [19, 20, 40, 41, 42],
+        serviceData: Nail,
       },
       gym: {
         subCategory: "Gym Services",
@@ -221,6 +238,7 @@ const PreviewTemplate = () => {
         header: "help you achieve your fitness goals",
         description: "Personalized fitness training for all levels",
         templateIds: [23, 24, 27, 32, 33],
+        serviceData: gym,
       },
       spa: {
         subCategory: "Spa Services",
@@ -228,6 +246,7 @@ const PreviewTemplate = () => {
         header: "offer a relaxing spa experience",
         description: "Luxurious spa treatments for relaxation and rejuvenation",
         templateIds: [25, 28, 29, 31, 36],
+        serviceData: spa,
       },
       dental: {
         subCategory: "Dental Services",
@@ -235,6 +254,15 @@ const PreviewTemplate = () => {
         header: "provide expert dental care",
         description: "Comprehensive dental services for a healthy smile",
         templateIds: [26, 30, 34, 35, 37],
+        serviceData: dental,
+      },
+      general: {
+        subCategory: subCategory || "General",
+        prefix: "I will",
+        header: "provide professional services",
+        description: "Customized services tailored to your needs",
+        templateIds: [51],
+        serviceData: null, // Will be set dynamically based on subCategory
       },
     };
 
@@ -247,40 +275,22 @@ const PreviewTemplate = () => {
       return;
     }
 
-    const serviceMap = {
-      10: barber,
-      11: HairSalon,
-      12: MakeUp,
-      13: barber,
-      14: barber,
-      15: barber,
-      16: HairSalon,
-      17: MakeUp,
-      18: HairSalon,
-      19: Nail,
-      20: Nail,
-      21: barber,
-      22: barber,
-      23: gym,
-      24: gym,
-      25: spa,
-      26: dental,
-      27: gym,
-      28: spa,
-      29: spa,
-      30: dental,
-      31: spa,
-      32: gym,
-      33: gym,
-      34: dental,
-      35: dental,
-      36: spa,
-      37: dental,
-      38: MakeUp,
-      39: HairSalon
+    // Map subCategory to service data for template 51
+    const subCategoryToServiceMap = {
+      "Barber Shop": barber,
+      "Hair Salon": HairSalon,
+      "Makeup Services": MakeUp,
+      "Nail Salon": Nail,
+      "Gym Services": gym,
+      "Spa Services": spa,
+      "Dental Hygiene Services": dental,
     };
 
-    const selectedServiceData = serviceMap[templateId] || barber;
+    const selectedServiceData =
+      templateId === 51
+        ? subCategoryToServiceMap[subCategory] || barber
+        : selectedService.serviceData || barber;
+
     const ecosystemDomain = userDetails.ecosystemDomain || "not available";
     const countryCode = localStorage.getItem("countryCode") || "NG";
 
@@ -319,7 +329,6 @@ const PreviewTemplate = () => {
         dispatch,
         navigate,
       };
-      console.log("Creating service payload:", servicePayload);
       await api.createServices(servicePayload);
       await handleSubmit();
       setLoading(false);
@@ -337,14 +346,14 @@ const PreviewTemplate = () => {
 
   const renderTemplate = (templateId) => {
     switch (templateId) {
-      case 13:
-        return <Barber2 userDetails={userDetails} />;
       case 10:
         return <BarberMordern userDetails={userDetails} />;
       case 11:
         return <HairstylistTemplate userDetails={userDetails} />;
       case 12:
         return <MakeupTemplate userDetails={userDetails} />;
+      case 13:
+        return <Barber2 userDetails={userDetails} />;
       case 14:
         return <BarberPosh userDetails={userDetails} />;
       case 15:
@@ -397,6 +406,34 @@ const PreviewTemplate = () => {
         return <ThirdMakeup userDetails={userDetails} />;
       case 39:
         return <FourthStylist userDetails={userDetails} />;
+      case 40:
+        return <FourthNail userDetails={userDetails} />;
+      case 41:
+        return <FifthNail userDetails={userDetails} />;
+      case 42:
+        return <SixthNail userDetails={userDetails} />;
+      case 47:
+        return <SeventhStylist userDetails={userDetails} />;
+      case 48:
+        return <EightStylist userDetails={userDetails} />;
+      case 51:
+        // Pass userDetails and serviceData based on subCategory
+        const subCategoryToServiceMap = {
+          "Barber Shop": barber,
+          "Hair Salon": HairSalon,
+          "Makeup Services": MakeUp,
+          "Nail Salon": Nail,
+          "Gym Services": gym,
+          "Spa Services": spa,
+          "Dental Hygiene Services": dental,
+        };
+        const serviceData = subCategoryToServiceMap[subCategory] || barber;
+        return (
+          <GeneralTemplate
+            userDetails={userDetails}
+            serviceData={serviceData}
+          />
+        );
       default:
         return <div>Invalid template</div>;
     }
@@ -425,8 +462,9 @@ const PreviewTemplate = () => {
         Preview The Selected Template
       </Heading>
       <Text className="text-gray-500 text-[16px] mt-3 mb-4">
-        This is how the website will look structurally, text and images to be
-        edited in a bit, scroll down to continue
+        {subCategory
+          ? `Selected Service Category: ${subCategory}. This is how the website will look structurally, text and images to be edited in a bit, scroll down to continue.`
+          : "This is how the website will look structurally, text and images to be edited in a bit, scroll down to continue."}
       </Text>
 
       <div className="w-full">

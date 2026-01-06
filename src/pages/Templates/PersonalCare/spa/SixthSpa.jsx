@@ -18,17 +18,17 @@ const treatments = [
   {
     title: "Deep Tissue Massage",
     description: "Targets deep muscle layers to relieve tension and pain.",
-    icon: "https://gfa-tech.com/dimp-template-images/spa/feature-icon1.png", // Replace with actual icon
+    icon: "https://i.imghippo.com/files/LV4765RM.jpg", 
   },
   {
     title: "Hot Stone Therapy",
     description: "Heated stones are placed on the body for deep relaxation.",
-    icon: "https://gfa-tech.com/dimp-template-images/spa/feature-icon3.png", // Replace with actual icon
+    icon: "https://i.imghippo.com/files/wI7170oVY.jpg", 
   },
   {
     title: "Facial Treatment",
     description: "A refreshing facial to cleanse, exfoliate, and hydrate skin.",
-    icon: "https://gfa-tech.com/dimp-template-images/spa/feature-icon2.png", // Replace with actual icon
+    icon: "https://i.imghippo.com/files/maCN4581u.jpg", 
   },
 ];
 
@@ -36,28 +36,28 @@ const authors = [
   {
     name: "Amina Adebayo",
     title: "Beauty Entrepreneur",
-    image: "https://gfa-tech.com/dimp-template-images/spa/teasti-author-1.png", // Replace with actual image
+    image: "https://randomuser.me/api/portraits/women/21.jpg", 
     testimonial:
       "This spa transformed my skincare routine! As a busy Lagos businesswoman, their treatments keep me glowing through all my meetings.",
   },
   {
     name: "Chioma Eze",
     title: "Banking Executive",
-    image: "https://gfa-tech.com/dimp-template-images/spa/teasti-author-2.png", // Replace with actual image
+    image: "https://randomuser.me/api/portraits/women/45.jpg", 
     testimonial:
       "After years of stress in the banking sector, their massage therapy is my weekly salvation. Better than any vacation!",
   },
   {
     name: "Obinna Okonkwo",
     title: "Tech CEO",
-    image: "https://gfa-tech.com/dimp-template-images/spa/teasti-author-3.png", // Replace with actual image
+    image: "https://i.imghippo.com/files/nXcT8826gg.webp", 
     testimonial:
       "I was skeptical at first, but their men's spa treatments have boosted my confidence tremendously. Even my wife noticed the difference!",
   },
   {
     name: "Folake Balogun",
     title: "Media Personality",
-    image: "https://gfa-tech.com/dimp-template-images/spa/teasti-author-1.png", // Replace with actual image
+    image: "https://i.imghippo.com/files/KHtR1229VE.jpg", 
     testimonial:
       "As someone always on camera, this spa's facials are my best-kept secret for camera-ready skin every time!",
   },
@@ -70,22 +70,22 @@ const SixthSpa = () => {
     {
       category: "Oil Massage",
       title: "Spa Receptionist",
-      image: "https://gfa-tech.com/dimp-template-images/spa/portfolio-1.png",
+      image: "https://i.imghippo.com/files/jZV4263fsY.jpg",
     },
     {
       category: "Treatment",
       title: "Deep Tissue Rejuvenation",
-      image: "https://gfa-tech.com/dimp-template-images/spa/portfolio-2.png",
+      image: "https://i.imghippo.com/files/Ksgo8144BjU.jpg",
     },
     {
       category: "Oil Massage",
       title: "Herbal Detox Body Wrap",
-      image: "https://gfa-tech.com/dimp-template-images/spa/portfolio-3.png",
+      image: "https://i.imghippo.com/files/OUe8990k.jpg",
     },
     {
       category: "Relax",
       title: "Crystal Healing Therapy",
-      image: "https://gfa-tech.com/dimp-template-images/spa/portfolio-4.png",
+      image: "https://i.imghippo.com/files/cA9654ZZg.jpg",
     },
   ];
 
@@ -114,11 +114,7 @@ const SixthSpa = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <a href="#home" className="flex items-center text-gray-800">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/about-icon2.png"
-              alt="logo"
-              className="w-10 h-10 mr-2"
-            />{" "}
+           
             <span className="text-lg text-[#E2836A] font-semibold leading-tight">
               Spa Haven
             </span>
@@ -205,9 +201,9 @@ const SixthSpa = () => {
           {/* Left Image with Circle - HIDDEN ON MOBILE */}
           <div className="relative w-full lg:w-1/2 justify-center items-center flex">
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/hero-thumb.png"
+              src="https://i.imghippo.com/files/jBDI3782YgU.jpg"
               alt="Spa woman"
-              className="z-10 max-w-[500px]"
+              className="z-10 rounded-full max-w-[500px]"
             />
             {/* Discount Circle */}
             <div className="absolute top-6 right-6 bg-[#0f172a] text-white rounded-full w-[90px] h-[90px] flex flex-col justify-center items-center text-[10px] font-bold shadow-lg z-20">
@@ -249,12 +245,12 @@ const SixthSpa = () => {
           <div className="absolute bottom-[-40px] right-6 lg:right-20 bg-white border border-[#ff735c] rounded-[60%] p-2 shadow-md hidden lg:block">
             <div className="relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/hero-thumb-2.png"
+                src="https://i.imghippo.com/files/lgy5043vQg.jpg"
                 alt="Massage"
                 className="rounded-[50%] w-35 h-60 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/teasti-shape-2.png"
+                src="https://i.imghippo.com/files/bTmw4851HL.jpg"
                 alt="Flower"
                 className="absolute bottom-[-10px] left-[-20px] w-12"
               />
@@ -265,14 +261,14 @@ const SixthSpa = () => {
       <section className="relative w-full bg-white px-4 md:px-12 py-12 md:py-20 overflow-hidden min-h-[600px]">
         {/* Background images */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/feature-shape.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Leaf"
-          className="absolute bottom-0 left-0 w-28 md:w-40 z-0"
+          className="absolute mix-blend-multiply bottom-0 left-0 w-28 md:w-40 z-0"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/about-shape.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="Orchid"
-          className="absolute bottom-0 right-6 w-24 md:w-36 z-0"
+          className="absolute mix-blend-multiply bottom-0 right-6 w-24 md:w-36 z-0"
         />
         <div className="absolute bottom-6 right-10 md:right-12 w-10 h-10 rounded-full border-2 border-[#fbd7cf] flex items-center justify-center z-10 bg-white">
           <span className="text-[#f38475] text-xl">&#8593;</span>
@@ -320,9 +316,9 @@ const SixthSpa = () => {
           <div className="relative flex-1">
             <div className="rounded-full overflow-hidden border-8 border-white w-150 h-150 mx-auto lg:mx-0">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/about-thumb.png"
+                src="https://i.imghippo.com/files/rIGp5329Zg.jpg"
                 alt="Massage"
-                className="w-full h-full object-cover"
+                className="w-full mix-blend-multiply h-full object-cover"
               />
             </div>
           </div>
@@ -343,11 +339,7 @@ const SixthSpa = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
               <div className="flex items-start gap-4">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about-icon1.png"
-                  alt="Icon"
-                  className="w-8 h-8 mt-1"
-                />
+                
                 <div>
                   <h5 className="font-bold text-[#0D1222] text-lg">
                     Premium & Modern Herbal Product
@@ -356,11 +348,7 @@ const SixthSpa = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about-icon2.png"
-                  alt="Icon"
-                  className="w-8 h-8 mt-1"
-                />
+              
                 <div>
                   <h5 className="font-bold text-[#0D1222] text-lg">
                     High Qualified Staff SPA Services
@@ -393,14 +381,14 @@ const SixthSpa = () => {
       >
         {/* Decorative Elements */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/about-shape.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Left petals"
-          className="absolute top-0 left-0 w-[140px] md:w-[200px] z-0"
+          className="absolute top-0 mix-blend-multiply left-0 w-[140px] md:w-[200px] z-0"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/pricing-shape.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="Right flower"
-          className="absolute top-10 right-0 w-[120px] md:w-[180px] z-0"
+          className="absolute mix-blend-multiply top-10 right-0 w-[120px] md:w-[180px] z-0"
         />
 
         {/* Heading */}
@@ -492,7 +480,7 @@ const SixthSpa = () => {
           <div className="relative flex justify-center lg:justify-end">
             {/* Main large image */}
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/chose-us-thumb.png"
+              src="https://i.imghippo.com/files/Ksgo8144BjU.jpg"
               alt="Facial Treatment"
               className="w-[450px] h-[380px] object-cover rounded-[50px] md:rounded-[90px] z-10"
             />
@@ -558,17 +546,6 @@ const SixthSpa = () => {
         </div>
       </section>
       <div className="relative bg-white py-16 px-4 md:px-10 lg:px-20">
-        {/* Decorative background images */}
-        <img
-          src="https://gfa-tech.com/dimp-template-images/spa/about-shape.png"
-          alt="left decor"
-          className="absolute top-0 left-0 w-28 md:w-36 lg:w-44"
-        />
-        <img
-          src="https://gfa-tech.com/dimp-template-images/spa/pricing-shape.png"
-          alt="right decor"
-          className="absolute top-0 right-0 w-28 md:w-36 lg:w-44"
-        />
 
         {/* Title section */}
         <div className="text-center mb-12">
@@ -597,14 +574,14 @@ const SixthSpa = () => {
               </button>
             </div>
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/pricing-box-thumb.png"
+              src="https://i.imghippo.com/files/rsC8917mE.jpg"
               alt="spa lady"
               className="absolute bottom-0 right-0 h-[70%] object-cover"
             />
           </div>
 
           {/* Basic Plan */}
-          {/* {spa.map((service, index) => (
+          {spa.map((service, index) => (
             <div className="bg-[#FAF8F3] p-6 rounded-xl text-center">
               <div className="flex justify-center mb-4">
                 <img
@@ -632,20 +609,20 @@ const SixthSpa = () => {
                 Book Now &rarr;
               </button>
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
       <div className="relative bg-[#FAF5EF] py-16 px-4 sm:px-6 lg:px-20">
         {/* Background Flowers */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/teasti-shape-1.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="left flower"
-          className="absolute top-0 left-0 w-28 md:w-36 lg:w-44"
+          className="absolute mix-blend-multiply top-0 left-0 w-28 md:w-36 lg:w-44"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/teasti-shape-2.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="right flower"
-          className="absolute top-0 right-0 w-20 md:w-28 lg:w-32"
+          className="absolute mix-blend-multiply top-0 right-0 w-20 md:w-28 lg:w-32"
         />
 
         {/* Section Heading */}
@@ -735,23 +712,14 @@ const SixthSpa = () => {
         </section>
 
         {/* Footer Section */}
-        <footer className="bg-blue-950 text-white pt-40 md:pt-48 pb-10 px-6 md:px-20 relative mt-[-120px] md:mt-[-80px]">
-          <img
-            src="https://gfa-tech.com/dimp-template-images/spa/footer-shape1.png"
-            alt="Decor Left"
-            className="absolute top-0 left-0 w-32 md:w-40"
-          />
-          <img
-            src="https://gfa-tech.com/dimp-template-images/spa/footer-shape2.png"
-            alt="Decor Right"
-            className="absolute top-0 right-0 w-32 md:w-40"
-          />
+        <footer className="bg-blue-950 text-white pt-10 md:pt-20 pb-10 px-6 md:px-20 relative mt-[-120px] md:mt-[-80px]">
+ 
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
               <a href="#home" className="flex items-center text-gray-800">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about-icon2.png"
+                  src="https://i.imghippo.com/files/Wbj7218HYE.png"
                   alt="logo"
                   className="w-10 h-10 mr-2"
                 />{" "}

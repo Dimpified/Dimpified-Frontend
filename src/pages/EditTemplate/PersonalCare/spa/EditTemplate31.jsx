@@ -929,9 +929,9 @@ const FourthSpa = ({ userDetails, subdomain }) => {
       </section>
       <section
         className="py-8 px-6 lg:py-20 bg-cover bg-bottom relative"
-        style={{
+         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/bg4.jpg')",
+            "url('https://i.imghippo.com/files/zelY7681XjI.jpg')",
         }}
       >
         <div className="container mx-auto px-4 relative z-10">

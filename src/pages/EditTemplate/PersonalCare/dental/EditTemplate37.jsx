@@ -196,8 +196,6 @@ const FifthDentist = ({ userDetails, subdomain }) => {
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
 
-
-
   return (
     <div className="font-sans">
       {/* Main Navbar */}

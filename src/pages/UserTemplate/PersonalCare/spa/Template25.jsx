@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 import { FaStar, FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
-import { spa } from "../../../../data/Services";
 import BookingModal from "../../../../features/Booking/NewBookingModal";
 import axios from "axios";
 import sanitizeHtml from "sanitize-html";
@@ -27,7 +26,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
         );
         const allServices = response.data.flatMap((item) => item.services);
         const userCurrency = response.data.flatMap((item) => item.currency);
-          setCurrency(userCurrency);
+        setCurrency(userCurrency);
         setEServices(allServices);
       } catch (error) {
         console.log("not working", error);
@@ -343,12 +342,12 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
       <section id="services" className="relative py-16 bg-gray-100 ">
         {/* Decorative Images */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+          src="https://i.imghippo.com/files/TLI6303dI.jpg"
           alt="Decorative Left"
           className="absolute left-4 top-1/2 transform -translate-y-1/2 w-20 opacity-50 hidden md:block"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Decorative Right"
           className="absolute right-4 top-1/2 transform -translate-y-1/2 w-20 opacity-50 hidden md:block"
         />
@@ -357,13 +356,6 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
         <div className="lg:px-40 px-6">
           {/* Header */}
           <div className="text-center">
-            <figure className="flex justify-center">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
-                alt="Service Icon"
-                className="w-12"
-              />
-            </figure>
             <span className="text-lg text-yellow-600 font-semibold">
               {sanitizeContent(details && details.Events.heading)}
             </span>
@@ -445,7 +437,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
             <div className="flex space-x-8 mt-6">
               <div className="flex flex-col items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about1.png"
+                  src="https://i.imghippo.com/files/PI4311zs.jpg"
                   alt="Manicure"
                   className="w-12"
                 />
@@ -453,7 +445,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
               </div>
               <div className="flex flex-col items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about1.png"
+                  src="https://i.imghippo.com/files/BezV8981xhg.jpg"
                   alt="Make-up"
                   className="w-12"
                 />
@@ -461,7 +453,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
               </div>
               <div className="flex flex-col items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about1.png"
+                  src="https://i.imghippo.com/files/MFr8486gH.jpg"
                   alt="Body Message"
                   className="w-12"
                 />
@@ -479,7 +471,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
               </button>
               <div className="ml-6 flex items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/comment1.png"
+                  src="https://i.imghippo.com/files/pwH7765aI.jpg"
                   alt="Chat"
                   className="w-8"
                 />
@@ -500,7 +492,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
       <div className="text-center py-16 px-4 bg-white relative">
         {/* Right Decorative Image */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="Decorative Right"
           className="absolute right-0 top-1/2 transform -translate-y-1/2 w-24 h-24 mt-5 opacity-50"
         />
@@ -530,7 +522,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
           }}
           className="w-full max-w-6xl mx-auto pb-10"
         >
-          {spa.map((service, index) => (
+          {eServices.map((service, index) => (
             <SwiperSlide key={index} className="flex flex-col items-center">
               {/* Circular Image */}
               <button onClick={handleModalOpen}>
@@ -547,7 +539,10 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
               <button onClick={handleModalOpen}>
                 <h4 className="text-xl font-semibold mt-4">{service.name}</h4>
               </button>
-              <p className="text-gold text-lg font-medium">{service.price}</p>
+              <p className="text-gold text-lg font-medium">
+                {getCurrencySymbol(currency)}
+                {service.price}
+              </p>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -555,23 +550,9 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
       <section
         className="relative  bg-center text-white py-20"
         style={{
-          backgroundImage:
-            "url(https://gfa-tech.com/dimp-template-images/spa/bg-product.jpg)",
+          backgroundImage: "url(https://i.imghippo.com/files/OuV6061hvk.jpg)",
         }}
       >
-        {/* <div
-        className="absolute top-0 left-0 w-full h-20 bg-no-repeat bg-top"
-        style={{
-          backgroundImage: "url(https://gfa-tech.com/dimp-template-images/spa/bg-curved.png)",
-        }}
-      ></div> */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-20 bg-no-repeat bg-bottom"
-          style={{
-            backgroundImage:
-              "url(https://gfa-tech.com/dimp-template-images/spa/bg-curved.png)",
-          }}
-        ></div>
         <div className="container mx-auto px-6 relative">
           <div className="flex md:justify-end justify-center ">
             <div className="text-center max-w-xl">
@@ -643,14 +624,14 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
       <section className="relative py-16 bg-white">
         {/* Left Decorative Image */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+          src="https://i.imghippo.com/files/veeS8977FY.jpg"
           alt="Decorative Left"
           className="absolute left-0 top-1/2 transform -translate-y-1/2 w-24 h-24 opacity-50"
         />
 
         {/* Right Decorative Image */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/testimonial.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Decorative Right"
           className="absolute right-0 top-1/2 transform -translate-y-1/2 w-24 h-24 opacity-50"
         />
@@ -661,13 +642,6 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <figure className="flex justify-center">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
-                alt="Service Icon"
-                className="w-12"
-              />
-            </figure>
             Testimonial
           </motion.span>
           <motion.h2
@@ -730,7 +704,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
           <div className="w-full lg:w-[45%] lg:pl-12">
             <div className="text-center lg:text-left">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
+                src="https://i.imghippo.com/files/wiaX5094.jpg"
                 alt="Icon"
                 className="mx-auto lg:mx-0 mb-4"
               />
@@ -755,7 +729,7 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
               ].map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/vector.png"
+                    src="https://i.imghippo.com/files/pwH7765aI.jpg"
                     alt="Icon"
                     className="w-5"
                   />
@@ -767,13 +741,6 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
         </div>
       </section>
       <section className="py-16 bg-white px-4 text-center">
-        <figure className="flex justify-center">
-          <img
-            src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
-            alt="Service Icon"
-            className="w-12"
-          />
-        </figure>
         <h3 className="text-lg italic text-gray-500">Our team</h3>
         <h2 className="text-4xl font-serif font-bold mt-2">
           Meet Certified Therapist
@@ -798,31 +765,11 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
         className="py-16 text-center relative bg-cover bg-center mt-10 bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/curvedbg.jpg')",
+            "url('https://i.imghippo.com/files/hRGz9598osc.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        {/* Top Curved Background */}
-        <div
-          className="absolute top-0 left-0 w-full h-20 bg-no-repeat bg-top"
-          style={{
-            backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/spa/curvedbg.jpg')",
-            backgroundSize: "contain",
-          }}
-        ></div>
-
-        {/* Bottom Curved Background */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-20 bg-no-repeat bg-bottom"
-          style={{
-            backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/spa/bg-curved2.png')",
-            backgroundSize: "contain",
-          }}
-        ></div>
-
         {/* Fun Facts Content */}
         <div className="relative max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
           {funFacts.map((fact, index) => (
@@ -930,19 +877,21 @@ const FirstSpa = ({ details, subdomain, userDetails }) => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
             <p>{userDetails && userDetails.address}</p>
-            <p className="text-gold font-bold mt-2">{userDetails && userDetails.phoneNumber}</p>
+            <p className="text-gold font-bold mt-2">
+              {userDetails && userDetails.phoneNumber}
+            </p>
             <a
               href={`mailto:${userDetails && userDetails.email}`}
               className="text-gold hover:underline"
             >
-               {userDetails && userDetails.email}
+              {userDetails && userDetails.email}
             </a>
           </div>
         </div>
         {/* Footer Bottom */}
         <div className="relative text-center text-sm mt-10 border-t border-gray-700 pt-4">
-          &copy; {new Date().getFullYear()} {userDetails && userDetails.ecosystemName}. All
-          Rights Reserved.
+          &copy; {new Date().getFullYear()}{" "}
+          {userDetails && userDetails.ecosystemName}. All Rights Reserved.
         </div>
       </footer>
     </div>

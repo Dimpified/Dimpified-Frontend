@@ -81,14 +81,14 @@ const [currency, setCurrency] = useState([]);
     setIsModalOpen(true); // Function to open the modal
   };
 
-  const features = [
+ const features = [
     {
       id: 1,
       title: (details) => details?.hero?.summary1.split(" ")[0],
       subtitle: (details) => details?.hero?.summary1.split(" ")[1],
       descriptionField: "summary2",
       titleField: "summary1",
-      image: "https://gfa-tech.com/dimp-template-images/spa/feature1.jpg",
+      image: "https://i.imghippo.com/files/JbDJ4327xXI.webp",
       icon: "icon-booking",
     },
     {
@@ -97,7 +97,7 @@ const [currency, setCurrency] = useState([]);
       subtitle: (details) => details?.hero?.summary3.split(" ")[1],
       descriptionField: "summary4",
       titleField: "summary3",
-      image: "https://gfa-tech.com/dimp-template-images/spa/feature2.jpg",
+      image: "https://i.imghippo.com/files/qdM9464yEQ.jpg",
       icon: "icon-group",
     },
     {
@@ -106,7 +106,7 @@ const [currency, setCurrency] = useState([]);
       subtitle: (details) => details?.hero?.span1.split(" ")[1],
       descriptionField: "span2",
       titleField: "span1",
-      image: "https://gfa-tech.com/dimp-template-images/spa/feature3.jpg",
+      image: "https://i.imghippo.com/files/BZFl9728eQ.jpg",
       icon: "icon-tag",
     },
   ];
@@ -296,9 +296,9 @@ const [currency, setCurrency] = useState([]);
       </div>
       <section
         className="relative py-16 bg-gray-100"
-        style={{
+         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/feature-bg-1.png')",
+            "url('https://i.imghippo.com/files/Exo5774aA.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -356,8 +356,8 @@ const [currency, setCurrency] = useState([]);
           {/* Text Content Section */}
           <div className="lg:w-1/2 w-full text-center lg:text-left">
             <div className="mb-6">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
+               <img
+                src="https://i.imghippo.com/files/Gvlt3169dG.jpg"
                 alt="Get to know us"
                 className="mx-auto lg:mx-0"
               />
@@ -512,8 +512,8 @@ const [currency, setCurrency] = useState([]);
         >
           {/* Section Title */}
           <div className="text-center mb-10">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
+             <img
+              src="https://i.imghippo.com/files/Exo5774aA.jpg"
               alt="Teju"
               className="mx-auto mb-2"
             />
@@ -657,7 +657,7 @@ const [currency, setCurrency] = useState([]);
           <div className="lg:w-1/2 text-left">
             <div className="relative inline-block">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/why-choose.png"
+                src="https://i.imghippo.com/files/dAVl5719Cus.jpg"
                 alt="Our benefits"
                 className="absolute -top-4 left-0 w-12"
               />
@@ -780,15 +780,15 @@ const [currency, setCurrency] = useState([]);
 
       <section
         className="relative bg-cover bg-center py-16 px-6 lg:px-12"
-        style={{
+       style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/cta-bg.jpg')",
+            "url('https://i.imghippo.com/files/uio5256UvA.jpg')",
         }}
       >
         {/* Background Shape */}
         <div className="absolute inset-0">
           <img
-            src="https://gfa-tech.com/dimp-template-images/spa/cta-shape.png"
+            src="https://i.imghippo.com/files/tuQ3935Bg.jpg"
             alt="Teju"
             className="absolute left-0 top-0 w-full h-full object-cover"
           />
@@ -815,8 +815,8 @@ const [currency, setCurrency] = useState([]);
           <div className="lg:w-1/3 flex flex-col relative mt-10 lg:mt-0">
             {/* First Image */}
             <div className="relative transform rotate-3 shadow-lg w-64 mx-auto">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/cta-2.jpg"
+             <img
+                src="https://i.imghippo.com/files/Zw4803zyw.jpg"
                 alt="Relaxing massage"
                 className="rounded-md border-4 border-white"
               />
@@ -825,13 +825,13 @@ const [currency, setCurrency] = useState([]);
             {/* Second Image */}
             <div className="relative transform -rotate-3 shadow-lg w-64 mx-auto mt-6">
               {/* Flower Overlay */}
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/cta-flower.png"
+             <img
+                src="https://i.imghippo.com/files/Jo9601sOY.jpg"
                 alt="Flower"
                 className="absolute -top-6 -right-6 w-20"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/cta-2-2.jpg"
+                src="https://i.imghippo.com/files/uio5256UvA.jpg"
                 alt="Luxury Spa"
                 className="rounded-md border-4 border-white"
               />

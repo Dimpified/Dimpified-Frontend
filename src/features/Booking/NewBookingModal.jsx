@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaCopy, FaWhatsapp } from "react-icons/fa";
 import {
   Dialog,
   DialogBackdrop,
@@ -28,7 +28,9 @@ const BookingModal = ({
   information,
   subdomain,
   serviceCurrency,
+  userDetails,
 }) => {
+  const currency = serviceCurrency?.[0] || "";
   const lastFetchedParams = useRef(null);
   const fetchLoadingRef = useRef(false);
 
@@ -78,34 +80,41 @@ const BookingModal = ({
   const [timeZones, setTimeZones] = useState("");
   const isClosing = useRef(false);
   const renderCount = useRef(0);
-
-  // Debug re-renders
+  const [allBankDetails, setAllBankDetails] = useState(null);
+  const [merchantDetails, setMerchantDetails] = useState({
+    accountNumber: "N/A",
+    accountName: "N/A",
+    bankName: "N/A",
+    whatsappNumber: "N/A",
+  });
+  console.log(information);
   useEffect(() => {
-    renderCount.current += 1;
-    console.log(`BookingModal rendered ${renderCount.current} times`, {
-      isOpen,
-      paymentState,
-      step,
-    });
-  }, [isOpen, paymentState, step]);
-
-  const calculateServiceCharge = useCallback(
-    (price, planType, paymentMethod) => {
-      switch (planType) {
-        case "Lite":
-          return paymentMethod === "Online" ? price * 0.024 + 150 : 450;
-        case "Plus":
-          return paymentMethod === "Online" ? price * 0.021 + 175 : 400;
-        case "Pro":
-          return paymentMethod === "Online" ? price * 0.018 + 200 : 350;
-        case "Extra":
-          return paymentMethod === "Online" ? price * 0.015 + 250 : 250;
-        default:
-          return 0;
+    const getAllMerchantDetails = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/bank-details/${subdomain}`
+        );
+        setAllBankDetails(response.data);
+      } catch (error) {
+        console.error("Could not get all Bank Details:", error);
+        showToast("Failed to fetch bank details", "error");
       }
-    },
-    []
-  );
+    };
+
+    if (isOpen && subdomain) {
+      getAllMerchantDetails();
+    }
+  }, [isOpen, subdomain]);
+
+  useEffect(() => {
+    const [firstAccount] = allBankDetails?.accountDetails || [];
+    setMerchantDetails({
+      accountNumber: firstAccount?.accountNumber || "N/A",
+      accountName: firstAccount?.accountName || "N/A",
+      bankName: firstAccount?.bankName || "N/A",
+      whatsappNumber: userDetails?.phoneNumber || "N/A",
+    });
+  }, [allBankDetails, information]);
 
   const onCloseModal = useCallback(async () => {
     if (paymentState.paymentLoading) {
@@ -145,11 +154,47 @@ const BookingModal = ({
     setTotalAmount(null);
     setServiceCharge(0);
     setPaymentStatus("");
-    setUniqueID("");
+    setUniqueID("BK" + Date.now());
     console.log("Calling parent handleClose");
     handleClose();
     isClosing.current = false;
   }, [paymentState.paymentLoading, handleClose]);
+
+  const calculateServiceCharge = useCallback(
+    (price, planType, paymentMethod) => {
+      switch (planType) {
+        case "Lite":
+          return paymentMethod === "Online" ? price * 0.024 + 150 : 0;
+        case "Plus":
+          return paymentMethod === "Online" ? price * 0.021 + 175 : 0;
+        case "Pro":
+          return paymentMethod === "Online" ? price * 0.018 + 200 : 0;
+        case "Extra":
+          return paymentMethod === "Online" ? price * 0.015 + 250 : 0;
+        default:
+          return 0;
+      }
+    },
+    []
+  );
+
+  // const calculateServiceCharge = useCallback(
+  //   (price, planType, paymentMethod) => {
+  //     switch (planType) {
+  //       case "Lite":
+  //         return paymentMethod === "Online" ? price * 0.024 + 150 : 450;
+  //       case "Plus":
+  //         return paymentMethod === "Online" ? price * 0.021 + 175 : 400;
+  //       case "Pro":
+  //         return paymentMethod === "Online" ? price * 0.018 + 200 : 350;
+  //       case "Extra":
+  //         return paymentMethod === "Online" ? price * 0.015 + 250 : 250;
+  //       default:
+  //         return 0;
+  //     }
+  //   },
+  //   []
+  // );
 
   // Service and Team Member Fetching with Cleanup
   useEffect(() => {
@@ -306,7 +351,7 @@ const BookingModal = ({
   };
 
   const handleNextStep = (nextStep) => {
-    if (nextStep <= 9) setStep(nextStep);
+    if (nextStep <= 10) setStep(nextStep);
   };
 
   const handlePrevStep = () => {
@@ -333,6 +378,13 @@ const BookingModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     setSummary({ selectedDate, selectedTimeSlot, formData });
+  };
+
+  // Function to copy account details
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(`${type} copied to clipboard!`, "success");
+    });
   };
 
   const handlePrint = () => {
@@ -428,7 +480,7 @@ const BookingModal = ({
     setPaymentStatus("Online");
 
     const paystackConfig = {
-      key: import.meta.env.VITE_Paystack_PUBLIC_TEST_KEY,
+      key: import.meta.env.VITE_Paystack_PUBLIC_KEY,
       email: formData.email,
       amount: Math.round(totalToPay * 100),
       currency: "NGN",
@@ -440,8 +492,8 @@ const BookingModal = ({
         name: formData.fullName,
         phone: formData.phone,
         address: formData.address,
-        description: formData.details,
-        location: formData.location,
+        description: formData.details || "Nil",
+        location: formData.location || "Shop",
         service: selectedService?.name,
         date: selectedDate ? selectedDate.toDateString() : "Not selected",
         time: selectedTimeSlot,
@@ -593,7 +645,7 @@ const BookingModal = ({
     setPaymentState((prev) => ({ ...prev, paymentLoading: true }));
     let priceToSend = parseFloat(selectedService.price);
     if (formData.location === "Home Service") {
-      priceToSend += priceToSend * 0.5;
+      priceToSend;
     }
     const serviceCharge = calculateServiceCharge(
       priceToSend,
@@ -618,8 +670,8 @@ const BookingModal = ({
         email: formData.email,
         phone: formData.phone,
         address: formData.address,
-        description: formData.details,
-        location: formData.location,
+        description: formData.details || "Nil",
+        location: formData.location || "Shop",
         service: selectedService?.name,
         date: selectedDate ? selectedDate.toDateString() : "Not selected",
         time: selectedTimeSlot,
@@ -917,8 +969,8 @@ const BookingModal = ({
             name: formData.fullName,
             phone: formData.phone,
             address: formData.address,
-            description: formData.details,
-            location: formData.location,
+            description: formData.details || "Nil",
+            location: formData.location || "Shop",
             service: selectedService?.name,
             date: selectedDate ? selectedDate.toDateString() : "Not selected",
             time: selectedTimeSlot,
@@ -931,7 +983,6 @@ const BookingModal = ({
         }
       );
 
-      console.log("Payment Intent Response:", response.data);
       const clientSecret =
         response.data.clientSecret?.client_secret || response.data.clientSecret;
       if (!clientSecret) {
@@ -944,7 +995,6 @@ const BookingModal = ({
         stripeModalOpen: true,
         paymentLoading: false,
       }));
-      console.log("Stripe modal opened, clientSecret:", clientSecret);
     } catch (error) {
       console.error("Error creating payment intent:", error);
       showToast(
@@ -1199,10 +1249,115 @@ const BookingModal = ({
     debouncedFetchAvailableTimeSlots,
   ]);
 
+  const handlePayToMerchant = useCallback(async () => {
+    if (!formData.email || !formData.fullName || !formData.phone) {
+      showToast(
+        "Please fill in all required fields (email, name, phone)",
+        "error"
+      );
+      return;
+    }
+    if (
+      !selectedService?._id ||
+      !selectedService?.name ||
+      !selectedService?.price
+    ) {
+      showToast("Please select a service", "error");
+      return;
+    }
+    if (!selectedSpecialist?.creatorId) {
+      showToast("Please select a specialist", "error");
+      return;
+    }
+    if (!selectedTimeSlot) {
+      showToast("Please select a time slot", "error");
+      return;
+    }
+
+    setPaymentState((prev) => ({ ...prev, paymentLoading: true }));
+
+    let priceToSend = parseFloat(selectedService.price);
+    if (formData.location === "Home Service") {
+      priceToSend += priceToSend * 0.5;
+    }
+
+    setServiceCharge(0);
+    setTotalAmount(priceToSend.toLocaleString());
+    setPaymentStatus("Pay directly to merchant");
+
+    // Simulate API call
+    setTimeout(() => {
+      setPaymentState((prev) => ({ ...prev, paymentLoading: false }));
+      showToast(
+        "Booking submitted successfully. Please complete payment to the merchant.",
+        "success"
+      );
+      setUniqueID("BK" + Math.random().toString(36).substr(2, 9).toUpperCase());
+      setPaymentStatus("Pay directly to merchant");
+      handleNextStep(6);
+    }, 1500);
+  }, [
+    formData,
+    selectedService,
+    selectedSpecialist,
+    selectedTimeSlot,
+    selectedDate,
+  ]);
+
+  // Function to handle "I've made the transfer" button
+  const handleTransferMade = useCallback(() => {
+    handleNextStep(9);
+  }, []);
+
+  // Function to send payment receipt to merchant via WhatsApp
+  const sendReceiptToMerchant = useCallback(() => {
+    const bookingDetails = `
+  *You have a new booking!!*
+      
+  *Good day. Please Find Attached My Payment Receipt and Details for Booking Confirmation*
+  
+   *Booking Details:*
+  • Booking ID: ${uniqueID}
+  • Service: ${selectedService?.name}
+  • Specialist: ${selectedSpecialist?.fullName}
+  • Date: ${selectedDate?.toLocaleDateString()}
+  • Time: ${selectedTimeSlot}
+  • Amount: ${getCurrencySymbol(currency)}${totalAmount}
+  
+   *Customer Information:*
+  • Name: ${formData.fullName}
+  • Email: ${formData.email}
+  • Phone: ${formData.phone}
+  • Address: ${formData.address || "Not provided"}
+  
+   *Payment Method:* Bank Transfer
+  
+  I have made the payment transfer as instructed. Please confirm receipt and verify my booking.
+  
+  Thank you!
+      `.trim();
+
+    const whatsappUrl = `https://wa.me/${
+      merchantDetails.whatsappNumber
+    }?text=${encodeURIComponent(bookingDetails)}`;
+
+    window.open(whatsappUrl, "_blank");
+  }, [
+    uniqueID,
+    selectedService,
+    selectedSpecialist,
+    selectedDate,
+    selectedTimeSlot,
+    formData,
+    currency,
+    totalAmount,
+    merchantDetails,
+  ]);
+
   return (
     <Dialog open={isOpen} onClose={handleClose} className="relative z-50">
       <DialogBackdrop
-        className="fixed inset-0 bg-gray-500 bg-opacity-75"
+        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         aria-hidden="true"
       />
       <div className="fixed inset-0 flex items-center justify-center">
@@ -1210,7 +1365,7 @@ const BookingModal = ({
           <div className="bg-white rounded-xl md:my-12 my-2 lg:px-12 overflow-y-auto">
             {paymentState.paymentLoading && (
               <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-60">
-                <div className="bg-white p-4 rounded-lg flex items-center gap-2">
+                <div className="bg-white p-6 rounded-lg flex items-center gap-3 shadow-lg">
                   <svg
                     className="animate-spin h-8 w-8 text-purple-600"
                     viewBox="0 0 24 24"
@@ -1237,19 +1392,23 @@ const BookingModal = ({
             {/* Step 1: Service Details */}
             {step === 1 && (
               <>
-                <div className="flex justify-between items-center pb-3 font-Urbanist md:my-4 my-3">
-                  <DialogTitle className="md:text-4xl text-xl font-semibold md:px-6 px-2">
-                    <br />
-                    Select your preferred service or plan
-                  </DialogTitle>
-                  <div className="">
+                <div className="flex justify-between items-center p-4 border-b">
+                  <DialogTitle className="md:text-3xl text-xl font-bold text-gray-900">
                     <button
                       onClick={onCloseModal}
-                      className="text-sm font-bold px-2 hover:text-red-500"
+                      className="text-purple-600 hover:text-purple-700 text-sm font-semibold mb-2 inline-flex items-center gap-1"
                     >
-                      X
+                      ← Back to Home
                     </button>
-                  </div>
+                    <br />
+                    Confirm your preffered service
+                  </DialogTitle>
+                  <button
+                    onClick={onCloseModal}
+                    className="text-gray-500 hover:text-red-500 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
+                  >
+                    ×
+                  </button>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4 font-Urbanist">
@@ -1305,7 +1464,7 @@ const BookingModal = ({
                             </div>
                             <div className="flex flex-col justify-between items-end p-3 md:p-8">
                               <span className="text-lg font-bold text-gray-700">
-                                {getCurrencySymbol(serviceCurrency)}
+                                {getCurrencySymbol(currency)}
                                 {service.price || "N/A"}
                               </span>
                             </div>
@@ -1368,7 +1527,7 @@ const BookingModal = ({
                                 </p>
                                 <div className="flex justify-between items-center mt-1">
                                   <span className="text-md font-semibold">
-                                    {getCurrencySymbol(serviceCurrency)}
+                                    {getCurrencySymbol(currency)}
                                     {service.price || "N/A"}
                                   </span>
                                 </div>
@@ -1406,7 +1565,7 @@ const BookingModal = ({
                       </div>
                       <div className="flex flex-col justify-between items-end p-3">
                         <span className="text-lg font-bold text-primary3">
-                          {getCurrencySymbol(serviceCurrency)}
+                          {getCurrencySymbol(currency)}
                           {servicePrice || selectedService?.price || "N/A"}
                         </span>
                       </div>
@@ -1415,16 +1574,20 @@ const BookingModal = ({
                       Review your selection before you continue.
                     </p>
                     <button
-                      type="button"
                       onClick={() => handleNextStep(2)}
-                      className={`my-2 px-6 py-3 rounded-lg shadow-md w-full transition-all duration-300 ${
+                      disabled={!selectedService}
+                      className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${
                         selectedService
-                          ? "bg-purple-600 text-white hover:bg-purple-700"
-                          : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                          ? "bg-purple-600 text-white hover:bg-purple-700 shadow-md"
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       }`}
                     >
-                      Continue
+                      Continue to Specialist
                     </button>
+
+                    <p className="text-gray-500 text-sm text-center">
+                      Select a service to proceed with your booking
+                    </p>
                   </div>
                 </div>
               </>
@@ -1459,10 +1622,10 @@ const BookingModal = ({
                       {teamMember.map((specialist, index) => (
                         <label
                           key={index}
-                          className={`relative flex flex-col border-2 rounded-lg cursor-pointer transition-all duration-300 ${
-                            selectedSpecialist?.fullName === specialist.fullName
-                              ? "border-purple-500"
-                              : "hover:border-purple-500"
+                          className={`border-2 rounded-xl cursor-pointer transition-all duration-300 p-4 ${
+                            selectedSpecialist?._id === specialist._id
+                              ? "border-purple-500 bg-purple-50"
+                              : "border-gray-200 hover:border-purple-300"
                           }`}
                         >
                           <input
@@ -1531,7 +1694,7 @@ const BookingModal = ({
                       </div>
                       <div className="flex flex-col justify-between items-end p-3">
                         <span className="text-lg font-bold text-primary3">
-                          {getCurrencySymbol(serviceCurrency)}
+                          {getCurrencySymbol(currency)}
                           {servicePrice || selectedService?.price || "N/A"}
                         </span>
                       </div>
@@ -1540,15 +1703,15 @@ const BookingModal = ({
                       Review your selection before you continue.
                     </p>
                     <button
-                      type="button"
                       onClick={() => handleNextStep(3)}
-                      className={`my-2 px-6 py-3 rounded-lg shadow-md w-full transition-all duration-300 ${
-                        selectedService
-                          ? "bg-purple-600 text-white hover:bg-purple-700"
-                          : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                      disabled={!selectedSpecialist}
+                      className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${
+                        selectedSpecialist
+                          ? "bg-purple-600 text-white hover:bg-purple-700 shadow-md"
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       }`}
                     >
-                      Continue
+                      Continue to Date & Time
                     </button>
                   </div>
                 </div>
@@ -1717,7 +1880,7 @@ const BookingModal = ({
                       </div>
                       <div className="flex flex-col justify-between items-end p-3">
                         <span className="text-lg font-bold text-primary3">
-                          {getCurrencySymbol(serviceCurrency)}
+                          {getCurrencySymbol(currency)}
                           {servicePrice || selectedService?.price || "N/A"}
                         </span>
                       </div>
@@ -1776,7 +1939,7 @@ const BookingModal = ({
                     </div>
                     <div className="flex flex-col justify-between items-end p-3">
                       <span className="text-lg font-bold text-primary3">
-                        {getCurrencySymbol(serviceCurrency)}
+                        {getCurrencySymbol(currency)}
                         {servicePrice || selectedService?.price || "N/A"}
                       </span>
                       <button
@@ -1876,7 +2039,8 @@ const BookingModal = ({
                             className="border-1 border-slate-500 p-2 md:w-[90%] w-full rounded-xl"
                           >
                             <option value="">Select preferred location</option>
-                            <option value="Shop">Walk-in/Shop</option>
+                            <option value="Shop">Business Location</option>
+
                             {/* <option value="Home Service">Home Service</option> */}
                           </select>
                           <p className="text-yellow-500 mt-4 text-sm">
@@ -1948,7 +2112,7 @@ const BookingModal = ({
                       </div>
                       <div className="flex flex-col justify-end p-3">
                         <span className="text-lg font-bold text-primary3">
-                          {getCurrencySymbol(serviceCurrency)}
+                          {getCurrencySymbol(currency)}
                           {servicePrice || selectedService?.price || "N/A"}
                         </span>
                       </div>
@@ -1985,8 +2149,7 @@ const BookingModal = ({
                     {planType && servicePrice && (
                       <>
                         <span className="text-sm text-gray-600">
-                          Online Service Charge:{" "}
-                          {getCurrencySymbol(serviceCurrency)}
+                          Online Service Charge: {getCurrencySymbol(currency)}
                           {calculateServiceCharge(
                             parseFloat(servicePrice.replace(/,/g, "")),
                             planType,
@@ -2000,9 +2163,9 @@ const BookingModal = ({
                         </span>
 
                         <br />
-                        <span className="text-sm text-gray-600 mt-1">
+                        {/* <span className="text-sm text-gray-600 mt-1">
                           Pay at Shop Service Charge:{" "}
-                          {getCurrencySymbol(serviceCurrency)}
+                          {getCurrencySymbol(currency)}
                           {calculateServiceCharge(
                             parseFloat(servicePrice.replace(/,/g, "")),
                             planType,
@@ -2013,12 +2176,12 @@ const BookingModal = ({
                             (Fixed fee for in-person payment, slot not
                             guaranteed)
                           </span>
-                        </span>
+                        </span> */}
                       </>
                     )}
                     <div className="flex flex-col gap-3 mt-4">
                       {/* Render Pay Now button only if currency is NGN */}
-                      {serviceCurrency === "NGN" && (
+                      {currency === "NGN" && (
                         <button
                           type="button"
                           onClick={handlePay}
@@ -2038,7 +2201,7 @@ const BookingModal = ({
                       )}
 
                       {/* Render Pay with Stripe if not NGN */}
-                      {serviceCurrency !== "NGN" && (
+                      {currency !== "NGN" && (
                         <button
                           type="button"
                           onClick={handlePayWithStripe}
@@ -2057,8 +2220,47 @@ const BookingModal = ({
                         </button>
                       )}
 
-                      {/* Always show Pay at Shop */}
+                      {/* Pay directly to merchant */}
                       <button
+                        onClick={handlePayToMerchant}
+                        disabled={
+                          paymentState.paymentLoading || !selectedService
+                        }
+                        className={`px-6 py-3 rounded-lg shadow-md w-full transition-all duration-300 ${
+                          selectedService && !paymentState.paymentLoading
+                            ? "bg-blue-600 text-white hover:bg-blue-700"
+                            : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                        }`}
+                      >
+                        {paymentState.paymentLoading ? (
+                          <>
+                            <svg
+                              className="animate-spin h-5 w-5 text-white"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
+                            </svg>
+                            Processing...
+                          </>
+                        ) : (
+                          "Pay Directly to Merchant"
+                        )}
+                      </button>
+
+                      {/* Always show Pay at Shop */}
+                      {/* <button
                         type="button"
                         onClick={handlePayOnDelivery}
                         disabled={
@@ -2073,7 +2275,7 @@ const BookingModal = ({
                         {paymentState.paymentLoading
                           ? "Processing..."
                           : "Pay at shop"}
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -2137,7 +2339,7 @@ const BookingModal = ({
                           Pay securely using Paystack for instant confirmation.
                         </p>
                       </button>
-                      <button
+                      {/* <button
                         onClick={handlePayOnDelivery}
                         disabled={paymentState.paymentLoading}
                         className={`w-full p-4 border-2 rounded-lg text-left ${
@@ -2152,7 +2354,7 @@ const BookingModal = ({
                         <p className="text-gray-600 text-sm">
                           Pay in cash when the service is delivered.
                         </p>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <div className="w-full md:w-4/12 md:h-auto overflow-y-auto border rounded-xl p-4 md:p-6 my-6">
@@ -2188,7 +2390,7 @@ const BookingModal = ({
                       </div>
                       <div className="flex flex-col justify-between items-end p-3">
                         <span className="text-lg font-bold text-primary3">
-                          {getCurrencySymbol(serviceCurrency)}
+                          {getCurrencySymbol(currency)}
                           {servicePrice || selectedService?.price || "N/A"}
                         </span>
                       </div>
@@ -2221,6 +2423,144 @@ const BookingModal = ({
                     </div>
                     <p className="text-gray-500 text-center text-sm mt-3">
                       Review your payment selection before proceeding.
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Step 6: Merchant Payment Details */}
+            {step === 6 && (
+              <>
+                <div className="flex justify-between items-center p-6 border-b">
+                  <DialogTitle className="md:text-3xl text-xl font-bold text-gray-900">
+                    Complete Your Payment
+                  </DialogTitle>
+                  <button
+                    onClick={onCloseModal}
+                    className="text-gray-500 hover:text-red-500 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="p-8">
+                  <div className="max-w-2xl mx-auto">
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-6">
+                      <div className="text-center mb-6">
+                        <h3 className="text-2xl font-bold text-yellow-800 mb-2">
+                          Transfer Directly to Merchant
+                        </h3>
+                        <p className="text-yellow-700">
+                          Please transfer the exact amount to the account
+                          details below
+                        </p>
+                      </div>
+
+                      <div className="bg-white rounded-lg border border-yellow-300 p-6 space-y-4">
+                        <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                          <div>
+                            <span className="font-semibold text-gray-700">
+                              Account Number
+                            </span>
+                            <p className="text-2xl font-mono font-bold text-gray-900">
+                              {merchantDetails.accountNumber}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() =>
+                              copyToClipboard(
+                                merchantDetails.accountNumber,
+                                "Account number"
+                              )
+                            }
+                            className="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                          >
+                            <FaCopy size={18} />
+                          </button>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                          <div>
+                            <span className="font-semibold text-gray-700">
+                              Account Name
+                            </span>
+                            <p className="text-xl font-bold text-gray-900">
+                              {merchantDetails.accountName}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() =>
+                              copyToClipboard(
+                                merchantDetails.accountName,
+                                "Account name"
+                              )
+                            }
+                            className="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                          >
+                            <FaCopy size={18} />
+                          </button>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                          <div>
+                            <span className="font-semibold text-gray-700">
+                              Bank Name
+                            </span>
+                            <p className="text-xl font-bold text-gray-900">
+                              {merchantDetails.bankName}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() =>
+                              copyToClipboard(
+                                merchantDetails.bankName,
+                                "Bank name"
+                              )
+                            }
+                            className="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                          >
+                            <FaCopy size={18} />
+                          </button>
+                        </div>
+
+                        <div className="border-t pt-4">
+                          <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                            <span className="font-semibold text-green-800 text-lg">
+                              Amount to Pay
+                            </span>
+                            <span className="text-2xl font-bold text-green-600">
+                              {getCurrencySymbol(currency)}
+                              {totalAmount}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">📸</span>
+                          <div>
+                            <p className="text-blue-800 font-semibold">
+                              Screenshot your receipt after payment
+                            </p>
+                            <p className="text-blue-700 text-sm">
+                              You will need it for confirmation in the next step
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={handleTransferMade}
+                      className="w-full bg-green-600 text-white py-4 px-6 rounded-lg hover:bg-green-700 transition-colors duration-300 font-semibold text-lg shadow-lg hover:shadow-xl"
+                    >
+                      I've Made the Transfer
+                    </button>
+
+                    <p className="text-gray-500 text-center mt-4 text-sm">
+                      Click above after you have completed the bank transfer
                     </p>
                   </div>
                 </div>
@@ -2261,7 +2601,7 @@ const BookingModal = ({
             )}
 
             {/* Step 8: Success */}
-            {!loading1 && step === 8 && (
+            {/* {!loading1 && step === 8 && (
               <div className="printable-modal md:p-6">
                 <div className="flex justify-between items-center pb-3 font-Urbanist md:my-4 my-6">
                   <DialogTitle className="md:text-4xl text-2xl font-semibold">
@@ -2324,17 +2664,17 @@ const BookingModal = ({
                     </p>
                     <p className="pt-2">
                       <strong>Service Price:</strong>{" "}
-                      {getCurrencySymbol(serviceCurrency)}
+                      {getCurrencySymbol(currency)}
                       {servicePrice || selectedService?.price || "N/A"}
                     </p>
                     <p className="pt-2">
                       <strong>Service Charge:</strong>{" "}
-                      {getCurrencySymbol(serviceCurrency)}
+                      {getCurrencySymbol(currency)}
                       {serviceCharge.toLocaleString()}
                     </p>
                     <p className="pt-2">
                       <strong>Total Amount:</strong>{" "}
-                      {getCurrencySymbol(serviceCurrency)}
+                      {getCurrencySymbol(currency)}
                       {totalAmount || "N/A"}
                     </p>
                     <p className="pt-2">
@@ -2358,6 +2698,125 @@ const BookingModal = ({
                   </div>
                 </div>
               </div>
+            )} */}
+
+            {/* Step 9: Success Page with Receipt Upload */}
+            {step === 9 && (
+              <>
+                <div className="flex justify-between items-center p-6 border-b">
+                  <DialogTitle className="md:text-3xl text-xl font-bold text-gray-900">
+                    Booking Submitted!
+                  </DialogTitle>
+                  <button
+                    onClick={onCloseModal}
+                    className="text-gray-500 hover:text-red-500 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="p-8">
+                  <div className="max-w-2xl mx-auto">
+                    <div className="text-center mb-8">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <FaCheckCircle className="text-green-500 text-4xl" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        {paymentStatus === "paid"
+                          ? "Payment Successful!"
+                          : "Booking Submitted Successfully!"}
+                      </h3>
+                      <p className="text-gray-600 text-lg">
+                        {paymentStatus === "paid"
+                          ? "Your payment has been processed successfully."
+                          : "Your booking details have been received"}
+                      </p>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-200">
+                      <div className="text-center mb-4">
+                        <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                          {paymentStatus === "paid"
+                            ? "✅ Payment Verified"
+                            : "⚠️ Payment Verification Required"}
+                        </h4>
+                        <p className="text-gray-700">
+                          {paymentStatus === "paid"
+                            ? "Your payment has been verified and your booking is confirmed."
+                            : "Your booking can only be verified when the merchant confirms your payment"}
+                        </p>
+                      </div>
+
+                      <div className="bg-white rounded-lg p-4 border space-y-3">
+                        <div className="flex justify-between">
+                          <span className="font-semibold">Booking ID:</span>
+                          <span className="font-mono text-purple-600">
+                            {uniqueID}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold">Service:</span>
+                          <span>{selectedService?.name}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold">Amount Paid:</span>
+                          <span className="font-bold text-green-600">
+                            {getCurrencySymbol(currency)}
+                            {totalAmount}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold">Date & Time:</span>
+                          <span>
+                            {selectedDate?.toLocaleDateString()},{" "}
+                            {selectedTimeSlot}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold">Payment Status:</span>
+                          <span
+                            className={`font-semibold ${
+                              paymentStatus === "paid"
+                                ? "text-green-600"
+                                : "text-yellow-600"
+                            }`}
+                          >
+                            {paymentStatus === "paid" ? "Paid" : "Pending"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      {paymentStatus !== "paid" && (
+                        <button
+                          onClick={sendReceiptToMerchant}
+                          className="w-full bg-green-600 text-white py-4 px-6 rounded-lg hover:bg-green-700 transition-colors duration-300 font-semibold text-lg flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                        >
+                          <FaWhatsapp size={24} />
+                          Send Payment Receipt to Merchant via WhatsApp
+                        </button>
+                      )}
+
+                      {paymentStatus !== "paid" && (
+                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                          <p className="text-blue-800 text-sm text-center">
+                            Click above to send your payment receipt directly to
+                            the merchant on WhatsApp for faster verification
+                          </p>
+                        </div>
+                      )}
+
+                      <button
+                        onClick={onCloseModal}
+                        className="w-full border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-50 transition-colors duration-300 font-semibold"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
             )}
           </div>
 

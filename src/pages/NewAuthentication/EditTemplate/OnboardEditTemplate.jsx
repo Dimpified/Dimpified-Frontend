@@ -32,6 +32,9 @@ import EditTemplate34 from "../../EditTemplate/PersonalCare/dental/EditTemplate3
 import EditTemplate35 from "../../EditTemplate/PersonalCare/dental/EditTemplate35";
 import EditTemplate36 from "../../EditTemplate/PersonalCare/spa/EditTemplate36";
 import EditTemplate37 from "../../EditTemplate/PersonalCare/dental/EditTemplate37";
+
+import EditTemplate47 from "../../EditTemplate/PersonalCare/HairStylist/EditTemplate47";
+import EditTemplate48 from "../../EditTemplate/PersonalCare/HairStylist/EditTemplate48";
 import { setTemplate } from "../../../features/Template/editTemplate";
 import { useSelector, useDispatch } from "react-redux";
 import api from "../../../api/Template";
@@ -106,6 +109,7 @@ const OnboardEditTemplate = () => {
       onSubmit();
     }
   }, [email]);
+
   useEffect(() => {
     if (userDomain) {
       const fetchTemplateDetails = async () => {
@@ -156,7 +160,7 @@ const OnboardEditTemplate = () => {
         refreshToken,
       });
       showToast("Template Updated Successfully", "success");
-      navigate("/auth/preview-edited")
+      navigate("/auth/preview-edited");
     } catch (error) {
       showToast("Error Updating Template", "error");
     } finally {
@@ -390,6 +394,22 @@ const OnboardEditTemplate = () => {
             setLoading={setLoading}
           />
         );
+      case 47:
+        return (
+          <EditTemplate47
+            subdomain={userDomain}
+            userDetails={userDetails}
+            setLoading={setLoading}
+          />
+        );
+      case 48:
+        return (
+          <EditTemplate48
+            subdomain={userDomain}
+            userDetails={userDetails}
+            setLoading={setLoading}
+          />
+        );
       default:
         return <div>Template not available</div>;
     }
@@ -397,8 +417,6 @@ const OnboardEditTemplate = () => {
 
   return (
     <div>
-      
-
       <Heading
         level={3}
         size="3xl"
@@ -428,16 +446,16 @@ const OnboardEditTemplate = () => {
           <div className="">{renderTemplate()}</div>
         )}
       </div>
-       <div className="mx-auto items-center mt-10 flex justify-center">
-      <ButtonSmallPurple
-        width="80px"
-        disabled={loading || cloading}
-        padding="1"
-        onClick={handleSubmit}
-        className="text-sm lg:text-lg"
-      >
-        {loading ? "Saving Changes" : "Save Changes and Preview"}
-      </ButtonSmallPurple>
+      <div className="mx-auto items-center mt-10 flex justify-center">
+        <ButtonSmallPurple
+          width="80px"
+          disabled={loading || cloading}
+          padding="1"
+          onClick={handleSubmit}
+          className="text-sm lg:text-lg"
+        >
+          {loading ? "Saving Changes" : "Save Changes and Preview"}
+        </ButtonSmallPurple>
       </div>
     </div>
   );

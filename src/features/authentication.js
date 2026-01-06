@@ -18,29 +18,17 @@ export const creatorLogin = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await api.creatorLogin({ email, password });
-      return response.data;
+      return response.data; // Ensure this returns { message, accessToken, refreshToken, user }
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );
-export const creatorSignupWithGoogle = createAsyncThunk(
-  "auth/creatorSignupWithGoogle",
-  async ({ token }, { rejectWithValue }) => {
-    try {
-      const response = await api.GoogleSignUp({ token });
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || error.message);
-    }
-  }
-);
-
 export const creatorLoginWithGoogle = createAsyncThunk(
   "auth/creatorLoginWithGoogle",
   async ({ token }, { rejectWithValue }) => {
     try {
-      const response = await api.GoogleLogin({ token });
+      const response = await api.GoogleSignUp({ token });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
@@ -107,6 +95,7 @@ export const newCreatorRegister = createAsyncThunk(
       password,
       acceptTerms,
       acceptMarketing,
+      refCode
     },
     { rejectWithValue }
   ) => {
@@ -119,6 +108,7 @@ export const newCreatorRegister = createAsyncThunk(
         password,
         acceptTerms,
         acceptMarketing,
+        refCode
       });
       return response.data;
     } catch (error) {
@@ -143,6 +133,18 @@ export const affiliateLogin = createAsyncThunk(
       }
     } catch (error) {
       return rejectWithValue(error.response.data.message || error.message);
+    }
+  }
+);
+
+export const creatorSignupWithGoogle = createAsyncThunk(
+  "auth/creatorSignupWithGoogle",
+  async ({ token }, { rejectWithValue }) => {
+    try {
+      const response = await api.GoogleSignUp({ token });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );
@@ -177,6 +179,11 @@ const authSlice = createSlice({
       state.user = null;
       state.accessToken = null;
       state.refreshToken = null;
+    },
+    setAuthData: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.user = action.payload.user;
     },
     updateAccessToken: (state, action) => {
       state.accessToken = action.payload;
@@ -295,25 +302,10 @@ const authSlice = createSlice({
       .addCase(creatorLoginWithGoogle.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      })
-      //handle google signup
-      .addCase(creatorSignupWithGoogle.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(creatorSignupWithGoogle.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.user = action.payload.user;
-        state.accessToken = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
-        state.error = null;
-      })
-      .addCase(creatorSignupWithGoogle.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
       });
   },
 });
 
 // Export actions
-export const { logout, updateAccessToken } = authSlice.actions;
+export const { logout, updateAccessToken, setAuthData } = authSlice.actions;
 export default authSlice.reducer;

@@ -56,22 +56,22 @@ const features = [
 const projectImages = [
   {
     id: 1,
-    src: "https://gfa-tech.com/dimp-template-images/dentist/dent4.7.jpg",
+    src: "https://i.imghippo.com/files/HhrB4936Lpc.jpg",
     alt: "Doctor with child",
   },
   {
     id: 2,
-    src: "https://gfa-tech.com/dimp-template-images/dentist/dent4.8.jpg",
+    src: "https://i.imghippo.com/files/u5302W.jpg",
     alt: "Doctors reviewing chart",
   },
   {
     id: 3,
-    src: "https://gfa-tech.com/dimp-template-images/dentist/dent4.6.jpg",
+    src: "https://i.imghippo.com/files/E5050FKw.jpg",
     alt: "Doctor with elderly patient",
   },
   {
     id: 4,
-    src: "https://gfa-tech.com/dimp-template-images/dentist/dent4.5.jpg",
+    src: "https://i.imghippo.com/files/BpRd9878VUU.jpg",
     alt: "Medical consultation",
   },
 ];
@@ -81,7 +81,7 @@ const doctors = [
     id: 1,
     name: "Dr. Akinwumi Bamidele",
     specialty: "Orthodontist",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dent4.2.jpg",
+    image: "https://i.imghippo.com/files/Lvu9153Wp.jpg",
     socials: [
       "fab fa-facebook-f",
       "fab fa-twitter",
@@ -93,7 +93,7 @@ const doctors = [
     id: 2,
     name: "Dr. Chidinma Okoro",
     specialty: "Pediatric Dentist",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dent4.3.jpg",
+    image: "https://i.imghippo.com/files/NNJ9852io.jpg",
     socials: [
       "fab fa-facebook-f",
       "fab fa-twitter",
@@ -105,7 +105,7 @@ const doctors = [
     id: 3,
     name: "Dr. Emeka Adeyemi",
     specialty: "Cosmetic Dentistry",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dent4.4.jpg",
+    image: "https://i.imghippo.com/files/kU6460c.jpg",
     socials: [
       "fab fa-facebook-f",
       "fab fa-twitter",
@@ -117,7 +117,7 @@ const doctors = [
     id: 4,
     name: "Dr. Olawale Lawal",
     specialty: "General Dentistry",
-    image: "https://gfa-tech.com/dimp-template-images/dentist/dent4.2.jpg",
+    image: "https://i.imghippo.com/files/xVt8555fhk.jpg",
     socials: [
       "fab fa-facebook-f",
       "fab fa-twitter",
@@ -150,7 +150,7 @@ const testimonials = [
   },
 ];
 
-const ThirdDentist = ({userDetails}) => {
+const ThirdDentist = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState(1);
 
@@ -198,17 +198,17 @@ const ThirdDentist = ({userDetails}) => {
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   const handleModalOpen = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(true); // Function to open the modal
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Function to close the modal
   };
-  const { country } = useCountry();
-  const countryCode = country || "NG";
+  const { country } = useCountry(); // Access country code from context
+  const countryCode = country || "NG"; // Fallback to 'US'
 
   const { name, title, text } = testimonials[currentIndex];
   return (
@@ -218,7 +218,7 @@ const ThirdDentist = ({userDetails}) => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-xl font-bold text-[#006D77]">
-              {userDetails?.ecosystemName} Dental
+              SmileCraft Dental
             </span>
           </Link>
 
@@ -331,12 +331,12 @@ const ThirdDentist = ({userDetails}) => {
               </div>
             </div>
 
-            {/* {isModalOpen && (
+            {isModalOpen && (
               <BookingModal
                 isOpen={isModalOpen}
                 handleClose={handleModalClose}
               />
-            )} */}
+            )}
 
             {/* Trust indicators */}
             <div className="flex flex-wrap gap-6 mt-10">
@@ -356,10 +356,10 @@ const ThirdDentist = ({userDetails}) => {
           </div>
 
           {/* Right Column */}
-          <div className="relative w-full max-w-xl flex justify-center lg:justify-end mt-16 lg:mt-0 z-10">
+          <div className="relative w-full  flex justify-center  mt-16 lg:mt-0 z-10">
             <div className="relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/dent4.2.jpg"
+                src="https://i.imghippo.com/files/tM1566NYA.jpg"
                 alt="Dentist with patient"
                 className="w-full max-w-md h-auto object-cover rounded-xl shadow-2xl"
               />
@@ -391,7 +391,7 @@ const ThirdDentist = ({userDetails}) => {
             <span className="text-[#006D77]">In Lagos</span>
           </h1>
           <p className="text-[#4A5B80] text-base leading-relaxed mb-6">
-            {userDetails?.ecosystemName} Dental brings world-class oral healthcare to Nigeria with
+            SmileCraft Dental brings world-class oral healthcare to Nigeria with
             state-of-the-art facilities and internationally trained dentists. We
             combine advanced technology with compassionate care for your perfect
             smile.
@@ -415,7 +415,7 @@ const ThirdDentist = ({userDetails}) => {
         {/* Center image - Dentist */}
         <div className="relative w-full lg:w-auto flex justify-center items-center mb-10 lg:mb-0">
           <img
-            src="https://gfa-tech.com/dimp-template-images/dentist/dent4.4.jpg"
+            src="https://i.imghippo.com/files/NNJ9852io.jpg"
             alt="Dr. Adeola Williams, Chief Dentist"
             className="h-[700px] w-full max-w-[500px] object-cover rounded-xl shadow-lg"
           />
@@ -483,9 +483,10 @@ const ThirdDentist = ({userDetails}) => {
               </p>
             </div>
 
+            {/* Right Section - Features Grid */}
             {/* Right Section - Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      
+              {/* Card 1 - General Dentistry */}
               {dental.map((service, index) => (
                 <div
                   key={index}
@@ -494,7 +495,7 @@ const ThirdDentist = ({userDetails}) => {
                   <img
                     src={service.serviceImage}
                     alt={service.name}
-                    className="w-12 h-12 mb-4"
+                    className="w-12 h-12 rounded-full mb-4"
                   />
 
                   <h3 className="text-[#031B4E] text-xl font-semibold mb-2">
@@ -585,7 +586,7 @@ const ThirdDentist = ({userDetails}) => {
           {/* Right Column */}
           <div className="w-full">
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/dent4.8.jpg"
+              src="https://i.imghippo.com/files/DzD8520mQ.jpg"
               alt="Doctors discussing healthcare"
               className="w-full h-auto rounded-2xl object-cover shadow-lg"
             />
@@ -643,7 +644,7 @@ const ThirdDentist = ({userDetails}) => {
           {/* Left fixed image */}
           <div className="flex justify-center">
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/dent4.1.jpg"
+              src="https://i.imghippo.com/files/lkXn1603UH.jpg"
               alt="Doctor"
               className="rounded-2xl max-w-sm w-full h-auto object-cover"
             />

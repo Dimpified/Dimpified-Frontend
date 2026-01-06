@@ -250,7 +250,7 @@ const Card = ({
           {loading ? "Processing" : "Upgrade Plan"}
         </button>
       </div>
-      <div className="border-t border-gray-200 px-6 py-8 bg-gray-50 flex-shrink-0 h-[200px]">
+      {/* <div className="border-t border-gray-200 px-6 py-8 bg-gray-50 flex-shrink-0 h-[200px]">
         <Heading as="h4" className="text-sm font-medium text-gray-900">
           Transaction Fees
         </Heading>
@@ -268,7 +268,7 @@ const Card = ({
             </Text>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className="border-t border-gray-200 px-6 py-8 flex-grow overflow-y-auto">
         <Heading as="h4" className="text-sm font-medium text-gray-900 mb-4">
           Features

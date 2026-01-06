@@ -201,7 +201,7 @@ const healthTips = [
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-6 text-gray-700 font-medium">
             <li>
-              <a href="#" className="hover:text-[#0CB8B6]">
+              <a href="#home" className="hover:text-[#0CB8B6]">
                 Home
               </a>
             </li>

@@ -16,10 +16,11 @@ const AffiliateDetails = () => {
             font="font-body"
             lineHeight="leading-1"
           >
-            Affiliate Programs
+            Sales Partner Programs
           </Heading>
           <Text className="font-medium mt-2 font-sans">
-            Discover our affiliate programs and start earning commissions.
+            Discover our independent sales partner (ISP) programs and start
+            earning commissions.
           </Text>
         </div>
 
@@ -41,11 +42,11 @@ const AffiliateDetails = () => {
               font="font-body"
               lineHeight="leading-1"
             >
-              Platform Subscription Affiliates
+              Platform Subscription Sales Partner
             </Heading>
 
             <Text className="text-gray-700 font-sans text-justify md:text-center">
-              Earn 15% commission by helping others get started on Dimpified by
+              Earn 30% commission by helping others get started on Dimpified by
               promoting our subscription plans. With every subscription sale you
               make, you&apos;ll earn a 15% commission. It&apos;s that simple!
               Whether your audience consists of small business owners,
@@ -58,18 +59,18 @@ const AffiliateDetails = () => {
             <ul className="list-disc list-inside text-left text-gray-700 font-sans">
               <li>
                 Promote DIMP&apos;s subscription plans in-person or through your
-                unique affiliate link.
+                unique sales partner link.
               </li>
               <li>
                 When someone subscribes to our platform based on citing your
-                Affiliate ID during sign-up or through your link, you earn 15%
-                of the subscription fee.
+                Sales Partner ID during sign-up or through your link, you earn
+                15% of the subscription fee.
               </li>
             </ul>
           </div>
 
           {/* Online Store Referral Affiliates Card */}
-          <div className="border p-6 text-center bg-white shadow-md rounded-lg">
+          {/* <div className="border p-6 text-center bg-white shadow-md rounded-lg">
             <div
               className="flex justify-center items-center mx-auto bg-primary3 rounded-full mb-4"
               style={{ width: "60px", height: "60px" }}
@@ -107,7 +108,7 @@ const AffiliateDetails = () => {
               </li>
               <li>Watch your earnings grow with every successful referral!</li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

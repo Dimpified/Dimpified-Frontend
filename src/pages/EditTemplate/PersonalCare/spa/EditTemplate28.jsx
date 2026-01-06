@@ -372,13 +372,13 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
             </div>
 
             {/* Decorative Leaves & Flower */}
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/heroshape1.png"
+           <img
+              src="https://i.imghippo.com/files/bTmw4851HL.jpg"
               alt="Leaf"
               className="absolute -top-4 left-4 w-16 md:w-28 opacity-80"
             />
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/heroshape2.png"
+              src="https://i.imghippo.com/files/veeS8977FY.jpg"
               alt="Flower"
               className="absolute top-2 right-2 w-12 md:w-20 opacity-90"
             />
@@ -667,7 +667,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
                 />
               </div>
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/aboutflower.png"
+                src="https://i.imghippo.com/files/bTmw4851HL.jpg"
                 alt="Flower"
                 className="absolute top-0 left-0 w-20"
               />
@@ -976,7 +976,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
         className="bg-[#F8F5F1] py-24"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/service-bg.png')",
+            "url('https://i.imghippo.com/files/NZU5413GU.jpg')",
           backgroundSize: "cover",
         }}
       >
@@ -1155,11 +1155,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
             <div className="bg-[#C49A5A] flex items-center justify-center p-6 sm:p-10 text-white rounded-lg">
               <div className="text-center">
                 <div className="mb-4">
-                  <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/gallery-icon.png"
-                    alt="Gallery Icon"
-                    className="mx-auto w-12 h-12"
-                  />
+                 
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold">
                   {sanitizeContent(details && details.Gallery.summary1)}
@@ -1602,10 +1598,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
 
       <section
         className="relative pt-20 pb-16 -mt-16 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/funfact-bg.jpg')",
-        }}
+       
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center relative">
@@ -1614,13 +1607,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
                 key={index}
                 className="flex flex-col items-center space-y-4 relative"
               >
-                <div className="relative p-5 rounded-lg shadow-md bg-white">
-                  <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/sec-title.png"
-                    alt="Icon"
-                    className="w-14 h-14"
-                  />
-                </div>
+                
                 <h3 className="text-4xl font-bold text-gray-900">
                   {item.value}
                 </h3>
@@ -1647,13 +1634,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
       <section id="contact" className="py-16 bg-white">
         <div className="flex flex-col px-4 lg:px-24  ">
           <div className="mb-12">
-            <figure className="flex justify-center">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/sec-title.png"
-                alt="Service Icon"
-                className="w-12"
-              />
-            </figure>
+           
           </div>
           <WhiteContactForm />
         </div>
@@ -1664,7 +1645,7 @@ const ThirdSpa = ({ userDetails, subdomain }) => {
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
             backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/spa/footer-bg.png')",
+              "url('https://i.imghippo.com/files/gVb3309Sg.jpg')",
           }}
         ></div>
 

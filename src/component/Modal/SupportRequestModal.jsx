@@ -94,6 +94,8 @@ const SupportRequestModal = ({
                   <option value="Login Issue">Login Issue</option>
                   <option value="Payment Failure">Payment Failure</option>
                   <option value="Account Locked">Account Locked</option>
+                  <option value="Booking">Booking</option>
+                  <option value="Others">Others</option>
                   {/* Add more options as needed */}
                 </select>
               )}

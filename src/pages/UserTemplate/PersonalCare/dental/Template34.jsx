@@ -211,7 +211,7 @@ const ThirdDentist = ({ details, subdomain, userDetails }) => {
       <header className="bg-blue-50 shadow-md relative">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="#home" className="flex items-center space-x-2">
             <span className="text-xl font-bold text-[#006D77]">
               {userDetails?.ecosystemName} Dental
             </span>
@@ -219,7 +219,7 @@ const ThirdDentist = ({ details, subdomain, userDetails }) => {
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">
-            <Link to="/" className="hover:text-[#006D77] transition">
+            <Link to="#home" className="hover:text-[#006D77] transition">
               Home
             </Link>
             <Link to="#about" className="hover:text-[#006D77] transition">

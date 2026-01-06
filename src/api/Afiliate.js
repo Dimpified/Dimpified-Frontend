@@ -9,6 +9,7 @@ const affiliateRegister = async ({
   password,
   email,
   phoneNumber,
+  agreement,
 }) => {
   try {
     const response = await axios.post(`${PLAIN_API_URL}/affiliate/signup`, {
@@ -16,6 +17,7 @@ const affiliateRegister = async ({
       password,
       email,
       phoneNumber,
+      agreement,
     });
 
     return response;

@@ -102,7 +102,7 @@ const SignIn = () => {
             lineHeight="leading-1"
             htmlFor="bankSelect"
           >
-            Sign in to your Affiliate account
+            Sign in to your Partner account
           </Heading>
 
           <div className="mb-4 mt-3">
@@ -220,9 +220,7 @@ const SignIn = () => {
         <div className="fixed inset-0 flex bg-black bg-opacity-60 items-center justify-center z-50">
           <div className="bg-white p-4 rounded shadow-lg w-80">
             <div className="flex justify-between items-center mb-4">
-              <Text className="text-lg font-semibold">
-                Reset link Sent
-              </Text>
+              <Text className="text-lg font-semibold">Reset link Sent</Text>
               <ButtonForTabs
                 className="text-gray-500"
                 onClick={() => setShowSuccessModal(false)}

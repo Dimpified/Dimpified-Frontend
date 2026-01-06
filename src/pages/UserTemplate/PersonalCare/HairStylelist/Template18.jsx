@@ -120,10 +120,10 @@ const [currency, setCurrency] = useState([]);
       <header className="sticky top-0 z-50 bg-black text-white">
         <nav className=" flex-wrap flex items-center justify-between py-4 px-6 lg:px-8">
           {/* Logo */}
-          <a href="/" className="text-3xl font-bold">
+          <div className="text-3xl font-bold">
             {userDetails && userDetails.ecosystemName}
             <span className="text-gray-400">.</span>
-          </a>
+          </div>
 
           {/* Main Menu */}
           <div className="hidden lg:flex space-x-6">

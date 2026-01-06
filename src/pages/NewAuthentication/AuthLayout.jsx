@@ -11,7 +11,7 @@ const AuthLayout = () => {
   const getStepConfig = () => {
     const path = location.pathname;
 
-    if (path.includes("personal-information"))
+    if (path.includes("personal-Information"))
       return { step: 1, image: Step134, totalSteps: 9 };
     if (path.includes("email-verification"))
       return { step: 2, image: Step2, totalSteps: 9 };

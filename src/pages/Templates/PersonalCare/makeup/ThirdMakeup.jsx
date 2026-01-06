@@ -71,7 +71,7 @@ const ThirdMakeup = ({ userDetails }) => {
         {/* Logo */}
         <a href="#home" className="flex items-center">
           <FaFaceFlushed className="text-3xl text-yellow-500" />
-          <span className="ml-2 font-bold text-xl">{userDetails?.ecosystemName}</span>
+          <span className="ml-2 font-bold text-xl">NaijaGlam</span>
         </a>
 
         {/* Desktop Nav */}
@@ -176,7 +176,7 @@ const ThirdMakeup = ({ userDetails }) => {
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="text-center space-y-6 px-4 relative z-10">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-white">
-            {userDetails?.ecosystemName}: Your Premier Makeup Studio in Lagos
+            NaijaGlam: Your Premier Makeup Studio in Lagos
           </h1>
           <p className="mb-8 text-lg text-white max-w-2xl mx-auto">
             Experience world-class makeup artistry with a Nigerian touch. Our
@@ -198,19 +198,19 @@ const ThirdMakeup = ({ userDetails }) => {
             </a>
           </div>
         </div>
-        {/* {isModalOpen && (
+        {isModalOpen && (
           <BookingModal isOpen={isModalOpen} handleClose={handleModalClose} />
-        )} */}
+        )}
       </section>
 
       {/* About Us Section */}
       <section id="about" className="py-16 px-4 text-center bg-white">
-        <p className="text-xl mb-2 text-yellow-600">About {userDetails?.ecosystemName}</p>
+        <p className="text-xl mb-2 text-yellow-600">About NaijaGlam</p>
         <h2 className="text-2xl md:text-4xl font-extrabold mb-4">
           Redefining African Beauty Standards
         </h2>
         <p className="max-w-2xl mx-auto mb-12 text-gray-600">
-          Founded in Lagos, {userDetails?.ecosystemName} combines international techniques with
+          Founded in Lagos, NaijaGlam combines international techniques with
           deep understanding of Nigerian skin tones and facial features to
           create stunning looks that celebrate our unique beauty.
         </p>
@@ -328,7 +328,7 @@ const ThirdMakeup = ({ userDetails }) => {
         <div className="max-w-6xl mx-auto">
           <p className="text-xl mb-2 text-yellow-600">Our Process</p>
           <h2 className="text-2xl md:text-4xl font-extrabold mb-4">
-            Experience {userDetails?.ecosystemName} in 3 Easy Steps
+            Experience NaijaGlam in 3 Easy Steps
           </h2>
         </div>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start text-left">

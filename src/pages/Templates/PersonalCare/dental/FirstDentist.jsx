@@ -39,22 +39,22 @@ const FirstDentist = ({ userDetails }) => {
     {
       name: "Dr. Johan Joe",
       role: "Lead Dentist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/team-1.jpg",
+      image: "https://i.imghippo.com/files/HXz5419ZdU.jpg",
     },
     {
       name: "Dr. Mike Johnson",
       role: "Senior Dentist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/team-2.jpg",
+      image: "https://i.imghippo.com/files/TNv2117JfQ.jpg",
     },
     {
       name: "Dr. Alison Banson",
       role: "Orthodontist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/team-3.jpg",
+      image: "https://i.imghippo.com/files/KLxo5232koo.jpg",
     },
     {
       name: "Dr. Christopher Case",
       role: "Periodontist",
-      image: "https://gfa-tech.com/dimp-template-images/dentist/team-4.jpg",
+      image: "https://i.imghippo.com/files/TNv2117JfQ.jpg",
     },
   ];
 
@@ -68,7 +68,7 @@ const FirstDentist = ({ userDetails }) => {
       author: {
         name: "Banson Doe",
         role: "Teacher",
-        image: "https://gfa-tech.com/dimp-template-images/dentist/author-1.jpg",
+        image: "https://i.imghippo.com/files/Imi5543yI.jpg",
       },
     },
     {
@@ -79,7 +79,7 @@ const FirstDentist = ({ userDetails }) => {
       author: {
         name: "Adams George",
         role: "Marketing Manager",
-        image: "https://gfa-tech.com/dimp-template-images/dentist/author-1.jpg",
+        image: "https://i.imghippo.com/files/eDZD5180jZU.jpg",
       },
     },
     {
@@ -90,7 +90,7 @@ const FirstDentist = ({ userDetails }) => {
       author: {
         name: "Michael Brown",
         role: "Software Engineer",
-        image: "https://gfa-tech.com/dimp-template-images/dentist/author-1.jpg",
+        image: "https://i.imghippo.com/files/vE8876t.jpg",
       },
     },
   ];
@@ -120,27 +120,29 @@ const FirstDentist = ({ userDetails }) => {
   const handleModalClose = () => {
     setIsModalOpen(false); // Function to close the modal
   };
-  const { country } = useCountry(); // Access country code from context
-  const countryCode = country || "NG"; // Fallback to 'US'
+  // const { country } = useCountry();
+  // Access country code from context
+  // const countryCode = country || "NG";
+  // Fallback to 'US'
 
   const featuresLeft = [
     {
       title: "Experienced Doctors",
       description:
         "Our team of highly skilled and certified doctors brings years of expertise to ensure you receive top-quality dental care.",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-1.png",
+      icon: "https://i.imghippo.com/files/uGb6574tTw.png",
     },
     {
       title: "Personalized Care",
       description:
         "We tailor every treatment plan to your unique needs, ensuring a comfortable and effective dental experience.",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png",
+      icon: "https://i.imghippo.com/files/rHa8802wKA.png",
     },
     {
       title: "Flexible Payment Options",
       description:
         "We offer a variety of payment plans and insurance options to make quality dental care accessible to everyone.",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-3.png",
+      icon: "https://i.imghippo.com/files/uis9964tjU.png",
     },
   ];
 
@@ -149,19 +151,19 @@ const FirstDentist = ({ userDetails }) => {
       title: "Emergency Services",
       description:
         "Dental emergencies can happen anytime—our clinic provides urgent care to address pain and unexpected issues promptly.",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-4.png",
+      icon: "https://i.imghippo.com/files/QKQD6587kvw.png",
     },
     {
       title: "Positive Patient Reviews",
       description:
         "Our patients love us! We take pride in our excellent ratings and testimonials, reflecting our commitment to exceptional care.",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-5.png",
+      icon: "https://i.imghippo.com/files/Fl1828WAg.png",
     },
     {
       title: "State-of-the-Art Technology",
       description:
         "We utilize the latest advancements in dental technology for accurate diagnoses, efficient treatments, and superior results.",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-6.png",
+      icon: "https://i.imghippo.com/files/DQH7852xko.png",
     },
   ];
 
@@ -171,13 +173,9 @@ const FirstDentist = ({ userDetails }) => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="flex items-center text-gray-800">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png"
-              alt="logo"
-              className="w-10 h-10 mr-2"
-            />
+            <FaTooth className="text-[#1E84B5] text-xl" />
             <span className="text-md text-[#1E84B5] font-semibold leading-tight">
-              {userDetails?.ecosystemName} <br />
+              FirstDentist <br />
             </span>
           </a>
 
@@ -290,15 +288,15 @@ const FirstDentist = ({ userDetails }) => {
           <div className="md:w-1/2 flex justify-center mt-8 md:mt-0 relative">
             {/* Dentist Image */}
             <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/hero-img.png"
+              src="https://i.imghippo.com/files/btI6682iPs.jpg"
               alt="Dentist"
-              className="w-80 md:w-96"
+              className="w-80 md:w-96 mix-blend-normal rounded-full "
             />
 
             {/* Doctor's Profile Box */}
             <div className="absolute bottom-4 left-4 bg-white shadow-lg rounded-lg flex items-center p-3">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/author-1.jpg"
+                src="https://i.imghippo.com/files/Imi5543yI.jpg"
                 alt="Dr. Clara Lee"
                 className="w-12 h-12 rounded-full"
               />
@@ -364,21 +362,13 @@ const FirstDentist = ({ userDetails }) => {
             {/* First Image (Large) */}
             <div className="relative w-full">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/aboutd1.jpg"
+                src="https://i.imghippo.com/files/KRtw9377bY.jpg"
                 alt="Dental Treatment"
                 className="w-full rounded-lg shadow-lg"
               />
               <div className="absolute top-8 left-8 bg-[#0F3A51] text-white px-4 py-1 rounded-full text-sm">
                 15+ YEARS OF EXPERIENCE
               </div>
-            </div>
-            {/* Second Image (Smaller, Overlapping) */}
-            <div className="absolute bottom-[-40px] left-10 w-3/4">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/aboutd2.jpg"
-                alt="Dental Clinic"
-                className="rounded-lg shadow-lg"
-              />
             </div>
           </div>
 
@@ -441,6 +431,7 @@ const FirstDentist = ({ userDetails }) => {
         </div>
 
         {/* Services Cards */}
+
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto ">
           {dental.map((service, index) => (
             <div
@@ -451,7 +442,7 @@ const FirstDentist = ({ userDetails }) => {
                 <img
                   src={service.serviceImage}
                   alt={service.name}
-                  className="w-12 h-12 "
+                  className="w-24 h-24 rounded-full "
                 />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-gray-900 hover:text-white">
@@ -467,63 +458,16 @@ const FirstDentist = ({ userDetails }) => {
             </div>
           ))}
         </div>
+
         <div className="mt-16 text-center">
           <p className="text-gray-600 text-lg">
             We believe in using the latest technology and techniques to ensure
             the best outcomes for our patients.
           </p>
         </div>
-      </section>
-      <section className="relative bg-white pb-12">
-        {/* Background and Main Banner */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="relative bg-gray-800 rounded-lg overflow-hidden">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/dentist/visit-clinic-bg.jpg"
-              alt="Dental Clinic"
-              className="w-full h-auto object-cover opacity-70"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
-              <p className="text-sm uppercase tracking-wide">+ Visit Clinic</p>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">
-                Comprehensive Dental Care <br /> For All Ages
-              </h2>
-              {/* Play Video Button */}
-              <button
-                className="mt-6 flex items-center gap-2 bg-white text-[#1E84B5] px-4 py-2 rounded-full shadow-lg hover:bg-blue-100 transition-all"
-                onClick={handleModalOpen}
-              >
-                Book an appointment
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Video Popup with Large, Wide Video */}
-        {showVideo && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
-            <div className="relative bg-white p-6 rounded-lg w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
-              <button
-                className="absolute top-2 right-3 text-gray-600 hover:text-red-500 text-2xl"
-                onClick={() => setShowVideo(false)}
-              >
-                &times;
-              </button>
-              <div className="w-full h-[80vh]">
-                <iframe
-                  className="w-full h-full rounded-lg"
-                  src="https://www.youtube.com/embed/Y-x0efG1seA"
-                  title="Clinic Video"
-                  frameBorder="0"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Counter Section */}
-        <div className="max-w-7xl bg-white mx-auto px-6 lg:px-12 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="max-w-7xl  mx-auto px-6 lg:px-12 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { number: "75+", label: "Insurance Covered" },
             { number: "2K", label: "Realized Projects" },
@@ -531,10 +475,10 @@ const FirstDentist = ({ userDetails }) => {
             { number: "18+", label: "Experienced Doctors" },
           ].map((item, index) => (
             <div key={index} className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 text-[#0F3A51]">
+              <h2 className="text-3xl font-bold  text-[#0F3A51]">
                 {item.number}
               </h2>
-              <h3 className="text-lg font-semibold text-gray-600 mt-1 text-[#0F3A51]">
+              <h3 className="text-lg font-semibold  mt-1 text-[#0F3A51]">
                 {item.label}
               </h3>
             </div>
@@ -576,7 +520,7 @@ const FirstDentist = ({ userDetails }) => {
             {/* Center Image */}
             <div className="w-60 h-60 mx-10 flex items-center justify-center bg-white shadow-lg rounded-full border border-gray-300 relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/why-choose-us-img.png"
+                src="https://i.imghippo.com/files/zp5785NVY.png"
                 alt="Tooth"
                 className="w-50 h-60 "
               />
@@ -609,7 +553,7 @@ const FirstDentist = ({ userDetails }) => {
             {/* Image Section */}
             <div className="relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/what-we-do-img.jpg"
+                src="https://i.imghippo.com/files/IHa8479e.jpg"
                 alt="Dental Checkup"
                 className="rounded-lg shadow-lg w-full"
               />
@@ -640,9 +584,9 @@ const FirstDentist = ({ userDetails }) => {
                   >
                     <div className="flex items-center gap-3">
                       <img
-                        src="https://gfa-tech.com/dimp-template-images/dentist/icon-how-it-work-1.png"
+                        src="https://i.imghippo.com/files/uGb6574tTw.png"
                         alt="Icon 1"
-                        className="w-6 h-6"
+                        className="w-8 h-8"
                       />
                       <span>Book An Appointment</span>
                     </div>
@@ -668,9 +612,9 @@ const FirstDentist = ({ userDetails }) => {
                   >
                     <div className="flex items-start  gap-3">
                       <img
-                        src="https://gfa-tech.com/dimp-template-images/dentist/icon-how-it-work-2.png"
+                        src="https://i.imghippo.com/files/rHa8802wKA.png"
                         alt="Icon 2"
-                        className="w-6 h-6"
+                        className="w-8 h-8"
                       />
                       <span>What Conditions Can Manual Therapy Treat?</span>
                     </div>
@@ -696,9 +640,9 @@ const FirstDentist = ({ userDetails }) => {
                   >
                     <div className="flex items-center gap-3">
                       <img
-                        src="https://gfa-tech.com/dimp-template-images/dentist/icon-how-it-work-3.png"
+                        src="https://i.imghippo.com/files/uis9964tjU.png"
                         alt="Icon 3"
-                        className="w-6 h-6"
+                        className="w-8 h-8"
                       />
                       <span>Expert Care</span>
                     </div>
@@ -759,8 +703,8 @@ const FirstDentist = ({ userDetails }) => {
                         <Icon />
                       </a>
                     ))}
-                  </div>
-                </div>
+                  </div>   
+                </div>                  
 
                 {/* Name and Role (No Hover Effect) */}
                 <h3 className="mt-3 text-lg font-bold text-[#0F3A51]">
@@ -792,11 +736,11 @@ const FirstDentist = ({ userDetails }) => {
             {/* Left - Static Image and Rating Box */}
             <div className="relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/dentist/testimonials-img.jpg"
+                src="https://i.imghippo.com/files/GUEO9349IVY.jpg"
                 alt="Testimonial"
-                className="rounded-lg w-100 shadow-lg"
+                className="rounded-lg w-[500px] h-[500px] shadow-lg"
               />
-              <div className="absolute  text-[#1E84B5] bottom-4 left-4 p-4 rounded-lg shadow-lg w-3/4 bg-opacity-80 backdrop-blur-md">
+              <div className="absolute  text-[#1E84B5] bottom-4 left-4 p-4 rounded-lg shadow-lg w-3/4 bg-opacity-80 bg-[#1E84B5] backdrop-blur-md">
                 <h3 className="text-2xl font-bold text-white">4.8/5</h3>
                 <p className="text-sm text-white">
                   This rating is given by users after visiting our location
@@ -814,8 +758,10 @@ const FirstDentist = ({ userDetails }) => {
 
             {/* Right - Changing Testimonial Text & Author */}
             <div>
-              <p className="text-[#1E84B5]  text-2xl font-bold mb-3">“</p>
-              <p className="text-gray-700 italic">{currentTestimonial.text}</p>
+              <p className="text-[#1E84B5] text-3xl font-bold mb-3">“</p>
+              <p className="text-gray-700 italic text-3xl">
+                {currentTestimonial.text}
+              </p>
               <div className="flex items-center mt-4">
                 <img
                   src={currentTestimonial.author.image}
@@ -858,13 +804,9 @@ const FirstDentist = ({ userDetails }) => {
             <div>
               <div className="flex items-center space-x-2">
                 <a href="#" className="flex items-center text-gray-800">
-                  <img
-                    src="https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png"
-                    alt="logo"
-                    className="w-10 h-10 mr-2"
-                  />
-                  <span className="text-md text-[#1E84B5] font-semibold leading-tight">
-                    DentalCare <br />
+                  <FaTooth className="text-white text-xl" />
+                  <span className="text-md text-white font-semibold leading-tight">
+                    FirstDentist <br />
                   </span>
                 </a>
               </div>

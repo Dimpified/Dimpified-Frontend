@@ -21,7 +21,37 @@ import AxiosInterceptor from "../../../../component/AxiosInterceptor";
 import Lottie from "lottie-react";
 import LoadingAnimation from "../../../../assets/affliate-img/LoadingAnimation.json";
 import { motion } from "framer-motion";
+import mixpanel from "../../../../analytics/mixpanel";
 
+// Loading Page Component
+const LoadingPage = ({ message }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="fixed top-0 left-0 w-screen h-screen flex flex-col items-center justify-center bg-white z-[9999] font-body"
+  >
+    <motion.div
+      animate={{ y: [0, -10, 0] }}
+      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+    >
+      <Lottie
+        animationData={LoadingAnimation}
+        loop
+        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-60 xl:h-60 text-primary4"
+      />
+    </motion.div>
+    <motion.h2
+      className="mt-4 text-xl font-semibold text-gray-700 text-center px-4"
+      animate={{ opacity: [0.6, 1, 0.6] }}
+      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+    >
+      {message}
+    </motion.h2>
+  </motion.div>
+);
+
+// Modal Component for Detailed Comparison
 const ComparisonModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
@@ -266,34 +296,6 @@ const ComparisonModal = ({ isOpen, onClose }) => {
   );
 };
 
-// Loading Page Component
-const LoadingPage = ({ message }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.8 }}
-    className="fixed top-0 left-0 w-screen h-screen flex flex-col items-center justify-center bg-white z-[9999] font-body"
-  >
-    <motion.div
-      animate={{ y: [0, -10, 0] }}
-      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-    >
-      <Lottie
-        animationData={LoadingAnimation}
-        loop
-        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-60 xl:h-60 text-primary4"
-      />
-    </motion.div>
-    <motion.h2
-      className="mt-4 text-xl font-semibold text-gray-700 text-center px-4"
-      animate={{ opacity: [0.6, 1, 0.6] }}
-      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-    >
-      {message}
-    </motion.h2>
-  </motion.div>
-);
-
 // Modal Component for Subscription Mode Selection
 const SubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
   const [selectedMode, setSelectedMode] = useState(null);
@@ -363,6 +365,7 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
   const dispatch = useDispatch();
   const [userDetailEco, setUserDetailEco] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const referralCode = localStorage.getItem("referralCode");
 
   const loadingMessages = [
     "🔍 Verifying your payment... Just a sec! 😊",
@@ -373,19 +376,30 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
   ];
 
   const planCode = subscriptionPlans[selectedInterval]?.[plan]?.code;
-  console.log(userDetails?.email);
-  console.log(userDetails?.fullName);
+
+  const getReferralOneTimeAmount = () => {
+    const baseAmount =
+      subscriptionPlans[selectedInterval]?.[plan]?.amount || price;
+
+    const referralDiscounts = {
+      "2R0873": 0.925, // 7.5% discount
+      "6LS937": 0.85, // 15% discount
+    };
+
+    const discountMultiplier = referralDiscounts[referralCode] || 1; // Default to 1 (no discount)
+    return Math.round(baseAmount * discountMultiplier);
+  };
 
   // Recurring Payment Configuration
   const handleFlutterwavePaymentRecurring = useFlutterwave({
-    public_key: import.meta.env.VITE_TEST_FLW_PUBLIC_KEY,
+    public_key: import.meta.env.VITE_FLW_PUBLIC_KEY,
     tx_ref: `tx-${Date.now()}-${userDetails?.creatorId}`,
     amount: price,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: userDetails?.email || "UNKNOWN EMAIL",
-      fullName: userDetails?.fullName || "UNKNOWN NAME",
+      name: userDetails?.fullName || "UNKNOWN NAME",
     },
     customizations: {
       title: `${plan} Subscription`,
@@ -394,7 +408,7 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
     payment_plan: planCode,
   });
 
-  // One-Time Payment Configuration (using oneTimePaymentPlan amounts)
+  // One-Time Payment Configuration
   const getOneTimeAmount = () => {
     if (selectedInterval === "Monthly") {
       // Default to Quarterly amount for Monthly interval
@@ -404,7 +418,7 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
   };
   const oneTimeAmount = getOneTimeAmount();
   const handleFlutterwavePaymentOneTime = useFlutterwave({
-    public_key: import.meta.env.VITE_TEST_FLW_PUBLIC_KEY,
+    public_key: import.meta.env.VITE_FLW_PUBLIC_KEY,
     tx_ref: `tx-${Date.now()}-${userDetails?.creatorId}`,
     amount: oneTimeAmount,
     currency: "NGN",
@@ -420,6 +434,32 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
           ? "Quarterly"
           : selectedInterval.toLowerCase()
       }`,
+    },
+  });
+
+  // Referral One-Time Payment Configuration
+  const referralOneTimeAmount = getReferralOneTimeAmount();
+  const handleFlutterwavePaymentReferral = useFlutterwave({
+    public_key: import.meta.env.VITE_FLW_PUBLIC_KEY,
+    tx_ref: `tx-ref-${Date.now()}-${userDetails?.creatorId}`,
+    amount: referralOneTimeAmount,
+    currency: "NGN",
+    payment_options: "card",
+    customer: {
+      email: userDetails?.email || "UNKNOWN EMAIL",
+      fullName: userDetails?.fullName || "UNKNOWN NAME",
+    },
+    customizations: {
+      title: `${plan} Referral One-Time Subscription`,
+      description: `One-time ${plan} plan subscription with referral discount for ${selectedInterval}`,
+    },
+    meta: {
+      discount: true,
+      creatorId: userDetails?.creatorId || "UNKNOWN_CREATOR_ID",
+      planType: plan,
+      interval: selectedInterval,
+      ecosystemDomain:
+        userDetailEco?.ecosystemDomain || "UNKNOWN_ECOSYSTEM_DOMAIN",
     },
   });
 
@@ -445,7 +485,85 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
     }
   };
 
+  const initiateReferralPayment = () => {
+    handleFlutterwavePaymentReferral({
+      callback: (response) => {
+        setLoading(true);
+        closePaymentModal();
+        verifyReferralPayment(response);
+      },
+      onClose: () => showToast("Transaction canceled."),
+    });
+  };
+
   const verifyPayment = (paymentResponse) => {
+    let attempts = 0;
+    const maxAttempts = 5;
+    const intervalId = setInterval(async () => {
+      attempts += 1;
+      setLoadingMessage(
+        loadingMessages[attempts - 1] || "Still verifying... Please wait."
+      );
+
+      mixpanel.track("Registration", {
+        action: "submit",
+        step: "payment",
+        step_index: 6,
+        step_label: "Payment",
+        payment_method: "Paystack",
+      });
+
+      const authFetch = AxiosInterceptor(accessToken, refreshToken);
+      try {
+        const result = await authFetch.get(
+          `${import.meta.env.VITE_API_URL}/check-subscription-status/${
+            userDetails?.email
+          }`
+        );
+
+        if (
+          result.status === 201 &&
+          result.data.message === "Subscription verified successfully"
+        ) {
+          clearInterval(intervalId);
+          showToast(result.data.message);
+          if (result.data.ecosystemDomain)
+            dispatch(setEcosystemDomain(result.data.ecosystemDomain));
+          if (result.data.planType)
+            dispatch(setEcosystemPlan(result.data.planType));
+
+          setLoading(false);
+
+          mixpanel.track("Registration Completed", {
+            method: "Paystack",
+            plan: plan || "Lite",
+          });
+          navigate("/creator/dashboard/overview");
+        }
+      } catch (error) {
+        if (attempts >= maxAttempts) {
+          clearInterval(intervalId);
+          showToast("Subscription verification timed out. Please try again.");
+
+          //   dispatch(setEcosystemDomain("beatypaget"));
+          // dispatch(setEcosystemPlan("Lite"));
+          setLoading(false);
+          mixpanel.track("Registration", {
+            action: "error",
+            step: "payment",
+            step_index: 6,
+            step_label: "Payment",
+            error_fields: ["payment"],
+            error_message: "Payment failed/declined",
+          });
+          navigate("/auth/subscriptions");
+        }
+        console.error("Subscription check failed", error);
+      }
+    }, 10000);
+  };
+
+  const verifyReferralPayment = (paymentResponse) => {
     let attempts = 0;
     const maxAttempts = 5;
     const intervalId = setInterval(async () => {
@@ -472,25 +590,18 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
             dispatch(setEcosystemDomain(result.data.ecosystemDomain));
           if (result.data.planType)
             dispatch(setEcosystemPlan(result.data.planType));
+          localStorage.removeItem("referralCode"); // Clear referral code from localStorage
           setLoading(false);
-          navigate("/auth/edit-template");
+          navigate("/creator/dashboard/overview");
         }
       } catch (error) {
         if (attempts >= maxAttempts) {
           clearInterval(intervalId);
           showToast("Subscription verification timed out. Please try again.");
-          // if (result.data.ecosystemDomain)
-          //   dispatch(setEcosystemDomain(result.data.ecosystemDomain));
-          // if (result.data.planType)
-          //   dispatch(setEcosystemPlan(result.data.planType));
-
-          dispatch(setEcosystemDomain("daddykag"));
-
-          dispatch(setEcosystemPlan("Lite"));
           setLoading(false);
-          navigate("/auth/edit-template");
+          navigate("/auth/subscriptions");
         }
-        console.error("Subscription check failed", error);
+        console.error("Referral subscription check failed", error);
       }
     }, 10000);
   };
@@ -517,7 +628,11 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
       showToast("Ecosystem details are missing, try again later.");
       return;
     }
-    setIsModalOpen(true);
+    if (referralCode) {
+      initiateReferralPayment();
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   if (loading) return <LoadingPage message={loadingMessage} />;
@@ -565,11 +680,34 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
         </div>
         <div className="mt-4 border border-[#9f68fe] rounded-xl px-4 py-1">
           <span className="text-3xl font-bold text-[#9f68fe]">
-            ₦{price.toLocaleString()}
+            ₦
+            {referralCode
+              ? referralOneTimeAmount.toLocaleString()
+              : price.toLocaleString()}
           </span>
-          <span className="text-sm text-gray-500">/month</span>
+          <span className="text-sm text-gray-500">
+            {referralCode ? `/${selectedInterval.toLowerCase()}` : "/month"}
+          </span>
+          {referralCode && (
+            <div className="text-sm text-[#9f68fe] mt-1">
+              {(() => {
+                const referralDiscounts = {
+                  "2R0873": 0.925, // 7.5% discount
+                  "6LS937": 0.85, // 15% discount
+                };
+                const discountMultiplier = referralDiscounts[referralCode];
+                if (discountMultiplier) {
+                  const discountPercentage = Math.round(
+                    (1 - discountMultiplier) * 100
+                  );
+                  return `${discountPercentage}% referral discount applied`;
+                }
+                return null;
+              })()}
+            </div>
+          )}
         </div>
-        <div className="mt-4 h-28 bg-[#eeeded] px-2 py-3 rounded-xl">
+        {/* <div className="mt-4 h-28 bg-[#eeeded] px-2 py-3 rounded-xl">
           <Text className="text-sm font-medium text-gray-900">
             Transaction Fees
           </Text>
@@ -582,8 +720,12 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
               <span>Offline:</span>
               <span>{transactionFees.Offline[plan]}</span>
             </div>
+            <div className="flex justify-between text-sm text-gray-600 mt-1">
+              <span>Direct To Merchant:</span>
+              <span>No fee</span>
+            </div>
           </div>
-        </div>
+        </div> */}
         <div className="mt-6 flex-grow">
           <Text className="text-sm font-medium text-gray-900">Features</Text>
           {plan !== "Lite" && (
@@ -631,10 +773,16 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
 const NairaCardContainer = () => {
   const [selectedInterval, setSelectedInterval] = useState("Monthly");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // Check for referral code in localStorage
+  useEffect(() => {
+    const referralCode = localStorage.getItem("referralCode");
+    console.log("Referral code in localStorage:", referralCode);
+  }, []);
+
   return (
     <div className="w-full mx-auto px-4 sm:px-6 py-12">
       {/* Billing Period Selector */}
-      <div className="lg:flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center  mb-8">
         <button
           onClick={() => setIsModalOpen(true)}
           className="text-purple-600 border border-blue-600 py-3 rounded-xl px-6 text-sm font-medium flex items-center"
@@ -645,7 +793,7 @@ const NairaCardContainer = () => {
           {pricingPlans.map((period) => (
             <label
               key={period}
-              className="px-4 py-1 text-sm font-medium rounded-full cursor-pointer flex items-center "
+              className="px-4 py-1 text-sm font-medium rounded-full cursor-pointer flex items-center"
             >
               <input
                 type="radio"

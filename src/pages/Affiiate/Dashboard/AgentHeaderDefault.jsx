@@ -2,7 +2,7 @@
 import { Fragment } from "react";
 import { Menu } from "react-feather";
 import { Link } from "react-router-dom";
-import Logo from "../../../assets/DIMP logo colored.png";
+import Logo from "../../LandingPages/images/dimp-blue.png";
 
 // import sub components
 import QuickMenu from "../../../layout/affliateLayout/AgentQuickMenu";

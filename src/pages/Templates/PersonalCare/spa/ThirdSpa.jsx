@@ -28,19 +28,19 @@ import { WhiteContactForm } from "../../../../features/ContactForm/ContactForm";
 const TeamSection = () => {
   const teamMembers = [
     {
-      name: "Mike ",
+      name: "Mitchelle ",
       role: "Therapist",
-      image: "https://gfa-tech.com/dimp-template-images/spa/teama.jpg",
+      image: "https://i.imghippo.com/files/nXcT8826gg.webp",
     },
     {
       name: "Aminat",
       role: "Therapist",
-      image: "https://gfa-tech.com/dimp-template-images/spa/teamb.jpg",
+      image: "https://i.imghippo.com/files/KHtR1229VE.jpg",
     },
     {
       name: "David ",
       role: "Therapist",
-      image: "https://gfa-tech.com/dimp-template-images/spa/teamc.jpg",
+      image: "https://i.imghippo.com/files/zwJb5715vl.webp",
     },
   ];
 
@@ -150,9 +150,9 @@ const ThirdSpa = ({ userDetails }) => {
       rating: 5,
       quote:
         "Their excellent service, competitive pricing, and customer support make them stand out. It's refreshing to get such a personal touch.",
-      image: "https://gfa-tech.com/dimp-template-images/spa/testi-1.jpg",
+      image: "https://i.imghippo.com/files/Jsx3765TUo.jpg",
       bgImage:
-        "https://gfa-tech.com/dimp-template-images/spa/testimonial-bg.jpg",
+        "https://i.imghippo.com/files/NZU5413GU.jpg",
     },
     {
       name: "Sarah Johnson",
@@ -160,9 +160,9 @@ const ThirdSpa = ({ userDetails }) => {
       rating: 5,
       quote:
         "Working with this team was a breeze. Professionalism, attention to detail, and timely delivery impressed us.",
-      image: "https://gfa-tech.com/dimp-template-images/spa/testi-1.jpg",
+      image: "https://i.imghippo.com/files/ZDD4441Wg.jpg",
       bgImage:
-        "https://gfa-tech.com/dimp-template-images/spa/testimonial-bg.jpg",
+        "https://i.imghippo.com/files/NZU5413GU.jpg",
     },
     {
       name: "James Parker",
@@ -170,9 +170,9 @@ const ThirdSpa = ({ userDetails }) => {
       rating: 5,
       quote:
         "Exceptional quality and customer-centric approach. Their support team was always available and helpful.",
-      image: "https://gfa-tech.com/dimp-template-images/spa/testi-1.jpg",
+      image: "https://i.imghippo.com/files/vAP4428LXE.jpg",
       bgImage:
-        "https://gfa-tech.com/dimp-template-images/spa/testimonial-bg.jpg",
+        "https://i.imghippo.com/files/NZU5413GU.jpg",
     },
   ];
   const currentTestimonial = testimonials[currentIndex];
@@ -184,13 +184,9 @@ const ThirdSpa = ({ userDetails }) => {
           <div className="bg-[#f8f6f2] py-3 md:px-24 px-4 flex justify-between items-center border-b border-gray-300">
             {/* Logo */}
             <a href="#" className="flex items-center text-gray-800">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
-                alt="logo"
-                className="w-10 h-10 mr-2"
-              />
+             
               <span className="text-xs leading-tight">
-                {userDetails?.ecosystemName} <br />
+              Beauty <br />
                 <span className="text-yellow-600">Beauty and Spa</span>
               </span>
             </a>
@@ -293,7 +289,7 @@ const ThirdSpa = ({ userDetails }) => {
             {/* Circular Background */}
             <div className="relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] overflow-hidden rounded-full border-4 border-[#f3ede3] shadow-lg">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/hero-img-1.jpg"
+                src="https://i.imghippo.com/files/gVb3309Sg.jpg"
                 alt="Massage"
                 className="w-full h-full object-cover"
               />
@@ -301,12 +297,12 @@ const ThirdSpa = ({ userDetails }) => {
 
             {/* Decorative Leaves & Flower */}
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/heroshape1.png"
+              src="https://i.imghippo.com/files/bTmw4851HL.jpg"
               alt="Leaf"
               className="absolute -top-4 left-4 w-16 md:w-28 opacity-80"
             />
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/heroshape2.png"
+              src="https://i.imghippo.com/files/veeS8977FY.jpg"
               alt="Flower"
               className="absolute top-2 right-2 w-12 md:w-20 opacity-90"
             />
@@ -318,7 +314,7 @@ const ThirdSpa = ({ userDetails }) => {
           {/* Spa & Beauty Treatment Card */}
           <div className="relative border border-gray-300 rounded-lg overflow-hidden">
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/offer1.png"
+              src="https://i.imghippo.com/files/fcOF6139D.jpg"
               alt="Spa & Beauty Treatment"
               className="w-full sm:h-64 object-cover"
             />
@@ -344,7 +340,7 @@ const ThirdSpa = ({ userDetails }) => {
           {/* Thai Massage Creams Card */}
           <div className="relative border border-gray-300 rounded-lg overflow-hidden">
             <img
-              src="https://gfa-tech.com/dimp-template-images/spa/offer2.png"
+              src="https://i.imghippo.com/files/VWi4812JN.jpg"
               alt="Thai Massage Creams"
               className="w-full sm:h-64 object-cover"
             />
@@ -374,12 +370,12 @@ const ThirdSpa = ({ userDetails }) => {
           <div className="relative flex justify-center">
             <div className="relative w-[400px] h-[400px]">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/about.jpg"
+                src="https://i.imghippo.com/files/WA5291VxI.jpg"
                 alt="Spa Treatment"
                 className="rounded-full w-full h-full object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/aboutflower.png"
+                src="https://i.imghippo.com/files/bTmw4851HL.jpg"
                 alt="Flower"
                 className="absolute top-0 left-0 w-20"
               />
@@ -428,14 +424,14 @@ const ThirdSpa = ({ userDetails }) => {
             </ul>
             <div className="flex items-center gap-4">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/about-author.png"
+                src="https://i.imghippo.com/files/Imi5543yI.jpg"
                 alt="Christine"
                 className="w-12 h-12 rounded-full"
               />
               <div>
                 <p className="font-semibold">Christine - Co Founder</p>
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about-sign-2.png"
+                  src="https://i.imghippo.com/files/UDEK9615SI.jpg"
                   alt="Signature"
                   className="w-24"
                 />
@@ -467,24 +463,20 @@ const ThirdSpa = ({ userDetails }) => {
         className="bg-[#F8F5F1] py-24"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/service-bg.png')",
+            "url('https://i.imghippo.com/files/NZU5413GU.jpg')",
           backgroundSize: "cover",
         }}
       >
         <div className="container mx-auto max-w-7xl px-6">
           {/* Section Title */}
           <div className="text-center mb-16">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/sec-title.png"
-              alt="Spa services"
-              className="mx-auto mb-2 w-16 h-16"
-            />
+          
             <h6 className="text-2xl text-[#b19153] italic">Spa Services</h6>
-            <h3 className="text-5xl font-bold text-black">WHAT WE OFFER</h3>
+            <h3 className="text-5xl font-bold text-white">WHAT WE OFFER</h3>
           </div>
 
           {/* Services List */}
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {spa.slice(0, 12).map((service, index) => (
               <div
                 key={index}
@@ -523,7 +515,7 @@ const ThirdSpa = ({ userDetails }) => {
                 </a>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
       <section id="gallery" className="bg-white py-10">
@@ -532,7 +524,7 @@ const ThirdSpa = ({ userDetails }) => {
             {/* Left Image (Circular Mirror Reflection) */}
             <div>
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/gallery-2-1.jpg"
+                src="https://i.imghippo.com/files/Blo2476Wxw.jpg"
                 alt="Mirror Reflection"
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -540,13 +532,9 @@ const ThirdSpa = ({ userDetails }) => {
 
             {/* Middle-Left Column (Two Stacked Images) */}
             <div className="flex flex-col gap-6">
+             
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/gallery-2-2.jpg"
-                alt="Massage Image 1"
-                className="w-full h-auto object-cover rounded-lg"
-              />
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/gallery-2-3.jpg"
+                src="https://i.imghippo.com/files/Xkyv8617k.jpg"
                 alt="Massage Image 2"
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -555,7 +543,7 @@ const ThirdSpa = ({ userDetails }) => {
             {/* Middle-Right Column (Single Large Image) */}
             <div>
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/gallery-2-4.jpg"
+                src="https://i.imghippo.com/files/Rrrf6227Fg.jpg"
                 alt="Chocolate Facial"
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -565,11 +553,7 @@ const ThirdSpa = ({ userDetails }) => {
             <div className="bg-[#C49A5A] flex items-center justify-center p-6 sm:p-10 text-white rounded-lg">
               <div className="text-center">
                 <div className="mb-4">
-                  <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/gallery-icon.png"
-                    alt="Gallery Icon"
-                    className="mx-auto w-12 h-12"
-                  />
+               
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold">
                   TRUSTED & RELIABLE SPA & BEAUTY GALLERY
@@ -590,7 +574,7 @@ const ThirdSpa = ({ userDetails }) => {
             <h6 className="text-[#b19153] text-xl md:text-2xl font-semibold">
               Our Testimonials
             </h6>
-            <h3 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4 uppercase">
+            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 uppercase">
               What they’re saying?
             </h3>
             <p className="text-sm md:text-base mb-6">
@@ -639,13 +623,7 @@ const ThirdSpa = ({ userDetails }) => {
             </div>
 
             {/* Testimonial Image */}
-            <div className="w-full md:w-1/2 mt-4 md:mt-0 md:ml-6">
-              <img
-                src={currentTestimonial.image}
-                alt={currentTestimonial.name}
-                className="w-full h-auto rounded-lg shadow-lg object-cover"
-              />
-            </div>
+            
           </div>
         </div>
       </section>
@@ -654,10 +632,10 @@ const ThirdSpa = ({ userDetails }) => {
         className="relative bg-cover bg-center pt-32 pb-16 text-white"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/testimonialbg.jpg')",
+            "url('https://i.imghippo.com/files/Vvk8411vC.jpg')",
         }}
       >
-        <div className="flex flex-col h-full  py-4  lg:px-24 px-6 md:px-12 lg:px-20">
+        <div className="flex flex-col h-full  py-4  lg:px-24 px-6 md:px-12 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <motion.div
@@ -666,11 +644,7 @@ const ThirdSpa = ({ userDetails }) => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="relative">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/sec-title.png"
-                  alt="Decorative"
-                  className="absolute -top-10 left-0 w-16 h-16 mb-4"
-                />
+               
                 <h6 className="text-[#b19153] italic text-2xl ">
                   Get to know us
                 </h6>
@@ -718,13 +692,10 @@ const ThirdSpa = ({ userDetails }) => {
       </section>
       <section
         className="relative pt-20 pb-16 -mt-16 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/funfact-bg.jpg')",
-        }}
+      
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center relative">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mt-10 text-center relative">
             {[
               "Years of Experience",
               "Wellness Spa & Beauty",
@@ -735,13 +706,7 @@ const ThirdSpa = ({ userDetails }) => {
                 key={index}
                 className="flex flex-col items-center space-y-4 relative"
               >
-                <div className="relative p-5 rounded-lg shadow-md bg-white">
-                  <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/sec-title.png"
-                    alt="Icon"
-                    className="w-14 h-14"
-                  />
-                </div>
+                
                 <h3 className="text-4xl font-bold text-gray-900">
                   {[23, 870, 30, 980][index]}
                 </h3>
@@ -754,13 +719,7 @@ const ThirdSpa = ({ userDetails }) => {
       <section id="contact" className="py-16 bg-white">
         <div className="flex flex-col px-4 lg:px-24  ">
           <div className="mb-12">
-            <figure className="flex justify-center">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/sec-title.png"
-                alt="Service Icon"
-                className="w-12"
-              />
-            </figure>
+           
           </div>
           <WhiteContactForm />
         </div>
@@ -771,7 +730,7 @@ const ThirdSpa = ({ userDetails }) => {
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
             backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/spa/footer-bg.png')",
+              "url('https://i.imghippo.com/files/gVb3309Sg.jpg')",
           }}
         ></div>
 
@@ -779,11 +738,7 @@ const ThirdSpa = ({ userDetails }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
             {/* About Section */}
             <div className="space-y-4">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/spalogo.png"
-                alt="Teju Beauty & Spa"
-                className="w-15 mb-4"
-              />
+              <h3>Teju Beauty and Spa</h3>
             </div>
 
             {/* Links Section */}

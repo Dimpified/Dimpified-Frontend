@@ -32,7 +32,7 @@ const ReadyToJoin = () => {
               lineHeight="leading-1"
             >
               Ready to Join? <br className="hidden md:block" />
-              DIMP&apos;s Affiliate Program
+              DIMP&apos;s Sales Partner Program
             </Heading>
             <Text className="text-lg invisible xl:visible xl:text-xl sm:text-base font-sans">
               Take the next step in your entrepreneurial journey and start
@@ -60,21 +60,21 @@ const ReadyToJoin = () => {
             font="font-body"
             lineHeight="leading-1"
           >
-            Why Join Our Affiliate Program?
+            Why Join Our Sales Partner Program?
           </Heading>
 
           <Text className="text-lg font-sans">
             Dimpified offers you an incredible opportunity to earn commissions
             by promoting our products and services. Whether you’re a blogger,
-            influencer, or just passionate about sharing great tools, our
-            affiliate program is perfect for you.
+            influencer, or just passionate about sharing great tools, our sales
+            partner program is perfect for you.
           </Text>
           <Text className="font-semibold mt-4 font-body">Key Benefits:</Text>
           <ul className="list-disc list-inside ml-4 font-sans">
-            <li>Earn up to 15% commissions on subscriptions.</li>
-            <li>
+            <li>Earn up to 30% commissions on subscriptions.</li>
+            {/* <li>
               Get 5% on every sale you refer to our participating online stores.
-            </li>
+            </li> */}
             <li>Free access to marketing materials and support.</li>
             <li>Real-time tracking of your commissions and performance.</li>
           </ul>
@@ -107,7 +107,7 @@ const ReadyToJoin = () => {
           </Heading>
 
           <Text className="mt-2 font-sans">
-            For any questions or support, feel free to contact our affiliate
+            For any questions or support, feel free to contact our sales partner
             support team at{" "}
             <Link
               to="mailto:affiliates@dimpified.com"

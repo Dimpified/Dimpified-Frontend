@@ -37,7 +37,8 @@ import Template34 from "../../UserTemplate/PersonalCare/dental/Template34";
 import Template35 from "../../UserTemplate/PersonalCare/dental/Template35";
 import Template36 from "../../UserTemplate/PersonalCare/spa/Template36";
 import Template37 from "../../UserTemplate/PersonalCare/dental/Template37";
-
+import Template47 from "../../UserTemplate/PersonalCare/HairStylelist/Template47";
+import Template48 from "../../UserTemplate/PersonalCare/HairStylelist/Template48";
 const OnboardingPreviewTemplate = () => {
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -324,6 +325,22 @@ const OnboardingPreviewTemplate = () => {
       case 37:
         return (
           <Template37
+            details={details}
+            subdomain={subdomain}
+            userDetails={ecosystemDetails}
+          />
+        );
+      case 47:
+        return (
+          <Template47
+            details={details}
+            subdomain={subdomain}
+            userDetails={ecosystemDetails}
+          />
+        );
+      case 48:
+        return (
+          <Template48
             details={details}
             subdomain={subdomain}
             userDetails={ecosystemDetails}

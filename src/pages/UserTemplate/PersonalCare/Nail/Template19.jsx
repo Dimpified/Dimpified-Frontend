@@ -120,7 +120,7 @@ const FirstNail = ({ details, subdomain, userDetails }) => {
         <div className="flex-wrap lg:px-32 flex items-center justify-between py-4 px-4 md:px-8">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="text-3xl font-bold font-Marcellus">
+            <a href="#home" className="text-3xl font-bold font-Marcellus">
               {userDetails && userDetails.ecosystemName
                 ? userDetails.ecosystemName
                 : ""}{" "}
@@ -130,7 +130,7 @@ const FirstNail = ({ details, subdomain, userDetails }) => {
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center space-x-6 font-bold">
-            <a href="/" className="text-gray-700 hover:text-pink-600">
+            <a href="#home" className="text-gray-700 hover:text-pink-600">
               Home
             </a>
             <a href="#about" className="text-gray-700 hover:text-pink-600">

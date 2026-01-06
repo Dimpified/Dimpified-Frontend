@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateContent } from "../features/Template/editTemplate";
 
-// for services
+// -------------------
+// For service image uploads (not template editing)
+// -------------------
 export const useImageUploader = () => {
   const fileInputRefs = useRef({});
   const [loadingImage, setLoading] = useState(false);
@@ -13,35 +15,38 @@ export const useImageUploader = () => {
     }
   };
 
-  const handleImageChange = async (event, section, field) => {
+  const handleImageChange = async (
+    event,
+    section,
+    field,
+    oldImageUrl = null
+  ) => {
     const file = event.target.files[0];
-    if (file) {
-      setLoading(true);
+    if (!file) return;
+
+    setLoading(true);
+    try {
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", `${import.meta.env.VITE_UPLOAD_PRESET}`);
-      formData.append("cloud_name", `${import.meta.env.VITE_CLOUD_NAME}`);
+      formData.append("image", file);
+      formData.append("oldImageUrl", oldImageUrl ? oldImageUrl : "");
 
-      try {
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${
-            import.meta.env.VITE_CLOUD_NAME
-          }/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-
-        const data = await response.json();
-        setLoading(false);
-        if (data.secure_url) {
-          return data.secure_url; // Return the uploaded image URL
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/creator/template-image`,
+        {
+          method: "POST",
+          body: formData,
         }
-      } catch (error) {
-        setLoading(false);
-        console.error("Error uploading image to Cloudinary:", error);
-      }
+      );
+
+      if (!response.ok)
+        throw new Error(`Azure upload failed: ${response.statusText}`);
+
+      const data = await response.json();
+      setLoading(false);
+      return data?.url || data?.imageUrl || null;
+    } catch (error) {
+      setLoading(false);
+      console.error("Error uploading image to Azure:", error);
     }
   };
 
@@ -53,14 +58,19 @@ export const useImageUploader = () => {
   };
 };
 
-// for edit template
+// -------------------
+// For template image editing (uses Redux to update content)
+// -------------------
 export const useImageEditor = () => {
   const dispatch = useDispatch();
   const fileInputRefs = useRef({});
   const [loadingImage, setLoading] = useState(false);
 
+  const currentTemplate = useSelector(
+    (state) => state.editTemplate.editcurrentTemplate
+  );
+
   const handleEditImageClick = (section, field) => {
-    // Make sure the correct input is triggered
     if (fileInputRefs.current[`${section}-${field}`]) {
       fileInputRefs.current[`${section}-${field}`].click();
     }
@@ -68,43 +78,44 @@ export const useImageEditor = () => {
 
   const handleImageChange = async (event, section, field) => {
     const file = event.target.files[0];
-    if (file) {
-      setLoading(true);
-      // Prepare FormData for Cloudinary upload
+    if (!file) return;
+
+    setLoading(true);
+
+    try {
+      const oldImageUrl = currentTemplate?.[section]?.[field] || null;
+
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", `${import.meta.env.VITE_UPLOAD_PRESET}`);
-      formData.append("cloud_name", `${import.meta.env.VITE_CLOUD_NAME}`);
+      formData.append("image", file);
+      formData.append("oldImageUrl", oldImageUrl ? oldImageUrl : "");
 
-      try {
-        // Upload image to Cloudinary
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${
-            import.meta.env.VITE_CLOUD_NAME
-          }/image/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-
-        const data = await response.json();
-        console.log("this is cloudinery response", data);
-        if (data.secure_url) {
-          // Dispatch Cloudinary image URL to Redux Toolkit
-          dispatch(
-            updateContent({
-              section: section,
-              field: field,
-              value: data.secure_url, // Use the Cloudinary URL
-            })
-          );
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/creator/template-image`,
+        {
+          method: "POST",
+          body: formData,
         }
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error("Error uploading image to Cloudinary:", error);
+      );
+
+      if (!response.ok)
+        throw new Error(`Azure upload failed: ${response.statusText}`);
+
+      const data = await response.json();
+      console.log("Azure upload response:", data);
+
+      if (data?.url) {
+        dispatch(
+          updateContent({
+            section,
+            field,
+            value: data.url,
+          })
+        );
       }
+    } catch (error) {
+      console.error("Error uploading image to Azure:", error);
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -465,7 +465,7 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
           </span>
           <span className="text-sm text-gray-500">/month</span>
         </div>
-        <div className="mt-4 h-28 bg-[#eeeded] px-2 py-3 rounded-xl">
+        {/* <div className="mt-4 h-28 bg-[#eeeded] px-2 py-3 rounded-xl">
           <Text className="text-sm font-medium text-gray-900">
             Transaction Fees
           </Text>
@@ -479,7 +479,7 @@ const Card = ({ plan, selectedInterval, price, isPopular = false }) => {
               <span>{transactionFees.Offline[plan]}</span>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="mt-6 flex-grow">
           <Text className="text-sm font-medium text-gray-900">Features</Text>
           {plan !== "Lite" && (

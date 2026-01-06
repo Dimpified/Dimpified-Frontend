@@ -98,42 +98,7 @@ const FourthStylist = ({ userDetails }) => {
     },
   ];
 
-  const services = [
-    {
-      icon: <IoMdCut className="text-3xl mb-4 text-purple-600" />,
-      title: "Hair Cutting & Styling",
-      description:
-        "Precision cuts and modern styles tailored for African hair textures",
-      image:
-        "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&auto=format&fit=crop",
-    },
-    {
-      icon: <MdOutlineColorLens className="text-3xl mb-4 text-purple-600" />,
-      title: "Hair Coloring",
-      description:
-        "Vibrant colors and highlights that protect your hair's health",
-      image:
-        "https://images.unsplash.com/photo-1559599076-9c61d8ed1f50?w=500&auto=format&fit=crop",
-    },
-    {
-      icon: <GiHairStrands className="text-3xl mb-4 text-purple-600" />,
-      title: "Braiding & Weaving",
-      description:
-        "Traditional and modern braiding techniques with quality extensions",
-      image:
-        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop",
-    },
-    {
-      icon: (
-        <MdFaceRetouchingNatural className="text-3xl mb-4 text-purple-600" />
-      ),
-      title: "Makeup Services",
-      description:
-        "Flawless makeup application for all occasions and skin tones",
-      image:
-        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop",
-    },
-  ];
+  
 
   return (
     <div className="font-sans">
@@ -142,7 +107,7 @@ const FourthStylist = ({ userDetails }) => {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#home" className="flex items-center">
             <GiHairStrands className="text-3xl text-purple-600" />
-            <span className="ml-2 font-bold text-xl">{userDetails?.ecosystemName}</span>
+            <span className="ml-2 font-bold text-xl">HairGlam</span>
           </a>
 
           <nav className="hidden md:flex space-x-8">
@@ -249,7 +214,7 @@ const FourthStylist = ({ userDetails }) => {
               onClick={handleModalOpen}
               href="#book"
               className="block bg-purple-600 text-white py-2 px-4 rounded-full text-center hover:bg-purple-700 transition"
-              // onClick={closeNav}
+             
             >
               Book Now
             </button>
@@ -261,9 +226,9 @@ const FourthStylist = ({ userDetails }) => {
       <section
         id="home"
         className="relative w-full min-h-screen flex items-center justify-center bg-cover bg-center"
-        style={{
+         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/hairstylist/hair-01.jpg')",
+            "url('https://i.imghippo.com/files/ycQw2570gq.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
@@ -272,7 +237,7 @@ const FourthStylist = ({ userDetails }) => {
             Experience Premium Hair Care in Lagos
           </h1>
           <p className="text-lg md:text-xl mb-8">
-            At {userDetails?.ecosystemName}, we specialize in African hair textures, offering modern
+            At HairGlam, we specialize in African hair textures, offering modern
             styles with traditional care techniques.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -289,9 +254,9 @@ const FourthStylist = ({ userDetails }) => {
               Our Services
             </a>
           </div>
-          {/* {isModalOpen && (
+          {isModalOpen && (
             <BookingModal isOpen={isModalOpen} handleClose={handleModalClose} />
-          )} */}
+          )}
         </div>
       </section>
 
@@ -307,10 +272,10 @@ const FourthStylist = ({ userDetails }) => {
           </div>
           <div className="md:w-1/2">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">
-              Welcome to{userDetails?.ecosystemName} - Lagos' Premier Hair Destination
+              Welcome to HairGlam - Lagos' Premier Hair Destination
             </h2>
             <p className="text-gray-600 mb-6">
-              Founded in 2015, {userDetails?.ecosystemName} has become the go-to salon for Nigerian
+              Founded in 2015, HairGlam has become the go-to salon for Nigerian
               women who want quality hair care that understands our unique
               textures.
             </p>
@@ -349,7 +314,7 @@ const FourthStylist = ({ userDetails }) => {
             Nigerian women
           </p>
 
-          {/* <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {HairSalon.map((service, index) => (
               <div
                 key={index}
@@ -372,7 +337,7 @@ const FourthStylist = ({ userDetails }) => {
                 </button>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
 
@@ -432,8 +397,8 @@ const FourthStylist = ({ userDetails }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/hairstylist/hair-08.jpg"
+             <img
+              src="https://i.imghippo.com/files/yus5990UTE.jpg"
               alt="Hair coloring"
               className="w-full h-64 object-cover rounded-lg"
             />
@@ -443,22 +408,22 @@ const FourthStylist = ({ userDetails }) => {
               className="w-full h-64 object-cover rounded-lg"
             />
             <img
-              src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&auto=format&fit=crop"
+              src="https://i.imghippo.com/files/Wm9746TY.jpg"
               alt="Hair cutting"
               className="w-full h-64 object-cover rounded-lg"
             />
             <img
-              src="https://gfa-tech.com/dimp-template-images/hairstylist/hair-12.jpg"
+              src="https://i.imghippo.com/files/Wm9746TY.jpg"
               alt="Makeup"
               className="w-full h-64 object-cover rounded-lg"
             />
             <img
-              src="https://gfa-tech.com/dimp-template-images/hairstylist/hair-13.jpg"
+              src="https://i.imghippo.com/files/Wt1697P.jpg"
               alt="Natural hair"
               className="w-full h-64 object-cover rounded-lg"
             />
             <img
-              src="https://gfa-tech.com/dimp-template-images/hairstylist/hair-14.jpg"
+              src="https://i.imghippo.com/files/QPV2962Ts.jpg"
               alt="Styling"
               className="w-full h-64 object-cover rounded-lg"
             />
@@ -643,7 +608,7 @@ const FourthStylist = ({ userDetails }) => {
       </section>
 
       {/* Booking Section */}
-      <section id="book" className=" bg-gray-50">
+      <section id="contact" className=" bg-gray-50">
         <WhiteContactForm />
       </section>
 

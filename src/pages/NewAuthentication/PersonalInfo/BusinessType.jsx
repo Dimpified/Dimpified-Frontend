@@ -6,12 +6,13 @@ import { useSelector } from "react-redux";
 import api from "../../../api/authApis";
 import { showToast } from "../../../component/ShowToast";
 import { useNavigate } from "react-router-dom";
+import mixpanel from "../../../analytics/mixpanel";
 
 const BusinessType = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [search, setSearch] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const creatorId = useSelector((state) => state.auth.user?.creatorId || "0");
 
   // Filter visible business types (limited to 9)
@@ -36,8 +37,16 @@ const navigate = useNavigate();
         subCategory: selectedType,
       });
       showToast(response.data.message, "success");
+
+      mixpanel.track("Registration", {
+        action: "submit",
+        step: "business_category",
+        step_index: 4,
+        step_label: "Business Category",
+      });
+
       sessionStorage.setItem("subCategory", selectedType);
-      navigate("/auth/business-info")
+      navigate("/auth/business-info");
     } catch (error) {
       showToast(
         error.response?.data?.message || "Failed to select business type",

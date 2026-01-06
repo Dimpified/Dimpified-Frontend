@@ -167,11 +167,7 @@ const SixthSpa = ({ userDetails, subdomain }) => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <a href="#home" className="flex items-center text-gray-800">
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/about-icon2.png"
-              alt="logo"
-              className="w-10 h-10 mr-2"
-            />{" "}
+            
             <span className="text-lg text-[#E2836A] font-semibold leading-tight">
               Spa {userDetails?.ecosystemName}
             </span>
@@ -323,12 +319,12 @@ const SixthSpa = ({ userDetails, subdomain }) => {
           <div className="absolute bottom-[-40px] right-6 lg:right-20 bg-white border border-[#ff735c] rounded-[60%] p-2 shadow-md hidden lg:block">
             <div className="relative">
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/hero-thumb-2.png"
+                src="https://i.imghippo.com/files/lgy5043vQg.jpg"
                 alt="Massage"
                 className="rounded-[50%] w-35 h-60 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/spa/teasti-shape-2.png"
+                src="https://i.imghippo.com/files/bTmw4851HL.jpg"
                 alt="Flower"
                 className="absolute bottom-[-10px] left-[-20px] w-12"
               />
@@ -399,14 +395,14 @@ const SixthSpa = ({ userDetails, subdomain }) => {
       <section className="relative w-full bg-white px-4 md:px-12 py-12 md:py-20 overflow-hidden min-h-[600px]">
         {/* Background images */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/feature-shape.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Leaf"
-          className="absolute bottom-0 left-0 w-28 md:w-40 z-0"
+          className="absolute mix-blend-multiply bottom-0 left-0 w-28 md:w-40 z-0"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/about-shape.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="Orchid"
-          className="absolute bottom-0 right-6 w-24 md:w-36 z-0"
+          className="absolute mix-blend-multiply bottom-0 right-6 w-24 md:w-36 z-0"
         />
         <div className="absolute bottom-6 right-10 md:right-12 w-10 h-10 rounded-full border-2 border-[#fbd7cf] flex items-center justify-center z-10 bg-white">
           <span className="text-[#f38475] text-xl">&#8593;</span>
@@ -641,14 +637,14 @@ const SixthSpa = ({ userDetails, subdomain }) => {
       >
         {/* Decorative Elements */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/about-shape.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Left petals"
-          className="absolute top-0 left-0 w-[140px] md:w-[200px] z-0"
+          className="absolute top-0 mix-blend-multiply left-0 w-[140px] md:w-[200px] z-0"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/pricing-shape.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="Right flower"
-          className="absolute top-10 right-0 w-[120px] md:w-[180px] z-0"
+          className="absolute mix-blend-multiply top-10 right-0 w-[120px] md:w-[180px] z-0"
         />
 
         {/* Heading */}
@@ -941,17 +937,7 @@ const SixthSpa = ({ userDetails, subdomain }) => {
         </div>
       </section>
       <div className="relative bg-white py-16 px-4 md:px-10 lg:px-20">
-        {/* Decorative background images */}
-        <img
-          src="https://gfa-tech.com/dimp-template-images/spa/about-shape.png"
-          alt="left decor"
-          className="absolute top-0 left-0 w-28 md:w-36 lg:w-44"
-        />
-        <img
-          src="https://gfa-tech.com/dimp-template-images/spa/pricing-shape.png"
-          alt="right decor"
-          className="absolute top-0 right-0 w-28 md:w-36 lg:w-44"
-        />
+        
 
         {/* Title section */}
         <div className="text-center mb-12">
@@ -979,8 +965,8 @@ const SixthSpa = ({ userDetails, subdomain }) => {
                 &rarr;
               </button>
             </div>
-            <img
-              src="https://gfa-tech.com/dimp-template-images/spa/pricing-box-thumb.png"
+             <img
+              src="https://i.imghippo.com/files/rsC8917mE.jpg"
               alt="spa lady"
               className="absolute bottom-0 right-0 h-[70%] object-cover"
             />
@@ -1019,16 +1005,16 @@ const SixthSpa = ({ userDetails, subdomain }) => {
         </div>
       </div>
       <div className="relative bg-[#FAF5EF] py-16 px-4 sm:px-6 lg:px-20">
-        {/* Background Flowers */}
+         {/* Background Flowers */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/teasti-shape-1.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="left flower"
-          className="absolute top-0 left-0 w-28 md:w-36 lg:w-44"
+          className="absolute mix-blend-multiply top-0 left-0 w-28 md:w-36 lg:w-44"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/teasti-shape-2.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="right flower"
-          className="absolute top-0 right-0 w-20 md:w-28 lg:w-32"
+          className="absolute mix-blend-multiply top-0 right-0 w-20 md:w-28 lg:w-32"
         />
 
         {/* Section Heading */}
@@ -1216,25 +1202,12 @@ const SixthSpa = ({ userDetails, subdomain }) => {
 
         {/* Footer Section */}
         <footer className="bg-blue-950 text-white pt-40 md:pt-48 pb-10 px-6 md:px-20 relative mt-[-120px] md:mt-[-80px]">
-          <img
-            src="https://gfa-tech.com/dimp-template-images/spa/footer-shape1.png"
-            alt="Decor Left"
-            className="absolute top-0 left-0 w-32 md:w-40"
-          />
-          <img
-            src="https://gfa-tech.com/dimp-template-images/spa/footer-shape2.png"
-            alt="Decor Right"
-            className="absolute top-0 right-0 w-32 md:w-40"
-          />
+       
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
               <a href="#home" className="flex items-center text-gray-800">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about-icon2.png"
-                  alt="logo"
-                  className="w-10 h-10 mr-2"
-                />{" "}
+                
                 <span className="text-lg text-[#E2836A] font-semibold leading-tight">
                   {userDetails?.ecosystemName}
                 </span>

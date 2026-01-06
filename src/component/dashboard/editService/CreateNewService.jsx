@@ -110,7 +110,8 @@ const NewServiceForm = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/create-service`,
-        payload
+        payload,
+        
       );
       showToast("Service created successfully", "success");
       navigate("/creator/dashboard/edit-service");

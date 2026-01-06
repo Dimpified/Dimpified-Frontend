@@ -6,7 +6,7 @@ export const ProtectedRoute = () => {
   const accessToken = useSelector((state) => state.auth.accessToken);
 
   if (!accessToken || isTokenExpired(accessToken)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/auth/login" replace />;
   }
 
   return <Outlet />;

@@ -7,6 +7,7 @@ import { ButtonSmallWhite, ButtonLongPurple } from "../../../component/Buttons";
 import { showToast } from "../../../component/ShowToast";
 import api from "../../../api/authApis";
 import { useNavigate } from "react-router-dom";
+import mixpanel from "../../../analytics/mixpanel";
 
 // Yup validation schema for 6-digit OTP
 const schema = yup.object().shape({
@@ -30,6 +31,8 @@ const EmailVerification = () => {
     (state) => state.auth.user?.phoneNumber || "UNKNOW"
   );
 
+  const userId = useSelector((state) => state.auth.user?.creatorId || "UNKNOW");
+
   const {
     register,
     handleSubmit,
@@ -38,7 +41,6 @@ const EmailVerification = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
 
   // Sync otp array to react-hook-form
   useEffect(() => {
@@ -63,10 +65,10 @@ const EmailVerification = () => {
     return () => clearInterval(timer);
   }, [resendCountdown]);
 
-  const onBack = async() => {
-    navigate("/auth/personal-Information")
+  const onBack = async () => {
+    navigate("/auth/personal-Information");
   };
-  
+
   // Handle input change
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -155,7 +157,24 @@ const EmailVerification = () => {
         OTP: data.otp,
       });
       showToast(response.data.message, "success");
-      navigate("/auth/business-type")
+
+      // mixpanel tracking
+      mixpanel.track("Registration", {
+        action: response ? "submit" : "error",
+        step: "verify_email",
+        step_index: 2,
+        step_label: "Verify Email (OTP)",
+        ...(response
+          ? {}
+          : { error_fields: ["otp"], error_message: "Invalid OTP" }),
+      });
+      if (!response) return;
+
+      // Merge anonymous → known user
+      mixpanel.alias(userId); // call ONCE in a user's lifetime, right at signup
+      mixpanel.identify(userId); // identify from now on
+      mixpanel.people?.set?.({ $email: data.email });
+      navigate("/auth/business-type");
     } catch (error) {
       showToast("OTP Verification failed", "error");
     } finally {

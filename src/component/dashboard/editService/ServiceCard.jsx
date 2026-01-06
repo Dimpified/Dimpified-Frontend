@@ -25,14 +25,14 @@ const ServiceCard = ({ service, serviceGroup, getAllServices }) => {
 
   const handleSuccessModalClose = () => {
     if (getAllServices) {
-         getAllServices();
+      getAllServices();
     }
   };
 
   const handleSaveChanges = async (updatedService) => {
     setLoading(true);
     setError(null); // Reset error state
-
+    console.log("Updated Service Data:", updatedService);
     try {
       const response = await Api.creatorEditService({
         accessToken,
@@ -48,8 +48,7 @@ const ServiceCard = ({ service, serviceGroup, getAllServices }) => {
       });
 
       setIsModalOpen(false);
-        setIsSuccessModalOpen(true);
-
+      setIsSuccessModalOpen(true);
     } catch (error) {
       console.error("Failed to edit service:", error);
       setError("Failed to edit service.");
@@ -57,8 +56,6 @@ const ServiceCard = ({ service, serviceGroup, getAllServices }) => {
       setLoading(false);
     }
   };
-
-
 
   return (
     <div className="bg-primary1 rounded-lg shadow-md overflow-hidden relative">

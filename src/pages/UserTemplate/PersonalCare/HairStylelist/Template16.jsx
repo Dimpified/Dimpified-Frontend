@@ -107,13 +107,13 @@ const SecondStylist = ({ details, subdomain, userDetails }) => {
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             {/* Logo */}
             <div className="flex items-center">
-              <a href="index.html" className="inline-block">
+              <div className="inline-block">
                 <img
                   src={details && details.navbar.logo}
                   alt="logo"
                   className="h-10"
                 />
-              </a>
+              </div>
             </div>
 
             {/* Navigation Links */}
@@ -247,7 +247,7 @@ const SecondStylist = ({ details, subdomain, userDetails }) => {
             <img
               src={details && details.hero.backgroundImage1}
               alt="Surprising Hair Color"
-              className="w-full h-auto object-cover"
+              className="w-[500px] h-[500px] object-cover"
             />
           </div>
         </div>
@@ -578,9 +578,10 @@ const SecondStylist = ({ details, subdomain, userDetails }) => {
                       <del className="text-sm mr-2">
                         {getCurrencySymbol(currency)}{service.price + service.price * 0.2}
                       </del>
-                      <span className="text-lg font-bold text-gray-800">
-                        {getCurrencySymbol(currency)}{service.price}
-                      </span>
+                     <p className="text-gold text-lg font-medium">
+  {getCurrencySymbol(service.price.currency)}
+  {service.price.value.toLocaleString()}
+</p>
                     </div>
                   </div>
                 </div>

@@ -6,8 +6,6 @@ import {
   FaYoutube,
   FaMapMarkerAlt,
   FaPhone,
-  FaEnvelope,
-  FaFax,
 } from "react-icons/fa";
 import { HairSalon } from "../../../../data/Services";
 import { useCountry } from "../../../pricing/CountryContext";
@@ -16,21 +14,21 @@ import BookingModal from "../../../../features/Booking/NewBookingModal";
 const testimonials = [
   {
     id: 1,
-    image: "https://gfa-tech.com/dimp-template-images/barber/styling2.jpg",
+    image: "https://i.imghippo.com/files/hG2582tU.jpg",
     name: "Adesuwa O.",
     role: "Client",
     comment: `"Devon transformed my natural hair into a masterpiece! Their attention to detail and care for Afro-textured hair is unmatched. Highly recommend them for anyone looking for a premium haircare experience."`,
   },
   {
     id: 2,
-    image: "https://gfa-tech.com/dimp-template-images/barber/styling1.jpg",
+    image: "https://i.imghippo.com/files/s3164s.jpg",
     name: "Chidi A.",
     role: "Entrepreneur",
     comment: `"I never thought my hair could look this sleek and manageable! The milk rebonding service at Devon is a game-changer, and their stylists are truly experts in working with diverse hair types."`,
   },
   {
     id: 3,
-    image: "https://gfa-tech.com/dimp-template-images/barber/styling4.jpg",
+    image: "https://i.imghippo.com/files/LHAS4663Sx.jpg",
     name: "Funmi T.",
     role: "Model",
     comment: `"From consultation to the final style, the team at Devon delivered beyond my expectations. They understood exactly what I wanted and made me feel confident and beautiful."`,
@@ -159,9 +157,9 @@ const SecondStylist = ({ userDetails }) => {
             <div className="flex items-center">
               <a href="index.html" className="inline-block">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/barber/logo.png"
+                  src="https://i.imghippo.com/files/DoDr3075hBc.jpg"
                   alt="logo"
-                  className="h-10"
+                  className="w-[50px] h-[50px]"
                 />
               </a>
             </div>
@@ -291,9 +289,9 @@ const SecondStylist = ({ userDetails }) => {
           {/* Right Section */}
           <div className="md:w-1/2 hidden md:block relative">
             <img
-              src="https://gfa-tech.com/dimp-template-images/barber/styling-bg.png"
+              src="https://i.imghippo.com/files/TmSQ3824ik.png"
               alt="Surprising Hair Color"
-              className="w-full h-auto object-cover"
+              className="w-[500px] h-[500px] object-cover"
             />
           </div>
         </div>
@@ -305,7 +303,7 @@ const SecondStylist = ({ userDetails }) => {
           <div className="w-full md:w-5/12 px-4 relative">
             <div className="bg-gradient-to-r from-[#e5d0b6] to-[#f7f3ec] p-2">
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling3.jpg"
+                src="https://i.imghippo.com/files/nlzr9268RuY.jpg"
                 alt="About Us"
                 className="w-full h-auto object-cover"
               />
@@ -534,7 +532,7 @@ const SecondStylist = ({ userDetails }) => {
             >
               {/* Before Image */}
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling2.jpg"
+                src="https://i.imghippo.com/files/gd6908iNs.jpg"
                 alt="Before"
                 className="w-full h-full object-cover"
               />
@@ -623,7 +621,7 @@ const SecondStylist = ({ userDetails }) => {
           {/* Left side - Product Images */}
           <div className="flex justify-center md:justify-center items-center w-full md:w-1/2 relative">
             <img
-              src="https://gfa-tech.com/dimp-template-images/barber/styling12.jpg"
+              src="https://i.imghippo.com/files/yOAs2005tqM.jpg"
               alt="Main Product"
               className="w-36 md:w-64 xl:w-72 rounded-full"
             />
@@ -729,12 +727,12 @@ const SecondStylist = ({ userDetails }) => {
         <section className="py-0">
           <div className="w-full flex flex-wrap">
             {[
-              "https://gfa-tech.com/dimp-template-images/barber/styling1.jpg",
-              "https://gfa-tech.com/dimp-template-images/barber/styling2.jpg",
-              "https://gfa-tech.com/dimp-template-images/barber/styling3.jpg",
-              "https://gfa-tech.com/dimp-template-images/barber/styling4.jpg",
-              "https://gfa-tech.com/dimp-template-images/barber/styling5.jpg",
-              "https://gfa-tech.com/dimp-template-images/barber/styling6.jpg",
+              "https://i.imghippo.com/files/nlzr9268RuY.jpg",
+              "https://i.imghippo.com/files/ZrzW9432UuA.jpg",
+              "https://i.imghippo.com/files/MnXx4366of.jpg",
+              "https://i.imghippo.com/files/yOAs2005tqM.jpg",
+              "https://i.imghippo.com/files/Zv6681KRU.jpg",
+              "https://i.imghippo.com/files/gQS8170EX.jpg",
             ].map((image, index) => (
               <div
                 key={index}
@@ -768,9 +766,9 @@ const SecondStylist = ({ userDetails }) => {
           <div>
             <div className="mb-3">
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/logo.png"
+                src="https://i.imghippo.com/files/DoDr3075hBc.jpg"
                 alt="Logo"
-                className="w-32"
+                className="w-[90px] h-[50px]"
               />
             </div>
             <p className="text-lg">
@@ -825,32 +823,33 @@ const SecondStylist = ({ userDetails }) => {
             <h5 className="text-lg font-semibold mb-4">Portfolio</h5>
             <div className="grid grid-cols-3 gap-2">
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling10.jpg"
+                src="
+https://i.imghippo.com/files/Zv6681KRU.jpg"
                 alt="Portfolio"
                 className="w-full h-16 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling11.jpg"
+                src="https://i.imghippo.com/files/nlzr9268RuY.jpg"
                 alt="Portfolio"
                 className="w-full h-16 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling2.jpg"
+                src="https://i.imghippo.com/files/gQS8170EX.jpg"
                 alt="Portfolio"
                 className="w-full h-16 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling9.jpg"
+                src="https://i.imghippo.com/files/yOAs2005tqM.jpg"
                 alt="Portfolio"
                 className="w-full h-16 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling6.jpg"
+                src="https://i.imghippo.com/files/hG2582tU.jpg"
                 alt="Portfolio"
                 className="w-full h-16 object-cover"
               />
               <img
-                src="https://gfa-tech.com/dimp-template-images/barber/styling8.jpg"
+                src="https://i.imghippo.com/files/ZrzW9432UuA.jpg"
                 alt="Portfolio"
                 className="w-full h-16 object-cover"
               />

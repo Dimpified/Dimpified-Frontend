@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdPerson, IoMdMenu, IoMdClose } from "react-icons/io"; // Menu and close icons
-import Logo from "../../../src/assets/DIMP logo colored.png";
+import Logo from "../../../src/pages/LandingPages/images/dimp-blue.png";
 import { ButtonSmallPurple, ButtonSmallWhite } from "../Buttons";
 import { TextSpan } from "../Text";
 
@@ -35,7 +35,7 @@ const NavbarComponent = () => {
             alt="dimp logo"
           />
           <TextSpan className="ml-2 text-lg font-semibold font-body">
-            Affiliate Program
+            Sales Partner Program
           </TextSpan>
         </Link>
 

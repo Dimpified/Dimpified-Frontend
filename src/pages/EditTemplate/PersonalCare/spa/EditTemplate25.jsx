@@ -385,7 +385,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
           </div>
 
           {/* Right Image */}
-          <div className="lg:w-1/2 mt-6 lg:mt-0 relative flex justify-center">
+         <div className="lg:w-1/2 mt-6 lg:mt-0 relative flex justify-center">
             <img
               src="https://gfa-tech.com/dimp-template-images/spa/slide2-2-removebg-preview.png"
               alt="Beauty Spa"
@@ -470,13 +470,14 @@ const FirstSpa = ({ userDetails, subdomain }) => {
       </div>
       <section id="services" className="relative py-16 bg-gray-100 ">
         {/* Decorative Images */}
-        <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+     
+         <img
+          src="https://i.imghippo.com/files/TLI6303dI.jpg"
           alt="Decorative Left"
           className="absolute left-4 top-1/2 transform -translate-y-1/2 w-20 opacity-50 hidden md:block"
         />
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Decorative Right"
           className="absolute right-4 top-1/2 transform -translate-y-1/2 w-20 opacity-50 hidden md:block"
         />
@@ -485,13 +486,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
         <div className="lg:px-40 px-6">
           {/* Header */}
           <div className="text-center">
-            <figure className="flex justify-center">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
-                alt="Service Icon"
-                className="w-12"
-              />
-            </figure>
+           
             <span className="text-lg text-yellow-600 font-semibold">
               {sanitizeContent(details && details.Events.heading)}
             </span>
@@ -770,7 +765,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
             <div className="flex space-x-8 mt-6">
               <div className="flex flex-col items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about1.png"
+                  src="https://i.imghippo.com/files/PI4311zs.jpg"
                   alt="Manicure"
                   className="w-12"
                 />
@@ -778,15 +773,15 @@ const FirstSpa = ({ userDetails, subdomain }) => {
               </div>
               <div className="flex flex-col items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about1.png"
+                  src="https://i.imghippo.com/files/BezV8981xhg.jpg"
                   alt="Make-up"
                   className="w-12"
                 />
                 <h4 className="mt-2 text-lg font-semibold">Make-up</h4>
               </div>
               <div className="flex flex-col items-center">
-                <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/about1.png"
+              <img
+                  src="https://i.imghippo.com/files/MFr8486gH.jpg"
                   alt="Body Message"
                   className="w-12"
                 />
@@ -804,7 +799,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
               </button>
               <div className="ml-6 flex items-center">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/spa/comment1.png"
+                  src="https://i.imghippo.com/files/pwH7765aI.jpg"
                   alt="Chat"
                   className="w-8"
                 />
@@ -861,7 +856,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
       <div className="text-center  w-full max-w-5xl py-16 px-4 bg-white relative">
         {/* Right Decorative Image */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+          src="https://i.imghippo.com/files/lt4581vqk.jpg"
           alt="Decorative Right"
           className="absolute right-0 top-1/2 transform -translate-y-1/2 w-24 h-24 mt-5 opacity-50"
         />
@@ -918,16 +913,10 @@ const FirstSpa = ({ userDetails, subdomain }) => {
         className="relative  bg-center text-white py-20"
         style={{
           backgroundImage:
-            "url(https://gfa-tech.com/dimp-template-images/spa/bg-product.jpg)",
+            "url(https://i.imghippo.com/files/OuV6061hvk.jpg)",
         }}
       >
-        <div
-          className="absolute bottom-0 left-0 w-full h-20 bg-no-repeat bg-bottom"
-          style={{
-            backgroundImage:
-              "url(https://gfa-tech.com/dimp-template-images/spa/bg-curved.png)",
-          }}
-        ></div>
+       
         <div className="container mx-auto px-6 relative">
           <div className="flex md:justify-end justify-center ">
             <div className="text-center max-w-xl">
@@ -1096,15 +1085,15 @@ const FirstSpa = ({ userDetails, subdomain }) => {
       </section>
       <section className="relative py-16 bg-white">
         {/* Left Decorative Image */}
-        <img
-          src="https://gfa-tech.com/dimp-template-images/spa/flower.png"
+      <img
+          src="https://i.imghippo.com/files/veeS8977FY.jpg"
           alt="Decorative Left"
           className="absolute left-0 top-1/2 transform -translate-y-1/2 w-24 h-24 opacity-50"
         />
 
         {/* Right Decorative Image */}
         <img
-          src="https://gfa-tech.com/dimp-template-images/spa/testimonial.png"
+          src="https://i.imghippo.com/files/bTmw4851HL.jpg"
           alt="Decorative Right"
           className="absolute right-0 top-1/2 transform -translate-y-1/2 w-24 h-24 opacity-50"
         />
@@ -1115,13 +1104,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <figure className="flex justify-center">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
-                alt="Service Icon"
-                className="w-12"
-              />
-            </figure>
+          
             Testimonial
           </motion.span>
           <motion.h2
@@ -1254,8 +1237,8 @@ const FirstSpa = ({ userDetails, subdomain }) => {
           {/* Right Content Section */}
           <div className="w-full lg:w-[45%] lg:pl-12">
             <div className="text-center lg:text-left">
-              <img
-                src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
+           <img
+                src="https://i.imghippo.com/files/wiaX5094.jpg"
                 alt="Icon"
                 className="mx-auto lg:mx-0 mb-4"
               />
@@ -1307,8 +1290,8 @@ const FirstSpa = ({ userDetails, subdomain }) => {
                 "Body Polish",
               ].map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">
-                  <img
-                    src="https://gfa-tech.com/dimp-template-images/spa/vector.png"
+                 <img
+                    src="https://i.imghippo.com/files/pwH7765aI.jpg"
                     alt="Icon"
                     className="w-5"
                   />
@@ -1320,13 +1303,7 @@ const FirstSpa = ({ userDetails, subdomain }) => {
         </div>
       </section>
       <section className="py-16 bg-white px-4 text-center">
-        <figure className="flex justify-center">
-          <img
-            src="https://gfa-tech.com/dimp-template-images/spa/icon1.png"
-            alt="Service Icon"
-            className="w-12"
-          />
-        </figure>
+       
         <h3 className="text-lg italic text-gray-500">Our team</h3>
         <h2 className="text-4xl font-serif font-bold mt-2">
           Meet Certified Therapist
@@ -1367,30 +1344,12 @@ const FirstSpa = ({ userDetails, subdomain }) => {
         className="py-16 text-center relative bg-cover bg-center mt-10 bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://gfa-tech.com/dimp-template-images/spa/curvedbg.jpg')",
+            "url('https://i.imghippo.com/files/hRGz9598osc.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        {/* Top Curved Background */}
-        <div
-          className="absolute top-0 left-0 w-full h-20 bg-no-repeat bg-top"
-          style={{
-            backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/spa/curvedbg.jpg')",
-            backgroundSize: "contain",
-          }}
-        ></div>
-
-        {/* Bottom Curved Background */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-20 bg-no-repeat bg-bottom"
-          style={{
-            backgroundImage:
-              "url('https://gfa-tech.com/dimp-template-images/spa/bg-curved2.png')",
-            backgroundSize: "contain",
-          }}
-        ></div>
+        
 
         {/* Fun Facts Content */}
         <div className="relative max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-white">

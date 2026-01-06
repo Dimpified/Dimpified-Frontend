@@ -21,21 +21,21 @@ const services = [
     title: "Cutting & Styling",
     description:
       "Experience precision cutting and tailored styling from professionals who bring out the best in your look. We ensure every haircut complements your style and personality.",
-    icon: "https://gfa-tech.com/dimp-template-images/barber/salonicon1.jpg",
+    icon: "https://i.imghippo.com/files/inNN1281V.jpg",
   },
   {
     id: 2,
     title: "Hair Treatments",
     description:
       "Revitalize your hair with our nourishing treatments designed to repair, protect, and enhance hair health, leaving it silky, shiny, and full of life.",
-    icon: "https://gfa-tech.com/dimp-template-images/barber/salonicon2.jpg",
+    icon: "https://i.imghippo.com/files/YmL9721Qg.jpg",
   },
   {
     id: 3,
     title: "Hair dyeing",
     description:
       "Add vibrance to your look with our premium hair dyeing services. From subtle highlights to bold transformations, we deliver flawless, lasting results.",
-    icon: "https://gfa-tech.com/dimp-template-images/barber/salonicon3.jpg",
+    icon: "https://i.imghippo.com/files/rxTU4925km.jpg",
   },
 ];
 
@@ -56,16 +56,16 @@ const ServiceItem = ({ title, description, icon, withBorder }) => {
   );
 };
 const imageLinks = [
-  "https://gfa-tech.com/dimp-template-images/barber/salon4.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon5.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon6.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon7.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon8.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon9.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon10.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon11.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon2.jpg",
-  "https://gfa-tech.com/dimp-template-images/barber/salon13.jpg",
+  "https://i.imghippo.com/files/rxTU4925km.jpg",
+  "https://i.imghippo.com/files/YmL9721Qg.jpg",
+  "https://i.imghippo.com/files/inNN1281V.jpg",
+  "https://i.imghippo.com/files/qvU1495LjM.jpg",
+  "https://i.imghippo.com/files/FEgT8873v.jpg",
+  "https://i.imghippo.com/files/ZrzW9432UuA.jpg",
+  "https://i.imghippo.com/files/iqH4667OI.jpg",
+  "https://i.imghippo.com/files/yOAs2005tqM.jpg",
+  "https://i.imghippo.com/files/FFc1602vk.jpg",
+  "https://i.imghippo.com/files/Ohg2306ZgM.jpg",
 ];
 
 const GiftCard = ({ title, description, imgSrc, reverse }) => {
@@ -100,28 +100,28 @@ const GiftCard = ({ title, description, imgSrc, reverse }) => {
 };
 const testimonials = [
   {
-    imgSrc: "https://gfa-tech.com/dimp-template-images//barber/salon12.jpg",
+    imgSrc: "https://i.imghippo.com/files/s3164s.jpg",
     name: "Amaka Okafor",
     rating: "★★★★★",
     content:
       "Absolutely in love with my new hairstyle! They took the time to understand my hair type and recommended the perfect cut and color. My confidence has skyrocketed!",
   },
   {
-    imgSrc: "https://gfa-tech.com/dimp-template-images//barber/salon13.jpg",
+    imgSrc: "https://i.imghippo.com/files/FEgT8873v.jpg",
     name: "Funke Balogun",
     rating: "★★★★★",
     content:
       "The best hair salon experience I've ever had! My stylist was incredibly skilled, and the products they used made my hair feel so soft and healthy. I’ll definitely be coming back!",
   },
   {
-    imgSrc: "https://gfa-tech.com/dimp-template-images//barber/salon14.jpg",
+    imgSrc: "https://i.imghippo.com/files/hG2582tU.jpg",
     name: "Chiamaka Eze",
     rating: "★★★★★",
     content:
       "From silk press to braids, they always get it right! My hair has never been this well taken care of. The salon is professional, welcoming, and always up to date with the latest styles.",
   },
   {
-    imgSrc: "https://gfa-tech.com/dimp-template-images//barber/salon15.jpg",
+    imgSrc: "https://i.imghippo.com/files/LHAS4663Sx.jpg",
     name: "Yemi Adewale",
     rating: "★★★★★",
     content:
@@ -258,12 +258,12 @@ const ThirdStylist = ({ userDetails }) => {
                   <p>02. Perfect for Every Occasion</p>
                 </ul>
               </div>
-              {/* {isModalOpen && (
+              {isModalOpen && (
                 <BookingModal
                   isOpen={isModalOpen}
                   handleClose={handleModalClose}
                 />
-              )} */}
+              )}
 
               <div
                 className="flex justify-center lg:justify-start space-x-4 animate-fadeInUp"
@@ -291,7 +291,7 @@ const ThirdStylist = ({ userDetails }) => {
                 style={{ animationDelay: "0.75s" }}
               >
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/barber/salon16.jpg"
+                  src="https://i.imghippo.com/files/YmL9721Qg.jpg"
                   alt="Hero"
                   className="rounded-3xl w-full max-w-lg h-auto"
                 />
@@ -386,7 +386,7 @@ const ThirdStylist = ({ userDetails }) => {
                   <div className="flex items-center">
                     <div className="bg-gray-900 text-white rounded-full p-3 flex-shrink-0 mr-4">
                       <img
-                        src="https://gfa-tech.com/dimp-template-images/barber/salon1.jpg"
+                        src="https://i.imghippo.com/files/iqH4667OI.jpg"
                         alt="Certified Stylists"
                         className="w-8 h-8"
                       />
@@ -411,7 +411,7 @@ const ThirdStylist = ({ userDetails }) => {
                   <div className="flex items-center">
                     <div className="bg-gray-900 text-white rounded-full p-3 flex-shrink-0 mr-4">
                       <img
-                        src="https://gfa-tech.com/dimp-template-images/barber/salon3.jpg"
+                        src="https://i.imghippo.com/files/FFc1602vk.jpg"
                         alt="100% Organic Cosmetics"
                         className="w-8 h-8"
                       />
@@ -436,7 +436,7 @@ const ThirdStylist = ({ userDetails }) => {
               {/* Circular Video Image */}
               <div className="relative w-72 h-72 lg:w-[400px] lg:h-[400px] overflow-hidden rounded-full shadow-lg">
                 <img
-                  src="https://gfa-tech.com/dimp-template-images/barber/salon17.jpg"
+                  src="https://i.imghippo.com/files/Ohg2306ZgM.jpg"
                   alt="Our Services in Action"
                   className="w-full h-full object-cover"
                 />
@@ -495,7 +495,7 @@ const ThirdStylist = ({ userDetails }) => {
 
         {/* Gift Cards */}
         <div className="flex flex-wrap lg:px-32 px-4 py-8">
-          {/* <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2">
             {HairSalon.map((service, index) => (
               <div
                 key={index}
@@ -527,7 +527,7 @@ const ThirdStylist = ({ userDetails }) => {
                 </div>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
       <section id="pricing" className="bg-gray-50 py-10 px-4 ">
@@ -541,7 +541,7 @@ const ThirdStylist = ({ userDetails }) => {
           </h2>
 
           {/* Pricing Grid */}
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             {HairSalon.map((service, index) => (
               <div
                 key={index}
@@ -562,7 +562,7 @@ const ThirdStylist = ({ userDetails }) => {
                 </div>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
       <section className="py-10 bg-white overflow-hidden">
@@ -583,7 +583,7 @@ const ThirdStylist = ({ userDetails }) => {
             {Array.from({ length: 10 }).map((_, index) => (
               <div
                 key={index}
-                className="shrink-0 w-[200px] sm:w-[300px] flex-shrink-0"
+                className="w-[200px] sm:w-[300px] flex-shrink-0"
               >
                 <img
                   src={imageLinks[index % imageLinks.length]}

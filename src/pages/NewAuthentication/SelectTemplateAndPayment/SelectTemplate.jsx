@@ -1,52 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import templates from "../../../component/Templates";
 import { Heading, Text } from "../../../component/Text";
-import { ButtonSmallPurple, ButtonSmallWhite } from "../../../component/Buttons";
-import { useSelector } from "react-redux";
+import { ButtonSmallPurple } from "../../../component/Buttons";
 import { useNavigate } from "react-router-dom";
 
-const groupByCategory = (templates) => {
-  return templates.reduce((acc, template) => {
-    const { category } = template;
-    acc[category] = acc[category] || [];
-    acc[category].push(template);
-    return acc;
-  }, {});
-};
+// Find template with ID 51
+const template51 = templates.find((template) => template.id === 51);
 
 const SelectTemplate = ({ onBack, onNext }) => {
   const navigate = useNavigate();
-  const [subCategory, setSubCategory] = useState(null);
-  const userStep = useSelector((state) => state.auth?.user?.step);
 
+  // Set templateId to 51 on component mount
   useEffect(() => {
-    setSubCategory(sessionStorage.getItem("subCategory"));
-    if (userStep === 5 || userStep === 4) navigate("/");
-  }, [userStep, navigate]);
+    sessionStorage.setItem("templateId", "51");
+  }, []);
 
-  const handleSubmit = (id) => {
-    sessionStorage.setItem("templateId", id);
-    navigate("/auth/preview-template")
+  const handleSubmit = () => {
+    navigate("/auth/preview-template");
   };
 
-  // Filter templates based on subCategory
-  const filteredTemplates = templates.filter((template) =>
-    subCategory ? template.category === subCategory : true
-  );
-
-  const groupedTemplates = groupByCategory(filteredTemplates);
-
   return (
-    
     <div className="h-screen pb-20">
       <div className="w-full p-4">
-       
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="text-purple-600 text-sm hover:border-primary3 hover:border hover:p-1 hover:rounded-md transition-all duration-300"
+          >
+            {"< "}Back
+          </button>
+        )}
       </div>
       <Heading
         level={2}
-          size="3xl"
-           weight='600'
-           color="[#9768fe]"
+        size="3xl"
+        weight="600"
+        color="[#9768fe]"
         className="justify-center mt-4"
       >
         You're almost done
@@ -54,56 +43,49 @@ const SelectTemplate = ({ onBack, onNext }) => {
       <Heading
         level={3}
         size="3xl"
-           weight='600'
-        className=" justify-center  text-[#2d1c4d] mt-10"
+        weight="600"
+        className="justify-center text-[#2d1c4d] mt-10"
       >
-        Select Website Design
+        Your Website Design
       </Heading>
       <Text className="text-gray-500 text-[16px] mt-3 mb-4">
-        Select and Preview your preferred website design
+        Preview your selected website design
       </Text>
 
-      {/* Templates Section */}
+      {/* Template 51 Information */}
       <div className="space-y-8 overflow-y-auto mt-10 h-full pb-36">
-
-        {/* Grouped Templates */}
-        {Object.entries(groupedTemplates).map(([category, categoryTemplates]) => (
-          <div key={category}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {categoryTemplates.map((template) => (
-                <div
-                  key={template.id}
-                  className="border rounded-lg overflow-hidden shadow-lg"
-                >
-                  <img
-                    src={template.image}
-                    alt={template.title}
-                    className="w-full h-40 object-cover"
-                  />
-                  <div className="p-4">
-                    <Heading
-                      level={3}
-                      size="lg"
-                      className="text-[20px]"
-                      color="primary8"
-                    >
-                      {template.title}
-                    </Heading>
-                    <Text className="text-[16px]" color="primary8">
-                      {template.description}
-                    </Text>
-                    <ButtonSmallPurple
-                      className="mt-2 px-4 py-2 bg-primary3 text-white rounded"
-                      onClick={() => handleSubmit(template.id)}
-                    >
-                      Select
-                    </ButtonSmallPurple>
-                  </div>
-                </div>
-              ))}
+        <div className="border rounded-lg overflow-hidden shadow-lg max-w-md mx-auto">
+          {template51.image ? (
+            <img
+              src={template51.image}
+              alt={template51.title}
+              className="w-full h-40 object-cover"
+            />
+          ) : (
+            <div className="w-full h-40 bg-gray-200 flex items-center justify-center text-gray-500">
+              No Image Available
             </div>
+          )}
+          <div className="p-4">
+            <Heading
+              level={3}
+              size="lg"
+              className="text-[20px]"
+              color="primary8"
+            >
+              {template51.title}
+            </Heading>
+            <Text className="text-[16px]" color="primary8">
+              {template51.description}
+            </Text>
+            <ButtonSmallPurple
+              className="mt-2 px-4 py-2 bg-primary3 text-white rounded"
+              onClick={handleSubmit}
+            >
+              Preview Template
+            </ButtonSmallPurple>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

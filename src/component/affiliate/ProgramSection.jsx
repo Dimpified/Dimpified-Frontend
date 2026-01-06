@@ -34,7 +34,7 @@ const ProgramSection = () => {
             <BsFillLayersFill className="w-full h-auto text-white p-2.5" />
           </div>
           <div className="font-semibold text-lg font-body">
-            Two Affiliate Tiers
+            Two Sales Partner Tiers
           </div>
           <div className="font-sans">
             Whether you&apos;re focusing on Dimpified platform subscriptions or
@@ -53,7 +53,7 @@ const ProgramSection = () => {
             Exclusive Access
           </div>
           <div className="font-sans">
-            As an affiliate, you&apos;ll receive access to promotional
+            As a sales partner, you&apos;ll receive access to promotional
             materials, special offers, and support to help you succeed.
           </div>
         </div>

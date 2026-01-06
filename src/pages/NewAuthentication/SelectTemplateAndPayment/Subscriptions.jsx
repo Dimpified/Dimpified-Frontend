@@ -3,6 +3,7 @@ import { ButtonSmallWhite } from "../../../component/Buttons";
 import { Heading, Text } from "../../../component/Text";
 import SubscriptionType from "./Subcription/SubscriptionType";
 import { useNavigate } from "react-router-dom";
+
 const Subscriptions = () => {
   const navigate = useNavigate();
 

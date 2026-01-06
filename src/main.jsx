@@ -1,3 +1,4 @@
+import "./analytics/mixpanel";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -14,15 +15,15 @@ const clientId = import.meta.env.VITE_GOOGLE_CLIENT_KEY;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-      <GoogleOAuthProvider clientId={clientId}>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Router>
-          <App />
-          <ToastContainer />
-        </Router>
-      </PersistGate>
-    </Provider>
+    <GoogleOAuthProvider clientId={clientId}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router>
+            <App />
+            <ToastContainer />
+          </Router>
+        </PersistGate>
+      </Provider>
     </GoogleOAuthProvider>
   </StrictMode>
 );

@@ -90,29 +90,29 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
   const testimonials = [
     {
       id: 1,
-      text: details?.Reviews?.header1,
+      text: details?.Reviews?.summary1 || "",
       author: {
-        name: details?.Reviews?.title1,
-        role: details?.Gallery?.summary1,
-        image: details?.Gallery?.image1,
+        name: details?.Reviews?.header1 || "",
+        role: details?.Reviews?.title1 || "",
+        image: details?.Reviews?.image1 || "",
       },
     },
     {
-      id: 2,
-      text: details?.Reviews?.header2,
+      id: 1,
+      text: details?.Reviews?.summary2 || "",
       author: {
-        name: details?.Reviews?.title2,
-        role: details?.Gallery?.summary2,
-        image: details?.Gallery?.image2,
+        name: details?.Reviews?.header2 || "",
+        role: details?.Reviews?.title2 || "",
+        image: details?.Reviews?.image2 || "",
       },
     },
     {
-      id: 3,
-      text: details?.Reviews?.header3,
+      id: 1,
+      text: details?.Reviews?.summary3 || "",
       author: {
-        name: details?.Reviews?.title3,
-        role: details?.Gallery?.summary3,
-        image: details?.Gallery?.image3,
+        name: details?.Reviews?.header3 || "",
+        role: details?.Reviews?.title3 || "",
+        image: details?.Reviews?.image3 || "",
       },
     },
   ];
@@ -145,11 +145,6 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
 
   const featuresLeft = [
     {
-      keyTitle: "header1",
-      keyDesc: "summary1",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-1.png",
-    },
-    {
       keyTitle: "header2",
       keyDesc: "summary2",
       icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-2.png",
@@ -166,16 +161,6 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
       keyTitle: "header4",
       keyDesc: "summary4",
       icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-4.png",
-    },
-    {
-      keyTitle: "date1",
-      keyDesc: "author1",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-5.png",
-    },
-    {
-      keyTitle: "date2",
-      keyDesc: "author2",
-      icon: "https://gfa-tech.com/dimp-template-images/dentist/icon-why-us-6.png",
     },
   ];
 
@@ -274,7 +259,7 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
               {sanitizeContent(details && details.hero.title1)}
             </h1>
             <p className="mt-4 text-gray-600">
-              {sanitizeContent(details && details.hero.title2)}
+              {sanitizeContent(details && details.hero.summary1)}
             </p>
 
             <div className="mt-6">
@@ -282,25 +267,15 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
                 onClick={handleModalOpen}
                 className="bg-[#1E84B5] text-white px-6 py-3 rounded-full hover:bg-[#0F3A51] transition"
               >
-                {sanitizeContent(details && details.hero.buttonText1)} →
+                {sanitizeContent(details && details.hero.buttonText1)}
               </button>
             </div>
 
             {/* Google Rating */}
             <div className="mt-6 flex items-center space-x-3 text-gray-700">
               <span className="text-lg">
-                {" "}
-                {sanitizeContent(details && details.hero.summary1)}
+                {sanitizeContent(details && details.hero.summary2)}
               </span>
-              <div className="flex space-x-1">
-                {Array(5)
-                  .fill(0)
-                  .map((_, index) => (
-                    <span key={index} className="text-yellow-500">
-                      ⭐
-                    </span>
-                  ))}
-              </div>
             </div>
           </div>
 
@@ -322,7 +297,7 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
               />
               <div className="ml-3">
                 <h3 className="font-bold text-gray-900">
-                  {sanitizeContent(details && details.hero.summary2)}
+                  {sanitizeContent(details && details.hero.title2)}
                 </h3>
                 <p className="text-gray-600 text-sm">
                   {sanitizeContent(details && details.hero.summary3)}
@@ -362,7 +337,7 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
             <FaPhone className="text-xl" />
             <div>
               <h3 className="font-semibold text-lg">
-                {sanitizeContent(details && details.LargeCta.header1)}
+                {sanitizeContent(details && details.aboutUs.text1)}
               </h3>
               <p className="text-sm">Call on : {userDetails?.phoneNumber}</p>
             </div>
@@ -370,11 +345,25 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
           <div className="flex items-center gap-3 mb-3">
             <FaClock className="text-xl" />
             <div>
-              <h3 className="font-semibold text-lg">
-                {sanitizeContent(details && details.LargeCta.header3)}
-              </h3>
+              <p className="font-semibold text-lg">
+                {sanitizeContent(
+                  details &&
+                    details.aboutUs.text2.split(" ")[0] +
+                      " " +
+                      (details &&
+                        details.aboutUs.text2.split(" ")[1] +
+                          " " +
+                          details.aboutUs.text2.split(" ")[2] +
+                          " " +
+                          details.aboutUs.text2.split(" ")[3] +
+                          " " +
+                          details.aboutUs.text2.split(" ")[4])
+                )}
+              </p>
               <p className="text-sm">
-                {sanitizeContent(details && details.LargeCta.summary1)}
+                {sanitizeContent(
+                  details && details.aboutUs.text2.split(" ").slice(5).join(" ")
+                )}
               </p>
             </div>
           </div>
@@ -382,9 +371,7 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
             onClick={handleModalOpen}
             className="bg-[#1E84B5] hover:bg-[#0F3A51] transition duration-300 flex items-center gap-2 px-5 py-2 rounded-full text-white"
           >
-            Make An Appointment{" "}
-            {sanitizeContent(details && details.LargeCta.buttonText1)}{" "}
-            <span className="text-lg">➜</span>
+            {sanitizeContent(details && details.aboutUs.buttonText1)}{" "}
           </button>
         </div>
         {/* About Us Section */}
@@ -398,8 +385,8 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
                 alt="Dental Treatment"
                 className="w-full rounded-lg shadow-lg"
               />
-              <div className="absolute top-8 left-8 bg-[#0F3A51] text-white px-4 py-1 rounded-full text-sm">
-                {sanitizeContent(details && details.aboutUs.buttonText2)}
+              <div className="absolute top-16 left-8 bg-[#0F3A51] text-white px-4 py-1 rounded-full text-sm uppercase">
+                More than 1000+ Happy Patients
               </div>
             </div>
             {/* Second Image (Smaller, Overlapping) */}
@@ -420,26 +407,25 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
             <h2 className="text-4xl font-bold text-gray-900 mt-2">
               {sanitizeContent(details && details.aboutUs.title2)}
             </h2>
-            <p className="text-gray-600 mt-4">
-              {sanitizeContent(details && details.aboutUs.text1)}
-            </p>
 
             {/* Key Points (Prevent Breaking) */}
             <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 min-w-0">
-              {details?.aboutUs?.text2
-                ?.split("||") // Split by "||"
-                .filter((text) => text.trim() !== "") // Remove empty items if any
-                .map((text, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center gap-3 whitespace-nowrap flex-shrink-0"
-                  >
-                    <span className="bg-[#0FA8E3] text-white p-2 rounded-full">
-                      <FaCheck />
-                    </span>
-                    <span className="font-semibold">{text.trim()}</span>
-                  </li>
-                ))}
+              {[
+                "Experienced Team",
+                "Comprehensive Services",
+                "State-Of-The-Art Tech",
+                "Emergency Dental Services",
+              ].map((text, index) => (
+                <li
+                  key={index}
+                  className="flex items-center gap-3 whitespace-nowrap flex-shrink-0"
+                >
+                  <span className="bg-[#0FA8E3] text-white p-2 rounded-full">
+                    <FaCheck />
+                  </span>
+                  <span className="font-semibold">{text}</span>
+                </li>
+              ))}
             </ul>
 
             {/* Button */}
@@ -447,8 +433,7 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
               href="#services"
               className="mt-6 bg-[#1E84B5] hover:bg-[#0F3A51] transition duration-300 flex items-center gap-2 px-6 py-3 rounded-full text-white w-56 font-semibold"
             >
-              {sanitizeContent(details && details.aboutUs.buttonText1)}{" "}
-              <span className="text-lg">➜</span>
+              {sanitizeContent(details && details.aboutUs.buttonText2)}{" "}
             </a>
           </div>
         </div>
@@ -497,8 +482,7 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
         </div>
         <div className="mt-16 text-center">
           <p className="text-gray-600 text-lg">
-            We believe in using the latest technology and techniques to ensure
-            the best outcomes for our patients.
+            {sanitizeContent(details && details.Vision.visiomheader)}
           </p>
         </div>
       </section>
@@ -512,11 +496,11 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
               className="w-full h-auto object-cover opacity-70"
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
-              <p className="text-sm uppercase tracking-wide">+ Visit Clinic</p>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">
-                {sanitizeContent(
-                  details && details.Statistics.section1paragraphy
-                )}
+               <p className="text-sm uppercase tracking-wide">
+                + {sanitizeContent(details && details.Statistics.section1span)}
+              </p>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2">
+                {sanitizeContent(details && details.Statistics.section2span)}
               </h2>
               {/* Play Video Button */}
               <button
@@ -554,21 +538,25 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
 
         {/* Counter Section */}
         <div className="max-w-7xl bg-white mx-auto px-6 lg:px-12 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { key: "section1icon", value: details?.Statistics?.section1icon },
+         {[
             {
-              key: "section2header",
-              value: details?.Statistics?.section2header,
+              number: details.Statistics.section1header,
+              label: details.Statistics.section1paragraphy,
             },
             {
-              key: "section2paragraphy",
-              value: details?.Statistics?.section2paragraphy,
+              number: details.Statistics.section2header,
+              label: details.Statistics.section2paragraphy,
             },
-            { key: "section2span", value: details?.Statistics?.section2span },
+            {
+              number: details.Statistics.section3header,
+              label: details.Statistics.section3paragraphy,
+            },
+            {
+              number: details.Statistics.section4header,
+              label: details.Statistics.section4paragraphy,
+            },
           ].map((item, index) => {
-            const match = item.value?.match(/^(\d+[K+]*)\s*(.+)$/);
-            const number = match ? match[1] : item.value;
-            const label = match ? match[2] : "";
+          
 
             <div key={index} className="text-center">
               <h2 className="text-3xl font-bold text-gray-900 ">
@@ -583,16 +571,16 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
       </section>
       <section className="bg-[#E8F4FA] py-16">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-[#1E84B5] text-sm font-semibold">
-            {sanitizeContent(details && details.Blog.content4)}
+           <p className="text-[#1E84B5] text-sm font-semibold">
+            {sanitizeContent(details && details.Blog.header1)}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
             <span className="text-[#1E84B5]">
-              {sanitizeContent(details && details.Blog.author4)}
+              {sanitizeContent(details && details.Blog.summary1)}
             </span>
           </h2>
           <p className="text-gray-600 mt-4">
-            {sanitizeContent(details && details.Blog.date4)}
+            {sanitizeContent(details && details.Blog.content1)}
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center mt-10 gap-8">
@@ -672,11 +660,11 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
               </p>
               <h2 className="text-3xl md:text-4xl font-bold mt-2">
                 <span className="text-[#1E84B5] ">
-                  {sanitizeContent(details && details.Events.summary)}
+                 {sanitizeContent(details && details.Events.section1header)}
                 </span>
               </h2>
               <p className="mt-4 text-gray-600">
-                {sanitizeContent(details && details.Events.section4paragraphy)}
+                 {sanitizeContent(details && details.Events.summary)}
               </p>
 
               {/* Accordion */}
@@ -789,16 +777,13 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
       <section className="bg-blue-50 py-16">
         <div className="container mx-auto text-center px-4">
           <h3 className="uppercase tracking-widest text-[#1E84B5]">
-            {sanitizeContent(details && details.contactUs.heading4)}
+            + Our Team
           </h3>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[#0F3A51]">
-            <span className="text-[#1E84B5]">
-              {" "}
-              {sanitizeContent(details && details.contactUs.heading6)}{" "}
-            </span>
+            <span className="text-[#1E84B5]">Our Friendly</span> Dentists Team
           </h2>
           <p className="text-gray-600 mt-4">
-            {sanitizeContent(details && details.contactUs.heading5)}
+            We are committed to sustainability. Eco-friendly initiatives.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
             {teamMembers.map((member, index) => (
@@ -843,19 +828,18 @@ const FirstDentist = ({ details, subdomain, userDetails }) => {
       <div className="py-12 px-6 min-h-screen bg-white">
         <div className=" flex flex-col h-full  py-4 px-4 lg:px-32">
           {/* Title Section */}
-          <div className="text-center mb-10">
+    <div className="text-center mb-10">
             <p className="text-[#1E84B5] uppercase tracking-widest">
-              {sanitizeContent(details && details.contactUs.heading3)}
+              Testimonial
             </p>
             <h2 className="text-3xl font-bold text-[#0F3A51]">
-              <span className="text-[#1E84B5]">
-                {sanitizeContent(details && details.contactUs.heading2)}
-              </span>
+              <span className="text-[#1E84B5]">What our</span> Clients Say
             </h2>
             <p className="text-gray-600 mt-2">
-              {sanitizeContent(details && details.contactUs.heading5)}
+              We are committed to sustainability and eco-friendly initiatives.
             </p>
           </div>
+
 
           {/* Content Section */}
           <div className="grid md:grid-cols-2 items-center">

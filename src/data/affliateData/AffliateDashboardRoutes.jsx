@@ -43,12 +43,12 @@ export const DashboardMenu = [
     icon: <ImProfile />,
     link: "/affiliate/dashboard/profile",
   },
-  {
-    id: uuid(),
-    title: "Onboarding",
-    icon: <FaPersonChalkboard />,
-    link: "/affiliate/dashboard/onboard",
-  },
+  // {
+  //   id: uuid(),
+  //   title: "Onboarding",
+  //   icon: <FaPersonChalkboard />,
+  //   link: "/affiliate/dashboard/onboard",
+  // },
 ];
 
 export default DashboardMenu;

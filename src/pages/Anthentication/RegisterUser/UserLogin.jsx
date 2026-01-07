@@ -57,7 +57,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
-export default function FreeOnboardingLanding() {
+export default function UserLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error, user } = useSelector((state) => state.auth);
@@ -400,10 +400,4 @@ export default function FreeOnboardingLanding() {
       </div>
     </div>
   );
-<<<<<<< HEAD
-};
-
-export default UserLogin;
-=======
 }
->>>>>>> 1142a0aa4f64df4e916d9cc125afe8c6c72a7424

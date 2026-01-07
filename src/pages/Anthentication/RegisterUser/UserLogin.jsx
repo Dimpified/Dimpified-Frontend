@@ -71,26 +71,47 @@ export default function FreeOnboardingLanding() {
   });
 
   const handleNavigation = (step, plan) => {
-    if (step === 1) {
-      navigate("/auth/email-verification");
-    } else if (step === 2) {
-      navigate("/auth/business-type");
-    } else if (step === 3) {
-      navigate("/auth/business-info");
-    } else if (step === 4) {
-      navigate("/auth/select-template");
-    } else if (step === 5) {
-      navigate("/auth/select-template");
-    } else if (step === 6) {
-      navigate("/auth/edit-template");
-    } else if (step === 7) {
-      if (plan && plan.toLowerCase() === "free") {
-        navigate("/free/creator/dashboard/overview");
-      } else {
-        navigate("/creator/dashboard/overview");
-      }
-    } else {
-      navigate("/auth/personal-Information");
+    const isFreePlan = plan?.toLowerCase() === "free";
+
+    switch (step) {
+      case 1:
+        navigate(
+          isFreePlan
+            ? "/free/auth/email-verification"
+            : "/auth/email-verification"
+        );
+        break;
+
+      case 2:
+        navigate(
+          isFreePlan ? "/free/auth/business-identity" : "/auth/business-type"
+        );
+        break;
+
+      case 3:
+        navigate("/auth/business-info");
+        break;
+
+      case 4:
+      case 5:
+        navigate("/auth/select-template");
+        break;
+
+      case 6:
+        navigate("/auth/edit-template");
+        break;
+
+      case 7:
+        navigate(
+          isFreePlan
+            ? "/free/creator/dashboard/overview"
+            : "/creator/dashboard/overview"
+        );
+        break;
+
+      default:
+        navigate("/auth/personal-information");
+        break;
     }
   };
 
@@ -103,6 +124,7 @@ export default function FreeOnboardingLanding() {
           password: data.password,
         })
       );
+      console.log("Login resultAction:", resultAction);
 
       if (creatorLogin.rejected.match(resultAction)) {
         const errorPayload = resultAction.payload;
@@ -378,4 +400,10 @@ export default function FreeOnboardingLanding() {
       </div>
     </div>
   );
+<<<<<<< HEAD
+};
+
+export default UserLogin;
+=======
 }
+>>>>>>> 1142a0aa4f64df4e916d9cc125afe8c6c72a7424

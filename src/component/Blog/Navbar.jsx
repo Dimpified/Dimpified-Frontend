@@ -38,7 +38,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/features"
-                className="text-[#9810FA] font-semibold cursor-pointer"
+                className="hover:text-[#9810FA] font-semibold cursor-pointer"
               >
                 Features
               </Link>

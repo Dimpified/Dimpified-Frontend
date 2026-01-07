@@ -74,27 +74,47 @@ const UserLogin = () => {
 
   // Helper function to handle navigation based on step and plan
   const handleNavigation = (step, plan) => {
-    if (step === 1) {
-      navigate("/auth/email-verification");
-    } else if (step === 2) {
-      navigate("/auth/business-type");
-    } else if (step === 3) {
-      navigate("/auth/business-info");
-    } else if (step === 4) {
-      navigate("/auth/select-template");
-    } else if (step === 5) {
-      navigate("/auth/select-template");
-    } else if (step === 6) {
-      navigate("/auth/edit-template");
-    } else if (step === 7) {
-      // Check if plan is free
-      if (plan && plan.toLowerCase() === "free") {
-        navigate("/free/creator/dashboard/overview");
-      } else {
-        navigate("/creator/dashboard/overview");
-      }
-    } else {
-      navigate("/auth/personal-Information");
+    const isFreePlan = plan?.toLowerCase() === "free";
+
+    switch (step) {
+      case 1:
+        navigate(
+          isFreePlan
+            ? "/free/auth/email-verification"
+            : "/auth/email-verification"
+        );
+        break;
+
+      case 2:
+        navigate(
+          isFreePlan ? "/free/auth/business-identity" : "/auth/business-type"
+        );
+        break;
+
+      case 3:
+        navigate("/auth/business-info");
+        break;
+
+      case 4:
+      case 5:
+        navigate("/auth/select-template");
+        break;
+
+      case 6:
+        navigate("/auth/edit-template");
+        break;
+
+      case 7:
+        navigate(
+          isFreePlan
+            ? "/free/creator/dashboard/overview"
+            : "/creator/dashboard/overview"
+        );
+        break;
+
+      default:
+        navigate("/auth/personal-information");
+        break;
     }
   };
 
@@ -108,7 +128,7 @@ const UserLogin = () => {
         })
       );
       console.log("Login resultAction:", resultAction);
-      
+
       if (creatorLogin.rejected.match(resultAction)) {
         const errorPayload = resultAction.payload;
         showToast(errorPayload);
@@ -118,7 +138,7 @@ const UserLogin = () => {
           resultAction.payload.user.step
         );
         showToast(resultAction.payload.message);
-        
+
         if (resultAction.payload.user.ecosystemDomain) {
           dispatch(
             setEcosystemDomain(resultAction.payload.user.ecosystemDomain)

@@ -65,11 +65,12 @@ export default function FreeOnboardingPreSignup() {
       <div className="w-full lg:w-2/3 flex flex-col px-6 sm:px-12 md:px-16 lg:px-20 py-8 relative z-10">
         {/* Logo */}
         <div className="mb-12 lg:mb-16">
-          <img
+         <Route to="/"><img
             src={Logo}
             alt="Dimipified Logo"
-            className="h-6 sm:h-8 w-auto object-contain"
+            className="h-6  w-auto object-contain"
           />
+          </Route>
         </div>
 
         {/* Main Content - Centered */}
@@ -77,10 +78,10 @@ export default function FreeOnboardingPreSignup() {
           {/* Heading */}
           <div className="mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-10">
-              Welcome Back on Dimipified Business.
+              Create a Dimpified Business Account.
             </h1>
-            <p className="text-sm sm:text-base text-gray-600 mb-20">
-              Start your stress free business management journey here
+            <p className="text-sm sm:text-base text-gray-600 mb-6">
+              Kindly choose a sign-up option
             </p>
           </div>
 
@@ -120,7 +121,7 @@ export default function FreeOnboardingPreSignup() {
 
             {/* Email Sign In - Wrapped with Link */}
             <Route to="/free/auth/personal-Information" className="block">
-              <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 sm:py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 border border-gray-200">
+              <button className="w-full bg-purple-600 hover:bg-purple-500 text-white font-medium py-3 sm:py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 border border-gray-200">
                 <Mail className="w-5 h-5" />
                 <span className="text-sm sm:text-base">Sign Up with Email</span>
               </button>

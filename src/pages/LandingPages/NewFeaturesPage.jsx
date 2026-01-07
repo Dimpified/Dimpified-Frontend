@@ -86,7 +86,7 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link to="/auth/personal-information">
+              <Link to="/auth/landing">
                 <button className="px-8 py-3.5 bg-gradient-to-r from-[#9810FA] to-purple-600 text-white rounded-full font-semibold hover:shadow-xl hover:shadow-purple-200 transition-all duration-300 flex items-center gap-2 group">
                   Start Free Trial
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -688,7 +688,7 @@ const GrowthSection = () => {
           </div>
 
           <div className="mt-8 pt-8 border-t border-gray-100 text-center">
-            <Link to="/auth/personal-information">
+            <Link to="/auth/landing">
               <button className="px-10 py-4 bg-gradient-to-r from-[#9810FA] to-purple-600 text-white rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-2">
                 Sign Up Free for 14 Days
                 <ArrowRight className="w-5 h-5" />

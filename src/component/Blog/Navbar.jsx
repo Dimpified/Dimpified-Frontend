@@ -37,7 +37,7 @@ const Navbar = () => {
           <ul className="hidden lg:flex items-center gap-10 text-gray-700 font-medium">
             <li>
               <Link
-                to="/#features"
+                to="/features"
                 className="text-[#9810FA] font-semibold cursor-pointer"
               >
                 Features
@@ -174,7 +174,10 @@ const Navbar = () => {
                 Log in
               </button>
             </Link>
-            <Link to="/auth/landing" onClick={() => setIsOpen(false)}>
+            <Link
+              to="/auth/landing"
+              onClick={() => setIsOpen(false)}
+            >
               <button className="w-full py-3 bg-gradient-to-r from-[#9810FA] to-purple-600 hover:from-purple-700 hover:to-[#3F0994] text-white rounded-full font-semibold transition-all">
                 Get Started Now
               </button>

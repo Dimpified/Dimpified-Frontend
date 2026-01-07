@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import RightImage from "../../../../assets/FreeBooking/FreeAuthImage.png";
-
+import Logo from "../../../../assets/NewAuthImage/NewLogo.png";
+import { Link as Route } from "react-router-dom";
 const FreeOnboardingLayout = ({
   children,
   currentStep = 1,
@@ -28,6 +29,15 @@ const FreeOnboardingLayout = ({
           !rightImage ? "lg:max-w-7xl lg:mx-auto" : ""
         }`}
       >
+        <div className="mb-6 lg:mb-8">
+          <Route to="/">
+            <img
+              src={Logo}
+              alt="Dimipified Logo"
+              className="h-6  w-auto object-contain"
+            />
+          </Route>
+        </div>
         {/* Back Button */}
         <button
           onClick={handleBack}
@@ -62,7 +72,7 @@ const FreeOnboardingLayout = ({
               <React.Fragment key={step}>
                 <div className="flex flex-col items-center gap-2">
                   <div
-                    className={`flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center text-sm lg:text-lg font-bold transition-all shadow-md ${
+                    className={`flex-shrink-0 w-6 h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center text-sm lg:text-lg font-bold transition-all shadow-md ${
                       step === currentStep
                         ? "bg-purple-600 text-white scale-110 ring-4 ring-purple-200"
                         : step < currentStep

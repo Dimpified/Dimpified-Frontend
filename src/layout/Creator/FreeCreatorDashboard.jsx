@@ -48,7 +48,7 @@ const FreeDashboardLayout = ({ children }) => {
       <div className="hidden lg:flex flex-col bg-[#F4F1FF] border-r border-[#BBB2B2] transition-all duration-300 p-2 w-64">
         {/* Logo */}
         <div className="py-6 px-4 flex justify-start">
-          <div className="bg-[#fff] p-2">
+          <div className=" p-2">
             <Link to="/">
               <img
                 src={Logo}

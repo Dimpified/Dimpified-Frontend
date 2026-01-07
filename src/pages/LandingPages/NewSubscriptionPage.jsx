@@ -324,7 +324,7 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
                   ))}
                 </div>
 
-                <Link to="/auth/personal-information">
+                <Link to="/auth/landing">
                   <button
                     className={`w-full py-3 rounded-xl font-bold transition-all duration-300 ${
                       plan.popular
@@ -669,7 +669,7 @@ const CTASection = () => {
                   Start Free Today
                 </h3>
                 <p className="text-gray-600 mb-6">No credit card required</p>
-                <Link to="/auth/personal-information">
+                <Link to="/auth/landing">
                   <button className="w-full py-4 bg-gradient-to-r from-[#9810FA] to-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2">
                     Get Started Free for 14 Days
                     <ArrowRight className="w-5 h-5" />

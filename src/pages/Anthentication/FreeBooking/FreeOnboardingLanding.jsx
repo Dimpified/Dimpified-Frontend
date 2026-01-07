@@ -37,13 +37,15 @@ export default function FreeOnboardingLanding() {
       <div className=" ">
         <div className="w-full gap-8 lg:gap-12 flex flex-col lg:flex-row items-center  mx-auto">
           {/* Left Content Section */}
-          <div className="w-full lg:w-2/3 px-4 py-8 md:py-12 lg:py-16 mx-auto ">
-            <div className="flex items-center gap-2 top-0 left-0 ml-4 sm:ml-8 md:ml-16 lg:ml-28 mb-8">
-              <img
-                src={Logo}
-                alt="Dimpified Logo"
-                className="h-6 sm:h-8 w-auto object-contain"
-              />
+          <div className="w-full lg:w-2/3 px-4  mx-auto ">
+            <div className="flex items-center gap-2 top-0 left-0 ml-4 sm:ml-8 md:ml-16 lg:ml-28 my-8">
+              <Route to="/">
+                <img
+                  src={Logo}
+                  alt="Dimipified Logo"
+                  className="h-6  w-auto object-contain"
+                />
+              </Route>
             </div>
             <div className="relative z-10  space-y-6 md:space-y-8 lg:space-y-10 mx-auto px-4 py-8 md:py-12 lg:py-16 items-center justify-center flex flex-col">
               {/* Logo */}

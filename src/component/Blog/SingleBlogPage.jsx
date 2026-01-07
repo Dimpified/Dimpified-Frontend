@@ -822,7 +822,7 @@ const SingleBlogPage = () => {
       <section className="py-16 px-6 md:px-32 lg:px-60 mx-auto">
         {id && currentBlog ? (
           <article>
-            <div className="mb-6">
+            <div className="mb-6 ">
               <div className="flex flex-wrap items-center gap-7 mb-2 mt-10">
                 <span className="px-4 py-1.5 text-sm font-semibold bg-purple-100 text-purple-600 uppercase rounded-full">
                   {currentBlog.category || "Uncategorized"}
@@ -832,7 +832,7 @@ const SingleBlogPage = () => {
                 </span>
               </div>
               
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 mt-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 mt-8 md:mb-16">
                 {currentBlog.title}
               </h1>
             </div>

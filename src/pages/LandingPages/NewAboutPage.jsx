@@ -103,7 +103,7 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/auth/personal-information">
+              <Link to="/auth/landing">
                 <button className="px-8 py-3.5 bg-gradient-to-r from-[#9810FA] to-purple-600 text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 flex items-center gap-2">
                   Start Free Trial
                   <ArrowRight className="w-4 h-4" />
@@ -439,7 +439,7 @@ const UseCasesSection = () => {
                     ))}
                   </div>
 
-                  <Link to="/auth/personal-information">
+                  <Link to="/auth/landing">
                     <button className="w-full py-3 bg-gradient-to-r from-[#9810FA] to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:bg-gradient-to-r group-hover:from-purple-700 group-hover:to-[#3F0994]">
                       Get Started
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -573,7 +573,7 @@ const ImpactStats = () => {
                 Join the Dimpified community today
               </p>
             </div>
-            <Link to="/auth/personal-information">
+            <Link to="/auth/landing">
               <button className="px-8 py-3.5 bg-white text-[#9810FA] rounded-full font-bold hover:shadow-2xl transition-all duration-300 whitespace-nowrap flex items-center gap-2">
                 Start Free Trial
                 <ArrowRight className="w-4 h-4" />

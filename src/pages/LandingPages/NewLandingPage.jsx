@@ -78,7 +78,7 @@ const items = [
 
 const Hero = () => {
   return (
-    <section className="md:py-24 py-16 px-6 lg:px-20 bg-gradient-to-b from-white to-[#F3E8FF] relative">
+    <section className="md:py-24 py-16 px-6 lg:px-20 bg-gradient-to-b from-white via-[#FBF1FF] to-white relative">
       {/* Decorative star images */}
       <img
         src="https://i.imghippo.com/files/rM6729ODI.png"
@@ -98,7 +98,9 @@ const Hero = () => {
         </p>
 
         <h1 className="text-3xl leading-snug font-extrabold text-gray-900 lg:text-6xl lg:leading-tight">
-          Get Booked Faster, <br /> Manage Time Smarter
+          Get Booked Faster, <br /> <span className="bg-gradient-to-r from-[#9810FA] via-purple-600 to-pink-500 bg-clip-text text-transparent animate-gradient">
+                Manage Time Smarter
+              </span>
         </h1>
 
         <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-base lg:text-lg">
@@ -106,7 +108,7 @@ const Hero = () => {
           receive instant payments, and grow your business effortlessly.
         </p>
 
-        <Link to="/auth/personal-information">
+        <Link to="/auth/landing">
           <button className="mt-6 lg:mt-8 px-8 py-3 bg-[#9810FA] hover:bg-[#3F0994]   text-white rounded-full text-lg font-semibold Get Started Now-lg">
             Get Started Now
           </button>
@@ -376,7 +378,7 @@ const WhyChoose = () => {
       </div>
 
       <div className="mt-16 text-center">
-        <Link to="/auth/personal-information">
+        <Link to="/auth/landing">
           {" "}
           <button className="px-8 py-3 bg-[#9810FA] hover:bg-[#3F0994]   text-white rounded-full text-lg font-semibold Get Started Now hover:bg-[#9810FA] hover:bg-[#3F0994]  ">
             Get Started Now
@@ -931,7 +933,7 @@ const SubscriptionSection = () => {
           </div>
 
           <div className="p-8">
-            <Link to="/auth/personal-information">
+            <Link to="/auth/landing">
               <button className="bg-[#9810FA] hover:bg-[#3F0994] text-white py-3 rounded-full font-medium w-full transition-colors duration-200">
                 Get Started Now
               </button>
@@ -987,7 +989,7 @@ const SubscriptionSection = () => {
           </div>
 
           <div className="p-8">
-            <Link to="/auth/personal-information">
+            <Link to="/auth/landing">
               <button className="bg-[#9810FA] hover:bg-[#3F0994] text-white py-3 rounded-full font-medium w-full transition-colors duration-200">
                 Get Started Now
               </button>
@@ -1058,7 +1060,7 @@ const SubscriptionSection = () => {
           </div>
 
           <div className="p-8">
-            <Link to="/auth/personal-information">
+            <Link to="/auth/landing">
               <button className="bg-[#9810FA] hover:bg-[#3F0994] text-white py-3 rounded-full font-medium w-full transition-colors duration-200">
                 Get Started Now
               </button>
@@ -1195,7 +1197,7 @@ const Hero2 = () => {
         One booking at a time
       </h1>
 
-      <Link to="/auth/personal-information">
+      <Link to="/auth/landing">
         {" "}
         <button className="mt-6 bg-white text-[#6A0DAD] font-semibold py-3 px-8 rounded-full hover:opacity-90 transition">
           Get Started Now

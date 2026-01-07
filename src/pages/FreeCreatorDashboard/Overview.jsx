@@ -31,6 +31,7 @@ const FreeOverview = () => {
 
   const userRole = useSelector((state) => state.auth.user?.role);
   const creatorId = useSelector((state) => state.auth.user?.creatorId);
+  const name = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const ecosystemDomain = useSelector((state) => state.ecosystemDomain.domain);
@@ -181,7 +182,10 @@ const FreeOverview = () => {
 
           {/* Welcome Card */}
           <div className="bg-gradient-to-r from-[#9F68FE] to-[#FFFFFF] rounded-2xl p-8 mb-6 text-white">
-            <h3 className="text-2xl font-bold mb-4">Welcome Back Emmanuel!</h3>
+            <h3 className="text-2xl font-bold mb-4">
+              {" "}
+              Welcome Back {name?.fullName || "unknown User"}!
+            </h3>
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2 bg-white bg-opacity-20 rounded-full px-4 py-2">
                 <span className="text-base whitespace-nowrap">

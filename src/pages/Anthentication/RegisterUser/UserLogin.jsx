@@ -1,9 +1,11 @@
-import React from "react";
+import { Link, Globe } from "lucide-react";
+import LoginImage from "../../../assets/NewAuthImage/Step134.png";
+import Logo from "../../../assets/NewAuthImage/NewLogo.png";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   creatorLogin,
@@ -15,10 +17,7 @@ import { setEcosystemPlan } from "../../../features/ecosystemPlan";
 import { setEcosystemStatus } from "../../../features/ecosystemStatus";
 import { LongInputWithPlaceholder } from "../../../component/Inputs";
 import { ButtonLongPurple } from "../../../component/Buttons";
-import LoginImage from "../../../assets/NewAuthImage/Step134.png";
-import Logo from "../../../assets/NewAuthImage/NewLogo.png";
 
-// Google SVG logo
 const GoogleLogo = () => (
   <svg
     width="20"
@@ -47,7 +46,6 @@ const GoogleLogo = () => (
   </svg>
 );
 
-// Define the Yup validation schema
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -59,7 +57,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
-const UserLogin = () => {
+export default function FreeOnboardingLanding() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error, user } = useSelector((state) => state.auth);
@@ -72,7 +70,6 @@ const UserLogin = () => {
     resolver: yupResolver(schema),
   });
 
-  // Helper function to handle navigation based on step and plan
   const handleNavigation = (step, plan) => {
     const isFreePlan = plan?.toLowerCase() === "free";
 
@@ -133,10 +130,6 @@ const UserLogin = () => {
         const errorPayload = resultAction.payload;
         showToast(errorPayload);
       } else if (creatorLogin.fulfilled.match(resultAction)) {
-        console.log(
-          "Navigating based on step:",
-          resultAction.payload.user.step
-        );
         showToast(resultAction.payload.message);
 
         if (resultAction.payload.user.ecosystemDomain) {
@@ -157,7 +150,6 @@ const UserLogin = () => {
           );
         }
 
-        // Use helper function for navigation
         handleNavigation(
           resultAction.payload.user.step,
           resultAction.payload.user.plan
@@ -198,7 +190,6 @@ const UserLogin = () => {
           );
         }
 
-        // Use helper function for navigation
         handleNavigation(
           resultAction.payload.user.step,
           resultAction.payload.user.plan
@@ -223,143 +214,196 @@ const UserLogin = () => {
   });
 
   return (
-    <div className="flex items-center justify-center font-body">
-      <div className="w-full mx-4">
-        <div className="flex flex-col lg:flex-row justify-center items-center mx-auto overflow-hidden my-20">
-          <div className="lg:w-1/2 bg-cover bg-center space-y-3">
-            <div className="lg:mx-20 mx-4">
-              <h2 className="text-3xl items-center gap-1 justify-center font-bold flex text-primary2 mt-4">
-                <img
-                  src={Logo}
-                  alt="Dimpified Logo"
-                  className="h-6 sm:h-8 w-auto object-contain"
-                />
-                for Business
-              </h2>
+    <div className="min-h-screen bg-white relative overflow-hidden">
+      
+      {/* Background decorative stars */}
+      <div className="absolute top-[40%] left-[-50px] w-32 h-32 md:w-48 md:h-48">
+        <svg
+          className="w-full h-full opacity-80"
+          viewBox="0 0 100 196"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M-16.9349 12.5146C-11.8105 -4.1717 11.8105 -4.1717 16.9349 12.5146C20.3869 23.7549 33.6304 28.5751 43.4998 22.1835C58.1511 12.6949 76.2459 27.8782 69.4456 43.9546C64.8649 54.784 71.9116 66.9893 83.5805 68.4369C100.903 70.586 105.005 93.8481 89.462 101.792C78.9919 107.144 76.5446 121.023 84.553 129.633C96.4415 142.414 84.631 162.87 67.618 158.965C56.1577 156.334 45.3615 165.393 45.9622 177.136C46.8538 194.569 24.6573 202.648 14.1349 188.72C7.04672 179.339 -7.04674 179.339 -14.1349 188.72C-24.6573 202.648 -46.8538 194.569 -45.9622 177.136C-45.3615 165.393 -56.1577 156.334 -67.618 158.965C-84.631 162.87 -96.4415 142.414 -84.553 129.632C-76.5446 121.023 -78.9919 107.144 -89.462 101.792C-105.005 93.8481 -100.903 70.586 -83.5805 68.4369C-71.9116 66.9893 -64.8649 54.784 -69.4456 43.9546C-76.2459 27.8782 -58.1511 12.6949 -43.4998 22.1835C-33.6304 28.5751 -20.3869 23.7549 -16.9349 12.5146Z"
+            fill="#9F68FE"
+          />
+        </svg>
+      </div>
 
-              <div className="w-full lg:px-20 justify-center">
-                <p className="text-gray-500 text-xl text-center mb-4">
-                  Welcome Back on Dimpified Business. Log in to get started now
+      <div className="absolute top-[-20px] right-2/4 w-24 h-24 md:w-32 md:h-32 transform translate-x-12">
+        <svg
+          className="w-full h-full opacity-90"
+          viewBox="0 0 203 98"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M83.9168 -89.6991C89.1488 -106.736 113.265 -106.736 118.497 -89.6991C122.022 -78.223 135.543 -73.3017 145.619 -79.8274C160.578 -89.5151 179.052 -74.0132 172.11 -57.5995C167.433 -46.543 174.627 -34.0816 186.541 -32.6036C204.227 -30.4095 208.415 -6.65933 192.546 1.45146C181.856 6.91505 179.357 21.0856 187.534 29.8758C199.672 42.925 187.614 63.8105 170.244 59.8233C158.543 57.1375 147.52 66.3866 148.133 78.376C149.044 96.1744 126.382 104.423 115.638 90.2032C108.402 80.6246 94.0125 80.6246 86.7756 90.2032C76.0324 104.423 53.3703 96.1744 54.2806 78.376C54.8939 66.3866 43.8712 57.1375 32.1704 59.8233C14.8005 63.8105 2.74224 42.925 14.8802 29.8758C23.0566 21.0856 20.558 6.91505 9.86825 1.45146C-6.00081 -6.65933 -1.81302 -30.4095 15.8731 -32.6036C27.7868 -34.0816 34.9813 -46.543 30.3045 -57.5995C23.3616 -74.0132 41.836 -89.515 56.7946 -79.8274C66.8711 -73.3017 80.3925 -78.223 83.9168 -89.6991Z"
+            fill="#FDC700"
+          />
+        </svg>
+      </div>
+
+      <div className="w-full gap-8 lg:gap-12 flex flex-col lg:flex-row items-center mx-auto">
+        {/* Left Content Section */}
+        <div className="w-full lg:w-2/3 px-4 py-8 md:py-12 lg:py-16 mx-auto">
+        <div className="flex items-center gap-2 top-0 left-0 ml-4 sm:ml-8 md:ml-16 lg:ml-28 mb-8">
+            <RouterLink to="/">
+              <img
+                src={Logo}
+                alt="Dimipified Logo"
+                className="h-6 w-auto object-contain"
+              />
+            </RouterLink>
+          </div>
+          
+          <div className="relative z-10 space-y-6 md:space-y-8 lg:space-y-10 mx-auto px-4 py-8 md:py-12 lg:py-16 items-center justify-center flex flex-col">
+            <div className="w-full max-w-sm ">
+              {/* Main Heading */}
+              <div>
+                <h1 className="text-2xl md:text-3xl text-center lg:text-4xl font-bold text-gray-900 leading-tight mb-4 lg:mb-8">
+                  <span className="text-purple-600"> Hola!</span> Welcome.
+                </h1>
+              </div>
+
+              {/* Subheading */}
+              <p className="text-gray-600 text-sm md:text-base lg:text-lg text-center max-w-lg mb-6 lg:mb-8">
+                Login to your account
+              </p>
+
+              {/* Login Form */}
+              <div className="space-y-4 w-full">
+                {/* Google Login Button */}
+                {/* <button
+                  type="button"
+                  onClick={loginWithGoogle}
+                  className="w-full h-12 font-bold rounded-lg border-2 border-gray-200 p-2 flex items-center justify-center mb-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 group"
+                >
+                  <GoogleLogo />
+                  Continue with Google
+                </button>
+
+                <div className="flex gap-3 w-full items-center my-4">
+                  <hr className="flex-1 bg-[#E5E5E5]" />
+                  <p className="text-center text-gray-500">Or</p>
+                  <hr className="flex-1 bg-[#E5E5E5]" />
+                </div>
+
+                <p className="text-gray-500 mb-2 text-center">Please enter your details</p> */}
+
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
+                  <div className="w-full">
+                    <label htmlFor="email" className="text-black mb-1 block">
+                      Email *
+                    </label>
+                    <LongInputWithPlaceholder
+                      id="email"
+                      placeholder="johndoe@mail.com"
+                      {...register("email")}
+                      className="rounded-xl w-full border-2 border-gray-200 focus:border-purple-300 focus:ring-0 px-4 py-3 text-base"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="w-full">
+                    <label htmlFor="password" className="text-black mb-1 block">
+                      Password *
+                    </label>
+                    <LongInputWithPlaceholder
+                      id="password"
+                      placeholder="••••••••"
+                      type="password"
+                      {...register("password")}
+                      className="rounded-xl w-full border-2 border-gray-200 focus:border-purple-300 focus:ring-0 px-4 py-3 text-base"
+                    />
+                    {errors.password && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.password.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex justify-end items-center mb-6">
+                    <RouterLink
+                      to="/forgot-password"
+                      className="text-sm text-purple-600 hover:underline"
+                    >
+                      Forgot Password?
+                    </RouterLink>
+                  </div>
+
+                  <ButtonLongPurple
+                    type="submit"
+                    width="w-full"
+                    disabled={isLoading}
+                    className="bg-purple-600 h-14 text-lg font-semibold rounded-xl"
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center justify-center">
+                        <svg
+                          className="animate-spin h-5 w-5 mr-2 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v8h8a8 8 0 01-16 0z"
+                          ></path>
+                        </svg>
+                        Logging In...
+                      </div>
+                    ) : (
+                      "Continue"
+                    )}
+                  </ButtonLongPurple>
+                </form>
+
+                <p className="text-center text-gray-600 mt-4">
+                  Don't have an account?{" "}
+                  <RouterLink
+                    to="/auth/landing"
+                    className="text-purple-600 font-medium"
+                  >
+                    Sign Up here
+                  </RouterLink>
                 </p>
               </div>
-
-              {/* <button
-                type="button"
-                onClick={loginWithGoogle}
-                className="w-full h-12 font-bold font-body rounded border border-gray-300 p-2 flex items-center justify-center mb-4 hover:bg-gray-100 transition duration-200"
-              >
-                <GoogleLogo />
-                Continue with Google
-              </button> */}
-
-              <div className="flex gap-3 w-full items-center my-4">
-                <hr className="flex-1 bg-[#E5E5E5]" />
-                <p className="text-center text-gray-500">Or</p>
-                <hr className="flex-1 bg-[#E5E5E5]" />
-              </div>
-
-              <p className="text-gray-500 mb-2">Please enter your details</p>
-
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mb-4">
-                  <label htmlFor="email" className="text-black mb-1 block">
-                    Email *
-                  </label>
-                  <LongInputWithPlaceholder
-                    id="email"
-                    placeholder="johndoe@mail.com"
-                    {...register("email")}
-                    className="rounded-[10px] w-full"
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.email.message}
-                    </p>
-                  )}
-                </div>
-
-                <div className="mb-4">
-                  <label htmlFor="password" className="text-black mb-1 block">
-                    Password *
-                  </label>
-                  <LongInputWithPlaceholder
-                    id="password"
-                    placeholder="••••••••"
-                    type="password"
-                    {...register("password")}
-                    className="rounded-[10px] w-full"
-                  />
-                  {errors.password && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.password.message}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex justify-end items-center mb-6">
-                  <Link
-                    to="/forgot-password"
-                    className="text-sm text-purple-600 hover:underline"
-                  >
-                    Forgot Password?
-                  </Link>
-                </div>
-
-                <ButtonLongPurple
-                  type="submit"
-                  width="w-full"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center">
-                      <svg
-                        className="animate-spin h-5 w-5 mr-2 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8v8h8a8 8 0 01-16 0z"
-                        ></path>
-                      </svg>
-                      Logging In...
-                    </div>
-                  ) : (
-                    "Continue"
-                  )}
-                </ButtonLongPurple>
-              </form>
-
-              <p className="text-center text-primary2 mt-4">
-                Don't have an account?{" "}
-                <Link to="/auth/landing" className="text-primary3">
-                  Sign Up here
-                </Link>
-              </p>
             </div>
           </div>
+        </div>
 
-          <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
+        {/* Right Image Section - Hidden on mobile and tablet */}
+        <div className="hidden lg:block relative w-1/3">
+          <div className="overflow-hidden shadow-2xl">
             <img
               src={LoginImage}
-              alt="login illustration"
-              className="w-full max-w-md sm:max-w-lg lg:max-w-xl h-auto object-contain rounded-[20px] sm:rounded-[30px] lg:rounded-[50px]"
+              alt="Login illustration"
+              className="w-full h-screen object-cover"
             />
           </div>
         </div>
       </div>
     </div>
   );
+<<<<<<< HEAD
 };
 
 export default UserLogin;
+=======
+}
+>>>>>>> 1142a0aa4f64df4e916d9cc125afe8c6c72a7424

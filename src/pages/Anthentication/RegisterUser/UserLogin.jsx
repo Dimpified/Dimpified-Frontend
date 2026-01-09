@@ -70,51 +70,89 @@ export default function UserLogin() {
     resolver: yupResolver(schema),
   });
 
-  const handleNavigation = (step, plan) => {
-    const isFreePlan = plan?.toLowerCase() === "free";
+const handleNavigation = (step, plan) => {
+  // Treat undefined/null plan as "free"
+  const isFreePlan = !plan || plan?.toLowerCase() === "free";
+  
+  // Console log to debug navigation
+  console.log("🔍 Navigation Debug:");
+  console.log("--------------------");
+  console.log(`📊 Step: ${step || "undefined"}`);
+  console.log(`💰 Plan: ${plan || "undefined"}`);
+  console.log(`📋 isFreePlan: ${isFreePlan} (treating undefined as free)`);
+  console.log(`🔗 Navigating to:`);
 
-    switch (step) {
-      case 1:
-        navigate(
-          isFreePlan
-            ? "/free/auth/email-verification"
-            : "/auth/email-verification"
-        );
-        break;
+  switch (step) {
+    case 1:
+      const step1Path = isFreePlan
+        ? "/free/auth/email-verification"
+        : "/auth/email-verification";
+      console.log(`📍 Case 1 → ${step1Path}`);
+      console.log(`📌 Status: Email verification step`);
+      navigate(step1Path);
+      break;
 
-      case 2:
-        navigate(
-          isFreePlan ? "/free/auth/business-identity" : "/auth/business-type"
-        );
-        break;
+    case 2:
+      const step2Path = isFreePlan 
+        ? "/free/auth/business-identity" 
+        : "/auth/business-type";
+      console.log(`📍 Case 2 → ${step2Path}`);
+      console.log(`📌 Free users: Business identity`);
+      console.log(`📌 Paid users: Business type`);
+      navigate(step2Path);
+      break;
 
-      case 3:
-        navigate("/auth/business-info");
-        break;
+    case 3:
+      const step3Path = isFreePlan 
+        ? "/free/auth/availability" 
+        : "/auth/business-info";
+      console.log(`📍 Case 3 → ${step3Path}`);
+      console.log(`📌 Free users: Availability setup`);
+      console.log(`📌 Paid users: Business information`);
+      navigate(step3Path);
+      break;
 
-      case 4:
-      case 5:
-        navigate("/auth/select-template");
-        break;
+    case 4:
+       const step4Path = isFreePlan 
+        ? "/free/auth/service-payment" 
+        : "/auth/select-template";
+      console.log(`📍 Case 4 → ${step4Path}`);
+      console.log(`📌 Free users: Availability setup`);
+      console.log(`📌 Paid users: Business information`);
+      navigate(step3Path);
+      break;
+    case 5:
+      console.log(`📍 Case 4/5 → /auth/select-template`);
+      console.log(`📌 Status: Template selection step`);
+      console.log(`📝 Both Step 4 and 5 go to template selection`);
+      navigate("/auth/select-template");
+      break;
 
-      case 6:
-        navigate("/auth/edit-template");
-        break;
+    case 6:
+      console.log(`📍 Case 6 → /auth/edit-template`);
+      console.log(`📌 Status: Template editing step`);
+      navigate("/auth/edit-template");
+      break;
 
-      case 7:
-        navigate(
-          isFreePlan
-            ? "/free/creator/dashboard/overview"
-            : "/creator/dashboard/overview"
-        );
-        break;
+    case 7:
+      const dashboardPath = isFreePlan
+        ? "/free/creator/dashboard/overview"
+        : "/creator/dashboard/overview";
+      console.log(`📍 Case 7 → ${dashboardPath}`);
+      console.log(`🎉 Status: COMPLETED - Redirecting to dashboard`);
+      navigate(dashboardPath);
+      break;
 
-      default:
-        navigate("/auth/personal-information");
-        break;
-    }
-  };
-
+    default:
+      console.log(`📍 Default → /auth/personal-information`);
+      console.log(`⚠️ Step "${step}" not recognized, redirecting to start`);
+      navigate("/auth/personal-information");
+      break;
+  }
+  
+  console.log("--------------------");
+  console.log("🚀 Navigation executed");
+};
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
@@ -139,6 +177,9 @@ export default function UserLogin() {
         }
         if (resultAction.payload.user.plan) {
           dispatch(setEcosystemPlan(resultAction.payload.user.plan));
+        } else {
+          // Handle undefined plan by setting as "free"
+          dispatch(setEcosystemPlan("free"));
         }
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
@@ -152,7 +193,7 @@ export default function UserLogin() {
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan
+          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
         );
       }
     } catch (error) {
@@ -179,6 +220,9 @@ export default function UserLogin() {
         }
         if (resultAction.payload.user.plan) {
           dispatch(setEcosystemPlan(resultAction.payload.user.plan));
+        } else {
+          // Handle undefined plan by setting as "free"
+          dispatch(setEcosystemPlan("free"));
         }
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
@@ -192,7 +236,7 @@ export default function UserLogin() {
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan
+          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
         );
       }
     } catch (error) {

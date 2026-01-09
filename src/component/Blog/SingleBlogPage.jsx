@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Provider, useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
+import {
+  configureStore,
+  createSlice,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
+import { Provider, useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { SiX } from "react-icons/si";
@@ -18,9 +22,11 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 
-// API Configuration 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://dimpified-bckend-development.azurewebsites.net/api/v1';
-const POPULAR_API_URL = `${API_BASE_URL}/popular-blogs`; 
+// API Configuration
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://dimpified-bckend-development.azurewebsites.net/api/v1";
+const POPULAR_API_URL = `${API_BASE_URL}/popular-blogs`;
 const SINGLE_BLOG_API = `${API_BASE_URL}/view-blog`;
 
 // CommentsSection Component
@@ -162,38 +168,42 @@ const SINGLE_BLOG_API = `${API_BASE_URL}/view-blog`;
 //   );
 // }
 
-// Async thunk for fetching popular blogs 
+// Async thunk for fetching popular blogs
 export const fetchPopularBlogs = createAsyncThunk(
-  'blog/fetchPopularBlogs',
+  "blog/fetchPopularBlogs",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(POPULAR_API_URL);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch blogs');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch blogs"
+      );
     }
   }
 );
 
-// Async thunk for fetching single blog by ID 
+// Async thunk for fetching single blog by ID
 export const fetchBlogById = createAsyncThunk(
-  'blog/fetchBlogById',
+  "blog/fetchBlogById",
   async (blogId, { rejectWithValue }) => {
     try {
-      console.log('Fetching single blog from:', `${SINGLE_BLOG_API}/${blogId}`);
+      console.log("Fetching single blog from:", `${SINGLE_BLOG_API}/${blogId}`);
       const response = await axios.get(`${SINGLE_BLOG_API}/${blogId}`);
-      console.log('Single blog response:', response.data);
+      console.log("Single blog response:", response.data);
       return response.data;
     } catch (error) {
-      console.error('Error fetching single blog:', error);
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch blog');
+      console.error("Error fetching single blog:", error);
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch blog"
+      );
     }
   }
 );
 
 // Initial state
 const initialState = {
-  popularBlogs: [],  
+  popularBlogs: [],
   currentBlog: null,
   loadingPopular: false,
   loadingSingle: false,
@@ -202,9 +212,9 @@ const initialState = {
   count: 0,
 };
 
-// Blog slice 
+// Blog slice
 const blogSlice = createSlice({
-  name: 'blog',
+  name: "blog",
   initialState,
   reducers: {
     clearError: (state) => {
@@ -231,9 +241,9 @@ const blogSlice = createSlice({
       .addCase(fetchPopularBlogs.rejected, (state, action) => {
         state.loadingPopular = false;
         state.success = false;
-        state.error = action.payload || 'Something went wrong';
+        state.error = action.payload || "Something went wrong";
       })
-      // Fetch single blog by ID 
+      // Fetch single blog by ID
       .addCase(fetchBlogById.pending, (state) => {
         state.loadingSingle = true;
         state.error = null;
@@ -244,7 +254,7 @@ const blogSlice = createSlice({
       })
       .addCase(fetchBlogById.rejected, (state, action) => {
         state.loadingSingle = false;
-        state.error = action.payload || 'Failed to load blog';
+        state.error = action.payload || "Failed to load blog";
       });
   },
 });
@@ -293,7 +303,9 @@ const formatDate = (dateString) => {
   try {
     const date = new Date(dateString);
     const day = date.getDate();
-    const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
+    const month = date
+      .toLocaleString("default", { month: "short" })
+      .toUpperCase();
     const year = date.getFullYear();
     return `${day} ${month} ${year}`;
   } catch (error) {
@@ -304,7 +316,7 @@ const formatDate = (dateString) => {
 // Format description function
 const formatDescription = (content) => {
   if (!content) return "";
-  const text = content.replace(/<[^>]*>/g, '');
+  const text = content.replace(/<[^>]*>/g, "");
   return text.length > 100 ? `${text.substring(0, 100)}...` : text;
 };
 
@@ -327,10 +339,7 @@ const PostCard = ({ post, onNavigateToBlog }) => {
   };
 
   return (
-    <div 
-      className="cursor-pointer group"
-      onClick={handleCardClick}
-    >
+    <div className="cursor-pointer group" onClick={handleCardClick}>
       {/* IMAGE */}
       <div className="w-full h-52 rounded-2xl overflow-hidden mb-4">
         <img
@@ -339,7 +348,7 @@ const PostCard = ({ post, onNavigateToBlog }) => {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      
+
       {/*  NAME AND TIME CREATED */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
@@ -403,22 +412,22 @@ const LoadingSkeleton = () => (
         <div className="h-full">
           {/* Image skeleton */}
           <div className="w-full h-52 bg-gray-200 animate-pulse rounded-2xl mb-4"></div>
-          
+
           {/* Name and time skeleton */}
           <div className="flex items-center justify-between mb-3">
             <div className="h-4 bg-gray-200 animate-pulse rounded w-1/3"></div>
             <div className="h-4 bg-gray-200 animate-pulse rounded w-1/4"></div>
           </div>
-          
+
           {/* Title skeleton */}
           <div className="h-6 bg-gray-200 animate-pulse rounded w-3/4 mb-4"></div>
-          
+
           {/* Category and date skeleton */}
           <div className="flex items-center justify-between mb-3">
             <div className="h-4 bg-gray-200 animate-pulse rounded w-1/4"></div>
             <div className="h-4 bg-gray-200 animate-pulse rounded w-1/3"></div>
           </div>
-          
+
           {/* Description skeleton */}
           <div className="h-4 bg-gray-200 animate-pulse rounded w-full"></div>
         </div>
@@ -431,24 +440,36 @@ const LoadingSkeleton = () => (
 const ShareSection = () => {
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
-  
+
   const currentUrl = window.location.href;
   const pageTitle = document.title || "Check out this blog post!";
 
   const shareLinks = {
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
-    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`,
-    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
-    email: `mailto:?subject=${encodeURIComponent(pageTitle)}&body=${encodeURIComponent(`Check out this article: ${currentUrl}`)}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      currentUrl
+    )}`,
+    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+      currentUrl
+    )}&text=${encodeURIComponent(pageTitle)}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+      currentUrl
+    )}`,
+    email: `mailto:?subject=${encodeURIComponent(
+      pageTitle
+    )}&body=${encodeURIComponent(`Check out this article: ${currentUrl}`)}`,
   };
 
   const handleInlineShare = (platform) => {
     const shareUrl = shareLinks[platform];
-    
-    if (platform === 'email') {
+
+    if (platform === "email") {
       window.location.href = shareUrl;
     } else {
-      window.open(shareUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+      window.open(
+        shareUrl,
+        "_blank",
+        "noopener,noreferrer,width=600,height=400"
+      );
     }
   };
 
@@ -459,13 +480,13 @@ const ShareSection = () => {
       setTimeout(() => setCopied(false), 2000);
       setShowModal(false);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      console.error("Failed to copy:", err);
       // Fallback for older browsers
-      const textArea = document.createElement('textarea');
+      const textArea = document.createElement("textarea");
       textArea.value = currentUrl;
       document.body.appendChild(textArea);
       textArea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(textArea);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -549,7 +570,9 @@ const ShareSection = () => {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fadeIn">
             {/* Modal Header */}
             <div className="flex justify-between items-center p-6 border-b border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900">Share this post</h3>
+              <h3 className="text-xl font-bold text-gray-900">
+                Share this post
+              </h3>
               <button
                 onClick={() => setShowModal(false)}
                 className="text-gray-400 hover:text-gray-600 transition-colors p-1"
@@ -575,12 +598,12 @@ const ShareSection = () => {
                     onClick={handleCopyLink}
                     className={`px-4 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 ${
                       copied
-                        ? 'bg-green-100 text-green-700 border border-green-300'
-                        : 'bg-violet-600 text-white hover:bg-violet-700 border border-violet-600'
+                        ? "bg-green-100 text-green-700 border border-green-300"
+                        : "bg-violet-600 text-white hover:bg-violet-700 border border-violet-600"
                     }`}
                   >
                     <FaCopy />
-                    <span>{copied ? 'Copied!' : 'Copy'}</span>
+                    <span>{copied ? "Copied!" : "Copy"}</span>
                   </button>
                 </div>
               </div>
@@ -592,7 +615,7 @@ const ShareSection = () => {
                   {/* Facebook */}
                   <button
                     onClick={() => {
-                      handleInlineShare('facebook');
+                      handleInlineShare("facebook");
                       setShowModal(false);
                     }}
                     className="flex flex-col items-center justify-center p-4 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 hover:text-blue-700 transition-all duration-300 group"
@@ -607,7 +630,7 @@ const ShareSection = () => {
                   {/* Twitter/X */}
                   <button
                     onClick={() => {
-                      handleInlineShare('twitter');
+                      handleInlineShare("twitter");
                       setShowModal(false);
                     }}
                     className="flex flex-col items-center justify-center p-4 rounded-xl bg-black bg-opacity-5 hover:bg-opacity-10 text-gray-900 transition-all duration-300 group"
@@ -622,7 +645,7 @@ const ShareSection = () => {
                   {/* LinkedIn */}
                   <button
                     onClick={() => {
-                      handleInlineShare('linkedin');
+                      handleInlineShare("linkedin");
                       setShowModal(false);
                     }}
                     className="flex flex-col items-center justify-center p-4 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 hover:text-blue-800 transition-all duration-300 group"
@@ -636,7 +659,7 @@ const ShareSection = () => {
 
                   <button
                     onClick={() => {
-                      handleInlineShare('email');
+                      handleInlineShare("email");
                       setShowModal(false);
                     }}
                     className="flex flex-col items-center justify-center p-4 rounded-xl bg-green-50 hover:bg-green-100 text-green-600 hover:text-green-700 transition-all duration-300 group"
@@ -712,14 +735,9 @@ const SingleBlogPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  const { 
-    popularBlogs, 
-    currentBlog, 
-    loadingPopular, 
-    loadingSingle, 
-    error 
-  } = useSelector((state) => state.blog);
+
+  const { popularBlogs, currentBlog, loadingPopular, loadingSingle, error } =
+    useSelector((state) => state.blog);
 
   // Fetch popular blogs on component mount
   useEffect(() => {
@@ -729,10 +747,10 @@ const SingleBlogPage = () => {
   // Fetch single blog if ID exists in URL
   useEffect(() => {
     if (id) {
-      console.log('Fetching blog with ID:', id);
+      console.log("Fetching blog with ID:", id);
       dispatch(fetchBlogById(id));
     }
-    
+
     // Cleanup on unmount
     return () => {
       dispatch(clearCurrentBlog());
@@ -754,7 +772,13 @@ const SingleBlogPage = () => {
     }
   };
 
-  console.log('Current state:', { id, currentBlog, loadingSingle, loadingPopular, error });
+  console.log("Current state:", {
+    id,
+    currentBlog,
+    loadingSingle,
+    loadingPopular,
+    error,
+  });
 
   // If we're loading the single blog (when ID exists), show loading state
   if (id && loadingSingle) {
@@ -766,7 +790,6 @@ const SingleBlogPage = () => {
       </div>
     );
   }
-  
 
   if (id && error) {
     return (
@@ -796,10 +819,41 @@ const SingleBlogPage = () => {
       </div>
     );
   }
+  // CSS styles for blog content links
+  const blogContentStyles = `
+    .blog-content a {
+      color: #9333ea !important;
+      text-decoration: underline !important;
+      transition: all 0.2s ease-in-out !important;
+    }
+    
+    .blog-content a:hover {
+      color: #7c3aed !important;
+      text-decoration-thickness: 2px !important;
+      text-underline-offset: 2px !important;
+    }
+    
+    .blog-content a:visited {
+      color: #7e22ce !important;
+    }
+    
+    .blog-content a:focus {
+      outline: 2px solid #8b5cf6 !important;
+      outline-offset: 2px !important;
+    }
+  `;
 
+  // Function to process blog content HTML and ensure links have proper styling
+  const processBlogContent = (htmlContent) => {
+    if (!htmlContent) return htmlContent;
+
+    // Add the blog-content class wrapper to ensure our CSS targets it
+    return `<div class="blog-content">${htmlContent}</div>`;
+  };
   // MAIN PAGE LAYOUT
   return (
     <div className="w-full bg-white text-gray-800">
+      <style>{blogContentStyles}</style>
       {/* Navbar */}
       <Navbar />
 
@@ -831,7 +885,7 @@ const SingleBlogPage = () => {
                   {formatDate(currentBlog.dateTime || currentBlog.createdAt)}
                 </span>
               </div>
-              
+
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 mt-8 md:mb-16">
                 {currentBlog.title}
               </h1>
@@ -841,7 +895,9 @@ const SingleBlogPage = () => {
             {currentBlog.coverPicture && (
               <div className="w-full h-96 rounded-2xl overflow-hidden mb-8">
                 <img
-                  src={currentBlog.coverPicture || "https://picsum.photos/1200/600"}
+                  src={
+                    currentBlog.coverPicture || "https://picsum.photos/1200/600"
+                  }
                   alt={currentBlog.title}
                   className="w-full h-full object-cover"
                 />
@@ -864,9 +920,13 @@ const SingleBlogPage = () => {
             </div>
 
             {/* Blog Content */}
-            <div className="prose max-w-none text-gray-700 leading-relaxed">
+            <div className="text-gray-700 leading-relaxed blog-content">
               {currentBlog.content ? (
-                <div dangerouslySetInnerHTML={{ __html: currentBlog.content }} />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: processBlogContent(currentBlog.content),
+                  }}
+                />
               ) : (
                 <p>No content available for this blog post.</p>
               )}
@@ -895,20 +955,21 @@ const SingleBlogPage = () => {
               Google has been investing in AI for many years and bringing its
               benefits to individuals, businesses and communities. Whether it's
               publishing state-of-the-art research, building helpful products or
-              developing tools and resources that enable others, we're committed to
-              making AI accessible to everyone.{" "}
+              developing tools and resources that enable others, we're committed
+              to making AI accessible to everyone.{" "}
             </p>
             <p className="text-gray-600 mb-6 leading-relaxed">
               We're now at a pivotal moment in our AI journey. Breakthroughs in
               generative AI are fundamentally changing how people interact with
-              technology — and at Google, we've been responsibly developing large
-              language models so we can safely bring them to our products. Today,
-              we're excited to share our early progress. Developers and businesses
-              can now try new APIs and products that make it easy, safe and scalable
-              to start building with Google's best AI models through Google Cloud
-              and a new prototyping environment called MakerSuite. And in Google
-              Workspace, we're introducing new features that help people harness the
-              power of generative AI to create, connect and collaborate.
+              technology — and at Google, we've been responsibly developing
+              large language models so we can safely bring them to our products.
+              Today, we're excited to share our early progress. Developers and
+              businesses can now try new APIs and products that make it easy,
+              safe and scalable to start building with Google's best AI models
+              through Google Cloud and a new prototyping environment called
+              MakerSuite. And in Google Workspace, we're introducing new
+              features that help people harness the power of generative AI to
+              create, connect and collaborate.
             </p>
 
             <blockquote className="border-l-4 border-purple-700 pl-4 italic text-gray-700 mb-6">
@@ -922,7 +983,8 @@ const SingleBlogPage = () => {
               When you combine VR with AI, players can dive into personalized
               immersive experiences. Games now adapt dynamically to the player's
               behavior, increasing engagement. Developers are constantly finding
-              innovative ways to bring realism and interactivity to virtual worlds.
+              innovative ways to bring realism and interactivity to virtual
+              worlds.
             </p>
 
             <div className="flex justify-center mb-10">
@@ -935,11 +997,11 @@ const SingleBlogPage = () => {
 
             <p className="text-gray-600 leading-relaxed">
               We're so excited by the potential of generative AI, and the
-              opportunities it will unlock — from helping people express themselves
-              creatively, to helping developers build brand new types of
-              applications, to transforming how businesses and governments engage
-              their customers and constituents. Stay tuned for more to come in the
-              weeks and months ahead.
+              opportunities it will unlock — from helping people express
+              themselves creatively, to helping developers build brand new types
+              of applications, to transforming how businesses and governments
+              engage their customers and constituents. Stay tuned for more to
+              come in the weeks and months ahead.
             </p>
           </div>
         )}
@@ -953,7 +1015,7 @@ const SingleBlogPage = () => {
       {/* Popular Post Section with Swiper */}
       <section className="py-16 px-6 md:px-64 bg-white">
         <SectionHeader title="Popular Post" />
-        
+
         {loadingPopular ? (
           <LoadingSkeleton />
         ) : error ? (
@@ -993,8 +1055,8 @@ const SingleBlogPage = () => {
             >
               {popularBlogs.map((post) => (
                 <SwiperSlide key={post._id}>
-                  <PostCard 
-                    post={post} 
+                  <PostCard
+                    post={post}
                     onNavigateToBlog={handleNavigateToBlog}
                   />
                 </SwiperSlide>

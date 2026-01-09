@@ -78,7 +78,7 @@ export default function FreeOnboardingPreSignup() {
           {/* Heading */}
           <div className="mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-10">
-              Create a Dimpified Business Account.
+              Create a Free Dimpified Business Account.
             </h1>
             <p className="text-sm sm:text-base text-gray-600 mb-6">
               Kindly choose a sign-up option

@@ -933,7 +933,7 @@ const SubscriptionSection = () => {
           </div>
 
           <div className="p-8">
-            <Link to="/auth/landing">
+            <Link to="/free/auth/pre-signup">
               <button className="bg-[#9810FA] hover:bg-[#3F0994] text-white py-3 rounded-full font-medium w-full transition-colors duration-200">
                 Get Started Now
               </button>
@@ -989,7 +989,7 @@ const SubscriptionSection = () => {
           </div>
 
           <div className="p-8">
-            <Link to="/auth/landing">
+            <Link to="/auth/personal-Information">
               <button className="bg-[#9810FA] hover:bg-[#3F0994] text-white py-3 rounded-full font-medium w-full transition-colors duration-200">
                 Get Started Now
               </button>
@@ -1060,7 +1060,7 @@ const SubscriptionSection = () => {
           </div>
 
           <div className="p-8">
-            <Link to="/auth/landing">
+            <Link to="/auth/personal-Information">
               <button className="bg-[#9810FA] hover:bg-[#3F0994] text-white py-3 rounded-full font-medium w-full transition-colors duration-200">
                 Get Started Now
               </button>

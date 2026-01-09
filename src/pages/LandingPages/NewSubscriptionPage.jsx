@@ -170,6 +170,7 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
         },
       ],
       cta: "Start Free",
+      link: "/free/auth/pre-signup", // Lite plan specific link
       popular: false,
       color: "from-blue-500 to-cyan-400",
     },
@@ -211,6 +212,7 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
         },
       ],
       cta: "Get Started",
+      link: "/auth/personal-Information", // Plus and Pro plan link
       popular: true,
       color: "from-purple-500 to-pink-500",
     },
@@ -250,6 +252,7 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
         },
       ],
       cta: "Get Started",
+      link: "/auth/personal-Information", // Plus and Pro plan link
       popular: false,
       color: "from-indigo-500 to-blue-500",
     },
@@ -324,7 +327,7 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
                   ))}
                 </div>
 
-                <Link to="/auth/landing">
+                <Link to={plan.link}>
                   <button
                     className={`w-full py-3 rounded-xl font-bold transition-all duration-300 ${
                       plan.popular
@@ -669,7 +672,7 @@ const CTASection = () => {
                   Start Free Today
                 </h3>
                 <p className="text-gray-600 mb-6">No credit card required</p>
-                <Link to="/auth/landing">
+                <Link to="/free/auth/pre-signup">
                   <button className="w-full py-4 bg-gradient-to-r from-[#9810FA] to-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2">
                     Get Started Free for 14 Days
                     <ArrowRight className="w-5 h-5" />
@@ -692,5 +695,3 @@ const CTASection = () => {
     </section>
   );
 };
-
-

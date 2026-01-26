@@ -39,7 +39,7 @@ const FreeOnboardingReview = () => {
   const { creatorId } = useSelector((state) => state.auth.user || {});
   const { accessToken, refreshToken } = useSelector((state) => state.auth);
   const ecosystemDomain = useSelector(
-    (state) => state.ecosystemDomain?.domain || "dimpified.com"
+    (state) => state.ecosystemDomain?.domain || "dimpified.com",
   );
 
   const [businessData, setBusinessData] = useState(null);
@@ -120,11 +120,11 @@ const FreeOnboardingReview = () => {
       const businessResult = await api.createBusinessIdentity(businessPayload);
 
       // Set ecosystem domain
-      if (
-        businessResult.data?.businessDetails?.websiteAddress
-      ) {
+      if (businessResult.data?.businessDetails?.websiteAddress) {
         dispatch(
-          setEcosystemDomain(businessResult.data.businessDetails.websiteAddress)
+          setEcosystemDomain(
+            businessResult.data.businessDetails.websiteAddress,
+          ),
         );
       } else {
         dispatch(setEcosystemDomain(businessData.websiteAddress));
@@ -140,9 +140,7 @@ const FreeOnboardingReview = () => {
         subCategory: businessData.businessType,
         prefix: "I will",
         header: servicesData.services[0].name,
-        description: `Professional services including ${servicesData.services
-          .map((s) => s.name)
-          .join(", ")}`,
+        description: businessData.description,
         format: "Onsite",
         currency: "NGN",
         services: servicesData.services.map((service) => ({
@@ -163,7 +161,7 @@ const FreeOnboardingReview = () => {
             Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       // Step 3: Add Bank Account
@@ -179,19 +177,21 @@ const FreeOnboardingReview = () => {
       });
 
       showToast("Setup completed successfully!", "success");
-      
+
       // Clear all session storage
       sessionStorage.removeItem("businessIdentity");
       sessionStorage.removeItem("availability");
       sessionStorage.removeItem("services");
       sessionStorage.removeItem("bankDetails");
-      
+
       setShowSuccess(true);
     } catch (err) {
       console.error("Setup error:", err);
       showToast(
-        err.response?.data?.message || err.message || "Failed to complete setup",
-        "error"
+        err.response?.data?.message ||
+          err.message ||
+          "Failed to complete setup",
+        "error",
       );
     } finally {
       setIsSubmitting(false);
@@ -379,7 +379,7 @@ const FreeOnboardingReview = () => {
   // Loading state
   if (!businessData || !availabilityData || !servicesData || !bankData) {
     return (
-      <FreeOnboardingLayout currentStep={3} >
+      <FreeOnboardingLayout currentStep={3}>
         <div className="flex items-center justify-center min-h-[60vh]">
           <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
         </div>
@@ -390,8 +390,6 @@ const FreeOnboardingReview = () => {
   return (
     <FreeOnboardingLayout currentStep={4} rightImage={null}>
       <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-       
-
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center sm:text-left">
           Review Your Information
         </h1>
@@ -434,7 +432,7 @@ const FreeOnboardingReview = () => {
               </div>
 
               <div>
-                <p className="text-sm text-gray-600">Your Booking Link</p>
+                <p className="text-sm text-gray-600">Your Prospective Booking Link</p>
                 <p className="text-purple-600 font-medium break-all">
                   dimpified.com/{businessData.websiteAddress}
                 </p>

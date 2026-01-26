@@ -21,8 +21,23 @@ export const fetchFeaturedPost = createAsyncThunk(
   "blog/fetchFeaturedPost",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(FEATURED_API_URL);
-      return response.data;
+      const response = await axios.get(RECENT_API_URL); // Use all-blogs endpoint
+      const allBlogs = response.data.data || [];
+
+      // Filter published blogs with "Featured" tag (case-insensitive)
+      const featuredBlogs = allBlogs.filter(
+        (blog) =>
+          blog.status === "published" &&
+          blog.tag &&
+          blog.tag.some((tag) => tag.toLowerCase() === "featured")
+      );
+
+      // Sort by most recent and get the first one
+      const sortedFeaturedBlogs = featuredBlogs.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      return sortedFeaturedBlogs[0] || null; // Return null if no featured blog found
     } catch (error) {
       return rejectWithValue(
         error.response?.data?.message || "Failed to fetch featured post"
@@ -116,13 +131,13 @@ const blogSlice = createSlice({
       })
       .addCase(fetchFeaturedPost.fulfilled, (state, action) => {
         state.loadingFeatured = false;
-        state.featuredPost = action.payload.data?.[0] || null;
+        state.featuredPost = action.payload; // Now directly setting the blog object
       })
       .addCase(fetchFeaturedPost.rejected, (state, action) => {
         state.loadingFeatured = false;
         state.error = action.payload || "Failed to load featured post";
       })
-      // Recent Posts
+      // Recent Posts - Exclude the featured post from recent posts
       .addCase(fetchRecentPosts.pending, (state) => {
         state.loadingRecent = true;
         state.error = null;
@@ -136,7 +151,13 @@ const blogSlice = createSlice({
         const sortedPosts = publishedPosts.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-        state.recentPosts = sortedPosts.slice(0, 3);
+
+        // Exclude the current featured post from recent posts
+        const recentPosts = sortedPosts.filter(
+          (post) => !state.featuredPost || post._id !== state.featuredPost._id
+        );
+
+        state.recentPosts = recentPosts.slice(0, 12);
       })
       .addCase(fetchRecentPosts.rejected, (state, action) => {
         state.loadingRecent = false;
@@ -150,7 +171,7 @@ const blogSlice = createSlice({
       .addCase(fetchPopularPosts.fulfilled, (state, action) => {
         state.loadingPopular = false;
         const allPosts = action.payload.data || [];
-        state.popularPosts = allPosts.slice(0, 6);
+        state.popularPosts = allPosts.slice(0, 3);
       })
       .addCase(fetchPopularPosts.rejected, (state, action) => {
         state.loadingPopular = false;
@@ -208,7 +229,6 @@ const SectionHeader = ({ title, onViewAll }) => (
 );
 
 // Post Card Component
-
 const PostCard = ({ post, onClick }) => {
   return (
     <article
@@ -227,30 +247,30 @@ const PostCard = ({ post, onClick }) => {
       {/* AUTHOR ROW - FIXED ALIGNMENT */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Link
-            to={`/author/${post.author?._id}`}
-            onClick={(e) => e.stopPropagation()}
-            className="font-medium text-gray-900 hover:underline text-sm"
-          >
-            {post.author?.fullName || "Unknown Author"}
-          </Link>
+          <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-2xl text-xs font-medium">
+            {(post.category || "uncategorized").charAt(0).toUpperCase() +
+              (post.category || "uncategorized").slice(1)}
+          </span>
         </div>
-        <span className="text-gray-400 text-sm">
+        <span className="text-gray-400 text-medium text-xs">
           {formatTimeAgo(post.createdAt || post.dateTime)}
         </span>
       </div>
 
       {/* TITLE - CONSISTENT HEIGHT */}
-      <h3 className="text-lg font-bold text-gray-900 leading-snug mb-4 group-hover:text-purple-600 transition-colors ">
+      <h3 className="text-lg font-bold text-purple-950 leading-snug mb-4 group-hover:text-purple-600 transition-colors ">
         {post.title}
       </h3>
 
       {/* CATEGORY + DATE */}
-      <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-        <span className="px-2 py-0.5 text-black font-medium">
-          {(post.category || "uncategorized").charAt(0).toUpperCase() +
-            (post.category || "uncategorized").slice(1)}
-        </span>
+      <div className="flex items-center justify-between text-xs text-gray-400 mb-3">
+        <Link
+          to={`/author/${post.author?._id}`}
+          onClick={(e) => e.stopPropagation()}
+          className="font-medium text-gray-500 hover:underline text-sm"
+        >
+          by {post.author?.fullName || "Unknown Author"}
+        </Link>
         <span className="ml-auto">
           {new Date(post.createdAt).toLocaleDateString("en-US", {
             month: "short",
@@ -340,7 +360,7 @@ const BlogLandingPage = () => {
   };
 
   const handleViewAllPopular = () => {
-    navigate("/single-blog", { state: { filter: "popular" } });
+    navigate("/all-blogs", { state: { filter: "popular" } });
   };
 
   const handleRetry = () => {
@@ -357,15 +377,13 @@ const BlogLandingPage = () => {
       <section className="text-purple-600 md:py-32 py-16 bg-purple-100 px-6 md:px-20 flex flex-col items-center justify-center text-center mt-12">
         <div className="w-full md:w-1/2">
           <h2 className="text-3xl md:text-4xl font-bold">Dimpified Blog</h2>
+         
         </div>
       </section>
 
       {/* FEATURED POST SECTION */}
       <section className="py-10 px-6 md:px-32 lg:px-60">
-        <SectionHeader
-          title="Recent Story"
-          onViewAll={handleViewAllFeatured}
-        />
+        <SectionHeader title="Featured" onViewAll={handleViewAllFeatured} />
 
         {loadingFeatured ? (
           <FeaturedPostSkeleton />
@@ -377,13 +395,13 @@ const BlogLandingPage = () => {
             onClick={() => handleBlogClick(featuredPost._id)}
           >
             {/* FEATURED IMAGE */}
-            <div className="relative w-full h-[320px] sm:h-[380px] md:h-[460px]">
+            <div className="relative w-full h-[320px] sm:h-[380px]  md:h-[460px]">
               <img
                 src={
                   featuredPost.coverPicture || "https://picsum.photos/1200/600"
                 }
                 alt={featuredPost.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover "
                 onError={(e) => {
                   e.target.src = "https://picsum.photos/1200/600";
                 }}
@@ -394,7 +412,7 @@ const BlogLandingPage = () => {
             {/* FLOATING CONTENT CARD */}
             <div
               className="
-    relative bg-white p-8 sm:p-10 -mt-16
+    relative bg-purple-50 p-8 sm:p-10 -mt-16
     md:absolute md:bottom-[-30px] md:right-0
     md:w-[80%] lg:w-[70%] lg:max-w-[calc(100%-2rem)]
     md:rounded-2xl md:shadow-xl
@@ -446,6 +464,10 @@ const BlogLandingPage = () => {
 
         {/* RECENT POSTS SECTION */}
         <div className="mt-10">
+          <SectionHeader
+            title="Recent Stories"
+            onViewAll={handleViewAllRecent}
+          />
           {loadingRecent ? (
             <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[1, 2, 3].map((n) => (
@@ -474,7 +496,10 @@ const BlogLandingPage = () => {
 
       {/* POPULAR POSTS SECTION */}
       <section className="py-16 px-6 md:px-32 lg:px-60">
-        <SectionHeader title="Popular Stories" onViewAll={handleViewAllPopular} />
+        <SectionHeader
+          title="Popular Stories"
+          onViewAll={handleViewAllPopular}
+        />
 
         {loadingPopular ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

@@ -57,7 +57,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
-export default function FreeOnboardingLanding() {
+export default function UserLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error, user } = useSelector((state) => state.auth);
@@ -70,30 +70,70 @@ export default function FreeOnboardingLanding() {
     resolver: yupResolver(schema),
   });
 
-  const handleNavigation = (step, plan) => {
-    if (step === 1) {
-      navigate("/auth/email-verification");
-    } else if (step === 2) {
-      navigate("/auth/business-type");
-    } else if (step === 3) {
-      navigate("/auth/business-info");
-    } else if (step === 4) {
-      navigate("/auth/select-template");
-    } else if (step === 5) {
-      navigate("/auth/select-template");
-    } else if (step === 6) {
-      navigate("/auth/edit-template");
-    } else if (step === 7) {
-      if (plan && plan.toLowerCase() === "free") {
-        navigate("/free/creator/dashboard/overview");
-      } else {
-        navigate("/creator/dashboard/overview");
-      }
-    } else {
-      navigate("/auth/personal-Information");
-    }
-  };
+const handleNavigation = (step, plan) => {
+  // Treat undefined/null plan as "free"
+  const isFreePlan = !plan || plan?.toLowerCase() === "free";
+  
 
+
+  switch (step) {
+    case 1:
+      const step1Path = isFreePlan
+        ? "/free/auth/email-verification"
+        : "/auth/email-verification";
+    
+      navigate(step1Path);
+      break;
+
+    case 2:
+      const step2Path = isFreePlan 
+        ? "/free/auth/business-identity" 
+        : "/auth/business-type";
+    
+      navigate(step2Path);
+      break;
+
+    case 3:
+      const step3Path = isFreePlan 
+        ? "/free/auth/availability" 
+        : "/auth/business-info";
+
+      navigate(step3Path);
+      break;
+
+    case 4:
+       const step4Path = isFreePlan 
+        ? "/free/auth/service-payment" 
+        : "/auth/select-template";
+     
+      navigate(step3Path);
+      break;
+    case 5:
+  
+      navigate("/auth/select-template");
+      break;
+
+    case 6:
+     
+      navigate("/auth/edit-template");
+      break;
+
+    case 7:
+      const dashboardPath = isFreePlan
+        ? "/free/creator/dashboard/overview"
+        : "/creator/dashboard/overview";
+    
+      navigate(dashboardPath);
+      break;
+
+    default:
+     
+      navigate("/auth/personal-information");
+      break;
+  }
+  
+ 
+};
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
@@ -103,6 +143,7 @@ export default function FreeOnboardingLanding() {
           password: data.password,
         })
       );
+      console.log("Login resultAction:", resultAction);
 
       if (creatorLogin.rejected.match(resultAction)) {
         const errorPayload = resultAction.payload;
@@ -117,6 +158,9 @@ export default function FreeOnboardingLanding() {
         }
         if (resultAction.payload.user.plan) {
           dispatch(setEcosystemPlan(resultAction.payload.user.plan));
+        } else {
+          // Handle undefined plan by setting as "free"
+          dispatch(setEcosystemPlan("free"));
         }
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
@@ -130,7 +174,7 @@ export default function FreeOnboardingLanding() {
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan
+          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
         );
       }
     } catch (error) {
@@ -157,6 +201,9 @@ export default function FreeOnboardingLanding() {
         }
         if (resultAction.payload.user.plan) {
           dispatch(setEcosystemPlan(resultAction.payload.user.plan));
+        } else {
+          // Handle undefined plan by setting as "free"
+          dispatch(setEcosystemPlan("free"));
         }
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
@@ -170,7 +217,7 @@ export default function FreeOnboardingLanding() {
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan
+          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
         );
       }
     } catch (error) {

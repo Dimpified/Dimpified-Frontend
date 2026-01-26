@@ -1067,7 +1067,7 @@ const FreeBookingPage = () => {
                   </h2>
 
                   <p className="text-base lg:text-xl text-gray-600 mb-6 lg:mb-8">
-                    To confirm your booking, kindly make payment to the and send
+                    To confirm your booking, kindly make payment to the bank details below and send
                     us the payment receipt.
                   </p>
 

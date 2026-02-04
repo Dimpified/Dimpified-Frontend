@@ -57,7 +57,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
-export default function FreeOnboardingLanding() {
+export default function UserLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error, user } = useSelector((state) => state.auth);
@@ -70,51 +70,70 @@ export default function FreeOnboardingLanding() {
     resolver: yupResolver(schema),
   });
 
-  const handleNavigation = (step, plan) => {
-    const isFreePlan = plan?.toLowerCase() === "free";
+const handleNavigation = (step, plan) => {
+  // Treat undefined/null plan as "free"
+  const isFreePlan = !plan || plan?.toLowerCase() === "free";
+  
 
-    switch (step) {
-      case 1:
-        navigate(
-          isFreePlan
-            ? "/free/auth/email-verification"
-            : "/auth/email-verification"
-        );
-        break;
 
-      case 2:
-        navigate(
-          isFreePlan ? "/free/auth/business-identity" : "/auth/business-type"
-        );
-        break;
+  switch (step) {
+    case 1:
+      const step1Path = isFreePlan
+        ? "/free/auth/email-verification"
+        : "/auth/email-verification";
+    
+      navigate(step1Path);
+      break;
 
-      case 3:
-        navigate("/auth/business-info");
-        break;
+    case 2:
+      const step2Path = isFreePlan 
+        ? "/free/auth/business-identity" 
+        : "/auth/business-type";
+    
+      navigate(step2Path);
+      break;
 
-      case 4:
-      case 5:
-        navigate("/auth/select-template");
-        break;
+    case 3:
+      const step3Path = isFreePlan 
+        ? "/free/auth/availability" 
+        : "/auth/business-info";
 
-      case 6:
-        navigate("/auth/edit-template");
-        break;
+      navigate(step3Path);
+      break;
 
-      case 7:
-        navigate(
-          isFreePlan
-            ? "/free/creator/dashboard/overview"
-            : "/creator/dashboard/overview"
-        );
-        break;
+    case 4:
+       const step4Path = isFreePlan 
+        ? "/free/auth/service-payment" 
+        : "/auth/select-template";
+     
+      navigate(step3Path);
+      break;
+    case 5:
+  
+      navigate("/auth/select-template");
+      break;
 
-      default:
-        navigate("/auth/personal-information");
-        break;
-    }
-  };
+    case 6:
+     
+      navigate("/auth/edit-template");
+      break;
 
+    case 7:
+      const dashboardPath = isFreePlan
+        ? "/free/creator/dashboard/overview"
+        : "/creator/dashboard/overview";
+    
+      navigate(dashboardPath);
+      break;
+
+    default:
+     
+      navigate("/auth/personal-information");
+      break;
+  }
+  
+ 
+};
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
@@ -139,6 +158,9 @@ export default function FreeOnboardingLanding() {
         }
         if (resultAction.payload.user.plan) {
           dispatch(setEcosystemPlan(resultAction.payload.user.plan));
+        } else {
+          // Handle undefined plan by setting as "free"
+          dispatch(setEcosystemPlan("free"));
         }
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
@@ -152,7 +174,7 @@ export default function FreeOnboardingLanding() {
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan
+          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
         );
       }
     } catch (error) {
@@ -179,6 +201,9 @@ export default function FreeOnboardingLanding() {
         }
         if (resultAction.payload.user.plan) {
           dispatch(setEcosystemPlan(resultAction.payload.user.plan));
+        } else {
+          // Handle undefined plan by setting as "free"
+          dispatch(setEcosystemPlan("free"));
         }
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
@@ -192,7 +217,7 @@ export default function FreeOnboardingLanding() {
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan
+          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
         );
       }
     } catch (error) {
@@ -400,9 +425,4 @@ export default function FreeOnboardingLanding() {
       </div>
     </div>
   );
-
-};
-
-// export default UserLogin;
-
-
+}

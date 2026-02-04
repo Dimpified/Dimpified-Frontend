@@ -138,14 +138,14 @@ const FreeBookingPage = () => {
         return slotMinutes >= startMinutes && slotMinutes < endMinutes;
       });
     },
-    [businessHours, allTimeSlots, timeToMinutes]
+    [businessHours, allTimeSlots, timeToMinutes],
   );
 
   const handlePayOnDelivery = useCallback(async () => {
     if (!formData.email || !formData.fullName || !formData.phone) {
       showToast(
         "Please fill in all required fields (email, name, phone)",
-        "error"
+        "error",
       );
       return;
     }
@@ -198,7 +198,7 @@ const FreeBookingPage = () => {
       showToast(
         error.response?.data?.message ||
           "Failed to submit booking. Please try again.",
-        "error"
+        "error",
       );
     }
   }, [
@@ -244,7 +244,7 @@ const FreeBookingPage = () => {
             import.meta.env.VITE_API_URL
           }/get-available-time/${creatorId}/${formattedDate}/${
             selectedService._id
-          }/${subdomain}`
+          }/${subdomain}`,
         );
 
         const { bookedTimes = [], duration: apiDuration } = response.data;
@@ -259,7 +259,7 @@ const FreeBookingPage = () => {
           for (let i = 0; i < slotsToBlock; i++) {
             const blockedMinute = startMinutes + i * 60;
             const blockedSlot = allTimeSlots.find(
-              (s) => timeToMinutes(s.value) === blockedMinute
+              (s) => timeToMinutes(s.value) === blockedMinute,
             );
             if (blockedSlot) bookedSlots.add(blockedSlot.value);
           }
@@ -280,7 +280,7 @@ const FreeBookingPage = () => {
         console.error("Error fetching available time slots:", error);
         const allowedSlots = getAllowedSlotsForDate(date);
         setAvailableTimeSlots(
-          allowedSlots.map((s) => ({ ...s, booked: false }))
+          allowedSlots.map((s) => ({ ...s, booked: false })),
         );
       } finally {
         fetchLoadingRef.current = false;
@@ -294,7 +294,7 @@ const FreeBookingPage = () => {
       timeToMinutes,
       getAllowedSlotsForDate,
       allTimeSlots,
-    ]
+    ],
   );
 
   // Initialize and update slots when date/service changes
@@ -325,7 +325,7 @@ const FreeBookingPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/get-all-services/${subdomain}`
+          `${import.meta.env.VITE_API_URL}/get-all-services/${subdomain}`,
         );
 
         if (response.data && response.data.length > 0) {
@@ -350,7 +350,8 @@ const FreeBookingPage = () => {
           }
 
           setBusinessInfo({
-            name: serviceData?.businessHoursRecords[0]?.ecosystemName || "Business",
+            name:
+              serviceData?.businessHoursRecords[0]?.ecosystemName || "Business",
             description: serviceData.description || "Professional services",
             contact: {
               phone: serviceData.phoneNumber || "",
@@ -369,7 +370,7 @@ const FreeBookingPage = () => {
           };
           localStorage.setItem(
             "businessContactInfo",
-            JSON.stringify(contactInfo)
+            JSON.stringify(contactInfo),
           );
         }
       } catch (error) {
@@ -409,7 +410,7 @@ const FreeBookingPage = () => {
     const getAllMerchantDetails = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/bank-details/${subdomain}`
+          `${import.meta.env.VITE_API_URL}/bank-details/${subdomain}`,
         );
         setAllBankDetails(response.data);
       } catch (error) {
@@ -469,7 +470,7 @@ const FreeBookingPage = () => {
         fetchAvailableTimeSlots(normalizedDate);
       }
     },
-    [normalizeDate, selectedService?._id, fetchAvailableTimeSlots, creatorId]
+    [normalizeDate, selectedService?._id, fetchAvailableTimeSlots, creatorId],
   );
 
   const disablePastDates = ({ date, view }) => {
@@ -526,11 +527,24 @@ const FreeBookingPage = () => {
           </div>
         </div>
       </div>
+      <div className="flex items-center justify-center text-center mt-6">
+        <span className="text-lg  ">
+          Click{" "}
+          <a
+            href="https://dimpified.com"
+            className="text-purple-600 font-bold hover:underline hover:text-purple-500"
+          >
+            here{" "}
+          </a>
+          to also get a free booking link for your business.
+        </span>
+      </div>
+
       <div className="flex items-center justify-center space-x-2 mt-4">
-        <span className="text-xs">Powered by</span>
-        <Link to="/">
+        <span className=" text-sm "> Powered by</span>
+        <a href="https://dimpified.com">
           <img src={DimpifiedLogo} alt="Dimpified" className="h-5 w-auto" />
-        </Link>
+        </a>
       </div>
     </div>
   );
@@ -562,12 +576,12 @@ const FreeBookingPage = () => {
                 </p>
               </div>
             </div>
-            <Link
+            {/* <Link
               to="/"
               className="text-gray-500 hover:text-gray-700 transition-colors text-sm font-medium"
             >
               ← Back to Home
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
@@ -594,8 +608,8 @@ const FreeBookingPage = () => {
                               isCurrentStep
                                 ? "bg-purple-600 border-purple-600 text-white shadow-lg scale-110"
                                 : isActive
-                                ? "bg-purple-100 border-purple-600 text-purple-600"
-                                : "bg-white border-gray-300 text-gray-400"
+                                  ? "bg-purple-100 border-purple-600 text-purple-600"
+                                  : "bg-white border-gray-300 text-gray-400"
                             }`}
                           >
                             <Icon
@@ -609,8 +623,8 @@ const FreeBookingPage = () => {
                               isCurrentStep
                                 ? "text-purple-600 font-bold"
                                 : isActive
-                                ? "text-purple-600"
-                                : "text-gray-500"
+                                  ? "text-purple-600"
+                                  : "text-gray-500"
                             }`}
                           >
                             {stepItem.label}
@@ -793,8 +807,8 @@ const FreeBookingPage = () => {
                               isSelected
                                 ? "bg-purple-600 text-white border-purple-600 shadow-lg"
                                 : slot.booked
-                                ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                                : "bg-white text-gray-800 border-gray-300 hover:border-purple-400 hover:shadow-md hover:bg-purple-50"
+                                  ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                                  : "bg-white text-gray-800 border-gray-300 hover:border-purple-400 hover:shadow-md hover:bg-purple-50"
                             }`}
                                 >
                                   <div>{slot.label}</div>
@@ -1049,12 +1063,12 @@ const FreeBookingPage = () => {
                   </div>
 
                   <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-                    Booking Submitted Successfully!
+                    Your booking has been submitted!
                   </h2>
 
                   <p className="text-base lg:text-xl text-gray-600 mb-6 lg:mb-8">
-                    Your booking has been confirmed. Please make payment using
-                    the bank details below to secure your appointment.
+                    To confirm your booking, kindly make payment to the bank details below and send
+                    us the payment receipt.
                   </p>
 
                   {/* Amount to Pay */}
@@ -1100,7 +1114,7 @@ const FreeBookingPage = () => {
                           onClick={() =>
                             copyToClipboard(
                               bankDetails.accountName,
-                              "Account name"
+                              "Account name",
                             )
                           }
                           className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded"
@@ -1141,7 +1155,7 @@ const FreeBookingPage = () => {
                           onClick={() =>
                             copyToClipboard(
                               bankDetails.accountNumber,
-                              "Account number"
+                              "Account number",
                             )
                           }
                           className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded"
@@ -1180,17 +1194,17 @@ const FreeBookingPage = () => {
                         const message = `*Payment Confirmation - Booking ID: ${uniqueID}*\n\nHello! I have made my payment for the following booking:\n\n📋 *Booking Details:*\n• Booking ID: ${uniqueID}\n• Service: ${
                           selectedService?.name
                         }\n• Amount: ${formatCurrency(
-                          selectedService?.price
+                          selectedService?.price,
                         )}\n• Appointment Date: ${selectedDate?.toLocaleDateString()}\n• Time: ${selectedTimeSlot}\n\n👤 *Customer Information:*\n• Name: ${
                           formData.fullName
                         }\n• Phone: ${formData.phone}\n• Email: ${
                           formData.email
                         }\n\n💳 *Payment Made:*\nI have transferred the amount of ${formatCurrency(
-                          selectedService?.price
+                          selectedService?.price,
                         )} to your bank account.\n\n📎 *Receipt Attached:*\nKindly find attached my payment receipt for verification.\n\nThank you!`;
 
                         const whatsappUrl = `https://wa.me/${merchantWhatsAppNumber}?text=${encodeURIComponent(
-                          message
+                          message,
                         )}`;
                         window.open(whatsappUrl, "_blank");
                       }}
@@ -1211,7 +1225,7 @@ const FreeBookingPage = () => {
                         </h4>
                       </div>
                       <p className="text-purple-700 text-sm text-center mb-2">
-                        Your booking has been confirmed with the following ID:
+                        Your booking has been submitted with the following ID:
                       </p>
                       <div className="bg-white rounded-lg p-3 border border-purple-300">
                         <p className="text-purple-800 font-bold text-lg text-center">
@@ -1379,13 +1393,13 @@ const FreeBookingPage = () => {
                 <div className="flex items-center justify-center space-x-2 text-gray-400">
                   <span className="text-xs">Powered by</span>
                   <div className="flex items-center space-x-3">
-                    <Link to="/">
+                    <a href="https://dimpified.com" target="_blank">
                       <img
                         src={DimpifiedLogo}
                         alt="Dimpified"
                         className="h-5 w-auto"
                       />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

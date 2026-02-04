@@ -12,9 +12,7 @@ import Footer from "./Footer";
 import { Search } from "lucide-react";
 
 // API Configuration using environment variable
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL ||
-  "https://dimpified-bckend-development.azurewebsites.net/api/v1";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 const API_URL = `${API_BASE_URL}/all-blogs`;
 
 // Async thunk for fetching all blogs
@@ -158,13 +156,10 @@ const BlogCard = ({ blog, onClick }) => {
       {/* AUTHOR ROW */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Link
-            to={`/author/${blog.author?._id}`}
-            onClick={(e) => e.stopPropagation()}
-            className="font-medium text-gray-900 hover:underline text-sm"
-          >
-            {blog.author?.fullName || "Unknown Author"}
-          </Link>
+          <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-2xl text-xs font-medium">
+            {(blog.category || "uncategorized").charAt(0).toUpperCase() +
+              (blog.category || "uncategorized").slice(1)}
+          </span>
         </div>
         <span className="text-gray-500 text-sm">
           {formatTimeAgo(blog.createdAt || blog.dateTime)}
@@ -172,16 +167,19 @@ const BlogCard = ({ blog, onClick }) => {
       </div>
 
       {/* TITLE */}
-      <h3 className="text-lg font-bold text-gray-900 leading-snug mb-4 group-hover:text-purple-600 transition-colors">
+      <h3 className="text-lg font-bold text-purple-950 leading-snug mb-4 group-hover:text-purple-600 transition-colors">
         {blog.title || "Untitled"}
       </h3>
 
       {/* CATEGORY + DATE */}
       <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-        <span className="px-2 py-0.5 text-gray-700 font-medium">
-          {(blog.category || "uncategorized").charAt(0).toUpperCase() +
-            (blog.category || "uncategorized").slice(1)}
-        </span>
+        <Link
+          to={`/author/${blog.author?._id}`}
+          onClick={(e) => e.stopPropagation()}
+          className="font-medium text-gray-900 hover:underline text-sm"
+        >
+          {blog.author?.fullName || "Unknown Author"}
+        </Link>
         <span className="ml-auto">
           {blog.createdAt
             ? new Date(blog.createdAt).toLocaleDateString("en-US", {

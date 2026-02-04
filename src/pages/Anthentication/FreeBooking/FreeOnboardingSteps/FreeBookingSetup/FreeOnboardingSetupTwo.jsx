@@ -113,10 +113,10 @@ const FreeOnboardingSetupTwo = () => {
 
     const userId = creatorId;
     console.log("Creator ID from Redux:", userId);
-    if (!userId) {
-      showToast("User not found. Please log in again.", "error");
-      return;
-    }
+    // if (!userId) {
+    //   showToast("User not found. Please log in again.", "error");
+    //   return;
+    // }
 
     const savedBusiness = sessionStorage.getItem("businessIdentity");
     if (!savedBusiness) {

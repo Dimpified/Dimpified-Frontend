@@ -400,10 +400,9 @@ export default function FreeOnboardingLanding() {
       </div>
     </div>
   );
-<<<<<<< HEAD
+
 };
 
-export default UserLogin;
-=======
-}
->>>>>>> 1142a0aa4f64df4e916d9cc125afe8c6c72a7424
+// export default UserLogin;
+
+

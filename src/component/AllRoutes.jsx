@@ -8,112 +8,112 @@ const DimpLanding = lazy(() => import("../pages/LandingPages/DimpLanding"));
 // const CustomerLanding = lazy(() =>
 //   import("../pages/LandingPages/CustomerLanding")
 // );
-const FreeBookingPage = lazy(() =>
-  import("../pages/Templates/FreeBookingPage")
+const FreeBookingPage = lazy(
+  () => import("../pages/Templates/FreeBookingPage"),
 );
 
-const BookQuickServices = lazy(() =>
-  import("../pages/LandingPages/BookQuickServices")
+const BookQuickServices = lazy(
+  () => import("../pages/LandingPages/BookQuickServices"),
 );
 const About = lazy(() => import("../pages/LandingPages/About"));
 
 const Team = lazy(() => import("../pages/LandingPages/Team"));
-const MerchantOnboarding = lazy(() =>
-  import("../pages/LandingPages/MerchantOnboarding")
+const MerchantOnboarding = lazy(
+  () => import("../pages/LandingPages/MerchantOnboarding"),
 );
-const BarberOnboarding = lazy(() =>
-  import("../pages/LandingPages/BarberOnboarding")
+const BarberOnboarding = lazy(
+  () => import("../pages/LandingPages/BarberOnboarding"),
 );
-const HairdresserOnboarding = lazy(() =>
-  import("../pages/LandingPages/HairdresserOnboarding")
+const HairdresserOnboarding = lazy(
+  () => import("../pages/LandingPages/HairdresserOnboarding"),
 );
-const MakeupOnboarding = lazy(() =>
-  import("../pages/LandingPages/MakeupOnboarding")
+const MakeupOnboarding = lazy(
+  () => import("../pages/LandingPages/MakeupOnboarding"),
 );
 const SpaOnboarding = lazy(() => import("../pages/LandingPages/SpaOnboarding"));
-const NailOnboarding = lazy(() =>
-  import("../pages/LandingPages/NailOnboarding")
+const NailOnboarding = lazy(
+  () => import("../pages/LandingPages/NailOnboarding"),
 );
 const GymOnboarding = lazy(() => import("../pages/LandingPages/GymOnboarding"));
-const DentistOnboarding = lazy(() =>
-  import("../pages/LandingPages/DentistOnboarding")
+const DentistOnboarding = lazy(
+  () => import("../pages/LandingPages/DentistOnboarding"),
 );
 
 //REDIRECT PAGES
-const BarbersRedirect = lazy(() =>
-  import("../pages/Onboarding/BarbersRedirect")
+const BarbersRedirect = lazy(
+  () => import("../pages/Onboarding/BarbersRedirect"),
 );
-const HairdressersRedirect = lazy(() =>
-  import("../pages/Onboarding/HairdressersRedirect")
+const HairdressersRedirect = lazy(
+  () => import("../pages/Onboarding/HairdressersRedirect"),
 );
 const MakeupRedirect = lazy(() => import("../pages/Onboarding/MakeupRedirect"));
 const NailRedirect = lazy(() => import("../pages/Onboarding/NailRedirect"));
 const GymRedirect = lazy(() => import("../pages/Onboarding/GymRedirect"));
 
-const DentistRedirect = lazy(() =>
-  import("../pages/Onboarding/DentistRedirect")
+const DentistRedirect = lazy(
+  () => import("../pages/Onboarding/DentistRedirect"),
 );
 const SpaRedirect = lazy(() => import("../pages/Onboarding/SpaRedirect"));
 
 //US ONBOARDING PAGES
 
-const USBarberOnboarding = lazy(() =>
-  import("../pages/Onboarding/USBarberOnboarding")
+const USBarberOnboarding = lazy(
+  () => import("../pages/Onboarding/USBarberOnboarding"),
 );
-const USHairdresserOnboarding = lazy(() =>
-  import("../pages/Onboarding/USHairdresserOnboarding")
+const USHairdresserOnboarding = lazy(
+  () => import("../pages/Onboarding/USHairdresserOnboarding"),
 );
-const USMakeupOnboarding = lazy(() =>
-  import("../pages/Onboarding/USMakeupOnboarding")
+const USMakeupOnboarding = lazy(
+  () => import("../pages/Onboarding/USMakeupOnboarding"),
 );
-const USSpaOnboarding = lazy(() =>
-  import("../pages/Onboarding/USSpaOnboarding")
+const USSpaOnboarding = lazy(
+  () => import("../pages/Onboarding/USSpaOnboarding"),
 );
-const USGymOnboarding = lazy(() =>
-  import("../pages/Onboarding/USGymOnboarding")
+const USGymOnboarding = lazy(
+  () => import("../pages/Onboarding/USGymOnboarding"),
 );
-const USDentistOnboarding = lazy(() =>
-  import("../pages/Onboarding/USDentistOnboarding")
+const USDentistOnboarding = lazy(
+  () => import("../pages/Onboarding/USDentistOnboarding"),
 );
-const USNailOnboarding = lazy(() =>
-  import("../pages/Onboarding/USNailOnboarding")
+const USNailOnboarding = lazy(
+  () => import("../pages/Onboarding/USNailOnboarding"),
 );
 
 //Ca ONBOARDING PAGES
 
-const CaBarberOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaBarberOnboarding")
+const CaBarberOnboarding = lazy(
+  () => import("../pages/Onboarding/CaBarberOnboarding"),
 );
-const CaHairdresserOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaHairdresserOnboarding")
+const CaHairdresserOnboarding = lazy(
+  () => import("../pages/Onboarding/CaHairdresserOnboarding"),
 );
-const CaMakeupOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaMakeupOnboarding")
+const CaMakeupOnboarding = lazy(
+  () => import("../pages/Onboarding/CaMakeupOnboarding"),
 );
-const CaSpaOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaSpaOnboarding")
+const CaSpaOnboarding = lazy(
+  () => import("../pages/Onboarding/CaSpaOnboarding"),
 );
-const CaGymOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaGymOnboarding")
+const CaGymOnboarding = lazy(
+  () => import("../pages/Onboarding/CaGymOnboarding"),
 );
-const CaDentistOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaDentistOnboarding")
+const CaDentistOnboarding = lazy(
+  () => import("../pages/Onboarding/CaDentistOnboarding"),
 );
-const CaNailOnboarding = lazy(() =>
-  import("../pages/Onboarding/CaNailOnboarding")
+const CaNailOnboarding = lazy(
+  () => import("../pages/Onboarding/CaNailOnboarding"),
 );
 
 //POLICY AND TERMS
 const PrivacyPolicy = lazy(() => import("../pages/LandingPages/PrivacyPolicy"));
 const RefundPolicy = lazy(() => import("../pages/LandingPages/RefundPolicy"));
-const TermsOfService = lazy(() =>
-  import("../pages/LandingPages/TermsOfService")
+const TermsOfService = lazy(
+  () => import("../pages/LandingPages/TermsOfService"),
 );
 
 const BarberLanding = lazy(() => import("../pages/LandingPages/BarberLanding"));
 const FindBarber = lazy(() => import("../pages/LandingPages/FindBarber"));
-const HairDresserLanding = lazy(() =>
-  import("../pages/LandingPages/HairDresserLanding")
+const HairDresserLanding = lazy(
+  () => import("../pages/LandingPages/HairDresserLanding"),
 );
 
 const Pricing = lazy(() => import("../pages/pricing/Pricing"));
@@ -122,226 +122,226 @@ const UkPricing = lazy(() => import("../pages/pricing/UkPricing"));
 const EuPricing = lazy(() => import("../pages/pricing/EuPricing"));
 const CadPricing = lazy(() => import("../pages/pricing/CadPricing"));
 const GhanaPricing = lazy(() => import("../pages/pricing/GhanaPricing.jsx"));
-const LiberiaPricing = lazy(() =>
-  import("../pages/pricing/LiberiaPricing.jsx")
+const LiberiaPricing = lazy(
+  () => import("../pages/pricing/LiberiaPricing.jsx"),
 );
-const SierraLeonePricing = lazy(() =>
-  import("../pages/pricing/SierraLeonePricing.jsx")
+const SierraLeonePricing = lazy(
+  () => import("../pages/pricing/SierraLeonePricing.jsx"),
 );
 const GambiaPricing = lazy(() => import("../pages/pricing/GambiaPricing.jsx"));
-const SouthAfricaPricing = lazy(() =>
-  import("../pages/pricing/SouthAfricaPricing.jsx")
+const SouthAfricaPricing = lazy(
+  () => import("../pages/pricing/SouthAfricaPricing.jsx"),
 );
-const NamibiaPricing = lazy(() =>
-  import("../pages/pricing/NamibiaPricing.jsx")
+const NamibiaPricing = lazy(
+  () => import("../pages/pricing/NamibiaPricing.jsx"),
 );
-const BotswanaPricing = lazy(() =>
-  import("../pages/pricing/BotswanaPricing.jsx")
+const BotswanaPricing = lazy(
+  () => import("../pages/pricing/BotswanaPricing.jsx"),
 );
-const ZimbabwePricing = lazy(() =>
-  import("../pages/pricing/ZimbabwePricing.jsx")
+const ZimbabwePricing = lazy(
+  () => import("../pages/pricing/ZimbabwePricing.jsx"),
 );
 const KenyaPricing = lazy(() => import("../pages/pricing/KenyaPricing.jsx"));
-const TanzaniaPricing = lazy(() =>
-  import("../pages/pricing/TanzaniaPricing.jsx")
+const TanzaniaPricing = lazy(
+  () => import("../pages/pricing/TanzaniaPricing.jsx"),
 );
 const UgandaPricing = lazy(() => import("../pages/pricing/UgandaPricing.jsx"));
 const RwandaPricing = lazy(() => import("../pages/pricing/RwandaPricing.jsx"));
-const EthiopiaPricing = lazy(() =>
-  import("../pages/pricing/EthiopiaPricing.jsx")
+const EthiopiaPricing = lazy(
+  () => import("../pages/pricing/EthiopiaPricing.jsx"),
 );
 const IndiaPricing = lazy(() => import("../pages/pricing/IndiaPricing.jsx"));
-const SingaporePricing = lazy(() =>
-  import("../pages/pricing/SingaporePricing.jsx")
+const SingaporePricing = lazy(
+  () => import("../pages/pricing/SingaporePricing.jsx"),
 );
-const PhilippinesPricing = lazy(() =>
-  import("../pages/pricing/PhilippinesPricing.jsx")
+const PhilippinesPricing = lazy(
+  () => import("../pages/pricing/PhilippinesPricing.jsx"),
 );
-const MalaysiaPricing = lazy(() =>
-  import("../pages/pricing/MalaysiaPricing.jsx")
+const MalaysiaPricing = lazy(
+  () => import("../pages/pricing/MalaysiaPricing.jsx"),
 );
 const GlobalPricing = lazy(() => import("../pages/pricing/GlobalPricing"));
 const PricingRedirect = lazy(() => import("../pages/pricing/PricingRedirect"));
-const LandingHelpCenter = lazy(() =>
-  import("../pages/support/LandingHelpCenter")
+const LandingHelpCenter = lazy(
+  () => import("../pages/support/LandingHelpCenter"),
 );
 const MakeUpLanding = lazy(() => import("../pages/LandingPages/MakeUpLanding"));
-const FindHairStylist = lazy(() =>
-  import("../pages/LandingPages/FindHairStylist")
+const FindHairStylist = lazy(
+  () => import("../pages/LandingPages/FindHairStylist"),
 );
-const ServiceSelector = lazy(() =>
-  import("../pages/LandingPages/SelectServices")
+const ServiceSelector = lazy(
+  () => import("../pages/LandingPages/SelectServices"),
 );
 
 const NailLanding = lazy(() => import("../pages/LandingPages/NailStudios"));
 const FindMakeUp = lazy(() => import("../pages/LandingPages/FindMakeup"));
 const SpaLanding = lazy(() => import("../pages/LandingPages/SpaLanding"));
 const GymLanding = lazy(() => import("../pages/LandingPages/GymLanding"));
-const DentistLanding = lazy(() =>
-  import("../pages/LandingPages/DentistLanding")
+const DentistLanding = lazy(
+  () => import("../pages/LandingPages/DentistLanding"),
 );
 const FindSpa = lazy(() => import("../pages/LandingPages/FindSpa"));
 const FindGym = lazy(() => import("../pages/LandingPages/FindGym"));
 const FindDentist = lazy(() => import("../pages/LandingPages/FindDentist"));
 
-const MerchantBannerWithQR = lazy(() =>
-  import("../features/Banner/MerchantBannerWithQR")
+const MerchantBannerWithQR = lazy(
+  () => import("../features/Banner/MerchantBannerWithQR"),
 );
 
-const MakeupTemplate = lazy(() =>
-  import("../pages/Templates/PersonalCare/makeup/MakeupTemplate")
+const MakeupTemplate = lazy(
+  () => import("../pages/Templates/PersonalCare/makeup/MakeupTemplate"),
 );
-const ThirdMakeup = lazy(() =>
-  import("../pages/Templates/PersonalCare/makeup/ThirdMakeup")
+const ThirdMakeup = lazy(
+  () => import("../pages/Templates/PersonalCare/makeup/ThirdMakeup"),
 );
-const FourthMakeup = lazy(() =>
-  import("../pages/Templates/PersonalCare/makeup/FourthMakeup")
+const FourthMakeup = lazy(
+  () => import("../pages/Templates/PersonalCare/makeup/FourthMakeup"),
 );
-const FifthMakeup = lazy(() =>
-  import("../pages/Templates/PersonalCare/makeup/FifthMakeup")
+const FifthMakeup = lazy(
+  () => import("../pages/Templates/PersonalCare/makeup/FifthMakeup"),
 );
-const BarberMordern = lazy(() =>
-  import("../pages/Templates/PersonalCare/Barber/BarberModern")
+const BarberMordern = lazy(
+  () => import("../pages/Templates/PersonalCare/Barber/BarberModern"),
 );
 
-const BarberGents = lazy(() =>
-  import("../pages/Templates/PersonalCare/Barber/BarberGents")
+const BarberGents = lazy(
+  () => import("../pages/Templates/PersonalCare/Barber/BarberGents"),
 );
-const WeddingTemplate = lazy(() =>
-  import("../pages/Templates/Event-Services/Wedding")
+const WeddingTemplate = lazy(
+  () => import("../pages/Templates/Event-Services/Wedding"),
 );
-const BarberPosh = lazy(() =>
-  import("../pages/Templates/PersonalCare/Barber/BarberPosh")
+const BarberPosh = lazy(
+  () => import("../pages/Templates/PersonalCare/Barber/BarberPosh"),
 );
-const BarberFourth = lazy(() =>
-  import("../pages/Templates/PersonalCare/Barber/BarberFourth")
+const BarberFourth = lazy(
+  () => import("../pages/Templates/PersonalCare/Barber/BarberFourth"),
 );
-const BlankTemplate = lazy(() =>
-  import("../pages/Templates/Blank-Template/BlankTemplate")
+const BlankTemplate = lazy(
+  () => import("../pages/Templates/Blank-Template/BlankTemplate"),
 );
-const BarberFresh = lazy(() =>
-  import("../pages/Templates/PersonalCare/Barber/BarberFresh")
+const BarberFresh = lazy(
+  () => import("../pages/Templates/PersonalCare/Barber/BarberFresh"),
 );
-const Barber2 = lazy(() =>
-  import("../pages/Templates/PersonalCare/Barber/Barber2")
+const Barber2 = lazy(
+  () => import("../pages/Templates/PersonalCare/Barber/Barber2"),
 );
-const HairstylistTemplate = lazy(() =>
-  import("../pages/Templates/HairstylistTemplate")
+const HairstylistTemplate = lazy(
+  () => import("../pages/Templates/HairstylistTemplate"),
 );
-const SecondStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/SecondStylist")
+const SecondStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/SecondStylist"),
 );
-const SecondMakeup = lazy(() =>
-  import("../pages/Templates/PersonalCare/makeup/SecondMakeup")
+const SecondMakeup = lazy(
+  () => import("../pages/Templates/PersonalCare/makeup/SecondMakeup"),
 );
-const FourthStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/FourthStylist")
+const FourthStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/FourthStylist"),
 );
-const ThirdStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/ThirdStylist")
+const ThirdStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/ThirdStylist"),
 );
-const FifthStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/FifthStylist")
+const FifthStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/FifthStylist"),
 );
-const SixthStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/SixthStylist")
+const SixthStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/SixthStylist"),
 );
-const SeventhStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/SeventhStylist")
+const SeventhStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/SeventhStylist"),
 );
-const EighthStylist = lazy(() =>
-  import("../pages/Templates/PersonalCare/Hairstylist/EighthStylist")
+const EighthStylist = lazy(
+  () => import("../pages/Templates/PersonalCare/Hairstylist/EighthStylist"),
 );
 
 // NAIL IMPORTS
-const FirstNail = lazy(() =>
-  import("../pages/Templates/PersonalCare/nail/NailsTemplate")
+const FirstNail = lazy(
+  () => import("../pages/Templates/PersonalCare/nail/NailsTemplate"),
 );
 const FindNail = lazy(() => import("../pages/LandingPages/FindNail"));
-const SecondNail = lazy(() =>
-  import("../pages/Templates/PersonalCare/nail/SecondNail")
+const SecondNail = lazy(
+  () => import("../pages/Templates/PersonalCare/nail/SecondNail"),
 );
-const ThirdNail = lazy(() =>
-  import("../pages/Templates/PersonalCare/nail/ThirdNail")
+const ThirdNail = lazy(
+  () => import("../pages/Templates/PersonalCare/nail/ThirdNail"),
 );
-const FourthNail = lazy(() =>
-  import("../pages/Templates/PersonalCare/nail/FourthNail")
+const FourthNail = lazy(
+  () => import("../pages/Templates/PersonalCare/nail/FourthNail"),
 );
-const FifthNail = lazy(() =>
-  import("../pages/Templates/PersonalCare/nail/FifthNail")
+const FifthNail = lazy(
+  () => import("../pages/Templates/PersonalCare/nail/FifthNail"),
 );
-const SixthNail = lazy(() =>
-  import("../pages/Templates/PersonalCare/nail/SixthNail")
+const SixthNail = lazy(
+  () => import("../pages/Templates/PersonalCare/nail/SixthNail"),
 );
 
 // GYM IMPORTS
-const GymTemplate = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/GymTemplate")
+const GymTemplate = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/GymTemplate"),
 );
-const SecondGym = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/SecondGym")
+const SecondGym = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/SecondGym"),
 );
-const ThirdGym = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/ThirdGym")
-);
-
-const FourthGym = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/FourthGym")
-);
-const FifthGym = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/FifthGym")
-);
-const SixthGym = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/SixthGym")
-);
-const SeventhGym = lazy(() =>
-  import("../pages/Templates/PersonalCare/gym/SeventhGym")
+const ThirdGym = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/ThirdGym"),
 );
 
-const FirstSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/FirstSpa")
+const FourthGym = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/FourthGym"),
 );
-const SecondSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/SecondSpa")
+const FifthGym = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/FifthGym"),
 );
-const ThirdSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/ThirdSpa")
+const SixthGym = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/SixthGym"),
 );
-const FourthSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/FourthSpa")
-);
-const FifthSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/FifthSpa")
-);
-const SixthSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/SixthSpa")
-);
-const SeventhSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/SeventhSpa")
-);
-const EighthSpa = lazy(() =>
-  import("../pages/Templates/PersonalCare/spa/EighthSpa")
+const SeventhGym = lazy(
+  () => import("../pages/Templates/PersonalCare/gym/SeventhGym"),
 );
 
-const FirstDentist = lazy(() =>
-  import("../pages/Templates/PersonalCare/dental/FirstDentist")
+const FirstSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/FirstSpa"),
 );
-const SecondDentist = lazy(() =>
-  import("../pages/Templates/PersonalCare/dental/SecondDentist")
+const SecondSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/SecondSpa"),
 );
-const ThirdDentist = lazy(() =>
-  import("../pages/Templates/PersonalCare/dental/ThirdDentist")
+const ThirdSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/ThirdSpa"),
 );
-const FourthDentist = lazy(() =>
-  import("../pages/Templates/PersonalCare/dental/FourthDentist")
+const FourthSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/FourthSpa"),
 );
-const FifthDentist = lazy(() =>
-  import("../pages/Templates/PersonalCare/dental/FifthDentist")
+const FifthSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/FifthSpa"),
+);
+const SixthSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/SixthSpa"),
+);
+const SeventhSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/SeventhSpa"),
+);
+const EighthSpa = lazy(
+  () => import("../pages/Templates/PersonalCare/spa/EighthSpa"),
+);
+
+const FirstDentist = lazy(
+  () => import("../pages/Templates/PersonalCare/dental/FirstDentist"),
+);
+const SecondDentist = lazy(
+  () => import("../pages/Templates/PersonalCare/dental/SecondDentist"),
+);
+const ThirdDentist = lazy(
+  () => import("../pages/Templates/PersonalCare/dental/ThirdDentist"),
+);
+const FourthDentist = lazy(
+  () => import("../pages/Templates/PersonalCare/dental/FourthDentist"),
+);
+const FifthDentist = lazy(
+  () => import("../pages/Templates/PersonalCare/dental/FifthDentist"),
 );
 // import HairstylistTemplate from "../pages/Templates/HairstylistTemplate";
 
-const InvestorLanding = lazy(() =>
-  import("../pages/LandingPages/InvestorLanding")
+const InvestorLanding = lazy(
+  () => import("../pages/LandingPages/InvestorLanding"),
 );
 
 import UserLogin from "../pages/Anthentication/RegisterUser/UserLogin";
@@ -435,6 +435,16 @@ import FreeOverview from "../pages/FreeCreatorDashboard/Overview";
 import FreeAllBookings from "../pages/FreeCreatorDashboard/FreeBookings";
 import FreeCreatorProfile from "../pages/FreeCreatorDashboard/FreeCreatorProfile";
 import ManageServices from "../pages/FreeCreatorDashboard/FreeManageService";
+import PaidOnboardingPreSignup from "../pages/Anthentication/PaidBooking/PaidOnboardingPreSignup";
+import PaidOnboardingPersonalInfo from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidOnboardingPersonalInfo";
+import PaidOnboardingEmailVerification from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidOnboardingEmailVerification";
+import PaidOnboardingSetupOne from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidBookingSetup/PaidOnboardingSetupOne";
+import PaidOnboardingSetupTwo from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidBookingSetup/PaidOnboardingSetupTwo";
+import PaidOnboardingSetupThree from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidBookingSetup/PaidOnboardingSetupThree";
+import PaidOnboardingReview from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidOnboardingReview";
+import PaidSelectTemplate from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidSelectTemplate";
+import PaidPreviewTemplate from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidPreviewTemplate";
+import PaidSubscription from "../pages/Anthentication/PaidBooking/FreeOnboardingSteps/PaidSubcription";
 
 const TrackPageView = () => {
   const location = useLocation();
@@ -934,6 +944,49 @@ const AllRoutes = () => {
                 element={<ManageServices />}
               />
             </Route>
+
+
+             {/* Paid Onboarding */}
+            <Route
+              path="/paid/auth/pre-signup"
+              element={<PaidOnboardingPreSignup />}
+            />
+            <Route
+              path="/paid/auth/personal-Information"
+              element={<PaidOnboardingPersonalInfo />}
+            />
+            <Route
+              path="/paid/auth/email-verification"
+              element={<PaidOnboardingEmailVerification />}
+            />
+            <Route
+              path="/paid/auth/business-identity"
+              element={<PaidOnboardingSetupOne />}
+            />
+            <Route
+              path="/paid/auth/availability"
+              element={<PaidOnboardingSetupTwo />}
+            />
+            <Route
+              path="/paid/auth/service-payment"
+              element={<PaidOnboardingSetupThree />}
+            />
+            <Route
+              path="/paid/auth/review"
+              element={<PaidOnboardingReview />}
+            />
+            <Route
+              path="/paid/auth/select-template"
+              element={<PaidSelectTemplate />}
+            />
+            <Route
+              path="/paid/auth/preview-template"
+              element={<PaidPreviewTemplate />}
+            />
+            <Route
+              path="/paid/auth/subcription"
+              element={<PaidSubscription />}
+            />
           </Routes>
         </Suspense>
       </CountryProvider>

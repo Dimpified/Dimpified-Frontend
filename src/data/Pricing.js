@@ -434,3 +434,34 @@ export const packageNames = {
   Pro: "Payments & Financial Management Package",
   Extra: "Marketing & Customer Management Package",
 };
+
+
+
+export const paidPlanSubTitle = {
+  Plus: "For growing creators",
+  Pro: "For serious creators",
+};
+
+export const paidPlanDescriptions = {
+  Plus: "Unlock essential tools to grow your content and reach more audience.",
+  Pro: "Get all features, advanced analytics, priority support, and unlimited growth tools.",
+};
+
+export const paidPlanFeatures = {
+  Plus: [
+    "Access to basic analytics",
+    "Upload up to 50 pieces of content per month",
+    "Community engagement tools",
+    "Email support",
+    "Basic monetization options",
+  ],
+  Pro: [
+    "All features in Plus plan",
+    "Advanced analytics & insights",
+    "Unlimited content uploads",
+    "Priority email & chat support",
+    "Advanced monetization options",
+    "Collaboration and team management",
+    "Custom branding for your ecosystem",
+  ],
+};

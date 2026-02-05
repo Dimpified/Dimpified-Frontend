@@ -5,7 +5,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google"; // Change from useGoogleLogin to GoogleLogin
 import { useDispatch, useSelector } from "react-redux";
 import {
   creatorLogin,
@@ -70,70 +70,63 @@ export default function UserLogin() {
     resolver: yupResolver(schema),
   });
 
-const handleNavigation = (step, plan) => {
-  // Treat undefined/null plan as "free"
-  const isFreePlan = !plan || plan?.toLowerCase() === "free";
-  
+  const handleNavigation = (step, plan) => {
+    // Treat undefined/null plan as "free"
+    const isFreePlan = !plan || plan?.toLowerCase() === "free";
 
+    switch (step) {
+      case 1:
+        const step1Path = isFreePlan
+          ? "/free/auth/email-verification"
+          : "/auth/email-verification";
 
-  switch (step) {
-    case 1:
-      const step1Path = isFreePlan
-        ? "/free/auth/email-verification"
-        : "/auth/email-verification";
-    
-      navigate(step1Path);
-      break;
+        navigate(step1Path);
+        break;
 
-    case 2:
-      const step2Path = isFreePlan 
-        ? "/free/auth/business-identity" 
-        : "/auth/business-type";
-    
-      navigate(step2Path);
-      break;
+      case 2:
+        const step2Path = isFreePlan
+          ? "/free/auth/business-identity"
+          : "/auth/business-type";
 
-    case 3:
-      const step3Path = isFreePlan 
-        ? "/free/auth/availability" 
-        : "/auth/business-info";
+        navigate(step2Path);
+        break;
 
-      navigate(step3Path);
-      break;
+      case 3:
+        const step3Path = isFreePlan
+          ? "/free/auth/availability"
+          : "/auth/business-info";
 
-    case 4:
-       const step4Path = isFreePlan 
-        ? "/free/auth/service-payment" 
-        : "/auth/select-template";
-     
-      navigate(step3Path);
-      break;
-    case 5:
-  
-      navigate("/auth/select-template");
-      break;
+        navigate(step3Path);
+        break;
 
-    case 6:
-     
-      navigate("/auth/edit-template");
-      break;
+      case 4:
+        const step4Path = isFreePlan
+          ? "/free/auth/service-payment"
+          : "/auth/select-template";
 
-    case 7:
-      const dashboardPath = isFreePlan
-        ? "/free/creator/dashboard/overview"
-        : "/creator/dashboard/overview";
-    
-      navigate(dashboardPath);
-      break;
+        navigate(step3Path);
+        break;
+      case 5:
+        navigate("/auth/select-template");
+        break;
 
-    default:
-     
-      navigate("/auth/personal-information");
-      break;
-  }
-  
- 
-};
+      case 6:
+        navigate("/auth/edit-template");
+        break;
+
+      case 7:
+        const dashboardPath = isFreePlan
+          ? "/free/creator/dashboard/overview"
+          : "/creator/dashboard/overview";
+
+        navigate(dashboardPath);
+        break;
+
+      default:
+        navigate("/auth/personal-information");
+        break;
+    }
+  };
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
@@ -141,7 +134,7 @@ const handleNavigation = (step, plan) => {
         creatorLogin({
           email: data.email,
           password: data.password,
-        })
+        }),
       );
       console.log("Login resultAction:", resultAction);
 
@@ -153,7 +146,7 @@ const handleNavigation = (step, plan) => {
 
         if (resultAction.payload.user.ecosystemDomain) {
           dispatch(
-            setEcosystemDomain(resultAction.payload.user.ecosystemDomain)
+            setEcosystemDomain(resultAction.payload.user.ecosystemDomain),
           );
         }
         if (resultAction.payload.user.plan) {
@@ -168,13 +161,13 @@ const handleNavigation = (step, plan) => {
         if (resultAction.payload.user.subCategory) {
           sessionStorage.setItem(
             "subCategory",
-            resultAction.payload.user.subCategory
+            resultAction.payload.user.subCategory,
           );
         }
 
         handleNavigation(
           resultAction.payload.user.step,
-          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
+          resultAction.payload.user.plan || "free", // Pass "free" if plan is undefined
         );
       }
     } catch (error) {
@@ -182,43 +175,60 @@ const handleNavigation = (step, plan) => {
     }
   };
 
-  const handleGoogleSuccess = async (tokenResponse) => {
+  const handleGoogleSuccess = async (credentialResponse) => {
+    console.log("this is google credential", credentialResponse);
+    
     try {
       const resultAction = await dispatch(
-        creatorLoginWithGoogle({ token: tokenResponse.access_token })
+        creatorLoginWithGoogle({ token: credentialResponse.credential }), // Use credential instead of access_token
       );
 
       if (creatorLoginWithGoogle.rejected.match(resultAction)) {
         const errorPayload = resultAction.payload;
+
+        // If user doesn't exist, redirect to registration
+        if (
+          errorPayload?.message?.includes("not found") ||
+          errorPayload?.code === "USER_NOT_FOUND"
+        ) {
+          showToast("Account not found. Please sign up first.", "error");
+          navigate("/auth/landing"); // Redirect to signup
+          return;
+        }
+
         showToast(errorPayload || "Google login failed", "error");
       } else if (creatorLoginWithGoogle.fulfilled.match(resultAction)) {
-        showToast(resultAction.payload.message);
+        showToast(resultAction.payload.message, "success");
+        const yourJwtToken = resultAction.payload.token;
+        const userData = resultAction.payload.user;
 
+        console.log("MY JWT Token:", yourJwtToken);
+        console.log("User data:", userData);
+
+        // Store user data
         if (resultAction.payload.user.ecosystemDomain) {
           dispatch(
-            setEcosystemDomain(resultAction.payload.user.ecosystemDomain)
+            setEcosystemDomain(resultAction.payload.user.ecosystemDomain),
           );
         }
-        if (resultAction.payload.user.plan) {
-          dispatch(setEcosystemPlan(resultAction.payload.user.plan));
-        } else {
-          // Handle undefined plan by setting as "free"
-          dispatch(setEcosystemPlan("free"));
-        }
+
+        // Set plan (default to 'free' if undefined)
+        const userPlan = resultAction.payload.user.plan || "free";
+        dispatch(setEcosystemPlan(userPlan));
+
         if (resultAction.payload.user.status) {
           dispatch(setEcosystemStatus(resultAction.payload.user.status));
         }
+
         if (resultAction.payload.user.subCategory) {
           sessionStorage.setItem(
             "subCategory",
-            resultAction.payload.user.subCategory
+            resultAction.payload.user.subCategory,
           );
         }
 
-        handleNavigation(
-          resultAction.payload.user.step,
-          resultAction.payload.user.plan || "free" // Pass "free" if plan is undefined
-        );
+        // Navigate based on user's current step
+        handleNavigation(resultAction.payload.user.step, userPlan);
       }
     } catch (error) {
       console.error("Google Sign-In Error:", error);
@@ -226,21 +236,15 @@ const handleNavigation = (step, plan) => {
     }
   };
 
-  const handleGoogleFailure = (error) => {
-    console.error("Google Sign-In Failed:", error);
+  const handleGoogleFailure = () => {
+    console.log("Google Login Failed");
     showToast("Google Sign-In Failed. Please try again.", "error");
   };
 
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: handleGoogleSuccess,
-    onError: handleGoogleFailure,
-    flow: "implicit",
-    scope: "profile email",
-  });
+  // Remove the useGoogleLogin hook and replace with GoogleLogin component in the JSX
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      
       {/* Background decorative stars */}
       <div className="absolute top-[40%] left-[-50px] w-32 h-32 md:w-48 md:h-48">
         <svg
@@ -273,7 +277,7 @@ const handleNavigation = (step, plan) => {
       <div className="w-full gap-8 lg:gap-12 flex flex-col lg:flex-row items-center mx-auto">
         {/* Left Content Section */}
         <div className="w-full lg:w-2/3 px-4 py-8 md:py-12 lg:py-16 mx-auto">
-        <div className="flex items-center gap-2 top-0 left-0 ml-4 sm:ml-8 md:ml-16 lg:ml-28 mb-8">
+          <div className="flex items-center gap-2 top-0 left-0 ml-4 sm:ml-8 md:ml-16 lg:ml-28 mb-8">
             <RouterLink to="/">
               <img
                 src={Logo}
@@ -282,7 +286,7 @@ const handleNavigation = (step, plan) => {
               />
             </RouterLink>
           </div>
-          
+
           <div className="relative z-10 space-y-6 md:space-y-8 lg:space-y-10 mx-auto px-4 py-8 md:py-12 lg:py-16 items-center justify-center flex flex-col">
             <div className="w-full max-w-sm ">
               {/* Main Heading */}
@@ -299,15 +303,32 @@ const handleNavigation = (step, plan) => {
 
               {/* Login Form */}
               <div className="space-y-4 w-full">
-                {/* Google Login Button */}
-                {/* <button
-                  type="button"
-                  onClick={loginWithGoogle}
-                  className="w-full h-12 font-bold rounded-lg border-2 border-gray-200 p-2 flex items-center justify-center mb-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 group"
-                >
-                  <GoogleLogo />
-                  Continue with Google
-                </button>
+                {/* Google Login Button - Use GoogleLogin component instead */}
+                {/* <div className="w-full">
+                  <GoogleLogin
+                    onSuccess={handleGoogleSuccess}
+                    onError={handleGoogleFailure}
+                    useOneTap={false}
+                    shape="rectangular"
+                    size="large"
+                    width="100%"
+                    text="continue_with"
+                    theme="outline"
+                    logo_alignment="left"
+                    locale="en"
+                    render={(renderProps) => (
+                      <button
+                        type="button"
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                        className="w-full h-12 font-bold rounded-lg border-2 border-gray-200 p-2 flex items-center justify-center mb-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 group"
+                      >
+                        <GoogleLogo />
+                        Continue with Google
+                      </button>
+                    )}
+                  />
+                </div>
 
                 <div className="flex gap-3 w-full items-center my-4">
                   <hr className="flex-1 bg-[#E5E5E5]" />
@@ -315,9 +336,14 @@ const handleNavigation = (step, plan) => {
                   <hr className="flex-1 bg-[#E5E5E5]" />
                 </div>
 
-                <p className="text-gray-500 mb-2 text-center">Please enter your details</p> */}
+                <p className="text-gray-500 mb-2 text-center">
+                  Please enter your details
+                </p> */}
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-4 w-full"
+                >
                   <div className="w-full">
                     <label htmlFor="email" className="text-black mb-1 block">
                       Email *

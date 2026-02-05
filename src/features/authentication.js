@@ -29,13 +29,31 @@ export const creatorLoginWithGoogle = createAsyncThunk(
   async ({ token }, { rejectWithValue }) => {
     try {
       const response = await api.GoogleSignUp({ token });
+      
+      // Check if this is a login or registration
+      console.log("API Response:", response.data);
+      
+      // If it's returning a JWT token, store it
+      if (response.data.token) {
+        localStorage.setItem('jwtToken', response.data.token);
+        api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+        
+        // Check if user is new or existing
+        if (response.data.isNewUser) {
+          console.log("New user registered via Google");
+          // Navigate to registration flow
+        } else {
+          console.log("Existing user logged in via Google");
+          // Navigate to dashboard
+        }
+      }
+      
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );
-
 // edit profile auto login
 export const editProfileAutoLogin = createAsyncThunk(
   "auth/editProfileAutoLogin",

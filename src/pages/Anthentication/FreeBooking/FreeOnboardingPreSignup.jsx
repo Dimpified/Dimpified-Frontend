@@ -5,17 +5,64 @@ import { Link as Route } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 
 export default function FreeOnboardingPreSignup() {
+  const handleGoogleSuccess = async (tokenResponse) => {
+    try {
+      const resultAction = await dispatch(
+        creatorSignupWithGoogle({ token: tokenResponse.access_token }),
+      );
+
+      if (creatorLoginWithGoogle.fulfilled.match(resultAction)) {
+        const { user, message } = resultAction.payload;
+
+        showToast(message || "Google signup successful!", "success");
+
+        // Check user's step to determine where to navigate
+        if (user && user.step) {
+          // Navigate based on user's current step
+          switch (user.step) {
+            case 1:
+              // New user - go to email verification or personal info
+              navigate("/free/auth/personal-information");
+              break;
+            case 2:
+              // Already completed personal info - go to business identity
+              navigate("/free/auth/business-identity");
+              break;
+            case 3:
+              // Already completed business identity - go to availability
+              navigate("/free/auth/availability");
+              break;
+            case 4:
+              // Already completed availability - go to service payment
+              navigate("/free/auth/service-payment");
+              break;
+            default:
+              // Default to business identity for new signups
+              navigate("/free/auth/business-identity");
+          }
+        } else {
+          // If no step info, assume new user and go to business identity
+          navigate("/free/auth/business-identity");
+        }
+      }
+
+      if (creatorLoginWithGoogle.rejected.match(resultAction)) {
+        showToast(resultAction.payload || "Google signup failed", "error");
+      }
+    } catch (error) {
+      console.error("Google signup error:", error);
+      showToast("An error occurred during Google signup", "error");
+    }
+  };
+
   const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log("Google login success:", tokenResponse);
-      // Handle successful login here
-      // You can send the token to your backend for verification
-    },
+    onSuccess: handleGoogleSuccess,
     onError: (error) => {
       console.error("Google login failed:", error);
-      // Handle login error here
+      showToast("Google authentication failed. Please try again.", "error");
     },
   });
+
   return (
     <div className="min-h-screen bg-white relative overflow-hidden flex">
       {/* Purple decorative blob - left */}
@@ -65,11 +112,12 @@ export default function FreeOnboardingPreSignup() {
       <div className="w-full lg:w-2/3 flex flex-col px-6 sm:px-12 md:px-16 lg:px-20 py-8 relative z-10">
         {/* Logo */}
         <div className="mb-12 lg:mb-16">
-         <Route to="/"><img
-            src={Logo}
-            alt="Dimipified Logo"
-            className="h-6  w-auto object-contain"
-          />
+          <Route to="/">
+            <img
+              src={Logo}
+              alt="Dimipified Logo"
+              className="h-6  w-auto object-contain"
+            />
           </Route>
         </div>
 

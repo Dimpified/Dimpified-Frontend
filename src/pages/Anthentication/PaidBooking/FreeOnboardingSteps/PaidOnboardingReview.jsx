@@ -13,8 +13,8 @@ import {
   MessageCircle,
   Mail,
 } from "lucide-react";
-import FreeOnboardingLayout from "./FreeOnboardingLayout";
-import SubStepWrapper from "./FreeBookingSetup/SubStepWrapper";
+import PaidOnboardingLayout from "./PaidOnboardingLayout";
+import SubStepWrapper from "./PaidBookingSetup/SubStepWrapper";
 import { ButtonLongPurple } from "../../../../component/Buttons";
 import api from "../../../../api/authApis";
 import dashboardApi from "../../../../api/DashboardApi";
@@ -32,14 +32,14 @@ const daysOfWeek = [
   "Saturday",
 ];
 
-const FreeOnboardingReview = () => {
+const PaidOnboardingReview = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { creatorId } = useSelector((state) => state.auth.user || {});
   const { accessToken, refreshToken } = useSelector((state) => state.auth);
   const ecosystemDomain = useSelector(
-    (state) => state.ecosystemDomain?.domain || "dimpified.com",
+    (state) => state.ecosystemDomain?.domain || "dimpified.com"
   );
 
   const [businessData, setBusinessData] = useState(null);
@@ -60,9 +60,9 @@ const FreeOnboardingReview = () => {
     if (!business || !availability || !services || !bank) {
       showToast("Please complete all steps first", "error");
       // Redirect to the first incomplete step
-      if (!business) navigate("/free/auth/business-identity");
-      else if (!availability) navigate("/free/auth/availability");
-      else if (!services) navigate("/free/auth/service-payment");
+      if (!business) navigate("/Paid/auth/business-identity");
+      else if (!availability) navigate("/Paid/auth/availability");
+      else if (!services) navigate("/Paid/auth/service-payment");
       return;
     }
 
@@ -74,9 +74,9 @@ const FreeOnboardingReview = () => {
 
   const handleEdit = (step) => {
     const routes = {
-      business: "/free/auth/business-identity",
-      availability: "/free/auth/availability",
-      services: "/free/auth/service-payment",
+      business: "/Paid/auth/business-identity",
+      availability: "/Paid/auth/availability",
+      services: "/Paid/auth/service-payment",
     };
     navigate(routes[step]);
   };
@@ -120,11 +120,11 @@ const FreeOnboardingReview = () => {
       const businessResult = await api.createBusinessIdentity(businessPayload);
 
       // Set ecosystem domain
-      if (businessResult.data?.businessDetails?.websiteAddress) {
+      if (
+        businessResult.data?.businessDetails?.websiteAddress
+      ) {
         dispatch(
-          setEcosystemDomain(
-            businessResult.data.businessDetails.websiteAddress,
-          ),
+          setEcosystemDomain(businessResult.data.businessDetails.websiteAddress)
         );
       } else {
         dispatch(setEcosystemDomain(businessData.websiteAddress));
@@ -140,7 +140,9 @@ const FreeOnboardingReview = () => {
         subCategory: businessData.businessType,
         prefix: "I will",
         header: servicesData.services[0].name,
-        description: businessData.description,
+        description: `Professional services including ${servicesData.services
+          .map((s) => s.name)
+          .join(", ")}`,
         format: "Onsite",
         currency: "NGN",
         services: servicesData.services.map((service) => ({
@@ -161,7 +163,7 @@ const FreeOnboardingReview = () => {
             Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       // Step 3: Add Bank Account
@@ -177,21 +179,19 @@ const FreeOnboardingReview = () => {
       });
 
       showToast("Setup completed successfully!", "success");
-
+      
       // Clear all session storage
       sessionStorage.removeItem("businessIdentity");
       sessionStorage.removeItem("availability");
       sessionStorage.removeItem("services");
       sessionStorage.removeItem("bankDetails");
-
+      
       setShowSuccess(true);
     } catch (err) {
       console.error("Setup error:", err);
       showToast(
-        err.response?.data?.message ||
-          err.message ||
-          "Failed to complete setup",
-        "error",
+        err.response?.data?.message || err.message || "Failed to complete setup",
+        "error"
       );
     } finally {
       setIsSubmitting(false);
@@ -261,7 +261,7 @@ const FreeOnboardingReview = () => {
             Congratulations!
           </h2>
           <p className="text-gray-700 text-base sm:text-lg mb-8">
-            Your free booking page is live and ready to accept bookings!
+            Your Paid booking page is live and ready to accept bookings!
           </p>
 
           <div className="bg-gray-50 rounded-2xl p-5 sm:p-6 mb-8">
@@ -361,9 +361,9 @@ const FreeOnboardingReview = () => {
           </div>
 
           <ButtonLongPurple
-            onClick={() => navigate("/free/creator/dashboard/overview")}
+            onClick={() => navigate("/Paid/creator/dashboard/overview")}
             width="w-full"
-            className="h-14 text-lg rounded-xl font-semibold bg-purple-700"
+            className="h-14 text-lg font-semibold"
           >
             Go to Dashboard
           </ButtonLongPurple>
@@ -379,17 +379,19 @@ const FreeOnboardingReview = () => {
   // Loading state
   if (!businessData || !availabilityData || !servicesData || !bankData) {
     return (
-      <FreeOnboardingLayout currentStep={3}>
+      <PaidOnboardingLayout currentStep={3} >
         <div className="flex items-center justify-center min-h-[60vh]">
           <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
         </div>
-      </FreeOnboardingLayout>
+      </PaidOnboardingLayout>
     );
   }
 
   return (
-    <FreeOnboardingLayout currentStep={4} rightImage={null}>
+    <PaidOnboardingLayout currentStep={4} rightImage={null}>
       <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+       
+
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center sm:text-left">
           Review Your Information
         </h1>
@@ -432,7 +434,7 @@ const FreeOnboardingReview = () => {
               </div>
 
               <div>
-                <p className="text-sm text-gray-600">Your Prospective Booking Link</p>
+                <p className="text-sm text-gray-600">Your Booking Link</p>
                 <p className="text-purple-600 font-medium break-all">
                   dimpified.com/{businessData.websiteAddress}
                 </p>
@@ -587,8 +589,8 @@ const FreeOnboardingReview = () => {
           </ButtonLongPurple>
         </div>
       </div>
-    </FreeOnboardingLayout>
+    </PaidOnboardingLayout>
   );
 };
 
-export default FreeOnboardingReview;
+export default PaidOnboardingReview;

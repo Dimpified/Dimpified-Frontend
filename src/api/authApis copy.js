@@ -1,6 +1,5 @@
 import axios from "axios";
 import { updateAccessToken } from "../features/authentication";
-import AxiosInterceptor from "../component/AxiosInterceptor";
 
 // Define your API endpoints
 const API_URL = `${import.meta.env.VITE_API_URL}/creator`;
@@ -34,17 +33,13 @@ const GoogleSignUp = async ({ token, refcode = null }) => {
   try {
     console.log("Sending Google auth request with payload:", { token, refcode });
     
-     let processedRefcode = refcode;
-    
-    // If refcode is "null" string, treat it as empty
-    if (processedRefcode === "null" || processedRefcode === null) {
-      processedRefcode = "";
-    }
-    
     const payload = {
       token: token,
-     refCode: refcode
     };
+    
+    if (refcode) {
+      payload.refcode = refcode;
+    }
     
     const response = await apiClient.post(`${API_URL}/google-auth`, payload, {
       timeout: 15000,
@@ -300,55 +295,123 @@ const CreatorSelectBusinessType = async ({
     );
   }
 };
-export const createBusinessIdentity = async ({
-  creatorId,
-  businessAddress,
-  businessName,
-  websiteAddress,
-  description,
-  category,
-  timezone,
-  week,
-  dispatch,
-  navigate
-}) => {
-  // Create axios instance with interceptors
-  const authFetch = AxiosInterceptor(dispatch, navigate);
-  
+
+export const createBusinessIdentity = async (data) => {
   try {
-    const response = await authFetch.post(
-      `${import.meta.env.VITE_API_URL}/creator/create-business-identity`,
+    console.log("=== CREATE BUSINESS IDENTITY DEBUG ===");
+    
+    // USE ACCESS TOKEN (JWT from backend) - Samuel confirmed this
+    let token = data.accessToken || data.token;
+    
+    // Fallback: Get from localStorage
+    if (!token) {
+      token = localStorage.getItem('accessToken') || 
+              localStorage.getItem('jwtToken');
+    }
+    
+    console.log("Token source:", 
+      token === data.accessToken ? "From data payload (accessToken)" :
+      token === data.token ? "From data payload (token)" :
+      "From localStorage"
+    );
+    
+    console.log("Token type: JWT Access Token (from backend)");
+    console.log("Token length:", token?.length);
+    console.log("Token (first 50 chars):", token?.substring(0, 50) + "...");
+    
+    if (!token) {
+      console.error("No access token found!");
+      console.log("LocalStorage contents:", {
+        accessToken: localStorage.getItem('accessToken'),
+        jwtToken: localStorage.getItem('jwtToken'),
+        googleIdToken: localStorage.getItem('googleIdToken'),
+      });
+      throw new Error("Authentication token is required. Please login again.");
+    }
+    
+    // Prepare payload - remove token fields since they go in header
+    const payload = { ...data };
+    delete payload.token;
+    delete payload.accessToken;
+    delete payload.refreshToken;
+    delete payload.googleToken;
+    delete payload.googleIdToken;
+    delete payload.idToken;
+    
+    console.log("Payload to send:", JSON.stringify(payload, null, 2));
+    console.log("Sending request to:", `${API_URL}/create-business-identity`);
+    console.log("Using Authorization header: Bearer", token.substring(0, 50) + "...");
+    
+    // Send ACCESS TOKEN in Authorization header
+    const response = await axios.post(
+      `${API_URL}/create-business-identity`,
+      payload,
       {
-        creatorId,
-        businessName,
-        websiteAddress,
-        businessAddress,
-        description,
-        category,
-        timezone,
-        week,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        timeout: 15000,
       }
     );
-
-    return response.data;
+    
+    console.log("Business identity created successfully:", response.data);
+    return response;
+    
   } catch (error) {
-    const message =
-      error.response?.data?.message ||
-      error.message ||
-      "Failed to create business identity";
-
-    throw new Error(message);
+    console.error("=== BUSINESS IDENTITY ERROR DETAILS ===");
+    console.error("Error message:", error.message);
+    console.error("Error response data:", error.response?.data);
+    console.error("Error status:", error.response?.status);
+    console.error("Request headers:", error.config?.headers);
+    
+    // Check if it's a token issue
+    if (error.response?.status === 400) {
+      const errorData = error.response.data;
+      console.error("400 Error details:", errorData);
+      
+      // Even though we're using access token, backend might still want Google token
+      // This is a backend issue - they should accept access token if that's what they return
+      if (errorData?.message?.includes("Google token") || 
+          errorData?.message?.includes("token is required")) {
+        
+        console.log("=== CONFLICT DETECTED ===");
+        console.log("Backend says: 'Google token is required'");
+        console.log("But Samuel says: Use access token");
+        console.log("Token we sent (access token):", {
+          length: token?.length,
+          start: token?.substring(0, 100),
+        });
+        
+        throw new Error("Authentication issue: Backend expects Google token but we're using access token. Please contact support.");
+      } else {
+        throw new Error(errorData?.message || "Invalid request. Please check your data.");
+      }
+    } else if (error.response?.status === 401) {
+      throw new Error("Session expired. Please login again.");
+    } else if (error.response?.status === 403) {
+      throw new Error("Access denied. Please check your permissions.");
+    } else if (error.response?.status === 500) {
+      throw new Error("Server error. Please try again later.");
+    } else if (error.message.includes("Network Error") || error.code === 'ECONNABORTED') {
+      throw new Error("Network error. Please check your connection.");
+    } else {
+      throw new Error(error.message || "Failed to create business identity");
+    }
   }
 };
+
 export default {
   newCreatorRegister,
   CreatorSelectBusinessType,
   GoogleSignUp,
+  setAuthHeader,
+  clearAuthHeader,
+  apiClient,
   creatorRegister,
   creatorVerifyToken,
   creatorLogin,
   affiliateLogin,
-  // creatorLogin,
   creatorResendVerifyToken,
   creatorForgetPassword,
   creatorResetPassword,

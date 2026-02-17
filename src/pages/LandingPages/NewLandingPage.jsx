@@ -892,7 +892,7 @@ const SubscriptionSection = () => {
             className="p-8 rounded-t-2xl"
             style={{ backgroundColor: "#61089C26" }}
           >
-            <h3 className="text-xl font-semibold">Lite Plan</h3>
+            <h3 className="text-xl font-semibold">Free Plan</h3>
             <p className="text-gray-600 text-sm mt-2">
               Solopreneur (Small business/service professionals) who just wants
               to show their services and get booked.
@@ -940,7 +940,7 @@ const SubscriptionSection = () => {
             className="p-8 rounded-t-2xl"
             style={{ backgroundColor: "#61089C26" }}
           >
-            <h3 className="text-xl font-semibold">Plus Plan</h3>
+            <h3 className="text-xl font-semibold">Lite Plan</h3>
             <p className="text-gray-600 text-sm mt-2">
               Solopreneur with physical store and multiple staffs.
             </p>

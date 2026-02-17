@@ -148,8 +148,8 @@ const BillingToggle = ({ billingCycle, setBillingCycle }) => {
 const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
   const plans = [
     {
-      id: "lite",
-      name: "Lite Plan",
+      id: "Free",
+      name: "Free Plan",
       tagline: "For solopreneurs and small businesses",
       icon: <Sparkles className="w-6 h-6" />,
       price: billingCycle === "annual" ? "Free" : "Free",
@@ -175,8 +175,8 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
       color: "from-blue-500 to-cyan-400",
     },
     {
-      id: "plus",
-      name: "Plus Plan",
+      id: "Lite",
+      name: "Lite Plan",
       tagline: "For growing businesses with physical stores",
       icon: <Store className="w-6 h-6" />,
       price: billingCycle === "annual" ? "₦45,000" : "₦4,500",

@@ -5,7 +5,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { GoogleLogin } from "@react-oauth/google"; // Change from useGoogleLogin to GoogleLogin
+import { GoogleLogin } from "@react-oauth/google";
 import { useDispatch, useSelector } from "react-redux";
 import {
   creatorLogin,
@@ -17,6 +17,7 @@ import { setEcosystemPlan } from "../../../features/ecosystemPlan";
 import { setEcosystemStatus } from "../../../features/ecosystemStatus";
 import { LongInputWithPlaceholder } from "../../../component/Inputs";
 import { ButtonLongPurple } from "../../../component/Buttons";
+import axios from "axios";
 
 const GoogleLogo = () => (
   <svg
@@ -46,6 +47,13 @@ const GoogleLogo = () => (
   </svg>
 );
 
+// Get refcode from URL if it exists
+const getRefCodeFromURL = () => {
+  const params = new URLSearchParams(location.search);
+  // Try "ref" first (new format), then "refcode" (old format)
+  return params.get("ref") || params.get("refcode") || null;
+};
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -57,10 +65,31 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
+// Helper function to set axios auth headers
+const setAuthHeaders = (token) => {
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    // Also update the api client if it exists
+    try {
+      const authApis = require("../../../api/authApis");
+      if (authApis.default && authApis.default.apiClient) {
+        authApis.default.apiClient.defaults.headers.common["Authorization"] =
+          `Bearer ${token}`;
+      }
+    } catch (error) {
+      console.warn("Could not update api client headers:", error);
+    }
+  }
+};
+
 export default function UserLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error, user } = useSelector((state) => state.auth);
+
+  // Get refcode from URL if it exists
+  const refcode = getRefCodeFromURL();
 
   const {
     register,
@@ -127,6 +156,7 @@ export default function UserLogin() {
         break;
     }
   };
+
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
@@ -176,59 +206,171 @@ export default function UserLogin() {
   };
 
   const handleGoogleSuccess = async (credentialResponse) => {
-    console.log("this is google credential", credentialResponse);
-    
+    console.log("=== Google Auth Debug ===");
+    console.log("Full Google response:", credentialResponse);
+
+    // Debug token types
+    if (credentialResponse.credential) {
+      console.log("✓ ID Token (credential) received");
+      console.log(
+        "ID Token starts with eyJ:",
+        credentialResponse.credential.startsWith("eyJ"),
+      );
+      console.log(
+        "ID Token segments:",
+        credentialResponse.credential.split(".").length,
+      );
+    }
+
+    // Always use the ID token (credential) for backend authentication
+    const idToken = credentialResponse.credential;
+    localStorage.setItem("googleCredential", idToken);
+
+    if (!idToken) {
+      console.error("No ID token (credential) received from Google");
+      showToast("Google authentication failed: No ID token received", "error");
+      return;
+    }
+
+    console.log("Sending ID token to backend...");
+
     try {
       const resultAction = await dispatch(
-        creatorLoginWithGoogle({ token: credentialResponse.credential }), // Use credential instead of access_token
+        creatorLoginWithGoogle({
+          token: idToken, // Send ID token (JWT)
+          refcode: refcode || null,
+        }),
       );
 
       if (creatorLoginWithGoogle.rejected.match(resultAction)) {
         const errorPayload = resultAction.payload;
+        const errorMessage =
+          errorPayload?.message || errorPayload || "Google login failed";
 
-        // If user doesn't exist, redirect to registration
+        console.error("Google auth rejected:", errorMessage);
+
+        // Handle timeout/connection errors
         if (
-          errorPayload?.message?.includes("not found") ||
-          errorPayload?.code === "USER_NOT_FOUND"
+          errorMessage.includes("timeout") ||
+          errorMessage.includes("cannot connect")
         ) {
-          showToast("Account not found. Please sign up first.", "error");
-          navigate("/auth/landing"); // Redirect to signup
+          showToast(
+            "Connection issue. Please try again or use email login.",
+            "error",
+          );
           return;
         }
 
-        showToast(errorPayload || "Google login failed", "error");
-      } else if (creatorLoginWithGoogle.fulfilled.match(resultAction)) {
-        showToast(resultAction.payload.message, "success");
-        const yourJwtToken = resultAction.payload.token;
-        const userData = resultAction.payload.user;
-
-        console.log("MY JWT Token:", yourJwtToken);
-        console.log("User data:", userData);
-
-        // Store user data
-        if (resultAction.payload.user.ecosystemDomain) {
-          dispatch(
-            setEcosystemDomain(resultAction.payload.user.ecosystemDomain),
+        // Handle token validation errors
+        if (
+          errorMessage.includes("Wrong number of segments") ||
+          errorMessage.includes("Invalid token") ||
+          errorMessage.includes("JWT")
+        ) {
+          showToast(
+            "Google authentication failed: Invalid token format",
+            "error",
           );
+          return;
+        }
+
+        // Check if user doesn't exist
+        if (
+          errorMessage.toLowerCase().includes("not found") ||
+          errorMessage.toLowerCase().includes("user not found") ||
+          errorMessage.toLowerCase().includes("no user found")
+        ) {
+          showToast("Account not found. Please sign up first.", "error");
+
+          // Store Google credential for signup flow
+          localStorage.setItem("googleCredential", idToken);
+          localStorage.setItem(
+            "googleUserData",
+            JSON.stringify({
+              token: idToken,
+              timestamp: new Date().toISOString(),
+            }),
+          );
+
+          if (refcode) {
+            localStorage.setItem("pendingRefcode", refcode);
+          }
+
+          // Navigate to signup page
+          if (refcode) {
+            navigate(`/auth/landing?refcode=${refcode}&googleAuth=true`);
+          } else {
+            navigate("/auth/landing?googleAuth=true");
+          }
+          return;
+        }
+
+        showToast(errorMessage, "error");
+      } else if (creatorLoginWithGoogle.fulfilled.match(resultAction)) {
+        const responseData = resultAction.payload;
+        console.log("✓ Backend Google auth success:", responseData);
+
+        // Validate response structure
+        if (!responseData) {
+          showToast("Invalid response from server", "error");
+          return;
+        }
+
+        // Store tokens and set headers HERE in the component
+        const accessToken = responseData.accessToken || responseData.token;
+        const refreshToken = responseData.refreshToken;
+
+        if (accessToken) {
+          console.log("Storing access token...");
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("jwtToken", accessToken);
+
+          // Set axios headers
+          setAuthHeaders(accessToken);
+        }
+
+        if (refreshToken) {
+          localStorage.setItem("refreshToken", refreshToken);
+        }
+
+        // Check if this is a new user or existing user
+        const isNewUser =
+          responseData.isNewUser || responseData.isNewUser === true;
+        const userData = responseData.user || responseData;
+        const message =
+          responseData.message || (isNewUser ? "Welcome!" : "Login successful");
+
+        showToast(message, "success");
+
+        // Set user data in Redux
+        if (userData.ecosystemDomain) {
+          dispatch(setEcosystemDomain(userData.ecosystemDomain));
         }
 
         // Set plan (default to 'free' if undefined)
-        const userPlan = resultAction.payload.user.plan || "free";
+        const userPlan = userData.plan || "free";
         dispatch(setEcosystemPlan(userPlan));
 
-        if (resultAction.payload.user.status) {
-          dispatch(setEcosystemStatus(resultAction.payload.user.status));
+        if (userData.status) {
+          dispatch(setEcosystemStatus(userData.status));
         }
 
-        if (resultAction.payload.user.subCategory) {
-          sessionStorage.setItem(
-            "subCategory",
-            resultAction.payload.user.subCategory,
-          );
+        if (userData.subCategory) {
+          sessionStorage.setItem("subCategory", userData.subCategory);
         }
 
         // Navigate based on user's current step
-        handleNavigation(resultAction.payload.user.step, userPlan);
+        if (isNewUser) {
+          // New user - navigate to onboarding
+          console.log("New user detected, navigating to onboarding");
+          showToast("Welcome! Please complete your profile.", "success");
+          navigate("/auth/email-verification");
+        } else {
+          // Existing user - navigate based on their step
+          const userStep = userData.step || 1;
+          console.log(`Existing user, step ${userStep}, plan ${userPlan}`);
+          handleNavigation(userStep, userPlan);
+        }
       }
     } catch (error) {
       console.error("Google Sign-In Error:", error);
@@ -236,12 +378,10 @@ export default function UserLogin() {
     }
   };
 
-  const handleGoogleFailure = () => {
-    console.log("Google Login Failed");
+  const handleGoogleFailure = (error) => {
+    console.error("Google Login Failed:", error);
     showToast("Google Sign-In Failed. Please try again.", "error");
   };
-
-  // Remove the useGoogleLogin hook and replace with GoogleLogin component in the JSX
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
@@ -303,8 +443,8 @@ export default function UserLogin() {
 
               {/* Login Form */}
               <div className="space-y-4 w-full">
-                {/* Google Login Button - Use GoogleLogin component instead */}
-                {/* <div className="w-full">
+                {/* Google Login Button */}
+                <div className="w-full">
                   <GoogleLogin
                     onSuccess={handleGoogleSuccess}
                     onError={handleGoogleFailure}
@@ -312,19 +452,50 @@ export default function UserLogin() {
                     shape="rectangular"
                     size="large"
                     width="100%"
-                    text="continue_with"
+                    text="signin_with"
                     theme="outline"
-                    logo_alignment="left"
+                    logo_alignment="center"
                     locale="en"
+                    context="signin"
+                    ux_mode="popup"
                     render={(renderProps) => (
                       <button
                         type="button"
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                        className="w-full h-12 font-bold rounded-lg border-2 border-gray-200 p-2 flex items-center justify-center mb-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 group"
+                        onClick={() => {
+                          console.log("Google button clicked");
+                          renderProps.onClick();
+                        }}
+                        disabled={renderProps.disabled || isLoading}
+                        className="w-full h-12 font-bold rounded-lg border-2 border-gray-400 p-2 flex items-center justify-center mb-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <GoogleLogo />
-                        Continue with Google
+                        {isLoading ? (
+                          <div className="flex items-center">
+                            <svg
+                              className="animate-spin h-4 w-4 mr-2"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v8h8a8 8 0 01-16 0z"
+                              ></path>
+                            </svg>
+                            Processing...
+                          </div>
+                        ) : (
+                          <>
+                            <GoogleLogo />
+                            Continue with Google
+                          </>
+                        )}
                       </button>
                     )}
                   />
@@ -338,7 +509,7 @@ export default function UserLogin() {
 
                 <p className="text-gray-500 mb-2 text-center">
                   Please enter your details
-                </p> */}
+                </p>
 
                 <form
                   onSubmit={handleSubmit(onSubmit)}

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { updateAccessToken } from "../features/authentication";
-import AxiosInterceptor from "../component/AxiosInterceptor";
 
 // Define your API endpoints
 const API_URL = `${import.meta.env.VITE_API_URL}/creator`;
@@ -11,63 +10,64 @@ const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 30000,
   headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 });
 
 // Helper function to update headers
 export const setAuthHeader = (token) => {
   if (token) {
-    apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    apiClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 };
 
 // Clear auth header
 export const clearAuthHeader = () => {
-  delete apiClient.defaults.headers.common['Authorization'];
-  delete axios.defaults.headers.common['Authorization'];
+  delete apiClient.defaults.headers.common["Authorization"];
+  delete axios.defaults.headers.common["Authorization"];
 };
 
 const GoogleSignUp = async ({ token, refcode = null }) => {
   try {
-    console.log("Sending Google auth request with payload:", { token, refcode });
-    
-     let processedRefcode = refcode;
-    
-    // If refcode is "null" string, treat it as empty
-    if (processedRefcode === "null" || processedRefcode === null) {
-      processedRefcode = "";
-    }
-    
+    console.log("Sending Google auth request with payload:", {
+      token,
+      refcode,
+    });
+
     const payload = {
       token: token,
-     refCode: refcode
     };
-    
+
+    if (refcode) {
+      payload.refcode = refcode;
+    }
+
     const response = await apiClient.post(`${API_URL}/google-auth`, payload, {
       timeout: 15000,
     });
-    
+
     console.log("Google auth response:", response.data);
     return response;
   } catch (error) {
     console.error("Google auth API error:", error);
-    
-    if (error.code === 'ECONNABORTED') {
+
+    if (error.code === "ECONNABORTED") {
       throw new Error("Connection timeout. Please try again.");
     } else if (error.response) {
       const errorData = error.response.data;
       console.error("Server error response:", errorData);
       throw new Error(
-        errorData?.message || 
-        errorData?.error || 
-        "Google authentication failed"
+        errorData?.message ||
+          errorData?.error ||
+          "Google authentication failed",
       );
     } else if (error.request) {
       console.error("No response received:", error.request);
-      throw new Error("Cannot connect to server. Please check your connection.");
+      throw new Error(
+        "Cannot connect to server. Please check your connection.",
+      );
     } else {
       throw new Error("An unexpected error occurred");
     }
@@ -128,7 +128,7 @@ const newCreatorRegister = async ({
     return response;
   } catch (error) {
     throw new Error(
-      error.response?.data?.message || " New Registration failed"
+      error.response?.data?.message || " New Registration failed",
     );
   }
 };
@@ -186,7 +186,7 @@ const emailLogin = async ({ email }) => {
   try {
     const response = await axios.get(
       `${PLAIN_API_URL}/gfa-creator-login/${email}`,
-      {}
+      {},
     );
     return response;
   } catch (error) {
@@ -216,7 +216,7 @@ const creatorResetPassword = async ({ email, password }) => {
   } catch (error) {
     console.log("error for reset", error.response);
     throw new Error(
-      error.response?.data?.data?.message || "Password reset failed"
+      error.response?.data?.data?.message || "Password reset failed",
     );
   }
 };
@@ -291,12 +291,12 @@ const CreatorSelectBusinessType = async ({
         creatorId,
         category,
         subCategory,
-      }
+      },
     );
     return response;
   } catch (error) {
     throw new Error(
-      error.response?.data?.message || "Select Business Type failed"
+      error.response?.data?.message || "Select Business Type failed",
     );
   }
 };
@@ -309,14 +309,35 @@ export const createBusinessIdentity = async ({
   category,
   timezone,
   week,
-  dispatch,
-  navigate
+  token,
+  accessToken,
+  refreshToken,
 }) => {
-  // Create axios instance with interceptors
-  const authFetch = AxiosInterceptor(dispatch, navigate);
-  
   try {
-    const response = await authFetch.post(
+    // Get token from localStorage
+    let authToken = localStorage.getItem("googleCredential");
+    
+    // If not found, try to get from passed token prop
+    if (!authToken && token) {
+      authToken = token;
+    }
+    
+    // Fallback to accessToken or other options
+    if (!authToken && accessToken) {
+      authToken = accessToken;
+    }
+    
+    if (!authToken) {
+      throw new Error("No authentication token found");
+    }
+
+    console.log("Token source:", 
+      authToken === token ? "From function param" : 
+      authToken === accessToken ? "From accessToken param" : 
+      "From localStorage (googleCredential)"
+    );
+
+    const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/creator/create-business-identity`,
       {
         creatorId,
@@ -327,7 +348,15 @@ export const createBusinessIdentity = async ({
         category,
         timezone,
         week,
-      }
+        // Don't send token in body unless API specifically requires it
+        // token: authToken, // Uncomment only if API expects token in body
+      },
+      {
+        headers: {
+          'Authorization': authToken,
+          "Content-Type": "application/json",
+        },
+      },
     );
 
     return response.data;
@@ -340,6 +369,7 @@ export const createBusinessIdentity = async ({
     throw new Error(message);
   }
 };
+
 export default {
   newCreatorRegister,
   CreatorSelectBusinessType,

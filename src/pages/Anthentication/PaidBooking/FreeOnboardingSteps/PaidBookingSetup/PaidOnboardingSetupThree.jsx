@@ -1,10 +1,10 @@
-// pages/auth/FreeOnboardingSetupThree.jsx
+// pages/auth/PaidOnboardingSetupThree.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CheckCircle2, Loader2, Plus, Trash2 } from "lucide-react";
 
-import FreeOnboardingLayout from "../FreeOnboardingLayout";
+import PaidOnboardingLayout from "../PaidOnboardingLayout";
 import SubStepWrapper from "./SubStepWrapper";
 import { ButtonLongPurple } from "../../../../../component/Buttons";
 import dashboardApi from "../../../../../api/DashboardApi";
@@ -19,7 +19,7 @@ const durationOptions = [
   { value: 180, label: "180 Min" },
 ];
 
-const FreeOnboardingSetupThree = () => {
+const PaidOnboardingSetupThree = () => {
   const navigate = useNavigate();
   const { accessToken, refreshToken } = useSelector((state) => state.auth);
 
@@ -155,22 +155,22 @@ const FreeOnboardingSetupThree = () => {
     }
 
     if (!sessionStorage.getItem("businessIdentity")) {
-      navigate("/free/auth/business-identity");
+      navigate("/Paid/auth/business-identity");
       return;
     }
 
     if (!sessionStorage.getItem("availability")) {
-      navigate("/free/auth/availability");
+      navigate("/Paid/auth/availability");
       return;
     }
 
-    navigate("/free/auth/review");
+    navigate("/Paid/auth/review");
   };
 
   /* ---------------------------------- UI ---------------------------------- */
 
   return (
-    <FreeOnboardingLayout currentStep={3}>
+    <PaidOnboardingLayout currentStep={3}>
       <div className="max-w-3xl mx-auto px-4 py-8">
         <SubStepWrapper currentSubStep={3} />
 
@@ -298,16 +298,14 @@ const FreeOnboardingSetupThree = () => {
 
         <ButtonLongPurple
           onClick={handleNext}
-          width="w-full"
           disabled={!isFormValid()}
-          className="bg-purple-600 mt-10 h-14 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all"
-         
+          className="w-full mt-8 h-14"
         >
           Next: Review Details
         </ButtonLongPurple>
       </div>
-    </FreeOnboardingLayout>
+    </PaidOnboardingLayout>
   );
 };
 
-export default FreeOnboardingSetupThree;
+export default PaidOnboardingSetupThree;

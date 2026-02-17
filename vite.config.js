@@ -22,7 +22,7 @@ export default defineConfig({
       ],
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,jpg,jpeg,svg,webp,woff,woff2,ttf,eot}"],
-        maximumFileSizeToCacheInBytes: 7000000, // 7 MB
+        maximumFileSizeToCacheInBytes: 10000000, // 7 MB
         runtimeCaching: [
           {
             // CACHE STRATEGY 1: Images (CacheFirst - 30 days)

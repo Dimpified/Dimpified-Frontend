@@ -185,7 +185,7 @@ const PricingPlans = ({ billingCycle, activePlan, setActivePlan }) => {
       description: "For businesses with physical stores and multiple staff",
       features: [
         {
-          text: "Everything in Lite Plan +",
+          text: "Everything in Free Plan +",
           icon: <Check className="w-4 h-4" />,
         },
         {
@@ -423,16 +423,16 @@ const FeatureComparison = () => {
         { name: "Multi-location Support", lite: false, plus: false, pro: true },
       ],
     },
-    {
-      category: "Growth Features",
-      items: [
-        { name: "VIP Booking", lite: false, plus: false, pro: true },
-        { name: "Membership Programs", lite: false, plus: false, pro: true },
-        { name: "Inventory Management", lite: false, plus: false, pro: true },
-        { name: "Advanced Analytics", lite: false, plus: false, pro: true },
-        { name: "Dedicated Support", lite: false, plus: false, pro: true },
-      ],
-    },
+    // {
+    //   category: "Growth Features",
+    //   items: [
+    //     { name: "VIP Booking", lite: false, plus: false, pro: true },
+    //     { name: "Membership Programs", lite: false, plus: false, pro: true },
+    //     { name: "Inventory Management", lite: false, plus: false, pro: true },
+    //     { name: "Advanced Analytics", lite: false, plus: false, pro: true },
+    //     { name: "Dedicated Support", lite: false, plus: false, pro: true },
+    //   ],
+    // },
   ];
 
   return (
@@ -452,8 +452,8 @@ const FeatureComparison = () => {
             <thead>
               <tr className="bg-gradient-to-r from-[#9810FA] to-purple-600 text-white">
                 <th className="p-6 text-left rounded-tl-2xl">Feature</th>
-                <th className="p-6 text-center">Lite</th>
-                <th className="p-6 text-center bg-purple-700">Plus</th>
+                <th className="p-6 text-center">Free</th>
+                <th className="p-6 text-center bg-purple-700">Lite</th>
                 {/* <th className="p-6 text-center rounded-tr-2xl">Pro</th> */}
               </tr>
             </thead>
